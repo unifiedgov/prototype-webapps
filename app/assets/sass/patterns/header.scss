@@ -1,0 +1,7 @@
+.phase-banner-wrapper + #global-header-bar {
+	display: none;
+}
+
+.phase-banner-wrapper .govuk-c-phase-banner {
+	border-top: 10px solid $govuk-blue;
+}
