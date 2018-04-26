@@ -4,7 +4,7 @@
 <!--[if gt IE 8]><!--><html lang="{{ html_lang|default('en') }}" class="html-admin" id="adminTheme"><!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>{% block page_title %}{% endblock %}</title>
+    <title>{% block page_title %}{% endblock %} - {% if adminServiceName %} {{ adminServiceName }} {% endif %}</title>
 
     <!--[if gt IE 8]><!--><link href="{{ asset_path }}stylesheets/govuk-template.css?0.22.3" media="screen" rel="stylesheet" /><!--<![endif]-->
     <!--[if IE 6]><link href="{{ asset_path }}stylesheets/govuk-template-ie6.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->

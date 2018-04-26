@@ -1,0 +1,7 @@
+.sign-in {
+	margin: 20px 20px;
+	max-width: 400px;
+	@include mq($from: tablet) {
+		margin: 80px auto 0;		
+	}
+}

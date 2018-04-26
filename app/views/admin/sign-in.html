@@ -1,0 +1,43 @@
+{% extends "admin_layout.html" %}
+
+{% block page_title %}
+  Sign in
+{% endblock %}
+
+{% block content %}
+
+<form action="/all-applications" class="sign-in">
+  <h1 class="govuk-heading-l">Sign in</h1>
+
+  {% from "input/macro.njk" import govukInput %}
+  {% from "button/macro.njk" import govukButton %}
+
+  {{ govukInput({
+    "label": {
+      "text": "Email address"    
+    },
+    type: "email",
+    id: "sign-in-email",
+    name: "sign-in-email"
+  }) }}
+
+  {{ govukInput({
+    "label": {
+      "text": "Password"    
+    },
+    type: "password",
+    id: "sign-in-password",
+    name: "sign-in-password"
+  }) }}
+
+  {{ govukButton({
+    "text": "Sign in"
+  }) }}
+
+  <p>
+    <a href="reset-password">Reset your password</a>
+  </p>
+  
+</form>
+
+{% endblock %}
