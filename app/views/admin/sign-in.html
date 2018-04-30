@@ -7,10 +7,18 @@
 {% block content %}
 
 <form action="/all-applications" class="sign-in">
-  <h1 class="govuk-heading-l">Sign in</h1>
 
-  {% from "input/macro.njk" import govukInput %}
-  {% from "button/macro.njk" import govukButton %}
+  <h1 class="govuk-heading-l">Sign in</h1>
+<!-- 
+  {{ govukErrorSummary({
+    "titleText": "Fix the following errors",
+    "errorList": [
+      {
+        "text": "You've entered the wrong email or password",
+        "href": "#sign-in-email"
+      }
+    ]
+  }) }} -->
 
   {{ govukInput({
     "label": {
