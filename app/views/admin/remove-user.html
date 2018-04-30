@@ -1,0 +1,34 @@
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "edit-details"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block content %}
+
+  {{ govukWarningText(
+    {
+      "text": "You won't be able to undo this.",
+      "iconFallbackText": "Warning"
+    })
+  }}
+
+  <div class="govuk-body">
+    <p>Are you sure you want to remove access for <b>Joe Bloggs</b>?</p>
+  </div>
+
+  {{ govukButton({
+    "text": "Yes, remove user",
+    "href": "manage-users"
+  }) }}
+
+  <p class="govuk-body">
+    <a href="edit-details">Cancel</a>
+  </p>
+
+{% endblock %}

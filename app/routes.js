@@ -24,4 +24,8 @@ router.get('/admin/edit-details', function (req, res) {
   res.render('admin/edit-details', {'title':'User details','manage_class':'active'})
 })
 
+router.get('/admin/remove-user', function (req, res) {
+  res.render('admin/remove-user', {'title':'Remove user','manage_class':'active'})
+})
+
 module.exports = router
