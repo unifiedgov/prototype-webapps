@@ -10,7 +10,6 @@
   background: $govuk-grey-4;
   width: 100%;
   color: $la-blue;
-  height: 40px;
   overflow: hidden;
   @include mq($from: tablet) {
     width: 300px;
@@ -37,10 +36,20 @@
 
 .side-nav__item {
   display: none;
-  padding: 10px 15px 10px 15px;
+  a {
+    display: block;
+    overflow: hidden;
+    padding: 15px;
+    position: relative;
+  }
   @include mq($from: tablet) {
     display: block;
-    padding: 12px 20px 11px 30px;
+    a {
+      padding: 12px 20px 11px 30px;  
+    }
+    .counter {
+      top: 11px;
+    }
   }
   .open & {
     display: block;
@@ -49,6 +58,20 @@
     background: $la-blue;
     color: white;
     display: block;
+    a {
+      color: white;
+      &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7px 8px 7px 0;
+        border-color: transparent #ffffff transparent transparent;
+        position: absolute;
+        right: 0; top: 50%;
+        margin-top: -7px;
+      }
+    }
     @include mq($from: tablet) {
       display: block;
     }
@@ -57,7 +80,8 @@
 
 .counter {
   display: inline-block;
-  float: right;
+  position: absolute;
+  right: 15px; top: 12px;
   font-size: 14px;
   background: white;
   padding: 5px 5px 1px;

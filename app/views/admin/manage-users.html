@@ -1,0 +1,145 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+  <h1>{{title}}</h1><p class="count">29</p>
+  <div class="search-box-container">
+    {% include "includes/search.html" %}
+    <div class="search-box__options">
+      {{ govukButton({
+        "text": "Create a new user"
+      }) }}
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block content %}
+  {{ govukTable({
+    "firstCellIsHeader": false,
+    "head": [
+      {
+        "text": "Name"
+      },
+      {
+        "text": "Email address",
+        "format": "sort"
+      },
+      {
+        "text": "Permissions"
+      }
+    ],
+    "rows": [
+      [
+        {
+          "html": "<a href=''>Joe Bloggs</a>"
+        },
+        {
+          "text": "joe.bloggs@manchester.gov.uk"
+        },
+        {
+          "text": "Standard"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>Mohammed Bilal</a>"
+        },
+        {
+          "text": "mohammed.bilal@manchester.gov.uk"
+        },
+        {
+          "text": "Owner"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>Sarah Galloway</a>"
+        },
+        {
+          "text": "sarah.galloway@manchester.gov.uk"
+        },
+        {
+          "text": "Standard"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>Jeff Veen</a>"
+        },
+        {
+          "text": "jeff.veen@manchester.gov.uk"
+        },
+        {
+          "text": "Standard"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>Jay Nathan</a>"
+        },
+        {
+          "text": "jay.nathan@manchester.gov.uk"
+        },
+        {
+          "text": "Owner"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>Scott Walker</a>"
+        },
+        {
+          "text": "scott.walker@manchester.gov.uk"
+        },
+        {
+          "text": "Standard"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>Adam Kayoom</a>"
+        },
+        {
+          "text": "adam.kayoom@manchester.gov.uk"
+        },
+        {
+          "text": "Standard"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>Tilda Vaugn</a>"
+        },
+        {
+          "text": "tilda.vaugn@manchester.gov.uk"
+        },
+        {
+          "text": "Standard"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>Margerate Cowell</a>"
+        },
+        {
+          "text": "margerate.cowell@manchester.gov.uk"
+        },
+        {
+          "text": "Standard"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>Raksha Patel</a>"
+        },
+        {
+          "text": "raksha.patel@manchester.gov.uk"
+        },
+        {
+          "text": "Standard"
+        }
+      ]
+    ]
+  }) }}
+
+{% endblock %}

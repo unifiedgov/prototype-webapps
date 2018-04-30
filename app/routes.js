@@ -12,4 +12,8 @@ router.get('/admin/all-applications', function (req, res) {
   res.render('admin/all-applications', {'title':'All applications','app_class':'active'})
 })
 
+router.get('/admin/manage-users', function (req, res) {
+  res.render('admin/manage-users', {'title':'Manage users','manage_class':'active'})
+})
+
 module.exports = router

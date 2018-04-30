@@ -4,11 +4,15 @@
 
 /*Testing*/
 
+.search-box-container {
+  background: $govuk-grey-4;
+  margin-top: 25px;
+  padding: 20px;
+}
+
 .search-box {
   @include govuk-font-regular-19;
-  background: $govuk-grey-4;
-  padding: 20px;
-  margin-top: 25px;
+  display: inline-block;
   input {
     @include govuk-font-regular-19;
   	padding: 9px 15px 6px;

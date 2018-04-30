@@ -14,6 +14,9 @@
 	.header-wrapper {
 		max-width: none;
 	}
+	#global-header .header-proposition {
+		padding-top: 0;
+	}
 	#global-header .header-proposition #proposition-name {
 		@include govuk-font-bold-19;
 	}
@@ -28,6 +31,7 @@
 	}
 	td {
 		@include govuk-font-regular-16;
+		border-color: $govuk-grey-3;
 	}
 	th {
 		@include govuk-font-bold-16;

@@ -2,7 +2,12 @@
 
 {% block page_header %}
   <h1>{{title}}</h1><p class="count">29</p>
-  {% include "includes/search.html" %}
+  <div class="search-box-container">
+    {% include "includes/search.html" %}
+    <div class="search-box__options">
+      <a href="/public/images/new-applications.csv">Export all</a>
+    </div>
+  </div>
 {% endblock %}
 
 {% block content %}

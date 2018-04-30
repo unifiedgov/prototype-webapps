@@ -30,8 +30,8 @@ module.exports = {
   // Enable or disable Browser Sync
   useBrowserSync: 'true',
 
-  laName: 'Acme County Council',
+  laName: 'Manchester City Council',
 
-  username: 'Joe Bloggs'
+  username: 'Linda Ball'
 
 }
