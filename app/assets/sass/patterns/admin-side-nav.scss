@@ -64,6 +64,7 @@
   border-radius: 3px;
   min-width: 16px;
   text-align: center;
+  line-height: 1.4;
   .active & {
     color: white;
     background: darken($la-blue,15%);
