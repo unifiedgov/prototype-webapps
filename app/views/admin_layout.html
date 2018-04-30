@@ -46,13 +46,16 @@
             {% if adminServiceName %} {{ adminServiceName }} {% endif %}
           {% endblock %}
         </a>
-        <h3 class="proposition__authority">{% if laName %}{{ laName }}{% else %}Acme Council{% endif %}</h3>
+        <h3 class="proposition__authority">{{ laName }}</h3>
         <!--
         <ul id="proposition-links">
           <li><a href="url-to-page-1" class="active">Navigation item #1</a></li>
           <li><a href="url-to-page-2">Navigation item #2</a></li>
         </ul>
         -->
+        <div class="user-menu">
+          <p>{{ username }}</p><a href="sign-in">Sign out</a>
+        </div>
       </nav>
     </div>
   </div>

@@ -28,6 +28,10 @@ module.exports = {
   cookieText: 'GOV.UK uses cookies to make the site simpler. <a class="govuk-link" href="#">Find out more about cookies</a>',
 
   // Enable or disable Browser Sync
-  useBrowserSync: 'true'
+  useBrowserSync: 'true',
+
+  laName: 'Acme County Council',
+
+  username: 'Joe Bloggs'
 
 }

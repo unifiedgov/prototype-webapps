@@ -1,0 +1,46 @@
+/*------------------------------------*\
+  Tables
+\*------------------------------------*/
+
+.sortable span {
+  display: inline-block;
+  &::after {
+    display: inline-block;
+    content: '';
+    background: url('../images/table-arrows.svg') no-repeat 6px 4px;
+    height: 12px;
+    width: 24px;
+  }
+}
+
+.asc span::after {
+  background-position: 6px -130px;
+}
+
+.desc span::after {
+  background-position: 6px -59px;
+}
+
+// Results per page
+.results-per-page,
+.pagination {
+  margin-top: 15px;
+  display: inline-block;
+  p,
+  ul,
+  li {
+    display: inline;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    margin-left: 5px;
+  }
+}
+
+// Paginations
+.pagination {
+  float: right;
+}

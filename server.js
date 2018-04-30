@@ -126,6 +126,8 @@ app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 app.locals.adminServiceName = config.adminServiceName
+app.locals.laName = config.laName
+app.locals.username = config.username
 
 // Support session data
 app.use(session({

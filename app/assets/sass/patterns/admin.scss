@@ -3,6 +3,7 @@
 @import "patterns/admin-header";
 @import "patterns/admin-side-nav";
 @import "patterns/admin-search";
+@import "patterns/admin-tables";
 @import "patterns/admin-layout";
 
 .html-admin {
@@ -16,8 +17,17 @@
 	#global-header .header-proposition #proposition-name {
 		@include govuk-font-bold-19;
 	}
+	#global-header.with-proposition .header-wrapper .header-proposition {
+		width: 100%;
+	}
 	.govuk-c-label {
 		@include govuk-font-regular-16;
+	}
+	td {
+		@include govuk-font-regular-16;
+	}
+	th {
+		@include govuk-font-bold-16;
 	}
 }
 
