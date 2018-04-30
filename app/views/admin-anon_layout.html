@@ -63,37 +63,7 @@
 {% endblock %}
 
 {% block page_layout %}
-
-  <nav class="side-nav">
-    <ul>
-      <li class="side-nav__item {{ app_class }}"><a href="/all-applications">All applications</a><span class="counter">29</span></li>
-      <li class="side-nav__item {{ new_class }}"><a href="/new-applications">New applications</a><span class="counter">10</span></li>
-      <li class="side-nav__item {{ renewals_class }}" ><a href="/renewals">Renewals</a><span class="counter">12</span></li>
-      <li class="side-nav__item {{ replacements_class }}"><a href="/replacements">Replacements</a><span class="counter">1</span></li>
-      <li class="side-nav__item {{ updates_class }}"><a href="/updates">Updates</a><span class="counter">3</span></li>
-      <li class="side-nav__item {{ cancellations_class }}"><a href="/cancellations">Cancellations</a><span class="counter">3</span></li>
-      <li class="side-nav__item {{ order_class }}"><a href="/order-a-badge">Order a badge</a></li>
-      <li class="side-nav__item {{ search_class }}"><a href="/search-for-a-badge">Search for a badge</a></li>
-      <li class="side-nav__item {{ manage_class }}"><a href="/manage-users ">Manage users</a></li>
-      <li class="side-nav__item {{ view_class }}"><a href="/view-my-details ">View my details</a></li>
-    </ul>
-  </nav>
-
-  <div class="main-container">
-    <main role="main" id="adminContent" class="govuk-o-main-wrapper">
-
-      <div class="content-wrapper">
-        {% if title %}
-          <header class="admin-page-header">
-            {% block page_header %}<h1>{{ title }}</h1>{% endblock %}
-          </header>
-        {% endif %}
-        
-        {% block content %}{% endblock %}
-      </div>
-    </main>
-  </div>
-  
+  {% block content %}{% endblock %}
 {% endblock %}
 
 {% block footer_support_links %}

@@ -8,4 +8,8 @@ router.get('/', function (req, res) {
 
 // Add your routes here - above the module.exports line
 
+router.get('/admin/all-applications', function (req, res) {
+  res.render('admin/all-applications', {'title':'All applications','app_class':'active'})
+})
+
 module.exports = router

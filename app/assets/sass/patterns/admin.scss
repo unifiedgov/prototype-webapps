@@ -1,5 +1,7 @@
 /* Overrides for the admin theme */
-
+@import "patterns/admin-side-nav";
+@import "patterns/admin-search";
+@import "patterns/admin-layout";
 
 .html-admin {
 	background: white;
@@ -22,3 +24,6 @@
 	padding-right: 30px;
 }
 
+.admin-page-header {
+	margin-bottom: 30px;
+}

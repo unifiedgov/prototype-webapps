@@ -1,0 +1,48 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+  <h1>{{title}}</h1><p class="count">29</p>
+  {% include "includes/search.html" %}
+{% endblock %}
+
+{% block content %}
+  {{ govukTable({
+    "firstCellIsHeader": false,
+    "head": [
+      {
+        "text": "Reference"
+      },
+      {
+        "text": "Type"
+      },
+      {
+        "text": "Name"
+      },
+      {
+        "text": "Submitted date"
+      },
+      {
+        "text": "Badge number"
+      }
+    ],
+    "rows": [
+      [
+        {
+          "text": "123433453"
+        },
+        {
+          "text": "Renewal"
+        },
+        {
+          "text": "Joe Bloggs"
+        },
+        {
+          "text": "13/01/2017 13:04"
+        },
+        {
+          "text": "ZZ59Z9 1 0957 X1114"
+        }
+      ]
+    ]
+  }) }}
+{% endblock %}
