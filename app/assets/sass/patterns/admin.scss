@@ -33,6 +33,13 @@
 	td {
 		@include govuk-font-regular-16;
 		border-color: $govuk-grey-3;
+		a {
+			display: block;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 	th {
 		@include govuk-font-bold-16;

@@ -1,0 +1,89 @@
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "manage-users"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block content %}
+  
+  <form action="manage-users">
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        {{ govukInput({
+          "label": {
+            "text": "First name"    
+          },
+          id: "first-name",
+          name: "first-name",
+          classes: "govuk-!-width-two-thirds",
+          value: "Joe"
+        }) }}
+        
+        {{ govukInput({
+          "label": {
+            "text": "Last name"    
+          },
+          id: "last-name",
+          name: "last-name",
+          classes: "govuk-!-width-two-thirds",
+          value: "Bloggs"
+        }) }}
+        
+        {{ govukInput({
+          "label": {
+            "text": "Email address"    
+          },
+          type: "email",
+          id: "email-address",
+          name: "email-address",
+          classes: "govuk-!-width-two-thirds",
+          value: "joe.bloggs@valtech.co.uk"
+        }) }}
+        
+        {{ govukRadios({
+          "idPrefix": "permissions",
+          "name": "permissions",
+          "classes": "govuk-c-radios--inline",
+          "fieldset": {
+            "legendText": "Permissions"
+          },
+          "items": [
+            {
+              "value": "standard",
+              "text": "Standard",
+              "checked": "checked"
+            },
+            {
+              "value": "owner",
+              "text": "Owner"
+            }
+          ]
+        }) }}
+        
+        {{ govukButton({
+          "text": "Update"
+        }) }}
+      </div>
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+        <ul class="govuk-list">
+          <li>
+            <a href="invitation-resend">Reset invitation email</a>
+          </li>
+          <li>
+            <a href="reset-password">Reset password</a>
+          </li>
+          <li>
+            <a href="remove-user">Remove user</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+  </form>
+
+{% endblock %}
