@@ -16,4 +16,8 @@ router.get('/admin/manage-users', function (req, res) {
   res.render('admin/manage-users', {'title':'Manage users','manage_class':'active'})
 })
 
+router.get('/admin/create-user', function (req, res) {
+  res.render('admin/create-user', {'title':'Create a new user','manage_class':'active'})
+})
+
 module.exports = router

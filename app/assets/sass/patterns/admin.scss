@@ -1,5 +1,6 @@
 /* Overrides for the admin theme */
 @import "patterns/admin-typography";
+@import "patterns/admin-forms";
 @import "patterns/admin-header";
 @import "patterns/admin-side-nav";
 @import "patterns/admin-search";
@@ -35,6 +36,10 @@
 	}
 	th {
 		@include govuk-font-bold-16;
+	}
+	.back-link-container {
+		margin-top: -30px;
+		margin-bottom: 30px;
 	}
 }
 
