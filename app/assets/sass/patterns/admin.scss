@@ -23,6 +23,9 @@
 	.govuk-c-label {
 		@include govuk-font-regular-16;
 	}
+	thead tr {
+	  border-bottom: 2px solid $govuk-grey-3;
+	}
 	td {
 		@include govuk-font-regular-16;
 	}

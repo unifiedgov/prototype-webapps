@@ -2,23 +2,22 @@
   Tables
 \*------------------------------------*/
 
-.sortable span {
-  display: inline-block;
-  &::after {
-    display: inline-block;
-    content: '';
-    background: url('../images/table-arrows.svg') no-repeat 6px 4px;
-    height: 12px;
-    width: 24px;
+.govuk-c-table__header {
+  &--sort, &--sorted-asc, &--sorted-desc {
+    &::after {
+      display: inline-block;
+      content: '';
+      background: url('../images/table-arrows.svg') no-repeat 6px 4px;
+      height: 12px;
+      width: 24px;
+    }
   }
-}
-
-.asc span::after {
-  background-position: 6px -130px;
-}
-
-.desc span::after {
-  background-position: 6px -59px;
+  &--sorted-asc::after {
+    background-position: 6px -130px;
+  }
+  &--sorted-desc::after {
+    background-position: 6px -59px;
+  }
 }
 
 // Results per page
