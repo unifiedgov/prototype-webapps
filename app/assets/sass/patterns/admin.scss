@@ -24,7 +24,8 @@
 	#global-header.with-proposition .header-wrapper .header-proposition {
 		width: 100%;
 	}
-	.govuk-c-label {
+	.govuk-c-label,
+	.govuk-c-error-message {
 		@include govuk-font-regular-16;
 	}
 	thead tr {

@@ -9,6 +9,7 @@
 <form action="all-applications" class="sign-in" novalidate>
 
   <h1 class="govuk-heading-l">Sign in</h1>
+
   {% if  data['show'] == "timeout" %}
 
     {{ govukErrorSummary({
@@ -38,23 +39,53 @@
 
   {% endif %}
 
+  {% set formIDs = {
+    email: { id: "sign-in-email" },
+    password: { id: "sign-in-password" }
+  }%}
+
+  {% if  data['show'] == "errors" %}
+
+    {% set errorArray = {
+      emailError: { text: "Enter a valid email address"},
+      passwordError: { text: "Enter a valid password"}
+    }%}
+
+    {{ govukErrorSummary({
+      "titleText": "Fix the following errors:",
+      "errorList": [
+        {
+          "text": errorArray.emailError.text,
+          "href": '#' + formIDs.email.id
+        },
+        {
+          "text": errorArray.passwordError.text,
+          "href": '#' + formIDs.password.id
+        }
+      ]
+    }) }}
+
+  {% endif %}
+
 
   {{ govukInput({
-    "label": {
-      "text": "Email address"    
+    label: {
+      "text": "Email address"
     },
+    errorMessage: errorArray.emailError,
     type: "email",
-    id: "sign-in-email",
-    name: "sign-in-email"
+    id: formIDs.email.id,
+    name: formIDs.email.id
   }) }}
 
   {{ govukInput({
     "label": {
       "text": "Password"    
     },
+    errorMessage: errorArray.passwordError,
     type: "password",
-    id: "sign-in-password",
-    name: "sign-in-password"
+    id: formIDs.password.id,
+    name: formIDs.password.id
   }) }}
 
   {{ govukButton({

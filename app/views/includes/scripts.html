@@ -6,3 +6,18 @@
 {% if useAutoStoreData %}
   <script src="/public/javascripts/auto-store-data.js"></script>
 {% endif %}
+
+<script>
+	var errorArray = [];
+
+	$('.govuk-o-form-group--error').each(function() {
+		var $this = $(this),
+			errorText = $this.find('.govuk-c-error-message').text(),
+			errorID = $this.find('.govuk-c-input--error').attr('id');
+
+		errorArray.push([errorText, errorID]);
+
+	});
+
+	console.log(errorArray);
+</script>
