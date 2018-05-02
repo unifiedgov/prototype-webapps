@@ -13,25 +13,14 @@
   
   <form action="manage-users">
     <div class="govuk-o-grid">
-      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-half">
         {{ govukInput({
           "label": {
-            "text": "First name"    
+            "text": "Full name"    
           },
-          id: "first-name",
-          name: "first-name",
-          classes: "govuk-!-width-two-thirds",
-          value: "Joe"
-        }) }}
-        
-        {{ govukInput({
-          "label": {
-            "text": "Last name"    
-          },
-          id: "last-name",
-          name: "last-name",
-          classes: "govuk-!-width-two-thirds",
-          value: "Bloggs"
+          id: "full-name",
+          name: "full-name",
+          value: "Joe Bloggs"
         }) }}
         
         {{ govukInput({
@@ -41,7 +30,6 @@
           type: "email",
           id: "email-address",
           name: "email-address",
-          classes: "govuk-!-width-two-thirds",
           value: "joe.bloggs@valtech.co.uk"
         }) }}
         
@@ -69,7 +57,7 @@
           "text": "Update"
         }) }}
       </div>
-      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-half">
         <ul class="govuk-list">
           <li>
             <a href="invitation-resend">Reset invitation email</a>
@@ -78,9 +66,19 @@
             <a href="reset-password">Reset password</a>
           </li>
           <li>
-            <a href="remove-user">Remove user</a>
+            {{ govukDetails({
+              "summaryText": "Remove user",
+              "html": '
+                        <p>Are you sure you want to remove access for <b>Joe Bloggs</b>?</p>
+                        <p>You won\'t be able to undo this.</p>
+                        <input value="Remove user" type="submit" class="govuk-c-button">
+                        <p class="govuk-body">
+                          <a href="?">Cancel</a>
+                        </p>' 
+            }) }}
           </li>
         </ul>
+       
       </div>
     </div>
     

@@ -54,11 +54,10 @@
   .open & {
     display: block;
   }
-  &.active { 
-    background: $la-blue;
-    color: white;
+  &.active {
     display: block;
     a {
+      background: $la-blue;
       color: white;
       &:after {
         content: '';
@@ -72,8 +71,20 @@
         margin-top: -7px;
       }
     }
-    @include mq($from: tablet) {
-      display: block;
+  }
+  a:hover {
+    background: $la-blue;
+    color: white;
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 7px 8px 7px 0;
+      border-color: transparent #ffffff transparent transparent;
+      position: absolute;
+      right: 0; top: 50%;
+      margin-top: -7px;
     }
   }
 }
@@ -89,7 +100,7 @@
   min-width: 16px;
   text-align: center;
   line-height: 1.4;
-  .active & {
+  .active &, a:hover & {
     color: white;
     background: darken($la-blue,15%);
   }
