@@ -47,19 +47,19 @@
   {% if  data['show'] == "errors" %}
 
     {% set errorArray = {
-      emailError: { text: "Enter a valid email address"},
-      passwordError: { text: "Enter a valid password"}
+      email: { text: "Enter a valid email address"},
+      password: { text: "Enter a valid password"}
     }%}
 
     {{ govukErrorSummary({
       "titleText": "Fix the following errors:",
       "errorList": [
         {
-          "text": errorArray.emailError.text,
+          "text": errorArray.email.text,
           "href": '#' + formIDs.email.id
         },
         {
-          "text": errorArray.passwordError.text,
+          "text": errorArray.password.text,
           "href": '#' + formIDs.password.id
         }
       ]
@@ -72,7 +72,7 @@
     label: {
       "text": "Email address"
     },
-    errorMessage: errorArray.emailError,
+    errorMessage: errorArray.email,
     type: "email",
     id: formIDs.email.id,
     name: formIDs.email.id
@@ -82,7 +82,7 @@
     "label": {
       "text": "Password"    
     },
-    errorMessage: errorArray.passwordError,
+    errorMessage: errorArray.password,
     type: "password",
     id: formIDs.password.id,
     name: formIDs.password.id
