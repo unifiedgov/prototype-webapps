@@ -48,6 +48,12 @@
 		margin-top: -30px;
 		margin-bottom: 30px;
 	}
+	.system-error {
+		a {
+			color: $govuk-link-colour;
+			@include govuk-font-regular-19;
+		}
+	}
 }
 
 .admin-width-container {

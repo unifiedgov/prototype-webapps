@@ -6,16 +6,32 @@
 
 {% block content %}
 
-<form action="all-applications" class="sign-in">
+<form action="all-applications" class="sign-in" novalidate>
 
   <h1 class="govuk-heading-l">Sign in</h1>
   {% if  data['show'] == "timeout" %}
 
     {{ govukErrorSummary({
       "titleText": "You've been signed out",
+      "classes": "system-error",
       "errorList": [
         {
           "text": "You were inactive for 2 hours so we've signed you out to secure your account"
+        }
+      ]
+    }) }}
+
+  {% endif %}
+
+  {% if  data['show'] == "cant-signin" %}
+
+    {{ govukErrorSummary({
+      "titleText": "Can't sign in",
+      "classes": "system-error",
+      "errorList": [
+        {
+          "html": '<p>We\'re having problems signing you in. <br>
+                   Try again, or visit our <a href="">service status page</a>.</p>'
         }
       ]
     }) }}

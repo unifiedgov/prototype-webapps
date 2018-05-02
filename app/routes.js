@@ -8,6 +8,11 @@ router.get('/', function (req, res) {
 
 // Add your routes here - above the module.exports line
 
+router.get('/admin/sign-in', function (req, res) {
+  res.render('admin/sign-in', {})
+  req.session.destroy()
+})
+
 router.get('/admin/all-applications', function (req, res) {
   res.render('admin/all-applications', {'title':'All applications','app_class':'active'})
 })
