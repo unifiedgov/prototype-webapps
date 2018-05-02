@@ -11,6 +11,28 @@
 	background: white;
 }
 
+.success-panel {
+	@include govuk-font-regular-19;
+	background: rgba($govuk-turquoise, 0.8);
+	color: white;
+	display: none;
+	padding: 0 60px;
+	margin: -47px 0 60px -60px;
+	width: 100%;
+	p {
+		display: inline-block;
+		margin-right: -4px;
+		width: 60%;
+	}
+	.success-panel__close {
+		color: white;
+		display: inline-block;
+		margin-right: -4px;
+		text-align: right;
+		width: 40%;
+	}
+}
+
 #adminTheme {
 	.header-wrapper {
 		max-width: none;

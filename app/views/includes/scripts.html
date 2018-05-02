@@ -8,16 +8,19 @@
 {% endif %}
 
 <script>
-	var errorArray = [];
+	function gup( name )
+	{
+	  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	  var regexS = "[\\?&]"+name+"=([^&#]*)";
+	  var regex = new RegExp( regexS );
+	  var results = regex.exec( window.location.href );
+	  if( results == null )
+	    return null;
+	  else
+	    return results[1];
+	}
 
-	$('.govuk-o-form-group--error').each(function() {
-		var $this = $(this),
-			errorText = $this.find('.govuk-c-error-message').text(),
-			errorID = $this.find('.govuk-c-input--error').attr('id');
-
-		errorArray.push([errorText, errorID]);
-
-	});
-
-	console.log(errorArray);
+	if(gup('success')) {
+		$('.success-panel').show();
+	}
 </script>
