@@ -9,16 +9,19 @@
 <form action="all-applications" class="sign-in">
 
   <h1 class="govuk-heading-l">Sign in</h1>
-<!-- 
-  {{ govukErrorSummary({
-    "titleText": "Fix the following errors",
-    "errorList": [
-      {
-        "text": "You've entered the wrong email or password",
-        "href": "#sign-in-email"
-      }
-    ]
-  }) }} -->
+  {% if  data['show'] == "timeout" %}
+
+    {{ govukErrorSummary({
+      "titleText": "You've been signed out",
+      "errorList": [
+        {
+          "text": "You were inactive for 2 hours so we've signed you out to secure your account"
+        }
+      ]
+    }) }}
+
+  {% endif %}
+
 
   {{ govukInput({
     "label": {
