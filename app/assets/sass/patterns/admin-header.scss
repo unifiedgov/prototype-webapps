@@ -4,68 +4,70 @@
 \*------------------------------------*/
 
 // GOV.UK Frontend toolkit overides
-
-#global-header {
-  h3,
-  a, 
-  p {
-    color: white; 
+#adminTheme {
+  #global-header {
+    h3,
+    a, 
+    p {
+      color: white; 
+    }
+    a:visited {
+      color: white;
+    }
   }
-  a:visited {
-    color: white;
+  .header-wrapper {
+    max-width: none !important;
+    padding: 15px !important;  
+    @include mq($from: tablet) {
+      padding: 15px 30px !important;  
+    }
   }
-}
-.header-wrapper {
-  max-width: none !important;
-  padding: 15px !important;  
-  @include mq($from: tablet) {
-    padding: 15px 30px !important;  
+
+  .header-proposition {
+    .content {
+      margin: 0 !important;
+    }
   }
-}
 
-.header-proposition {
-  .content {
-    margin: 0 !important;
+  // Component styleshttp://localhost:3000/
+
+  // .proposition {
+  //   display: inline-block;
+  //   > * {
+  //     @include govuk-font-regular-19;
+  //     display: inline-block;
+  //     margin: 0;
+  //   }
+  // }
+
+  .proposition__service-name {
+    text-decoration: none;
+    font-weight: 600; 
   }
-}
 
-// Component styleshttp://localhost:3000/
-
-// .proposition {
-//   display: inline-block;
-//   > * {
-//     @include govuk-font-regular-19;
-//     display: inline-block;
-//     margin: 0;
-//   }
-// }
-
-.proposition__service-name {
-  text-decoration: none;
-  font-weight: 600; 
-}
-
-.proposition__authority {
-  @include govuk-font-regular-19;
-  margin-left: 5px;
-  display: none;
-  @include mq($from: tablet) {
-    display: inline-block;
+  .proposition__authority {
+    @include govuk-font-regular-19;
+    margin-left: 5px;
+    display: none;
+    @include mq($from: tablet) {
+      display: inline-block;
+    }
   }
-}
 
-.proposition__version {
-  @include govuk-font-regular-16;
-  margin-left: 5px;
-}
-
-
-.user-menu {
-  @include govuk-font-regular-16;
-  margin-top: 4px;
-  float: right;
-  p {
-    display: inline;
-    margin-right: 10px;
+  .proposition__version {
+    @include govuk-font-regular-16;
+    margin-left: 5px;
   }
+
+
+  .user-menu {
+    @include govuk-font-regular-16;
+    margin-top: 4px;
+    float: right;
+    p {
+      display: inline;
+      margin-right: 10px;
+    }
+  }
+
 }

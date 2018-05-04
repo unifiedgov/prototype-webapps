@@ -21,6 +21,12 @@
 	}
 
 	if(gup('success')) {
+
+		var gupValue = gup('success').replace(/\+/g, ' ');;
+
+		$('[data-successmessage]').text(gupValue);
+
 		$('.success-panel').show();
+
 	}
 </script>

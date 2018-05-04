@@ -86,7 +86,14 @@
 
   <div class="main-container">
     <main role="main" id="adminContent" class="govuk-o-main-wrapper">
-      {% block success_panel %}{% endblock %}
+      {% block success_panel %}
+
+        <div class="success-panel">
+          <p data-successmessage></p>
+          <a class="success-panel__close" href="?">Close</a>
+        </div>
+        
+      {% endblock %}
       {% block back_link %}{% endblock %}
       <div class="content-wrapper">
         {% if title %}
