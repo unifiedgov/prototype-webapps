@@ -6,6 +6,29 @@ router.get('/', function (req, res) {
   res.render('index')
 })
 
+// Set the right pronouns
+router.use(function(req, res, next) {
+  console.log(req.session.data);
+  var applicant = req.session.data['applicant'];
+  res.locals.you = applicant === 'someone-else' ? 'they' : 'you';
+  res.locals.your = applicant === 'someone-else' ? 'their' : 'your';
+  res.locals.youOrThem = applicant === 'someone-else' ? 'them' : 'you';
+  var application = "application";
+  switch(req.session.data['renewal-or-new-application']) {
+    case "new":
+      application = "application";
+      break;
+    case "renewal":
+      application = "renewal application";
+      break;
+    default:
+      application = "application";
+      break;
+  }
+  res.locals.application = application;
+  next();
+});
+
 // Admin routes
 
 router.get('/admin/sign-in', function (req, res) {
@@ -42,6 +65,10 @@ router.get('/candidate', function (req, res) {
 
 router.get('/candidate/check-eligibility/', function (req, res) {
   res.render('candidate/check-eligibility/index.html', {'title':'Who are you applying for?'})
+})
+
+router.get('/candidate/check-eligibility/existing-badge/', function (req, res) {
+  res.render('candidate/check-eligibility/existing-badge/index.html')
 })
 
 module.exports = router

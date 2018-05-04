@@ -1,10 +1,13 @@
 {% extends "layout.html" %}
 
+{% set questionWithPronoun = 'Do ' + you + ' already have a Blue Badge?' %}
+
 {% block page_title %}
-  {{title}} - {% if serviceName %} {{ serviceName }} {% endif %}
+  {{questionWithPronoun}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
 {% block content %}
+
 
 <div class="govuk-o-width-container">
   <main role="main" class="govuk-o-main-wrapper">
@@ -16,20 +19,16 @@
             "idPrefix": "applicant",
             "name": "applicant",
             "fieldset": {
-              "legendHtml": '<h1 class="govuk-heading-xl">' + title  + '</h1>'
+              "legendHtml": '<h1 class="govuk-heading-xl">' + questionWithPronoun  + '</h1>'
             },
             "items": [
               {
-                "value": "yourself",
-                "text": "Yourself"
+                "value": "yes",
+                "text": "Yes"
               },
               {
-                "value": "someone-else",
-                "text": "Someone else"
-              },
-              {
-                "value": "organisation",
-                "text": "An organisation"
+                "value": "no",
+                "text": "No"
               }
             ]
           }) }}
