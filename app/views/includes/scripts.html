@@ -29,4 +29,20 @@
 		$('.success-panel').show();
 
 	}
+
+	$('[data-expanding-radios] input').on('click', function() {
+		var $this = $(this),
+			thisID = $this.attr('id'),
+			$thePanel = $this.closest('.expanding-panel-container').find('.expanding-panel'),
+			thePanelTrigger = $thePanel.attr('data-expanded-by');
+
+
+		if(thisID === thePanelTrigger) {
+			$thePanel.show();
+		} else {
+			$thePanel.hide();
+		}
+
+
+	})
 </script>

@@ -1,37 +1,60 @@
 {% extends "layout.html" %}
 
-{% set questionWithPronoun = 'Do ' + you + ' already have a Blue Badge?' %}
+{% set pageHeading = 'Do ' + you + ' already have a Blue Badge?' %}
 
 {% block page_title %}
-  {{questionWithPronoun}} - {% if serviceName %} {{ serviceName }} {% endif %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
 {% block content %}
 
-
 <div class="govuk-o-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
   <main role="main" class="govuk-o-main-wrapper">
+
     <div class="govuk-o-grid">
       <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
         <form action="existing-badge">
-          {{ govukRadios({
-            "idPrefix": "applicant",
-            "name": "applicant",
-            "fieldset": {
-              "legendHtml": '<h1 class="govuk-heading-xl">' + questionWithPronoun  + '</h1>'
-            },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes"
+          <div class="expanding-panel-container">
+            {{ govukRadios({
+              "idPrefix": "renewal-or-new-application-renewal",
+              "name": "renewal-or-new-application-renewal",
+              "attributes": {
+                "data-expanding-radios": "true"
               },
-              {
-                "value": "no",
-                "text": "No"
-              }
-            ]
-          }) }}
+              "fieldset": {
+                "legendHtml": '<h1 class="govuk-heading-xl">' + pageHeading  + '</h1>'
+              },
+              "items": [
+                {
+                  "value": "yes",
+                  "text": "Yes"
+                },
+                {
+                  "value": "no",
+                  "text": "No"
+                }
+              ]
+            }) }}
+            
+            <div class="expanding-panel" data-expanded-by="renewal-or-new-application-renewal-1">
+              <div class="govuk-c-details__text">
+                {{ govukInput({
+                  "label": {
+                    "text": "Existing badge number",
+                    "hintText": "For example, 0957X1114"
+                  },
+                  classes: "govuk-!-width-two-thirds",
+                  id: "existing-badge-number",
+                  name: "existing-badge-number"
+                }) }}
+              </div>
+            </div>
+          </div>
           
           {{ govukButton({
             "text": "Continue"
