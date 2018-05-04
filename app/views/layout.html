@@ -39,7 +39,9 @@
         <a href="/candidate/" id="proposition-name">
           {# Set serviceName in config.js. Use a block to override on a page. #}
           {% block service_name %}
-            {% if serviceName %} {{ serviceName }} {% endif %}
+            {% if hideServiceName !== 'yes' %}
+              {% if serviceName %} {{ serviceName }} {% endif %}
+            {% endif %}
           {% endblock %}
         </a>
         <!--
@@ -62,9 +64,9 @@
   <div class="phase-banner-wrapper govuk-o-width-container">
     {{ govukPhaseBanner({
       "tag": {
-        "text": "beta"
+        "text": "Prototype"
       },
-      "html": 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      "html": 'This is work in progress and not a functioning service.'
     }) }}
   </div>
 {% endblock %}

@@ -6,7 +6,7 @@ router.get('/', function (req, res) {
   res.render('index')
 })
 
-// Add your routes here - above the module.exports line
+// Admin routes
 
 router.get('/admin/sign-in', function (req, res) {
   res.render('admin/sign-in', {})
@@ -31,6 +31,13 @@ router.get('/admin/edit-details', function (req, res) {
 
 router.get('/admin/remove-user', function (req, res) {
   res.render('admin/remove-user', {'title':'Remove user','manage_class':'active'})
+})
+
+// Candidate routes
+
+router.get('/candidate', function (req, res) {
+  res.locals.hideServiceName = 'yes';
+  res.render('candidate/index.html')
 })
 
 module.exports = router
