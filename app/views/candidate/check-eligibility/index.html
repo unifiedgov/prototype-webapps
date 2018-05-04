@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {{title}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% set pageHeading = '<h1 class="govuk-heading-xl">' + title  + '</h1>' %}
+
+
+<div class="govuk-o-width-container">
+  <main role="main" class="govuk-o-main-wrapper">
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+
+        <form action="existing-badge">
+          {{ govukRadios({
+            "idPrefix": "changed-name",
+            "name": "changed-name",
+            "fieldset": {
+              "legendHtml": pageHeading
+            },
+            "items": [
+              {
+                "value": "yourself",
+                "text": "Yourself"
+              },
+              {
+                "value": "someone-else",
+                "text": "Someone else"
+              },
+              {
+                "value": "an-organisation",
+                "text": "An organisation"
+              }
+            ]
+          }) }}
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

@@ -40,4 +40,8 @@ router.get('/candidate', function (req, res) {
   res.render('candidate/index.html')
 })
 
+router.get('/candidate/check-eligibility/', function (req, res) {
+  res.render('candidate/check-eligibility/index.html', {'title':'Who are you applying for?'})
+})
+
 module.exports = router
