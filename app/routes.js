@@ -104,6 +104,14 @@ router.get('/candidate/check-eligibility/existing-badge/not-for-review-with-elig
   res.render('candidate/check-eligibility/existing-badge/not-for-review');
 });
 
+router.get('/candidate/check-eligibility/disability', function (req, res) {
+  if (req.query.benefit === 'none') {
+    res.render('candidate/check-eligibility/disability');
+  } else {
+    res.redirect('/candidate/check-eligibility/decision');
+  }
+});
+
 
 router.get('/candidate/apply', function (req, res) {
   // Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/name'))
