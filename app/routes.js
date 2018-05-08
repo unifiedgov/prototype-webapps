@@ -113,9 +113,35 @@ router.get('/candidate/check-eligibility/disability', function (req, res) {
 });
 
 
+// Apply
+
+function sendBackToCheckAnswers(query, nextAction) {
+  console.log("called");
+  var locals;
+  if (query.change === 'true') {
+    console.log('true');
+    locals = {
+      'formAction': 'candidate/apply/check-answers',
+      'submitLabel': 'Update'
+    }
+  } else {
+    console.log('false');
+    locals = {
+      'formAction': nextAction,
+      'submitLabel': 'Continue'
+    }
+  }
+  return locals;
+}
+
 router.get('/candidate/apply', function (req, res) {
-  // Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/name'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/name'))
   res.render('candidate/apply/nino')
+})
+
+router.get('/candidate/apply/name', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/dob'))
+  res.render('candidate/apply/name')
 })
 
 module.exports = router

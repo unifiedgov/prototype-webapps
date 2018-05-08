@@ -43,6 +43,18 @@
 			$thePanel.hide();
 		}
 
+	});
 
+	$('[data-expanding-radios] input:checked').each(function() {
+		var $this = $(this),
+			thisID = $this.attr('id'),
+			$thePanel = $this.closest('.expanding-panel-container').find('.expanding-panel'),
+			thePanelTrigger = $thePanel.attr('data-expanded-by');
+
+		if(thisID === thePanelTrigger) {
+			$thePanel.show();
+		} else {
+			$thePanel.hide();
+		}
 	})
 </script>
