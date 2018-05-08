@@ -184,8 +184,85 @@ router.get('/candidate/apply/enter-address', function (req, res) {
 })
 
 router.get('/candidate/apply/contact', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/check-identity'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/prove-your-identity'))
   res.render('candidate/apply/contact-details')
 })
+
+router.get('/candidate/apply/prove-your-identity', function (req, res) {
+  res.locals.formAction = '/proof-backend';
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  res.render('candidate/apply/prove-your-identity')
+})
+
+router.get('/candidate/apply/prove-your-address', function (req, res) {
+  if ((req.query.change !== 'true') &&
+     (req.session.data['identity-upload-shows-current-address'] === 'yes' ||
+      req.session.data['benefit-proof-upload-shows-current-address'] === 'yes' ||
+      req.session.data['identity-verified'] === 'yes')) {
+    res.redirect('/candidate/apply/provide-photo');
+  } else {
+    res.locals.formAction = '/candidate/apply/prove-your-address-backend';
+    console.log('formAction=' + res.locals.formAction);
+    res.locals.submitLabel = 'Continue';
+    res.locals.change = req.query.change;
+    res.render('candidate/apply/prove-your-address');
+  }
+})
+
+router.get('/candidate/apply/prove-your-address-backend', function (req, res) {
+  if (req.query.change === 'true') {
+    res.redirect('/candidate/apply/check-answers');
+  } else {
+    res.redirect('/candidate/apply/provide-photo');
+  }
+});
+
+router.get('/candidate/apply/provide-photo', function (req, res) {
+//  res.locals.formAction = '/candidate/apply/provide-photo-2';
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  res.render('candidate/apply/provide-photo');
+})
+
+router.get('/candidate/apply/upload-your-photo', function (req, res) {
+  res.render('candidate/apply/upload-your-photo');
+});
+
+router.get('/candidate/apply/prove-benefit', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/check-answers'))
+  res.render('candidate/apply/prove-benefit')
+})
+
+router.get('/candidate/apply/check-answers', function (req, res) {
+  res.render('candidate/apply/check-answers'); //, {'formAction':'/candidate/apply/paying-for-your-blue-badge'})
+})
+
+router.get('/candidate/apply/paying-for-your-blue-badge', function(req, res) {
+  res.render('candidate/apply/paying-for-your-blue-badge');
+});
+
+router.get('/candidate/apply/paying-for-your-blue-badge-backend', function(req, res) {
+  if (req.query['pay-when'] === 'later') {
+    //res.redirect('/candidate/apply/check-answers');
+    res.redirect('/candidate/apply/confirmation');
+  } else {
+    req.session.data['pay-when'] = 'now';
+    res.redirect('https://production-1-production-pay-products-ui.cloudapps.digital/pay/a9e0f2ce1f7148ef879bdc1fa04ba652');
+  };
+});
+
+router.get('/candidate/apply/declaration', function (req, res) {
+  res.render('candidate/apply/declaration', {'formAction':'/candidate/apply/complete'})
+})
+
+router.get('/candidate/apply/confirmation', function (req, res) {
+  res.render('candidate/apply/confirmation')
+})
+
+router.get('/version-history', function(req, res) {
+  res.render('version-history');
+});
+
 
 module.exports = router
