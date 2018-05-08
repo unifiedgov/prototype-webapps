@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Which of the following benefits do ' + you + ' receive?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-o-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-o-main-wrapper">
+
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+
+        <form action="disability">
+          {{ govukRadios({
+            "idPrefix": "benefit",
+            "name": "benefit",
+            "fieldset": {
+              "legendHtml": '<h1 class="govuk-heading-xl">' + pageHeading  + '</h1>',
+              "legendHintText": "Don't include any benefits " + you + "'ve  applied for if " + you + " haven't got a decision yet"
+            },
+            "items": [
+              {
+                "value": "pip",
+                "text": you | capitalize + " score 8 points or more in the ‘moving around’ area of
+      Personal Independence Payment (PIP) - check " + your + " decision letter if you’re not sure"
+              },
+              {
+                "value": "dla",
+                "text": "Higher rate of the mobility component of Disability Living Allowance (DLA)"
+              },
+              {
+                "value": "war-pensioners",
+                "text": "The War Pensioners’ Mobility Supplement"
+              },
+              {
+                "value": "armed-forces",
+                "text": you | capitalize + " have received a lump sum payment as part of the Armed Forces
+        Compensation scheme (tariffs 1 to 8), and have been certified as having a permanent and substantial disability"
+              },
+              {
+                "value": "none",
+                "text": you | capitalize + " don't receive any of these benefits"
+              }
+            ]
+          }) }}
+          
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

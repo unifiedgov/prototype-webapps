@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = your + ' local council' %}
+
+{% block page_title %}
+  {{pageHeading | capitalize}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-o-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-o-main-wrapper">
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+
+        <h1 class="govuk-heading-xl">{{pageHeading | capitalize}}</h1>
+        <p class="govuk-body-l">We've matched this postcode to <strong>{{ data['council-name']}}</strong></p>
+        <form action="benefits">
+
+
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+        <p class="govuk-body">Not {{your}} local council? <a href="find-your-council">Check postcode and search again</a>.</p>
+
+
+      </div>
+
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
