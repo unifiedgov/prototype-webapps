@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Renew ' + your + ' badge' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-o-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-o-main-wrapper">
+
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+
+        <h1 class="govuk-heading-xl">{{pageHeading}}</h1>
+
+        <p class="govuk-body-l">We've found {{ your }} badge.</p>
+
+        <form action="{{formAction}}">
+          {{ govukRadios({
+            "idPrefix": "renewal-council-has-changed",
+            "name": "renewal-council-has-changed",
+            "fieldset": {
+              "legendHtml": '<h2 class="govuk-heading-m">Is your local council still Manchester City Council?</h2>'
+            },
+            "items": [
+              {
+                "value": "yes",
+                "text": "Yes"
+              },
+              {
+                "value": "no",
+                "text": "No"
+              }
+            ]
+          }) }}
+            
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

@@ -76,22 +76,27 @@ router.get('/candidate/check-eligibility/existing-badge/index-backend', function
     case "renewal":
       var blueBadgeNumber = req.session.data['existing-blue-badge-number'];
       if (blueBadgeNumber.indexOf('1111') === 0 && blueBadgeNumber.lastIndexOf('1111') === blueBadgeNumber.length-4) {
-        res.redirect('/check-eligibility/existing-badge/not-for-renewal');
+        res.redirect('/candidate/check-eligibility/existing-badge/not-for-renewal');
       } else if (blueBadgeNumber.indexOf('2222') === 0 && blueBadgeNumber.lastIndexOf('2222') === blueBadgeNumber.length-4) {
-        res.redirect('/check-eligibility/existing-badge/not-for-review');
+        res.redirect('/candidate/check-eligibility/existing-badge/not-for-review');
       } else if (blueBadgeNumber.indexOf('3333') === 0 && blueBadgeNumber.lastIndexOf('3333') === blueBadgeNumber.length-4) {
-        res.redirect('/check-eligibility/existing-badge/badge-not-found');
+        res.redirect('/candidate/check-eligibility/existing-badge/badge-not-found');
       } else {
-        res.redirect('/check-eligibility/existing-badge/not-for-review-with-eligibility-questions');
+        res.redirect('/candidate/check-eligibility/existing-badge/not-for-review-with-eligibility-questions');
       }
       break;
     case "new":
-      res.redirect('/check-eligibility/find-your-council');
+      res.redirect('/candidate/check-eligibility/find-your-council');
       break;
     default:
-      res.redirect('/check-eligibility/find-your-council');
+      res.redirect('/candidate/check-eligibility/find-your-council');
       break;
   }
+});
+
+router.get('/candidate/check-eligibility/existing-badge/not-for-review/', function (req, res) {
+  res.locals.formAction = '/candidate/apply';
+  res.render('candidate/check-eligibility/existing-badge/not-for-review.html');
 });
 
 module.exports = router

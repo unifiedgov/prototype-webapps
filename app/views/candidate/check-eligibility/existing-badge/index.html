@@ -18,11 +18,11 @@
     <div class="govuk-o-grid">
       <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
-        <form action="index-backend">
+        <form action="/candidate/check-eligibility/existing-badge/index-backend">
           <div class="expanding-panel-container">
             {{ govukRadios({
-              "idPrefix": "renewal-or-new-application-renewal",
-              "name": "renewal-or-new-application-renewal",
+              "idPrefix": "renewal-or-new-application",
+              "name": "renewal-or-new-application",
               "attributes": {
                 "data-expanding-radios": "true"
               },
@@ -31,17 +31,19 @@
               },
               "items": [
                 {
-                  "value": "yes",
-                  "text": "Yes"
+                  "value": "renewal",
+                  "text": "Yes",
+                  "id": "renewal-or-new-application-renewal"
                 },
                 {
-                  "value": "no",
-                  "text": "No"
+                  "value": "new",
+                  "text": "No",
+                  "id": "renewal-or-new-application-new"
                 }
               ]
             }) }}
             
-            <div class="expanding-panel" data-expanded-by="renewal-or-new-application-renewal-1">
+            <div class="expanding-panel" data-expanded-by="renewal-or-new-application-renewal">
               <div class="govuk-c-details__text">
                 {{ govukInput({
                   "label": {
@@ -49,8 +51,8 @@
                     "hintText": "For example, 0957X1114"
                   },
                   classes: "govuk-!-width-two-thirds",
-                  id: "existing-badge-number",
-                  name: "existing-badge-number"
+                  id: "existing-blue-badge-number",
+                  name: "existing-blue-badge-number"
                 }) }}
               </div>
             </div>
