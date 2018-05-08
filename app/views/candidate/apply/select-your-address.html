@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Select ' + your + ' address' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-o-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-o-main-wrapper">
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+
+        {% if data['postcode'] %}
+
+          {% set userPostcode = data['postcode'] | upper %}
+
+        {% else %}
+
+          {% set userPostcode = "SW1A 4AA" %}
+
+        {% endif %}
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+        <form action="{{formAction}}">
+          {{ govukRadios({
+            "idPrefix": "address",
+            "name": "address",
+            "fieldset": {
+              "legendHtml": '<h2 class="govuk-heading-m">3 addresses found at ' + userPostcode + '</h2>'
+            },
+            "items": [
+              {
+                "value": "1 Street Lane, Manchester, " + userPostcode,
+                "text": "1 Street Lane, Manchester, " + userPostcode
+              },
+              {
+                "value": "2 Street Lane, Manchester, " + userPostcode,
+                "text": "2 Street Lane, Manchester, " + userPostcode
+              },
+              {
+                "value": "3 Street Lane, Manchester, " + userPostcode,
+                "text": "3 Street Lane, Manchester, " + userPostcode
+              }
+
+            ]
+          }) }}
+
+          <p class="govuk-body">Address not shown? <a href="enter-address">Enter {{ your }} address manually</a></p>
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
