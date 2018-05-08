@@ -99,4 +99,9 @@ router.get('/candidate/check-eligibility/existing-badge/not-for-review/', functi
   res.render('candidate/check-eligibility/existing-badge/not-for-review.html');
 });
 
+router.get('/candidate/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
+  res.locals.formAction = '/candidate/check-eligibility/find-your-council';
+  res.render('candidate/check-eligibility/existing-badge/not-for-review');
+});
+
 module.exports = router

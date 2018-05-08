@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = you + ' don\'t need to renew yet' %}
+
+{% block page_title %}
+  {{pageHeading | capitalize}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-o-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-o-main-wrapper">
+
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+
+        <h1 class="govuk-heading-xl">{{pageHeading | capitalize}}</h1>
+
+        <!-- <p class="govuk-body-l">We couldn't find a badge matching the number you entered.</p> -->
+        {{ govukWarningText(
+          {
+            "text": "This badge isn't due for renewal until 8 June 2018",
+            "iconFallbackText": "Warning"
+          })
+        }}
+
+        <h2 class="govuk-heading-m">What happens next?</h2>
+
+        <div class="govuk-c-details__text govuk-body">
+          <p>Renew {{ your }} badge after 8 June 2018.</p>
+          <p>Alternatively, contact {{ your }} local council for assistance:</p>
+          <ul class="govuk-list">
+            <li>Website: <a href="http://www.manchester.gov.uk">www.manchester.gov.uk</a></li>
+            <li>Phone: 0161 205 7321</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

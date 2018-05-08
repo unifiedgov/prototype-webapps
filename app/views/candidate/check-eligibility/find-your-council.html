@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Renew ' + your + ' badge' %}
+{% set pageHeading = 'Find ' + your + ' local council' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -14,36 +14,24 @@
       "href": "javascript: window.history.go(-1)"
     }) }}
   <main role="main" class="govuk-o-main-wrapper">
-
     <div class="govuk-o-grid">
       <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
         <h1 class="govuk-heading-xl">{{pageHeading}}</h1>
-
-        <p class="govuk-body-l">We've found {{ your }} badge.</p>
-
-        <form action="{{formAction}}">
-          {{ govukRadios({
-            "idPrefix": "renewal-council-has-changed",
-            "name": "renewal-council-has-changed",
-            "fieldset": {
-              "legendHtml": '<h2 class="govuk-heading-m">Is ' + your + ' local council still Manchester City Council?</h2>'
+        <p class="govuk-body">{{ your | capitalize }} application will be sent to your council for a decision.</p>
+        <form action="your-council">
+          {{ govukInput({
+            "label": {
+              "text": "Enter postcode",
+              "hintText": "For example, SW1A 2AA"
             },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes"
-              },
-              {
-                "value": "no",
-                "text": "No"
-              }
-            ]
+            classes: "govuk-c-input--width-10",
+            id: "postcode",
+            name: "postcode"
           }) }}
-            
           
           {{ govukButton({
-            "text": "Continue"
+            "text": "Find"
           }) }}
         </form>
 
