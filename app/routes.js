@@ -234,6 +234,17 @@ router.get('/candidate/eligibility-proof/provide-proof-of-your-eligibility', fun
   res.render('candidate/eligibility-proof/provide-proof-of-your-eligibility');
 });
 
+router.get('/candidate/eligibility-proof/upload-proof-of-your-eligibility', function (req, res) {
+  if (req.query.change === 'true') {
+    res.locals.formAction = '/candidate/apply/check-answers';
+  } else {
+    res.locals.formAction = '/candidate/apply/prove-your-address';
+  }
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  res.render('candidate/eligibility-proof/upload-proof-of-your-eligibility')
+});
+
 router.get('/candidate/apply/prove-your-identity', function (req, res) {
   res.locals.formAction = '/proof-backend';
   res.locals.submitLabel = 'Continue';

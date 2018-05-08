@@ -1,0 +1,25 @@
+{% import "candidate/macros/upload-component.html" as uploadComponentWidget %}
+
+<form action="check-answers?providePhoto=upload">
+  <div class="hidden-tablet">
+    <h1 class="govuk-heading-l">Add a photo</h1>
+    <p>You need to provide a photo which will be printed on the back of {{ your }} bage</p>
+    <h3 class="govuk-heading-m">Upload a photo or a scan</h3>
+  </div>
+  <div class="hidden-mobile">
+    <h1 class="govuk-heading-l">Upload a photo or scan</h1>
+  </div>
+  <p class="govuk-body">Make sure it</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>has a plain, light background</li>
+    <li>includes {{ your }} shoulders</li>
+    <li>shows {{ your }} face clearly</li>
+  </ul>
+
+  {{ uploadComponentWidget.uploadComponent('your-photo-file-upload', 'photo', 'providePhoto',
+  '/public/images/phillip.png',
+  '/apply/check-answers?providePhoto=notProvided&your-photo-file-upload=&photo=', your,
+  'about how to provide ' + your + ' photo.', '', 'no', ''
+  )}}
+
+</form>
