@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Find ' + your + ' local council' %}
+{% set pageHeading = 'What\'s ' + your + ' National insurance number?' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -18,17 +18,17 @@
       <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
         <h1 class="govuk-heading-xl">{{pageHeading}}</h1>
-        <p class="govuk-body">{{ your | capitalize }} application will be sent to your council for a decision.</p>
+        <!-- <p class="govuk-body"></p> -->
         <form action="your-council">
           {{ govukInput({
             "label": {
-              "text": "Enter postcode",
-              "hintText": "For example, SW1A 2AA"
+              "text": "National insurance number",
+              "hintText": "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
             },
-            classes: "govuk-c-input--width-10",
-            id: "postcode",
-            name: "postcode",
-            value: data['postcode']
+            classes: "govuk-c-input--width-20",
+            id: "nino",
+            name: "nino",
+            value: data['nino']
           }) }}
           
           {{ govukButton({

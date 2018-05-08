@@ -104,4 +104,10 @@ router.get('/candidate/check-eligibility/existing-badge/not-for-review-with-elig
   res.render('candidate/check-eligibility/existing-badge/not-for-review');
 });
 
+
+router.get('/candidate/apply', function (req, res) {
+  // Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/name'))
+  res.render('candidate/apply/nino')
+})
+
 module.exports = router
