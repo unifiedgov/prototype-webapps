@@ -188,6 +188,52 @@ router.get('/candidate/apply/contact', function (req, res) {
   res.render('candidate/apply/contact-details')
 })
 
+router.get('/candidate/proof-backend', function (req, res) {
+    if (req.query.change==='true') {
+      res.redirect('/candidate/apply/check-answers');
+    } else {
+    if (req.session.data['benefit'] === 'none'
+        && req.session.data['disability']
+        && req.session.data['disability'].includes('problems-walking')) {
+      res.redirect('/candidate/prove-eligibility/how-long-can-you-walk-for');
+    } else if (req.session.data['benefit'] === 'dla' || req.session.data['benefit'] === 'pip') {
+      res.redirect('/candidate/eligibility-proof/provide-proof-of-your-eligibility');
+    } else {
+      res.redirect('/candidate/eligibility-proof/provide-proof-of-your-eligibility');
+    }
+  }
+});
+
+router.get('/candidate/eligibility-proof/provide-proof-of-your-eligibility', function(req, res) {
+  res.locals.formAction = '/candidate/eligibility-proof/upload-proof-of-your-eligibility';
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  var question1 = '';
+  var question3 = '';
+  var applicant = req.session.data['applicant'];
+  var you = applicant === 'someone-else' ? 'they' : 'you';
+  var your = applicant === 'someone-else' ? 'their' : 'your';
+  switch(req.session.data['benefit']) {
+    case "dla":
+      question1 = 'Have ' + you + ' been awarded the Disability Living Allowance, indefinitely?';
+      question3 = 'You must provide a copy of your letter of entitlement, issued within the last twelve months. How would you like to provide this?'
+      break;
+    case "pip":
+      question1 = 'Have ' + you + ' been awarded the Personal Independence Payment, indefinitely?';
+      question3 = 'You must provide a copy of your decision letter or your annual uprating letter, issued within the last twelve months. How would you like to provide this?';
+      break;
+    default:
+      question1 = 'Have ' + you + ' been awarded the Personal Independence Payment, indefinitely?';
+      question3 = 'You must provide a copy of your decision letter or your annual uprating letter, issued within the last twelve months. How would you like to provide this?';
+      break;
+  }
+  res.locals.question1 = question1;
+  res.locals.question3 = question3;
+  req.session.data['benefit-proof-file-upload'] = undefined;
+  req.session.data['benefit-proof-file'] = undefined;
+  res.render('candidate/eligibility-proof/provide-proof-of-your-eligibility');
+});
+
 router.get('/candidate/apply/prove-your-identity', function (req, res) {
   res.locals.formAction = '/proof-backend';
   res.locals.submitLabel = 'Continue';

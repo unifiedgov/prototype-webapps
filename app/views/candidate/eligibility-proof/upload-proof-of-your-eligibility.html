@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% import "candidate/macros/upload-component.html" as uploadComponentWidget %}
+
+{% set pageHeading = "Add proof of " + your + " benefit" %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-o-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-o-main-wrapper">
+
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+
+        <form action="{{ formAction }}?proofOfEligibility=upload">
+          <input type="hidden" id="change" name="change" value="{{change}}">
+          <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+          {% if data['benefit'] === 'dla' %}
+          <p class="govuk-body">You need to upload a copy of {{ your }} letter of entitlement, issued within the last 12 months.</p>
+          {% elif data['benefit'] === 'pip' %}
+          <p class="govuk-body">You need to upload a copy of {{ your }} PIP decision letter or {{ your }} annual uprating letter, issued within the last twelve months.</p>
+          {% endif %}
+
+          <p class="govuk-heading-m">Upload a photo or a scan</p>
+          {{ uploadComponentWidget.uploadComponent('benefit-proof-file-upload',
+          'proof of eligibility', 'proofOfEligibility', '/public/images/dla_letter.png',
+          formAction + '?proofOfEligibility=notProvided&benefit-proof-file-upload=',
+          your, 'about how to prove ' + your + ' eligibility', change, 'yes', "benefit-proof-upload-shows-current-address")}}
+        </form>
+
+      </div>
+
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

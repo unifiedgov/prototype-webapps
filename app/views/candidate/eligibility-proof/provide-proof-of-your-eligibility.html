@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = question1 %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-o-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-o-main-wrapper">
+
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+
+        <form action="{{formAction}}">
+          <div class="expanding-panel-container">
+            {{ govukRadios({
+              "idPrefix": "awarded-benefit-indefinitely-before",
+              "name": "awarded-benefit-indefinitely-before",
+              "attributes": {
+                "data-expanding-radios": "true"
+              },
+              "fieldset": {
+                "legendHtml": '<h1 class="govuk-heading-l">' + pageHeading  + '</h1>'
+              },
+              "items": [
+                {
+                  "value": "yes",
+                  "text": "Yes"
+                },
+                {
+                  "value": "no",
+                  "text": "No",
+                  "id": "awarded-benefit-indefinitely-before-no"
+                }
+              ]
+            }) }}
+            
+            <div class="expanding-panel" data-expanded-by="awarded-benefit-indefinitely-before-no">
+              <div class="govuk-c-details__text">
+                {{ govukDateInput({
+                  fieldset: {
+                    legendHtml: '<h2 class="govuk-heading-s">When is ' + your +' award of this benefit due to end?</h2>',
+                    legendHintText: 'For example, 31 3 2020'
+                  },
+                  id: 'awarded-benefit-before-start',
+                  name: 'awarded-benefit-before-start',
+                  items:[
+                    {
+                      name: 'day'
+                    },
+                    {
+                      name: 'month'
+                    },
+                    {
+                      name: 'year'
+                    }
+                  ]
+                  })
+                }}
+              </div>
+            </div>
+          </div>
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
