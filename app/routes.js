@@ -94,6 +94,25 @@ router.get('/candidate/check-eligibility/existing-badge/index-backend', function
   }
 });
 
+router.get('/candidate/check-eligibility/existing-badge/badge-not-found-backend', function (req, res) {
+  switch (req.session.data['badge-not-found-how-to-proceed']) {
+    case "reenter":
+      res.redirect('/candidate/check-eligibility/existing-badge');
+      break;
+    case "new":
+      req.session.data['renewal-or-new-application'] = 'new';
+      res.redirect('/candidate/check-eligibility/find-your-council');
+      break;
+    case "renewal":
+      req.session.data['renewal-or-new-application'] = 'renewal';
+      res.redirect('/candidate/check-eligibility/find-your-council');
+      break;
+    default:
+      res.redirect('/candidate/check-eligibility/find-your-council');
+      break;
+  }
+});
+
 router.get('/candidate/check-eligibility/existing-badge/not-for-review/', function (req, res) {
   res.locals.formAction = '/candidate/apply';
   res.render('candidate/check-eligibility/existing-badge/not-for-review.html');
@@ -142,6 +161,31 @@ router.get('/candidate/apply', function (req, res) {
 router.get('/candidate/apply/name', function (req, res) {
   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/dob'))
   res.render('candidate/apply/name')
+})
+
+router.get('/candidate/apply/dob', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/gender'))
+  res.render('candidate/apply/dob')
+})
+
+router.get('/candidate/apply/gender', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/select-address'))
+  res.render('candidate/apply/gender')
+})
+
+router.get('/candidate/apply/select-address', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/contact'))
+  res.render('candidate/apply/select-your-address')
+})
+
+router.get('/candidate/apply/enter-address', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/contact'))
+  res.render('candidate/apply/enter-your-address')
+})
+
+router.get('/candidate/apply/contact', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/check-identity'))
+  res.render('candidate/apply/contact-details')
 })
 
 module.exports = router

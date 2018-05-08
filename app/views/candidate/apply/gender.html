@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'What\'s ' + your + ' gender?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-o-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-o-main-wrapper">
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+
+        {% if data['gender'] === 'female' %}
+
+          {% set genderFemale = true %}
+
+        {% elif data['gender'] === 'male' %}
+
+          {% set genderMale = true %}
+
+        {% elif data['gender'] === 'unspecified' %}
+
+          {% set genderUn = true %}
+
+        {% endif %}
+
+        <form action="{{formAction}}">
+          {{ govukRadios({
+            "idPrefix": "gender",
+            "name": "gender",
+            "fieldset": {
+              "legendHtml": '<h1 class="govuk-heading-l">' + pageHeading + '</h1>'
+            },
+            "items": [
+              {
+                "value": "female",
+                "text": "Female",
+                "checked": genderFemale
+              },
+              {
+                "value": "male",
+                "text": "Male",
+                "checked": genderMale
+              },
+              {
+                "value": "unspecified",
+                "text": "Unspecified",
+                "checked": genderUn
+              }
+
+            ]
+          }) }}
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
