@@ -56,6 +56,60 @@ router.get('/admin/remove-user', function (req, res) {
   res.render('admin/remove-user', {'title':'Remove user','manage_class':'active'})
 });
 
+router.get('/admin/order-a-badge', function (req, res) {
+  req.session.data['nino'] = undefined;
+  req.session.data['first-name'] = undefined;
+  req.session.data['last-name'] = undefined;
+  req.session.data['dob-day'] = undefined;
+  req.session.data['dob-month'] = undefined;
+  req.session.data['dob-year'] = undefined;
+  req.session.data['gender'] = undefined;
+  req.session.data['address-line-1'] = undefined;
+  req.session.data['address-line-2'] = undefined;
+  req.session.data['address-town'] = undefined;
+  req.session.data['address-postcode'] = undefined;
+  req.session.data['la-reference'] = undefined;
+  req.session.data['start-day'] = undefined;
+  req.session.data['start-month'] = undefined;
+  req.session.data['start-year'] = undefined;
+  req.session.data['expiry-day'] = undefined;
+  req.session.data['expiry-month'] = undefined;
+  req.session.data['expiry-year'] = undefined;
+  req.session.data['deliver-to'] = undefined;
+  req.session.data['postage'] = undefined;
+  res.render('admin/order-a-badge', {'title':'Order a badge','order_class':'active', 'formAction':'/admin/order-a-badge/processing'})
+});
+
+router.get('/admin/order-a-badge-change', function (req, res) {
+  res.render('admin/order-a-badge', {'title':'Order a badge','order_class':'active', 'formAction':'/admin/order-a-badge/check-order'})
+});
+
+router.get('/admin/order-a-badge/processing', function (req, res) {
+  var todayDate = new Date();
+  var startDay = todayDate.getDate();
+  var startMonth = todayDate.getMonth()+1; //January is 0!
+  var startYear = todayDate.getFullYear();
+  var expiryDatePlus3Years = new Date(new Date().setFullYear(new Date().getFullYear() + 3));
+  var expiryDate = new Date(expiryDatePlus3Years.setDate(expiryDatePlus3Years.getDate() - 1));
+  var expiryDay = expiryDate.getDate();
+  var expiryMonth = expiryDate.getMonth()+1; // January is 0!
+  var expiryYear = expiryDate.getFullYear();
+
+  res.render('processing', {'title':'Processing','order_class':'active',
+    'startDay': startDay, 'startMonth': startMonth, 'startYear': startYear,
+    'expiryDay': expiryDay, 'expiryMonth': expiryMonth, 'expiryYear': expiryYear
+  });
+});
+
+router.get('/admin/order-a-badge/check-order', function (req, res) {
+  res.render('check-order', {'title':'Check order','order_class':'active'})
+})
+
+router.get('/admin/order-a-badge/badge-ordered', function (req, res) {
+  req.session.destroy();
+  res.render('badge-ordered', {'order_class':'active'})
+})
+
 // Candidate routes
 
 router.get('/candidate', function (req, res) {

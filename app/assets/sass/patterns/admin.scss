@@ -47,7 +47,12 @@
 		width: 100%;
 	}
 	.govuk-c-label,
-	.govuk-c-error-message {
+	.govuk-c-error-message,
+	.govuk-c-fieldset__hint,
+	.govuk-c-select,
+	.govuk-body,
+	.govuk-list,
+	.govuk-c-file-upload {
 		@include govuk-font-regular-16;
 	}
 	thead tr {
@@ -75,6 +80,15 @@
 		a {
 			color: $govuk-link-colour;
 			@include govuk-font-regular-19;
+		}
+	}
+	.form-section {
+		border-bottom: 1px solid $govuk-grey-3;
+		@include govuk-responsive-margin($govuk-spacing-responsive-6, "bottom");
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		&:last-of-type {
+			border: none;
 		}
 	}
 }

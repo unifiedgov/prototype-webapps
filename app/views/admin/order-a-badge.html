@@ -1,0 +1,186 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+
+<form action="{{ formAction }}" method="post" class="form">
+
+  <section class="form-section">
+    <h2 class="govuk-heading-m">Personal details</h2>
+    
+    {{ govukInput({
+      "label": {
+        "text": "National insurance number (optional)"
+      },
+      classes: "govuk-!-width-one-half",
+      id: "nino",
+      name: "nino",
+      value: data['nino']
+    }) }}
+    
+    {{ govukInput({
+      "label": {
+        "text": "Full name"
+      },
+      classes: "govuk-!-width-one-half",
+      id: "fullName",
+      name: "fullName",
+      value: data['fullName']
+    }) }}
+    
+    {{ govukDateInput({
+      fieldset: {
+        legendText: 'Date of birth',
+        legendHintText: 'For example, 31 3 1980'
+      },
+      id: 'dob',
+      name: 'dob',
+      items:[
+        {
+          name: 'day',
+          value: data['dob-day']
+        },
+        {
+          name: 'month',
+          value: data['dob-month']
+        },
+        {
+          name: 'year',
+          value: data['dob-year']
+        }
+      ]
+      })
+    }}
+    
+    {% call govukFieldset({
+      "legendText": 'Address'
+    }) %}
+    
+      {{ govukInput({
+        "label": {
+          "html": 'Building and street <span class="govuk-h-visually-hidden">line 1 of 2</span>'
+        },
+        classes: "govuk-!-width-one-half",
+        "id": "address-line-1",
+        "name": "address-line-1",
+        "value": data['address-line-1']
+      }) }}
+    
+      {{ govukInput({
+        "label": {
+          "html": '<span class="govuk-h-visually-hidden">Building and street line 2 of 2</span>'
+        },
+        classes: "govuk-!-width-one-half",
+        "id": "address-line-2",
+        "name": "address-line-2",
+        "value": data['address-line-2']
+      }) }}
+    
+      {{ govukInput({
+        "label": {
+          "html": 'Town or city'
+        },
+        classes: "govuk-!-width-one-half",
+        "id": "address-town",
+        "name": "address-town",
+        "value": data['address-town']
+      }) }}
+    
+      {{ govukInput({
+        "label": {
+          "html": 'Postcode'
+        },
+        "classes": 'govuk-c-input--width-10',
+        "id": "address-postcode",
+        "name": "address-postcode",
+        "value": data['address-postcode']
+      }) }}
+    
+    {% endcall %}
+    
+    {{ govukInput({
+      "label": {
+        "text": "Contact number"
+      },
+      classes: "govuk-!-width-one-half",
+      id: "primary-contact-number",
+      name: "primary-contact-number",
+      type: "tel",
+      value: data['primary-contact-number']
+    }) }}
+    
+    {{ govukInput({
+      "label": {
+        "text": "Email address"
+      },
+      classes: "govuk-!-width-one-half",
+      id: "email-address",
+      name: "email-address",
+      type: "email",
+      value: data['email-address']
+    }) }}
+  
+  </section>
+
+  <section class="form-section">
+    <h2 class="govuk-heading-m">Eligibility</h2>
+   
+    <div class="govuk-o-form-group">
+      <label for="selectElig" class="govuk-c-label">Select from list</label>
+      <select class="govuk-c-select govuk-!-width-one-half" id="selectElig" name="reason">
+        <option>Select one</option>
+        <optgroup label="Automatic">
+          <option value="PIP" {% if data['reason'] === 'PIP' %} selected {% endif %}>PIP</option>
+          <option value="DLA" {% if data['reason'] === 'DLA' %} selected {% endif %}>DLA</option>
+          <option value="Armed Forces Compensation scheme" {% if data['reason'] === 'Armed Forces Compensation scheme' %} selected {% endif %}>Armed Forces Compensation scheme</option>
+          <option value="War Pensioners’ Mobility Supplement" {% if data['reason'] === 'War Pensioners’ Mobility Supplement' %} selected {% endif %}>War Pensioners’ Mobility Supplement</option>
+          <option value="Registered blind" {% if data['reason'] === 'Registered blind' %} selected {% endif %}>Registered blind</option>
+        </optgroup>
+        <optgroup label="Further assessment">
+          <option value="Walking ability" {% if data['reason'] === 'Walking ability' %} selected {% endif %}>Walking ability</option>
+          <option value="Disability in both arms" {% if data['reason'] === 'Disability in both arms' %} selected {% endif %}>Disability in both arms</option>
+          <option value="Child under 3 with bulky medical equipment" {% if data['reason'] === 'Child under 3 with bulky medical equipment' %} selected {% endif %}>Child under 3 with bulky medical equipment</option>
+          <option value="Child under 3 who needs to be near a vehicle" {% if data['reason'] === 'Child under 3 who needs to be near a vehicle' %} selected {% endif %}>Child under 3 who needs to be near a vehicle</option>
+          <option value="Terminal illness" {% if data['reason'] === 'Terminal illness' %} selected {% endif %}>Terminal illness</option>
+        </optgroup>
+      </select>
+    </div>
+ </section>
+
+ <section class="form-section">
+
+  <h2 class="govuk-heading-m">Photo</h2>
+
+  <p class="govuk-body">
+    Photos should:
+  </p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>meet the <a href="">guidelines</a></li>
+    <li>be either .JPEG or .PNG format</li>
+    <li>not be bigger than 2MB</li>
+  </ul>
+
+  {{ govukFileUpload({
+    id: 'file-input',
+    name: 'file-input',
+    label: {
+      text: 'Upload a file'
+    }
+  }) }}
+   
+ </section>
+
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+</form>
+
+{% endblock %}
