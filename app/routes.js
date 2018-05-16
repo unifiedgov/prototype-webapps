@@ -123,6 +123,14 @@ router.get('/admin/search-for-a-badge/search-results', function (req, res) {
   res.render('admin/search-results', {'title':'Find a badge','search_class':'active'})
 })
 
+router.get('/admin/view-badge', function (req, res) {
+  res.render('admin/view-badge', {'title':'View badge','search_class':'active'})
+})
+
+router.get('/admin/view-badge-external', function (req, res) {
+  res.render('admin/view-badge-external', {'title':'View badge','search_class':'active'})
+})
+
 // Candidate routes
 
 router.get('/candidate', function (req, res) {
