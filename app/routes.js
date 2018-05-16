@@ -102,7 +102,7 @@ router.get('/admin/order-a-badge/processing', function (req, res) {
 });
 
 router.get('/admin/order-a-badge/check-order', function (req, res) {
-  res.render('check-order', {'title':'Check order','order_class':'active'})
+  res.render('admin/check-order', {'title':'Check order','order_class':'active'})
 })
 
 router.get('/admin/order-a-badge/badge-ordered', function (req, res) {

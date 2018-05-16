@@ -1,0 +1,196 @@
+{% extends "admin_layout.html" %}
+
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+<section class="split-section">
+  <div class="check-answers-heading-with-change">
+    <div class="check-answers-heading">
+      <h2 class="govuk-heading-m">
+        Personal details
+      </h2>
+    </div>
+  
+    <div class="check-answers-change">
+      <a href="order-a-badge-change">Change<span class="visually-hidden"> personal details</span></a>
+    </div>
+  
+  </div>
+  
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        N.I number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['nino']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Full name
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['full-name']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Date of birth
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['dob-day']}}/{{data['dob-month']}}/{{data['dob-year']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Home address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['address-line-1']}}{% if data['address-line-2']%},{{data['address-line-2']}}{% endif %}, {{data['address-town']}}, {{data['address-postcode']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Contact number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['primary-contact-number']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Email address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['email-address']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Eligibility
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['reason']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Photo
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        <img src="/public/images/margaret.png" alt="Photo of margaret Miller">
+      </dd>
+    </div>
+  </dl>
+</section>
+
+<section class="split-section">
+  <div class="check-answers-heading-with-change">
+    <div class="check-answers-heading">
+      <h2 class="govuk-heading-m">
+        Processing
+      </h2>
+    </div>
+  
+    <div class="check-answers-change">
+      <a href="processing">Change<span class="visually-hidden"> processing details</span></a>
+    </div>
+  
+  </div>
+  
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Local authority reference
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['la-reference']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Badge start date
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['start-day']}}/{{data['start-month']}}/{{data['start-year']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Badge expiry date
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['expiry-day']}}/{{data['expiry-month']}}/{{data['expiry-year']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Application date
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['application-day']}}/{{data['application-month']}}/{{data['application-year']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Application channel
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['application-channel']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Deliver to
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['deliver-to']}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Delivery options
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['delivery-options']}}
+      </dd>
+    </div>
+  </dl>
+</section>
+
+{{ govukButton({
+  "text": "Order badge",
+  "href": 'badge-ordered'
+}) }}
+
+
+{% endblock %}

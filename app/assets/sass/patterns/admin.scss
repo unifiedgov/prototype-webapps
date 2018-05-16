@@ -61,6 +61,18 @@
 	.govuk-c-fieldset__legend {
 		margin-bottom: 5px;
 	}
+	.govuk-check-your-answers__question{
+		@include govuk-font-bold-16;
+	}
+	.govuk-check-your-answers__answer,
+	.govuk-check-your-answers__change {
+		@include govuk-font-regular-16;
+		img {
+			outline: 2px solid $govuk-grey-2;
+			border: 2px solid white;
+			width: 8rem;
+		}
+	}
 	thead tr {
 	  border-bottom: 2px solid $govuk-grey-3;
 	}
@@ -88,7 +100,7 @@
 			@include govuk-font-regular-19;
 		}
 	}
-	.form-section {
+	.form-section, .split-section {
 		border-bottom: 1px solid $govuk-grey-3;
 		@include govuk-responsive-margin($govuk-spacing-responsive-6, "bottom");
 		padding-top: 1rem;
@@ -96,6 +108,26 @@
 		&:last-of-type {
 			border: none;
 			margin-bottom: 0;
+		}
+	}
+	.split-section {
+		border: none;
+	}
+}
+
+.check-answers-heading-with-change {
+	@include mq($from: tablet) {
+		.check-answers-heading {
+			display: inline-block;
+			width: 60%;
+			margin-right: -4px;
+		}
+		.check-answers-change {
+			@include govuk-font-regular-19;
+			display: inline-block;
+			width: 40%;
+			margin-right: -4px;
+			text-align: right;
 		}
 	}
 }

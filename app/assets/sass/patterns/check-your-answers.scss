@@ -53,6 +53,7 @@
 .govuk-check-your-answers__change {
   display: block;
   margin: 0;
+  vertical-align: top;
   @include mq($from: desktop) {
     display: table-cell;
     border-bottom: 1px solid $govuk-border-colour;
