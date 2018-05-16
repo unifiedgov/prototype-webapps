@@ -17,20 +17,6 @@
     <div class="govuk-o-grid">
       <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
-        {% if data['gender'] === 'female' %}
-
-          {% set genderFemale = true %}
-
-        {% elif data['gender'] === 'male' %}
-
-          {% set genderMale = true %}
-
-        {% elif data['gender'] === 'unspecified' %}
-
-          {% set genderUn = true %}
-
-        {% endif %}
-
         <form action="{{formAction}}">
           {{ govukRadios({
             "idPrefix": "gender",
@@ -42,17 +28,17 @@
               {
                 "value": "female",
                 "text": "Female",
-                "checked": genderFemale
+                  "checked": data['gender'] === 'female'
               },
               {
                 "value": "male",
                 "text": "Male",
-                "checked": genderMale
+                "checked": data['gender'] === 'male'
               },
               {
                 "value": "unspecified",
                 "text": "Unspecified",
-                "checked": genderUn
+                "checked": data['gender'] === 'unspecified'
               }
 
             ]

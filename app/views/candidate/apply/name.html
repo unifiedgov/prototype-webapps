@@ -17,16 +17,6 @@
     <div class="govuk-o-grid">
       <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
-        {% if data['name-changed'] === 'yes' %}
-
-          {% set nameChanged = true %}
-
-        {% elif data['name-changed'] === 'no' %}
-
-          {% set nameUnChanged = true %}
-
-        {% endif %}
-
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
         <!-- <p class="govuk-body"></p> -->
         <form action="{{formAction}}">
@@ -53,12 +43,12 @@
                 {
                   "value": "no",
                   "text": "No, " + your + " name hasn't changed",
-                  "checked": nameUnChanged
+                  "checked": data['name-changed'] === 'no'
                 },
                 {
                   "value": "yes",
                   "text": "Yes, " + your + " name has changed",
-                  "checked": nameChanged,
+                  "checked": data['name-changed'] === 'yes',
                   "id": 'name-changed-yes'
                 }
               ]

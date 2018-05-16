@@ -125,19 +125,23 @@
       "items": [
         {
           "value": "Online",
-          "text": "Online"
+          "text": "Online",
+          "checked": data['application-channel'] === 'Online'
         },
         {
           "value": "Paper",
-          "text": "Paper"
+          "text": "Paper",
+          "checked": data['application-channel'] === 'Paper'
         },
         {
           "value": "Phone",
-          "text": "Phone"
+          "text": "Phone",
+          "checked": data['application-channel'] === 'Phone'
         },
         {
           "value": "In person",
-          "text": "In person"
+          "text": "In person",
+          "checked": data['application-channel'] === 'In person'
         }
       ]
     }) }}
@@ -157,11 +161,13 @@
       "items": [
         {
           "value": "Badge holder",
-          "text": "Badge holder"
+          "text": "Badge holder",
+          "checked": data['deliver-to'] === 'Badge holder'
         },
         {
           "value": "Acme Countil Council",
-          "text": "Acme Countil Council"
+          "text": "Acme Countil Council",
+          "checked": data['deliver-to'] === 'Acme Countil Council'
         }
       ]
     }) }}
@@ -176,11 +182,13 @@
       "items": [
         {
           "value": "Standard delivery",
-          "text": "Standard delivery"
+          "text": "Standard delivery",
+          "checked": data['delivery-options'] === 'Standard delivery'
         },
         {
           "value": "Fast track",
-          "text": "Fast track (more expensive)"
+          "text": "Fast track (more expensive)",
+          "checked": data['delivery-options'] === 'Fast track'
         }
       ]
     }) }}
