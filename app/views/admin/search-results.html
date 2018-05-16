@@ -1,0 +1,97 @@
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+  <h1>{{title}}</h1>
+  <div class="search-box-container">
+    <div class="search-filter-container">
+      {% block search_extras %}
+        {{ govukSelect({
+          "id": "search-results-filter",
+          "name": "search-results-filter",
+          "classes": "search-filter",
+          "label": {
+            "html": "Filter results",
+            "classes": "visually-hidden"
+          },
+          "items": [
+            {
+              "value": "badge-number",
+              "text": "Badge number"
+            },
+            {
+              "value": "full-name",
+              "text": "Full name"
+            },
+            {
+              "value": "ni-number",
+              "text": "NI number"
+            }
+          ]
+        }) }}
+      {% endblock %}
+    </div>
+    {% include "includes/search.html" %}
+    <div class="search-box__options">
+      1 Result: <a href="javascript: window.history.go(-1)">Clear</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  {{ govukTable({
+    "firstCellIsHeader": false,
+    "head": [
+      {
+        "text": "Badge number"
+      },
+      {
+        "text": "Full name"
+      },
+      {
+        "text": "NI number"
+      },
+      {
+        "text": "Local authority"
+      },
+      {
+        "text": "Expiry date"
+      },
+      {
+        "text": "Status"
+      }
+    ],
+    "rows": [
+      [
+        {
+          "html": "<a href=''>ZZ59Z9 1 0957 X1114</a>"
+        },
+        {
+          "text": "Phillip Powell"
+        },
+        {
+          "text": " JR 12 34 56 A"
+        },
+        {
+          "html": "<a href=''>  Manchester City Council</a>"
+        },
+        {
+          "text": "13/01/22"
+        },
+        {
+          "text": "Active"
+        }
+      ]
+    ]
+  }) }}
+
+  
+{% endblock %}

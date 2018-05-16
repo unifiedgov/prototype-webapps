@@ -10,6 +10,16 @@
   padding: 20px;
 }
 
+.search-filter-container {
+  display: inline-block;
+  .govuk-o-form-group {
+    margin-bottom: 0;
+  }
+  select {
+    border: 2px solid $govuk-grey-3;
+  }
+}
+
 .search-box {
   @include govuk-font-regular-19;
   display: inline-block;

@@ -110,6 +110,14 @@ router.get('/admin/order-a-badge/badge-ordered', function (req, res) {
   res.render('admin/badge-ordered', {'order_class':'active'})
 })
 
+router.get('/admin/search-for-a-badge', function (req, res) {
+  res.render('admin/search-for-a-badge', {'title':'Find a badge','search_class':'active'})
+})
+
+router.get('/admin/search-for-a-badge/search-results', function (req, res) {
+  res.render('admin/search-results', {'title':'Find a badge','search_class':'active'})
+})
+
 // Candidate routes
 
 router.get('/candidate', function (req, res) {

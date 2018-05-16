@@ -1,0 +1,52 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+
+<form action="/admin/search-for-a-badge/search-results" method="post" class="form" novalidate>
+  
+  {{ govukRadios({
+    "idPrefix": "search-by",
+    "name": "search-by",
+    "fieldset": {
+      "legendText": 'Search for Blue Badges in the UK by:'
+    },
+    "items": [
+      {
+        "value": "badge-number",
+        "text": "Badge number"
+      },
+      {
+        "value": "full-name",
+        "text": "Full name"
+      },
+      {
+        "value": "ni-number",
+        "text": "National Insurance number"
+      }
+    ]
+  }) }}
+
+  {{ govukInput({
+    "label": {
+      "text": "Enter keywords (optional)"
+    },
+    classes: "govuk-!-width-one-half",
+    id: "search",
+    name: "search"
+  }) }}
+
+
+  {{ govukButton({
+    "text": "Search"
+  }) }}
+
+</form>
+
+{% endblock %}
