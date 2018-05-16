@@ -1,0 +1,196 @@
+{% extends "admin_layout.html" %}
+
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+
+<form action="check-order" method="post" class="form">
+
+  <section class="form-section">
+    <h2 class="govuk-heading-m">Local authority reference</h2>
+    
+    {{ govukInput({
+      "label": {
+        "text": "Reference number (optional)"
+      },
+      classes: "govuk-!-width-one-half",
+      id: "la-reference",
+      name: "la-reference",
+      value: data['la-reference']
+    }) }}
+
+  </section>
+
+  <section class="form-section">
+    <h2 class="govuk-heading-m">Issue period</h2>
+    
+    {{ govukDateInput({
+      fieldset: {
+        legendText: 'Badge start date',
+        legendHintText: 'For example, 31 3 2016',
+        classes: 'fieldset-with-inputs'
+      },
+      id: 'start',
+      name: 'start',
+      items:[
+        {
+          name: 'day',
+          value: data['startDay']
+        },
+        {
+          name: 'month',
+          value: data['startMonth']
+        },
+        {
+          name: 'year',
+          value: data['startYear']
+        }
+      ]
+      })
+    }}
+
+    {{ govukDateInput({
+      fieldset: {
+        legendText: 'Badge expiry date',
+        classes: 'fieldset-with-inputs'
+      },
+      id: 'expiry',
+      name: 'expiry',
+      items:[
+        {
+          name: 'day',
+          value: data['expiryDay']
+        },
+        {
+          name: 'month',
+          value: data['expiryMonth']
+        },
+        {
+          name: 'year',
+          value: data['expiryYear']
+        }
+      ]
+      })
+    }}
+
+  </section>
+  <section class="form-section">
+    <h2 class="govuk-heading-m">Application details</h2>
+
+    {{ govukDateInput({
+      fieldset: {
+        legendText: 'Application date',
+        classes: 'fieldset-with-inputs'
+      },
+      id: 'application',
+      name: 'application',
+      items:[
+        {
+          name: 'day',
+          value: data['application-day']
+        },
+        {
+          name: 'month',
+          value: data['application-month']
+        },
+        {
+          name: 'year',
+          value: data['application-year']
+        }
+      ]
+      })
+    }}
+    
+    {{ govukRadios({
+      "idPrefix": "application-channel",
+      "name": "application-channel",
+      "fieldset": {
+        "legendText": 'Application channel'
+      },
+      "items": [
+        {
+          "value": "Online",
+          "text": "Online"
+        },
+        {
+          "value": "Paper",
+          "text": "Paper"
+        },
+        {
+          "value": "Phone",
+          "text": "Phone"
+        },
+        {
+          "value": "In person",
+          "text": "In person"
+        }
+      ]
+    }) }}
+
+  </section>
+
+  <section class="form-section">
+    <h2 class="govuk-heading-m">Delivery information</h2>
+
+    {{ govukRadios({
+      "idPrefix": "deliver-to",
+      "name": "deliver-to",
+      "classes": "govuk-c-radios--inline",
+      "fieldset": {
+        "legendText": "Deliver to"
+      },
+      "items": [
+        {
+          "value": "Badge holder",
+          "text": "Badge holder"
+        },
+        {
+          "value": "Acme Countil Council",
+          "text": "Acme Countil Council"
+        }
+      ]
+    }) }}
+
+    {{ govukRadios({
+      "idPrefix": "delivery-options",
+      "name": "delivery-options",
+      "classes": "govuk-c-radios--inline",
+      "fieldset": {
+        "legendText": "Delivery options"
+      },
+      "items": [
+        {
+          "value": "Standard delivery",
+          "text": "Standard delivery"
+        },
+        {
+          "value": "Fast track",
+          "text": "Fast track (more expensive)"
+        }
+      ]
+    }) }}
+
+  </section>
+
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+</form>
+
+{% endblock %}

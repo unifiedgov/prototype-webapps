@@ -95,7 +95,7 @@ router.get('/admin/order-a-badge/processing', function (req, res) {
   var expiryMonth = expiryDate.getMonth()+1; // January is 0!
   var expiryYear = expiryDate.getFullYear();
 
-  res.render('processing', {'title':'Processing','order_class':'active',
+  res.render('admin/processing', {'title':'Processing','order_class':'active',
     'startDay': startDay, 'startMonth': startMonth, 'startYear': startYear,
     'expiryDay': expiryDay, 'expiryMonth': expiryMonth, 'expiryYear': expiryYear
   });

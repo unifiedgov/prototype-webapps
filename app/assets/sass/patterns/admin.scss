@@ -55,6 +55,12 @@
 	.govuk-c-file-upload {
 		@include govuk-font-regular-16;
 	}
+	// .fieldset-with-inputs .govuk-c-fieldset__legend {
+	// 	margin-bottom: 0;
+	// }
+	.govuk-c-fieldset__legend {
+		margin-bottom: 5px;
+	}
 	thead tr {
 	  border-bottom: 2px solid $govuk-grey-3;
 	}
@@ -89,6 +95,7 @@
 		padding-bottom: 1rem;
 		&:last-of-type {
 			border: none;
+			margin-bottom: 0;
 		}
 	}
 }
