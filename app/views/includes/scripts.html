@@ -22,9 +22,10 @@
 
 	if(gup('success')) {
 
-		var gupValue = gup('success').replace(/\+/g, ' ');
+		var gupValue = gup('success').replace(/\+/g, ' '),
+			gupDecoded = decodeURI(gupValue);
 
-		$('[data-successmessage]').text(gupValue);
+		$('[data-successmessage]').text(gupDecoded);
 
 		$('.success-panel').show();
 

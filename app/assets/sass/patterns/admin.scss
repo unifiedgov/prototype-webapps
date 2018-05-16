@@ -31,6 +31,11 @@
 		text-align: right;
 		width: 40%;
 	}
+	&.sign-in-success {
+		margin: 0;
+		padding: 0 30px;
+		width: auto;
+	}
 }
 
 #adminTheme {
@@ -47,13 +52,17 @@
 		width: 100%;
 	}
 	.govuk-c-label,
-	.govuk-c-error-message,
 	.govuk-c-fieldset__hint,
 	.govuk-c-select,
 	.govuk-body,
 	.govuk-list,
-	.govuk-c-file-upload {
+	.govuk-c-file-upload,
+	details,
+	summary {
 		@include govuk-font-regular-16;
+	}
+	.govuk-c-error-message {
+		@include govuk-font-bold-16;
 	}
 	// .fieldset-with-inputs .govuk-c-fieldset__legend {
 	// 	margin-bottom: 0;

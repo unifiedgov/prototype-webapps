@@ -36,6 +36,11 @@ router.get('/admin/sign-in', function (req, res) {
   req.session.destroy()
 });
 
+router.get('/admin/', function (req, res) {
+  res.render('admin/sign-in')
+  req.session.destroy()
+});
+
 router.get('/admin/all-applications', function (req, res) {
   res.render('admin/all-applications', {'title':'All applications','app_class':'active'})
 });
@@ -123,6 +128,7 @@ router.get('/admin/search-for-a-badge/search-results', function (req, res) {
 router.get('/candidate', function (req, res) {
   res.locals.hideServiceName = 'yes';
   res.render('candidate/index.html')
+  req.session.destroy()
 });
 
 router.get('/candidate/check-eligibility/', function (req, res) {

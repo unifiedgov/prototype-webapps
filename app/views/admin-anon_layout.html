@@ -63,6 +63,14 @@
 {% endblock %}
 
 {% block page_layout %}
+  {% block success_panel %}
+
+    <div class="success-panel sign-in-success">
+      <p data-successmessage></p>
+      <a class="success-panel__close" href="?">Close</a>
+    </div>
+    
+  {% endblock %}
   {% block content %}{% endblock %}
 {% endblock %}
 
