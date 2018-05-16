@@ -107,7 +107,7 @@ router.get('/admin/order-a-badge/check-order', function (req, res) {
 
 router.get('/admin/order-a-badge/badge-ordered', function (req, res) {
   req.session.destroy();
-  res.render('badge-ordered', {'order_class':'active'})
+  res.render('admin/badge-ordered', {'order_class':'active'})
 })
 
 // Candidate routes
