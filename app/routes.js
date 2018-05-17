@@ -10,6 +10,7 @@ router.get('/', function (req, res) {
 router.use(function(req, res, next) {
   console.log(req.session.data);
   var applicant = req.session.data['applicant'];
+  res.locals.my = applicant === 'someone-else' ? 'their' : 'my';
   res.locals.you = applicant === 'someone-else' ? 'they' : 'you';
   res.locals.your = applicant === 'someone-else' ? 'their' : 'your';
   res.locals.youOrThem = applicant === 'someone-else' ? 'them' : 'you';
@@ -227,17 +228,31 @@ router.get('/candidate/check-eligibility/existing-badge/index-backend', function
   }
 });
 
-router.get('/candidate/check-eligibility/existing-badge/badge-not-found-backend', function (req, res) {
-  switch (req.session.data['badge-not-found-how-to-proceed']) {
-    case "reenter":
-      res.redirect('/candidate/check-eligibility/existing-badge');
+// router.get('/candidate/check-eligibility/existing-badge/badge-not-found-backend', function (req, res) {
+//   switch (req.session.data['badge-not-found-how-to-proceed']) {
+//     case "reenter":
+//       res.redirect('/candidate/check-eligibility/existing-badge');
+//       break;
+//     case "new":
+//       req.session.data['renewal-or-new-application'] = 'new';
+//       res.redirect('/candidate/check-eligibility/find-your-council');
+//       break;
+//     case "renewal":
+//       req.session.data['renewal-or-new-application'] = 'renewal';
+//       res.redirect('/candidate/check-eligibility/find-your-council');
+//       break;
+//     default:
+//       res.redirect('/candidate/check-eligibility/find-your-council');
+//       break;
+//   }
+// });
+
+router.get('/candidate/check-eligibility/existing-badge/review-backend', function (req, res) {
+  switch (req.session.data['renewal-council-has-changed']) {
+    case "yes":
+      res.redirect('/candidate/check-eligibility/enter-age');
       break;
-    case "new":
-      req.session.data['renewal-or-new-application'] = 'new';
-      res.redirect('/candidate/check-eligibility/find-your-council');
-      break;
-    case "renewal":
-      req.session.data['renewal-or-new-application'] = 'renewal';
+    case "no":
       res.redirect('/candidate/check-eligibility/find-your-council');
       break;
     default:
@@ -246,10 +261,15 @@ router.get('/candidate/check-eligibility/existing-badge/badge-not-found-backend'
   }
 });
 
+
 router.get('/candidate/check-eligibility/existing-badge/not-for-review/', function (req, res) {
   res.locals.formAction = '/candidate/apply';
   res.render('candidate/check-eligibility/existing-badge/not-for-review.html');
 });
+
+// router.get('/candidate/check-eligibility/enter-age/', function (req, res) {
+//   res.render('candidate/check-eligibility/existing-badge/not-for-review.html');
+// });
 
 router.get('/candidate/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
   res.locals.formAction = '/candidate/check-eligibility/find-your-council';

@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Find ' + your + ' local council' %}
+{% set pageHeading = 'What is ' + your + ' local council?' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -18,21 +18,36 @@
       <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <p class="govuk-body">{{ your | capitalize }} application will be sent to {{your}} council for a decision.</p>
+        <p class="govuk-body">Blue Badge applications are assessed by {{ your }} local council. <br> {{ You | capitalize }} can't get a Blue Badge if you live outside of the UK.</p>
         <form action="your-council">
           {{ govukInput({
             "label": {
-              "text": "Enter postcode",
-              "hintText": "For example, SW1A 2AA"
+              "text": "Start typing, or select your local council"
             },
-            classes: "govuk-c-input--width-10",
-            id: "postcode",
-            name: "postcode",
-            value: data['postcode']
+            classes: "govuk-c-input--width-one-half",
+            id: "local-council",
+            name: "local-council"
+          }) }}
+
+          {{ govukDetails({
+            "summaryText": "I don't know " + my + " local council",
+            "html": '
+                     <div class="govuk-o-form-group"><label class="govuk-c-label" for="postcode">
+                       Enter ' + your + ' postcode
+                       
+                       <span class="govuk-c-label__hint">
+                         For example, SW1A 2AA
+                       </span>
+                       
+                       
+                     </label>
+                     <input class="govuk-c-input govuk-c-input--width-10" id="postcode" name="postcode" type="text">
+                     </div>
+                     ' 
           }) }}
           
           {{ govukButton({
-            "text": "Find"
+            "text": "Continue"
           }) }}
 
           <input id="council-name" name="council-name" type="hidden" value="Manchester city council">
