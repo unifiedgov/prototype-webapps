@@ -18,6 +18,45 @@
 {% endblock %}
 
 {% block content %}
+
+{% if  data['success'] == "User created" %}
+
+  {% set rowToAdd = [
+        {
+          "html": '<a href="edit-details">' + data['full-name'] + '</a>'
+        },
+        {
+          "text": data['email-address']
+        },
+        {
+          "text": data['permissions'] | capitalize
+        }
+      ]
+  %}
+
+{% endif %}
+
+{% if  data['success'] == "User removed" %}
+
+  {% set joeRow = undefined %}
+
+  {% else %}
+
+  {% set joeRow = [
+        {
+          "html": '<a href="edit-details">Joe Bloggs</a>'
+        },
+        {
+          "text": "joe.bloggs@manchester.gov.uk"
+        },
+        {
+          "text": "Standard"
+        }
+      ]
+  %}
+
+{% endif %}
+
   {{ govukTable({
     "firstCellIsHeader": false,
     "head": [
@@ -33,17 +72,8 @@
       }
     ],
     "rows": [
-      [
-        {
-          "html": '<a href="edit-details">Joe Bloggs</a>'
-        },
-        {
-          "text": "joe.bloggs@manchester.gov.uk"
-        },
-        {
-          "text": "Standard"
-        }
-      ],
+      rowToAdd,
+      joeRow,
       [
         {
           "html": '<a href="edit-details">Mohammed Bilal</a>'

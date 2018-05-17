@@ -11,74 +11,79 @@
 
 {% block content %}
   
-  <form action="manage-users">
-    <div class="govuk-o-grid">
-      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
-        {{ govukInput({
-          "label": {
-            "text": "Full name"    
+  
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <form action="manage-users">
+      {{ govukInput({
+        "label": {
+          "text": "Full name"    
+        },
+        id: "full-name",
+        classes: "govuk-!-width-two-thirds",
+        name: "full-name",
+        value: "Joe Bloggs"
+      }) }}
+      
+      {{ govukInput({
+        "label": {
+          "text": "Email address"    
+        },
+        type: "email",
+        id: "email-address",
+        classes: "govuk-!-width-two-thirds",
+        name: "email-address",
+        value: "joe.bloggs@valtech.co.uk"
+      }) }}
+      
+      {{ govukRadios({
+        "idPrefix": "permissions",
+        "name": "permissions",
+        "classes": "govuk-c-radios--inline",
+        "fieldset": {
+          "legendText": "Permissions"
+        },
+        "items": [
+          {
+            "value": "standard",
+            "text": "Standard",
+            "checked": "checked"
           },
-          id: "full-name",
-          classes: "govuk-!-width-two-thirds",
-          name: "full-name",
-          value: "Joe Bloggs"
-        }) }}
-        
-        {{ govukInput({
-          "label": {
-            "text": "Email address"    
-          },
-          type: "email",
-          id: "email-address",
-          classes: "govuk-!-width-two-thirds",
-          name: "email-address",
-          value: "joe.bloggs@valtech.co.uk"
-        }) }}
-        
-        {{ govukRadios({
-          "idPrefix": "permissions",
-          "name": "permissions",
-          "classes": "govuk-c-radios--inline",
-          "fieldset": {
-            "legendText": "Permissions"
-          },
-          "items": [
-            {
-              "value": "standard",
-              "text": "Standard",
-              "checked": "checked"
-            },
-            {
-              "value": "owner",
-              "text": "Owner"
-            }
-          ]
-        }) }}
-        
-        {{ govukButton({
-          "text": "Update"
-        }) }}
-        <ul class="govuk-list">
-          <li>
-            <a href="reset-password">Reset password</a>
-          </li>
-          <li>
-            {{ govukDetails({
-              "summaryText": "Remove user",
-              "html": '
-                        <p>Are you sure you want to remove access for <b>Joe Bloggs</b>?</p>
-                        <p>You won\'t be able to undo this.</p>
-                        <input value="Yes, remove user" type="submit" class="govuk-c-button">
-                        <p class="govuk-body">
-                          <a href="?reset-user">No, don\'t remove user</a>
-                        </p>' 
-            }) }}
-          </li>
-        </ul>
-       
-      </div>
-    </div>
-    
-  </form>
+          {
+            "value": "owner",
+            "text": "Owner"
+          }
+        ]
+      }) }}
 
+      <input id="success" name="success" type="hidden" value="User updated">
+      
+      {{ govukButton({
+        "text": "Update"
+      }) }}
+    </form>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="reset-password">Reset password</a>
+        </li>
+        <li>
+          {{ govukDetails({
+            "summaryText": "Remove user",
+            "html": '
+                      <form action="manage-users">
+                      <p>Are you sure you want to remove access for <b>Joe Bloggs</b>?</p>
+                      <p>You won\'t be able to undo this.</p>
+                      <input id="success" name="success" type="hidden" value="User removed">
+                      <input value="Yes, remove user" type="submit" class="govuk-c-button">
+                      <p class="govuk-body">
+                        <a href="?reset-user">No, don\'t remove user</a>
+                      </p>' 
+          }) }}
+        </li>
+      </ul>
+     
+    </div>
+  </div>
+    
 {% endblock %}

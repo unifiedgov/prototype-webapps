@@ -42,6 +42,7 @@ router.get('/admin/', function (req, res) {
 });
 
 router.get('/admin/reset-password', function (req, res) {
+  req.session.data['show'] = undefined;
   res.render('admin/reset-password', {'title':'Reset your password'})
 });
 
@@ -58,6 +59,7 @@ router.get('/admin/all-applications', function (req, res) {
 });
 
 router.get('/admin/manage-users', function (req, res) {
+  req.session.data['success'] = undefined;
   res.render('admin/manage-users', {'title':'Manage users','manage_class':'active'})
 });
 
@@ -161,10 +163,6 @@ router.get('/admin/cancel-badge', function (req, res) {
 
 router.get('/admin/badge-cancelled', function (req, res) {
   res.render('admin/badge-cancelled', {'search_class':'active'})
-})
-
-router.get('/admin/manage-users', function (req, res) {
-  res.render('admin/manage-users', {'title':'Manage users','manage_class':'active'})
 })
 
 router.get('/admin/view-my-details', function (req, res) {
