@@ -1,0 +1,25 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+
+  <!-- <h1>{{title}}</h1> -->
+  
+{% endblock %}
+
+{% block content %}
+
+{{ govukPanel({
+  "titleText": "Badge cancelled",
+  "html": "Badge number<br><strong>ZZ59Z9 1 0957 X1114</strong>"
+})
+}}
+
+<br>
+
+<p class="govuk-body">Make sure you store the badge number for your records.</p>
+
+<h3 class="govuk-heading-m">What happens next</h3>
+
+<p class="govuk-body">Phillip Powell will receive confirmation that the badge has been cancelled and the badge will need to be destroyed.</p>
+
+{% endblock %}

@@ -1,50 +1,50 @@
 {% extends "admin_layout.html" %}
 
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
 {% block page_header %}
 
+  <p class="subtitle">ZZ59Z9 1 0957 X1114</p>
   <h1>{{title}}</h1>
   
 {% endblock %}
 
 {% block content %}
 
-
-<form action="/admin/search-for-a-badge/search-results" method="post" class="form" novalidate>
+<form action="/admin/badge-cancelled" method="post" class="form" novalidate>
   
   {{ govukRadios({
-    "idPrefix": "search-by",
-    "name": "search-by",
+    "idPrefix": "cancelled-reason",
+    "name": "cancelled-reason",
     "fieldset": {
-      "legendText": 'Search for Blue Badges in the UK by:'
+      "legendText": 'Reason'
     },
     "items": [
       {
-        "value": "badge-number",
-        "text": "Badge number"
+        "value": "Deceased",
+        "text": "Deceased"
       },
       {
-        "value": "full-name",
-        "text": "Full name"
+        "value": "No longer needed",
+        "text": "No longer needed"
       },
       {
-        "value": "ni-number",
-        "text": "National Insurance number"
+        "value": "Revoked",
+        "text": "Revoked"
       }
     ]
   }) }}
 
-  {{ govukInput({
-    "label": {
-      "text": "Enter keywords (optional)"
-    },
-    classes: "govuk-!-width-one-half",
-    id: "search",
-    name: "search"
-  }) }}
-
 
   {{ govukButton({
-    "text": "Search"
+    "text": "Cancel badge"
   }) }}
 
 </form>
