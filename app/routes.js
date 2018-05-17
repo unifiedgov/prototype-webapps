@@ -37,7 +37,7 @@ router.get('/admin/sign-in', function (req, res) {
 });
 
 router.get('/admin/', function (req, res) {
-  res.render('admin/sign-in')
+  res.render('admin/sign-in', {'title':'Sign in'})
   req.session.destroy()
 });
 
