@@ -65,7 +65,18 @@
 
       <ul class="govuk-list">
         <li>
-          <a href="reset-password">Reset password</a>
+          {{ govukDetails({
+            "summaryText": "Reset password",
+            "html": '
+                      <form action="manage-users">
+                      <p>Are you sure you want to reset the password for <b>Joe Bloggs</b>?</p>
+                      <p>We\'ll send them an email to reset their password.</p>
+                      <input id="success" name="success" type="hidden" value="Reset password link sent">
+                      <input value="Yes, reset password" type="submit" class="govuk-c-button">
+                      <p class="govuk-body">
+                        <a href="?reset-user">No, don\'t reset password</a>
+                      </p>' 
+          }) }}
         </li>
         <li>
           {{ govukDetails({
