@@ -3,7 +3,7 @@
 {% set pageHeading = 'Do ' + you + ' already have a Blue Badge?' %}
 
 {% block page_title %}
-  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+  {% if data["show"] === "errors" %} Error: {% endif %} {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -17,8 +17,31 @@
 
     <div class="govuk-o-grid">
       <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
-
+        
         <form action="/candidate/check-eligibility/existing-badge/index-backend">
+
+          {% set formIDs = {
+            existingBadge: { id: "existing-blue-badge-number" }
+          }%}
+
+          {% if  data['show'] == "errors" %}
+
+            {% set errorArray = {
+              existingBadge: { text: "We couldn't find this badge number"}
+            }%}
+
+            {{ govukErrorSummary({
+              "titleText": "Fix the following errors:",
+              "errorList": [
+                {
+                  "text": errorArray.existingBadge.text,
+                  "href": '#' + formIDs.existingBadge.id
+                }
+              ]
+            }) }}
+
+          {% endif %}
+
           <div class="expanding-panel-container">
             {{ govukRadios({
               "idPrefix": "renewal-or-new-application",
@@ -33,6 +56,7 @@
                 {
                   "value": "renewal",
                   "text": "Yes",
+                  "checked": data['existing'] === "yes",
                   "id": "renewal-or-new-application-renewal"
                 },
                 {
@@ -43,7 +67,7 @@
               ]
             }) }}
             
-            <div class="expanding-panel" data-expanded-by="renewal-or-new-application-renewal">
+            <div class='expanding-panel {% if data["show"] === "errors" %} has-error {% endif %}' data-expanded-by="renewal-or-new-application-renewal">
               <div class="govuk-c-details__text">
                 {{ govukInput({
                   "label": {
@@ -51,8 +75,9 @@
                     "hintText": "For example, 0957X1114"
                   },
                   classes: "govuk-!-width-two-thirds",
-                  id: "existing-blue-badge-number",
-                  name: "existing-blue-badge-number"
+                  errorMessage: errorArray.existingBadge,
+                  id: formIDs.existingBadge.id,
+                  name: formIDs.existingBadge.id
                 }) }}
               </div>
             </div>

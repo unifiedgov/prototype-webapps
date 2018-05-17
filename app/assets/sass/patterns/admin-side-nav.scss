@@ -11,7 +11,7 @@
   width: 100%;
   color: $la-blue;
   overflow: hidden;
-  @include mq($from: tablet) {
+  @include mq($from: desktop) {
     width: 300px;
     height: calc(100vh - 45px);
   }
@@ -42,7 +42,7 @@
     padding: 15px;
     position: relative;
   }
-  @include mq($from: tablet) {
+  @include mq($from: desktop) {
     display: block;
     a {
       padding: 12px 20px 11px 30px;  

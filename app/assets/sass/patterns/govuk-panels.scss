@@ -5,3 +5,13 @@
 		margin-bottom: $govuk-spacing-scale-6;
 	}
 }
+
+.has-error {
+	.govuk-c-details__text {
+		border: none;
+		padding-left: 0;
+		input {
+			margin-bottom: 5px;
+		}
+	}
+}

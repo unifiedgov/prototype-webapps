@@ -200,6 +200,7 @@ router.get('/candidate/check-eligibility/', function (req, res) {
 });
 
 router.get('/candidate/check-eligibility/existing-badge/', function (req, res) {
+  req.session.data['show'] = undefined;
   res.render('candidate/check-eligibility/existing-badge/index.html')
 });
 
@@ -212,7 +213,7 @@ router.get('/candidate/check-eligibility/existing-badge/index-backend', function
       } else if (blueBadgeNumber.indexOf('2222') === 0 && blueBadgeNumber.lastIndexOf('2222') === blueBadgeNumber.length-4) {
         res.redirect('/candidate/check-eligibility/existing-badge/not-for-review');
       } else if (blueBadgeNumber.indexOf('3333') === 0 && blueBadgeNumber.lastIndexOf('3333') === blueBadgeNumber.length-4) {
-        res.redirect('/candidate/check-eligibility/existing-badge/badge-not-found');
+        res.redirect('/candidate/check-eligibility/existing-badge?show=errors&existing=yes');
       } else {
         res.redirect('/candidate/check-eligibility/existing-badge/not-for-review-with-eligibility-questions');
       }

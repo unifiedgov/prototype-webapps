@@ -23,7 +23,7 @@ a:visited {
   float: left;
   margin: 0;
   background: white;
-  @include mq($from: tablet) {
+  @include mq($from: desktop) {
     width: calc(100% - 300px);
     padding: 47px 60px;
   }
