@@ -131,6 +131,46 @@ router.get('/admin/view-badge-external', function (req, res) {
   res.render('admin/view-badge-external', {'title':'View badge','search_class':'active'})
 })
 
+router.get('/admin/replace-badge', function (req, res) {
+  res.render('admin/replace-badge', {'title':'Order a replacement badge','search_class':'active'})
+})
+
+router.get('/admin/replacement-ordered', function (req, res) {
+  res.render('admin/replacement-ordered', {'search_class':'active'})
+})
+
+router.get('/admin/cancel-badge', function (req, res) {
+  res.render('admin/cancel-badge', {'title':'Cancel badge','search_class':'active'})
+})
+
+router.get('/admin/badge-cancelled', function (req, res) {
+  res.render('admin/badge-cancelled', {'search_class':'active'})
+})
+
+router.get('/admin/manage-users', function (req, res) {
+  res.render('admin/manage-users', {'title':'Manage users','manage_class':'active'})
+})
+
+router.get('/admin/view-my-details', function (req, res) {
+  res.render('admin/view-my-details', {'title':'View my details','view_class':'active'})
+})
+
+router.get('/admin/renewals', function (req, res) {
+  res.render('admin/renewals', {'title':'Renewals','renewals_class':'active'})
+})
+
+router.get('/admin/replacements', function (req, res) {
+  res.render('admin/replacements', {'title':'Replacements','replacements_class':'active'})
+})
+
+router.get('/admin/updates', function (req, res) {
+  res.render('admin/updates', {'title':'Updates','updates_class':'active'})
+})
+
+router.get('/admin/cancellations', function (req, res) {
+  res.render('admin/cancellations', {'title':'Cancellations','cancellations_class':'active'})
+})
+
 // Candidate routes
 
 router.get('/candidate', function (req, res) {
