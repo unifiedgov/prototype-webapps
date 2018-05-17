@@ -32,13 +32,25 @@ router.use(function(req, res, next) {
 // Admin routes
 
 router.get('/admin/sign-in', function (req, res) {
-  res.render('admin/sign-in', {})
+  res.render('admin/sign-in', {'title':'Sign in'})
   req.session.destroy()
 });
 
 router.get('/admin/', function (req, res) {
   res.render('admin/sign-in')
   req.session.destroy()
+});
+
+router.get('/admin/reset-password', function (req, res) {
+  res.render('admin/reset-password', {'title':'Reset your password'})
+});
+
+router.get('/admin/reset-email-sent', function (req, res) {
+  res.render('admin/reset-email-sent', {'title':'Link sent'})
+});
+
+router.get('/admin/set-your-password', function (req, res) {
+  res.render('admin/set-your-password', {'title':'Set your password'})
 });
 
 router.get('/admin/all-applications', function (req, res) {
