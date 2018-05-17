@@ -1,0 +1,156 @@
+{% extends "admin_layout.html" %}
+
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "/admin/search-results/"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+  <p class="subtitle">ZZ59Z9 1 0957 X1114</p>
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+<section class="split-section">
+  <h2 class="govuk-heading-m">
+    Personal details
+  </h2>
+  
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        N.I number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        JR 12 34 56 A
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Full name
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Phillip Powell
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Date of birth
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        12 May 1968
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Home address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        114 Mansfield Road, Crumpsall, Manchester, M8 ITG
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Contact number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        01331 252 226
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Email address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        p.powell@gmail.com
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Eligibility
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        PIP
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Photo
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        <img src="/public/images/phillip.png" alt="Photo of Phillip Powell">
+      </dd>
+    </div>
+  </dl>
+</section>
+
+<section class="split-section">
+  <h2 class="govuk-heading-m">
+    Badge details
+  </h2>
+  
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Status
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Valid
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Badge number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        ZZ59Z9 1 0957 X1114
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Issued by
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Manchester City Council
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Badge start date
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        12 May 2019
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Badge expiry date
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        12 May 2022
+      </dd>
+    </div>
+  
+  </dl>
+</section>
+
+
+{% endblock %}
