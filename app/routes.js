@@ -64,6 +64,7 @@ router.get('/admin/manage-users', function (req, res) {
 });
 
 router.get('/admin/users-results', function (req, res) {
+  res.locals.searchValue = req.session.data['search-box'];
   res.render('admin/users-results', {'title':'Manage users','manage_class':'active'})
 });
 
@@ -137,7 +138,8 @@ router.get('/admin/search-for-a-badge', function (req, res) {
   res.render('admin/search-for-a-badge', {'title':'Find a badge','search_class':'active'})
 })
 
-router.get('/admin/search-for-a-badge/search-results', function (req, res) {
+router.get('/admin/search-results', function (req, res) {
+  res.locals.searchValue = req.session.data['badge-search'];
   res.render('admin/search-results', {'title':'Find a badge','search_class':'active'})
 })
 
