@@ -3,7 +3,9 @@
 {% block page_header %}
   <h1>{{title}}</h1><p class="count">29</p>
   <div class="search-box-container">
-    {% include "includes/search.html" %}
+    <form action="" class="search-box">
+      {% include "includes/search.html" %}
+    </form>
     <div class="search-box__options">
       <a href="/public/images/new-applications.csv">Export all</a>
     </div>

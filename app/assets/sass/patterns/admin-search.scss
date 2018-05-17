@@ -20,21 +20,35 @@
   }
 }
 
+.inline-search-wrapper {
+  position: relative;
+}
+
 .search-box {
   @include govuk-font-regular-19;
   display: inline-block;
-  input {
+  input[type="text"] {
     @include govuk-font-regular-19;
   	padding: 9px 15px 6px;
   	border: 2px solid $govuk-grey-3;
   	outline: none;
   	width: 275px;
-  	background-image: url('../images/search.svg');
-  	background-repeat: no-repeat;
-  	background-position: right 10px top 10px;
   	&:focus {
   		border: 2px solid $govuk-yellow;
   	}
+  }
+  .inline-search-button {
+    background-color: transparent;
+    background-image: url('../images/search.svg');
+    background-repeat: no-repeat;
+    background-position: right 5px top 6px;
+    border: none;
+    cursor: pointer;
+    height: 30px; width: 30px;
+    margin: 0;
+    margin-top: -15px;
+    position: absolute; 
+    right: 5px; top: 50%;
   }
 }
 
