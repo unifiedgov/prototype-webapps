@@ -1,0 +1,97 @@
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+
+  <p class="subtitle">ZZ59Z9 1 0957 X1114</p>
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+<p class="govuk-body">Their old badge will be cancelled immediately and a new one ordered. <br> If they need to update any of their details, you should <a href="/admin/update">update their badge</a> first.</p>
+
+
+<form action="/admin/replacement-ordered" method="post" class="form" novalidate>
+  
+  {{ govukRadios({
+    "idPrefix": "replacement-reason",
+    "name": "replacement-reason",
+    "fieldset": {
+      "legendText": 'Reason'
+    },
+    "items": [
+      {
+        "value": "Lost",
+        "text": "Lost"
+      },
+      {
+        "value": "Damaged",
+        "text": "Damaged"
+      },
+      {
+        "value": "Stolen",
+        "text": "Stolen"
+      }
+    ]
+  }) }}
+
+  {{ govukRadios({
+    "idPrefix": "deliver-to",
+    "name": "deliver-to",
+    "classes": "govuk-c-radios--inline",
+    "fieldset": {
+      "legendText": 'Deliver to'
+    },
+    "items": [
+      {
+        "value": "Badge holder",
+        "text": "Badge holder",
+        "checked": data['deliver-to'] ==='Badge holder'
+      },
+      {
+        "value": "Kent County Council",
+        "text": "Kent County Council",
+        "checked": data['deliver-to'] === 'Acme County Council'
+      }
+    ]
+  }) }}
+
+  {{ govukRadios({
+    "idPrefix": "delivery-options",
+    "name": "delivery-options",
+    "classes": "govuk-c-radios--inline",
+    "fieldset": {
+      "legendText": 'Dlivery options'
+    },
+    "items": [
+      {
+        "value": "Standard delivery",
+        "text": "Standard delivery",
+        "checked": data['delivery-options'] ==='Standard delivery'
+      },
+      {
+        "value": "Fast track",
+        "text": "Fast track (more expensive)",
+        "checked": data['delivery-options'] === 'Fast track'
+      }
+    ]
+  }) }}
+
+
+  {{ govukButton({
+    "text": "Order replacement"
+  }) }}
+
+</form>
+
+{% endblock %}

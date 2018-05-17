@@ -136,7 +136,7 @@ router.get('/admin/replace-badge', function (req, res) {
 })
 
 router.get('/admin/replacement-ordered', function (req, res) {
-  res.render('admin/replacement-ordered', {'search_class':'active'})
+  res.render('admin/replacement-ordered', {'title':'Replacement ordered','search_class':'active'})
 })
 
 router.get('/admin/cancel-badge', function (req, res) {
