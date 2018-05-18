@@ -20,77 +20,108 @@
 
         <form action="decision">
           <div class="expanding-panel-container">
-            {% if data['applicant'] === 'someone-else' %}
-              {{ govukRadios({
-                "idPrefix": "disability",
-                "name": "disability",
-                  "attributes": {
-                    "data-expanding-radios": "true"
-                  },
-                "fieldset": {
-                  "legendHtml": '<h1 class="govuk-heading-l">' + pageHeading  + '</h1>'
-                },
-                "items": [
-                  {
-                    "value": "problems-walking",
-                    "text": you | capitalize + " can't walk or find walking very difficult"
-                  },
-                  {
-                    "value": "blind",
-                    "text": you | capitalize + "'re registered as blind"
-                  },
-                  {
-                    "value": "arms",
-                    "text": you | capitalize + " can't use " + your + " arms"
-                  },
-                  {
-                    "value": "child-problems-walking",
-                    "text": you | capitalize + "'re a child aged over 2 who has problems walking"
-                  },
-                  {
-                    "value": "child-close-to-vehicle",
-                    "text": you | capitalize + "'re a child under 3 who needs to be close to a vehicle because of a medical condition"
-                  },
-                  {
-                    "value": "none",
-                    "text": "None of these describe " + you + " medical condition or disability",
-                    "id": "disability-none"
-                  }
-                ]
-              }) }}
 
-              {% else %}
+            {% if  data['council-name'] === "wales" %}
+  
+            {% set walesPermanent = "" %}
 
-              {{ govukRadios({
-                "idPrefix": "disability",
-                "name": "disability",
-                  "attributes": {
-                    "data-expanding-radios": "true"
-                  },
-                "fieldset": {
-                  "legendHtml": '<h1 class="govuk-heading-l">' + pageHeading  + '</h1>'
-                },
-                "items": [
-                  {
-                    "value": "problems-walking",
-                    "text": you | capitalize + " can't walk or find walking very difficult"
-                  },
-                  {
-                    "value": "blind",
-                    "text": you | capitalize + "'re registered as blind"
-                  },
-                  {
-                    "value": "arms",
-                    "text": you | capitalize + " can't use " + your + " arms"
-                  },
-                  {
-                    "value": "none",
-                    "text": "None of these describe " + you + " medical condition or disability",
-                    "id": "disability-none"
-                  }
-                ]
-              }) }}
+            {% else %}
+
+            {% set walesPermanent = "permanent" %}
+
             {% endif %}
+
+            {% if  data['age'] > 16 %}
+
+              {% set differentOptions = [
+                {
+                  "value": "blind",
+                  "text": you | capitalize + "'re registered blind"
+                },
+                {
+                  "value": "terminal",
+                  "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
+                },
+                {
+                  "value": "problems-walking",
+                  "text": you | capitalize + " have a " + walesPermanent + " disability which means " + you + " can't walk or find walking very difficult" 
+                },
+                {
+                  "value": "arms",
+                  "text": you | capitalize + " have a severe disability in both arms and drive regularly, but can't operate parking meters"
+                },
+                {
+                  "value": "none",
+                  "text": "None of these reasons",
+                  "id": "disability-none"
+                }
+              ]
+              %}
+
+            {% elif data['age'] <= 2 %}
+
+            {% set differentOptions = [
+                {
+                  "value": "blind",
+                  "text": you | capitalize + "'re registered blind"
+                },
+                {
+                  "value": "terminal",
+                  "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
+                },
+                {
+                  "value": "child-problems-walking",
+                  "text": you | capitalize + " need to be accompanied by bulky medical equipment"
+                },
+                {
+                  "value": "child-close-to-vehicle",
+                  "text": you | capitalize + " need to be near a vehicle to receive or be taken for treatment"
+                },
+                {
+                  "value": "none",
+                  "text": "None of these describe " + you + " medical condition or disability",
+                  "id": "disability-none"
+                }
+              ]
+            %}
+
+            {% else %}
+
+            {% set differentOptions = [
+                {
+                  "value": "blind",
+                  "text": you | capitalize + "'re registered blind"
+                },
+                {
+                  "value": "terminal",
+                  "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
+                },
+                {
+                  "value": "problems-walking",
+                  "text": you | capitalize + " have a " + walesPermanent + " disability which means " + you + " can't walk or find walking very difficult" 
+                },
+                {
+                  "value": "none",
+                  "text": "None of these reasons",
+                  "id": "disability-none"
+                }
+              ]
+            %}
+
+            {% endif %}
+            
+            {{ govukRadios({
+              "idPrefix": "disability",
+              "name": "disability",
+                "attributes": {
+                  "data-expanding-radios": "true"
+                },
+              "fieldset": {
+                "legendHtml": '<h1 class="govuk-heading-l">' + pageHeading  + '</h1>'
+              },
+              "items": differentOptions
+            }) }}
+
 
             <div class="expanding-panel" data-expanded-by="disability-none">
               <div class="govuk-c-details__text">

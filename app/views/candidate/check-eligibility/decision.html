@@ -25,27 +25,36 @@
           <h1 class="govuk-heading-l">{{ you | capitalize }}'re unlikely to get a Blue Badge</h1>
           <p class="govuk-body">Based on {{ your }} answers, {{ you }}'re unlikely to get a Blue Badge.</p>
           <p class="govuk-body">{{ you | capitalize }} can still apply online but {{ you }}'ll need to provide evidence and may be called for an Independent Mobility Assessment.</p>
+        {% elif data['disability'] === 'terminal' %}
+          <!-- Doesn't receive a benefit and doesn't have a recognizes disability = not eligible -->
+          <h1 class="govuk-heading-l">Contact {{ your | capitalize }} council</h1>
+          <p class="govuk-body">Because {{ you }} have a terminal illness, {{ you }} should contact {{data['council-name']}} directly and tell them {{ you }} are terminally ill.</p>
+          <p class="govuk-body">They might give you instructions that will make the application easier, for example {{ you }} might not need to answer all the questions on the form.</p>
         {% else %}
           <!-- Doesn't receive a benefit and doesn't have a recognizes disability = needs assessing -->
           <h1 class="govuk-heading-l">{{ you | capitalize }} may be eligible for a Blue Badge</h1>
           <p class="govuk-body">Based on {{ your }} answers, {{ you }} may be eligibile for a Blue Badge.</p>
           <p class="govuk-body">{{ you | capitalize }}'ll need to provide evidence of {{ your }} disability as part of the application and {{ you }} may be called for an Independent Mobility Assessment.</p>
         {% endif %}
+        
+        {% if data['disability'] !== 'terminal' %}
+          <ul class="govuk-list govuk-list--bullet">
+            <li>The badge issue fee is £10 which is refunded if {{ your }} application isn't successful</li>
+            <li>It can take up to 4 weeks to get a decision</li>
+          </ul>
+          <br/>
+          {{ govukButton({
+            "text": "Start " + application,
+            "href": '/candidate/apply'
+          }) }}
+          <br/>
+          <br/>
 
-        <ul class="govuk-list govuk-list--bullet">
-          <li>The badge issue fee is £10 which is refunded if {{ your }} application isn't successful</li>
-          <li>It can take up to 4 weeks to get a decision</li>
-        </ul>
-        <br/>
-        {{ govukButton({
-          "text": "Start " + application,
-          "href": '/candidate/apply'
-        }) }}
-        <br/>
-        <br/>
+          <p class="govuk-body">Alternatively, if you don't want to apply online you can contact
+           Manchester city council to find out about other ways to apply.
 
-        <p class="govuk-body">Alternatively, if you don't want to apply online you can contact
-         Manchester city council to find out about other ways to apply.
+        {% endif %}
+
         <ul class="govuk-list">
          <li><a href="http://www.manchester.gov.uk/info/274/disabled_parking/322/blue_badge_-_disabled_parking_permits">Manchester city council</a></li>
          <li/>Email: <a href="mailto:bluebadge@manchester.gov.uk">bluebadge@manchester.gov.uk</a></li>
