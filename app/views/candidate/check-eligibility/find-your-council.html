@@ -30,8 +30,10 @@
           }) }} -->
 
           <div class="govuk-o-form-group">
-            <label class="govuk-c-label" for="local-council-autocomplete">Start typing, or select your local council</label>
-            <div id="local-council-autocomplete-container"></div>
+            <label for="councilPicker" class="govuk-c-label">Start typing, or select your council</label>
+            <select class="enhanced-select" name="" id="councilPicker">
+              {% include "includes/councils-options.html" %}
+            </select>
           </div>
 
           {{ govukDetails({
