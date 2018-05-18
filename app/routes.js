@@ -51,6 +51,10 @@ router.get('/admin/reset-email-sent', function (req, res) {
   res.render('admin/reset-email-sent', {'title':'Link sent'})
 });
 
+router.get('/admin/link-expired', function (req, res) {
+  res.render('admin/link-expired', {'title':'Link expired'})
+});
+
 router.get('/admin/set-your-password', function (req, res) {
   res.render('admin/set-your-password', {'title':'Set your password'})
 });
