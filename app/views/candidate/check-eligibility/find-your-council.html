@@ -20,14 +20,19 @@
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
         <p class="govuk-body">Blue Badge applications are assessed by {{ your }} local council. <br> {{ You | capitalize }} can't get a Blue Badge if you live outside of the UK.</p>
         <form action="your-council">
-          {{ govukInput({
+          <!-- {{ govukInput({
             "label": {
               "text": "Start typing, or select your local council"
             },
             classes: "govuk-c-input--width-one-half",
-            id: "local-council",
-            name: "local-council"
-          }) }}
+            id: "local-council-autocomplete",
+            name: "local-council-autocomplete"
+          }) }} -->
+
+          <div class="govuk-o-form-group">
+            <label class="govuk-c-label" for="local-council-autocomplete">Start typing, or select your local council</label>
+            <div id="local-council-autocomplete-container"></div>
+          </div>
 
           {{ govukDetails({
             "summaryText": "I don't know " + my + " local council",
