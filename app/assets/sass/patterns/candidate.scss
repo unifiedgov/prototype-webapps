@@ -91,3 +91,9 @@
 		margin-bottom: $govuk-spacing-scale-1;
 	}
 }
+
+.govuk-list {
+  label & {
+    margin-bottom: 0;
+  }
+}

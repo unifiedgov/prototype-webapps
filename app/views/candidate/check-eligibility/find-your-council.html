@@ -31,7 +31,7 @@
 
           <div class="govuk-o-form-group">
             <label for="councilPicker" class="govuk-c-label">Start typing, or select your council</label>
-            <select class="enhanced-select" name="" id="councilPicker">
+            <select name="council-name" class="enhanced-select" name="" id="councilPicker">
               {% include "includes/councils-options.html" %}
             </select>
           </div>
@@ -57,7 +57,6 @@
             "text": "Continue"
           }) }}
 
-          <input id="council-name" name="council-name" type="hidden" value="Manchester city council">
           <input id="council-website" name="council-website" type="hidden" value="www.manchester.gov.uk">
           <input id="council-phone" name="council-phone" type="hidden" value="0161 205 7321">
         </form>
