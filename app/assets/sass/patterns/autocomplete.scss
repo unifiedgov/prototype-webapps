@@ -16,12 +16,8 @@
 
 .enhanced-select {
   height: 37px;
-  visibility: hidden;
   .js-enabled & {
     visibility: hidden;
-  }
-  .no-js & {
-    visibility: visible;
   }
 }
 
