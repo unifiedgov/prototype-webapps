@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'How would ' + you + ' describe ' + your + ' walking ability?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-o-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-o-main-wrapper">
+
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+
+        <form action="walking-backend">
+            
+            {{ govukRadios({
+              "idPrefix": "disability-walking",
+              "name": "disability-walking",
+              "fieldset": {
+                "legendHtml": '<h1 class="govuk-heading-l">' + pageHeading  + '</h1>'
+              },
+              "items": [
+                {
+                  "value": "help",
+                  "text": you | capitalize + " can't walk without help from someone else, an animal or walking aids"
+                },
+                {
+                  "value": "pain",
+                  "text": you | capitalize + " find walking very difficult due to pain, breathlessness or the time it takes"
+                },
+                {
+                  "value": "dangerous",
+                  "text": "Walking is dangerous to " + your + " health and safety, or the health and safety of others"
+                },
+                {
+                  "value": "none-describe",
+                  "text": "None of these describe " + your + " walking ability"
+                }
+              ]
+            }) }}
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

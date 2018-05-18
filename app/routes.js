@@ -265,6 +265,21 @@ router.get('/candidate/check-eligibility/existing-badge/review-backend', functio
   }
 });
 
+router.get('/candidate/check-eligibility/disability-backend', function (req, res) {
+  if (req.session.data['disability'] === 'problems-walking') {
+    res.redirect('/candidate/check-eligibility/walking');
+  } else {
+  	res.render('candidate/check-eligibility/decision');
+  }
+});
+
+router.get('/candidate/check-eligibility/walking-backend', function (req, res) {
+  if (req.session.data['disability-walking'] === 'none-describe') {
+    res.redirect('/candidate/check-eligibility/disability');
+  } else {
+  	res.render('candidate/check-eligibility/decision');
+  }
+});
 
 router.get('/candidate/check-eligibility/existing-badge/not-for-review/', function (req, res) {
   res.locals.formAction = '/candidate/apply';
