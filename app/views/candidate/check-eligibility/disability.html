@@ -117,7 +117,11 @@
                   "data-expanding-radios": "true"
                 },
               "fieldset": {
-                "legendHtml": '<h1 class="govuk-heading-l">' + pageHeading  + '</h1>'
+                "legend": {
+                  "text": pageHeading,
+                  "isPageHeading": true,
+                  "classes": 'govuk-fieldset__legend--l'
+                }
               },
               "items": differentOptions
             }) }}

@@ -20,9 +20,15 @@
         <!-- <p class="govuk-body"></p> -->
         <form action="{{formAction}}">
           {{ govukDateInput({
-            fieldset: {
-              legendHtml: '<h1 class="govuk-heading-l">' + pageHeading + '</h1>',
-              legendHintText: 'For example, 31 3 1980'
+            "fieldset": {
+                "legend": {
+                  "text": pageHeading,
+                  "isPageHeading": true,
+                  "classes": 'govuk-fieldset__legend--l'
+                }
+              },
+            "hint": {
+              "text": 'For example, 31 3 1980'
             },
             id: 'dob',
             name: 'dob',

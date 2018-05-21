@@ -27,7 +27,11 @@
                 "data-expanding-radios": "true"
               },
               "fieldset": {
-                "legendHtml": '<h1 class="govuk-heading-l">' + pageHeading  + '</h1>'
+                "legend": {
+                  "text": pageHeading,
+                  "isPageHeading": true,
+                  "classes": 'govuk-fieldset__legend--l'
+                }
               },
               "items": [
                 {
@@ -45,9 +49,15 @@
             <div class="expanding-panel" data-expanded-by="awarded-benefit-indefinitely-before-no">
               <div class="govuk-details__text">
                 {{ govukDateInput({
-                  fieldset: {
-                    legendHtml: '<h2 class="govuk-heading-s">When is ' + your +' award of this benefit due to end?</h2>',
-                    legendHintText: 'For example, 31 3 2020'
+                  "fieldset": {
+                    "legend": {
+                      "text": 'When is ' + your +' award of this benefit due to end?',
+                      "isPageHeading": false,
+                      "classes": 'govuk-fieldset__legend--m'
+                    }
+                  },
+                  "hint": {
+                    "text": 'For example, 31 3 2020'
                   },
                   id: 'awarded-benefit-before-start',
                   name: 'awarded-benefit-before-start',

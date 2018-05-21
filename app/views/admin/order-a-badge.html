@@ -36,9 +36,12 @@
     
     {{ govukDateInput({
       fieldset: {
-        legendText: 'Date of birth',
-        legendHintText: 'For example, 31 3 1980',
-        classes: 'fieldset-with-inputs'
+        legend: {
+          text: 'Date of birth'
+        }
+      },
+      hint: {
+        text: 'For example, 31 3 1980'
       },
       id: 'dob',
       name: 'dob',

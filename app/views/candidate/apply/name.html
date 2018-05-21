@@ -37,7 +37,11 @@
                 "data-expanding-radios": "true"
               },
               "fieldset": {
-                "legendHtml": '<h2 class="govuk-heading-m">Has your last name changed since birth?</h2>'
+                "legend": {
+                  "text": 'Has your name changed since birth?',
+                  "isPageHeading": false,
+                  "classes": 'govuk-fieldset__legend--m'
+                }
               },
               "items": [
                 {
@@ -58,7 +62,7 @@
               <div class="govuk-details__text">
                 {{ govukInput({
                   "label": {
-                    "text": "What was your last name at birth?"
+                    "text": "What was your full name at birth?"
                   },
                   id: "birth-last-name",
                   name: "birth-last-name"

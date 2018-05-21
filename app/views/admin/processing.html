@@ -41,9 +41,12 @@
     
     {{ govukDateInput({
       fieldset: {
-        legendText: 'Badge start date',
-        legendHintText: 'For example, 31 3 2016',
-        classes: 'fieldset-with-inputs'
+        legend: {
+          text: 'Badge start date'
+        }
+      },
+      hint: {
+        text: 'For example, 31 3 2016' 
       },
       id: 'start',
       name: 'start',
@@ -66,8 +69,9 @@
 
     {{ govukDateInput({
       fieldset: {
-        legendText: 'Badge expiry date',
-        classes: 'fieldset-with-inputs'
+        legend: {
+          text: 'Badge expiry date'
+        }
       },
       id: 'expiry',
       name: 'expiry',
@@ -94,8 +98,9 @@
 
     {{ govukDateInput({
       fieldset: {
-        legendText: 'Application date',
-        classes: 'fieldset-with-inputs'
+        legend: {
+          text: 'Application date'
+        }
       },
       id: 'application',
       name: 'application',
@@ -120,7 +125,9 @@
       "idPrefix": "application-channel",
       "name": "application-channel",
       "fieldset": {
-        "legendText": 'Application channel'
+        "legend": {
+          "text": 'Application channel'
+        }
       },
       "items": [
         {
@@ -156,7 +163,9 @@
       "name": "deliver-to",
       "classes": "govuk-radios--inline",
       "fieldset": {
-        "legendText": "Deliver to"
+        "legend": {
+          "text": "Deliver to"
+        }
       },
       "items": [
         {
@@ -177,7 +186,9 @@
       "name": "delivery-options",
       "classes": "govuk-radios--inline",
       "fieldset": {
-        "legendText": "Delivery options"
+        "legend": {
+          "text": "Delivery options"
+        }
       },
       "items": [
         {

@@ -31,7 +31,11 @@
 
         <form action="{{formAction}}">
           {% call govukFieldset({
-            "legendHtml": '<h1 class="govuk-heading-l">'+ pageHeading +'</h1>'
+            "legend": {
+                "text": pageHeading,
+                "classes": "govuk-fieldset__legend--l",
+                "isPageHeading": true
+              }
           }) %}
 
             {{ govukInput({

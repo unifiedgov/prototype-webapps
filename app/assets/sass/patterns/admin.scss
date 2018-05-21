@@ -51,6 +51,9 @@
 	#global-header.with-proposition .header-wrapper .header-proposition {
 		width: 100%;
 	}
+	.govuk-fieldset__legend {
+		@include govuk-font-bold-19;
+	}
 	.govuk-label,
 	.govuk-fieldset__hint,
 	.govuk-select,
