@@ -20,6 +20,14 @@
 
 <h3 class="govuk-heading-m">What happens next</h3>
 
+{% if data['cancelled-reason'] === "Deceased" %}
+
+<p class="govuk-body">The badge has been cancelled and the badge will need to be destroyed.</p>
+
+{% else %}
+
 <p class="govuk-body">Phillip Powell will receive confirmation that the badge has been cancelled and the badge will need to be destroyed.</p>
+
+{% endif %}
 
 {% endblock %}
