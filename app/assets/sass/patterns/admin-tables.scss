@@ -2,7 +2,7 @@
   Tables
 \*------------------------------------*/
 
-.govuk-c-table__header {
+.govuk-table__header {
   &--sort, &--sorted-asc, &--sorted-desc {
     &::after {
       display: inline-block;

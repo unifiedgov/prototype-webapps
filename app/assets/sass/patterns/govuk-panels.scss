@@ -7,7 +7,7 @@
 }
 
 .has-error {
-	.govuk-c-details__text {
+	.govuk-details__text {
 		border: none;
 		padding-left: 0;
 		input {
@@ -16,7 +16,7 @@
 	}
 }
 
-.govuk-c-details {
+.govuk-details {
 	li & {
 		margin-bottom: 0;
 	}

@@ -51,23 +51,23 @@
 	#global-header.with-proposition .header-wrapper .header-proposition {
 		width: 100%;
 	}
-	.govuk-c-label,
-	.govuk-c-fieldset__hint,
-	.govuk-c-select,
+	.govuk-label,
+	.govuk-fieldset__hint,
+	.govuk-select,
 	.govuk-body,
 	.govuk-list,
-	.govuk-c-file-upload,
+	.govuk-file-upload,
 	details,
 	summary {
 		@include govuk-font-regular-16;
 	}
-	.govuk-c-error-message {
+	.govuk-error-message {
 		@include govuk-font-bold-16;
 	}
-	// .fieldset-with-inputs .govuk-c-fieldset__legend {
+	// .fieldset-with-inputs .govuk-fieldset__legend {
 	// 	margin-bottom: 0;
 	// }
-	.govuk-c-fieldset__legend {
+	.govuk-fieldset__legend {
 		margin-bottom: 5px;
 	}
 	.govuk-check-your-answers__question{
