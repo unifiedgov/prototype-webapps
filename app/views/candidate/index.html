@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="govuk-o-width-container">
+<div class="govuk-width-container">
 
   {{ govukBreadcrumbs({
     "items": [
@@ -25,9 +25,9 @@
     ]
   }) }}
 
-  <div class="govuk-o-main-wrapper">
-    <div class="govuk-o-grid">
-      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+  <div class="govuk-main-wrapper">
+    <div class="govuk-grid">
+      <div class="govuk-grid__item govuk-grid__item--two-thirds">
 
         <h1 class="govuk-heading-xl">
           {% if serviceName %} {{ serviceName }} {% endif %}
@@ -51,7 +51,7 @@
         {{ govukButton({
           "text": "Start now",
           "href": "check-eligibility/",
-          "classes": "govuk-c-button--start govuk-!-mt-r2 govuk-!-mb-r8"
+          "classes": "govuk-button--start govuk-!-mt-r2 govuk-!-mb-r8"
         }) }}
 
         <h2 class="govuk-heading-m">After you apply</h2>
@@ -75,7 +75,7 @@
 
       </div>
 
-      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+      <div class="govuk-grid__item govuk-grid__item--one-third">
 
         <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
 
@@ -97,7 +97,7 @@
               </li>
               <li>
                 <a href="#" class="govuk-!-w-bold">
-                  More <span class="govuk-h-visually-hidden">in Subsection</span>
+                  More <span class="govuk-visually-hidden">in Subsection</span>
                 </a>
               </li>
             </ul>

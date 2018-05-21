@@ -11,8 +11,8 @@
 {% macro chooseYourFile(yourFileUploadId, provideType, defaultImagePath, notUploadingUrl, your, askIfUploadShowAddress, uploadShowAddressFieldId='') %}
 <fieldset class="file-upload empty">
   <legend class="visually-hidden">Upload a photo or a scan</legend>
-  <div class="govuk-o-form-group">
-    <label for="{{yourFileUploadId}}" class="govuk-c-button">
+  <div class="govuk-form-group">
+    <label for="{{yourFileUploadId}}" class="govuk-button">
       <span role="button" aria-controls="filename" tabindex="0">Choose {{your}} file</span>
     </label>
     <input class="file-upload__input" id="{{yourFileUploadId}}" name="{{yourFileUploadId}}" type="file"/>
@@ -20,12 +20,12 @@
 </fieldset>
 
 <fieldset class="file-upload uploaded {% if not data[yourFileUploadId] %} js-hidden {% endif %}">
-  <div class="govuk-o-form-group">
+  <div class="govuk-form-group">
     <!--input type="hidden" name="{{fileId}}" value="phillip"-->
     <h3 class="govuk-heading-s">Your upload</h3>
     <img src="{{defaultImagePath}}">
   </div>
-  <div class="govuk-o-form-group">
+  <div class="govuk-form-group">
     <label for="{{yourFileUploadId}}" class="govuk-body govuk-link fake-link">
       <span role="button" aria-controls="filename" tabindex="0">Choose a different file</span>
     </label>
@@ -51,9 +51,9 @@
     }) }}
 
   {% endif %}
-  <div class="govuk-o-form-group">
+  <div class="govuk-form-group">
     <input type="hidden" name="{{provideType}}" value="upload">
-    <input type="submit" class="govuk-c-button" value="Continue">
+    <input type="submit" class="govuk-button" value="Continue">
   </div>
 </fieldset>
 {% set loadingText = "Uploading" %}
@@ -63,9 +63,9 @@
 
 
 {% macro iNeedHelpUploading(your) %}
-<details class="govuk-c-details hidden-mobile file-upload empty {% if data[yourFileUploadId] %} js-hidden {% endif %}">
-  <summary class="govuk-c-details__summary">I need help uploading</summary>
-  <div class="govuk-c-details__text">
+<details class="govuk-details hidden-mobile file-upload empty {% if data[yourFileUploadId] %} js-hidden {% endif %}">
+  <summary class="govuk-details__summary">I need help uploading</summary>
+  <div class="govuk-details__text">
     <ol class="govuk-list govuk-list--number">
       <li>Scan {{ your }} photo or take a picture of it with your smart phone or digital camera</li>
       <li>Send the file to your computer if you've taken a picture of it</li>
@@ -75,9 +75,9 @@
     </ol>
   </div>
 </details>
-<details class="govuk-c-details hidden-tablet file-upload empty {% if data[yourFileUploadId] %} js-hidden {% endif %}">
-  <summary class="govuk-c-details__summary">I need help uploading</summary>
-  <div class="govuk-c-details__text panel panel-border">
+<details class="govuk-details hidden-tablet file-upload empty {% if data[yourFileUploadId] %} js-hidden {% endif %}">
+  <summary class="govuk-details__summary">I need help uploading</summary>
+  <div class="govuk-details__text panel panel-border">
     <ol class="govuk-list govuk-list--number">
       <li>Tap the 'Choose {{your}} file' button above</li>
       <li>Follow the instructions on {{ your }} device</li>
@@ -87,13 +87,13 @@
 {% endmacro %}
 
 {% macro iCantUploadAPhotoOrScan(your, aboutHowTo, change) %}
-<details class="govuk-c-details file-upload empty {% if data[yourFileUploadId] %} js-hidden {% endif %}">
-  <summary class="govuk-c-details__summary">I can't upload a photo or scan</summary>
-  <div class="govuk-c-details__text panel panel-border">
+<details class="govuk-details file-upload empty {% if data[yourFileUploadId] %} js-hidden {% endif %}">
+  <summary class="govuk-details__summary">I can't upload a photo or scan</summary>
+  <div class="govuk-details__text panel panel-border">
     <p class="govuk-body">If you can't upload a photo or scan Manchester city council will contact you {{ aboutHowTo }}.</p>
     <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
     <p class="govuk-body">
-      <a href="{{notUploadingUrl}}&change={{change}}" class="govuk-c-button-secondary">Continue without uploading</a>
+      <a href="{{notUploadingUrl}}&change={{change}}" class="govuk-button-secondary">Continue without uploading</a>
     </p>
   </div>
 </details>

@@ -12,8 +12,8 @@
 {% block content %}
   
   
-  <div class="govuk-o-grid">
-    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+  <div class="govuk-grid">
+    <div class="govuk-grid__item govuk-grid__item--two-thirds">
       <form action="manage-users">
       {{ govukInput({
         "label": {
@@ -39,7 +39,7 @@
       {{ govukRadios({
         "idPrefix": "permissions",
         "name": "permissions",
-        "classes": "govuk-c-radios--inline",
+        "classes": "govuk-radios--inline",
         "fieldset": {
           "legendText": "Permissions"
         },
@@ -73,7 +73,7 @@
                         <p>Are you sure you want to reset the password for <b>' + data['full-name'] + '</b>?</p>
                         <p>We\'ll send them an email to reset their password.</p>
                         <input id="success" name="success" type="hidden" value="Reset password link sent">
-                        <input value="Yes, reset password" type="submit" class="govuk-c-button">
+                        <input value="Yes, reset password" type="submit" class="govuk-button">
                       </form>
                       <p class="govuk-body">
                         <a href="?reset-user">No, don\'t reset password</a>
@@ -88,7 +88,7 @@
                         <p>Are you sure you want to remove access for <b>' + data['full-name'] + '</b>?</p>
                         <p>You won\'t be able to undo this.</p>
                         <input id="success" name="success" type="hidden" value="User removed">
-                        <input value="Yes, remove user" type="submit" class="govuk-c-button">
+                        <input value="Yes, remove user" type="submit" class="govuk-button">
                       </form>
                       <p class="govuk-body">
                         <a href="?reset-user">No, don\'t remove user</a>

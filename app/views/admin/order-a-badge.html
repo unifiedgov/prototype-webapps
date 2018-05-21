@@ -66,7 +66,7 @@
     
       {{ govukInput({
         "label": {
-          "html": 'Building and street <span class="govuk-h-visually-hidden">line 1 of 2</span>'
+          "html": 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
         },
         classes: "govuk-!-width-one-half",
         "id": "address-line-1",
@@ -76,7 +76,7 @@
     
       {{ govukInput({
         "label": {
-          "html": '<span class="govuk-h-visually-hidden">Building and street line 2 of 2</span>'
+          "html": '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
         },
         classes: "govuk-!-width-one-half",
         "id": "address-line-2",
@@ -98,7 +98,7 @@
         "label": {
           "html": 'Postcode'
         },
-        "classes": 'govuk-c-input--width-10',
+        "classes": 'govuk-input--width-10',
         "id": "address-postcode",
         "name": "address-postcode",
         "value": data['address-postcode']
@@ -133,9 +133,9 @@
   <section class="form-section">
     <h2 class="govuk-heading-m">Eligibility</h2>
    
-    <div class="govuk-o-form-group">
-      <label for="selectElig" class="govuk-c-label">Select from list</label>
-      <select class="govuk-c-select govuk-!-width-one-half" id="selectElig" name="reason">
+    <div class="govuk-form-group">
+      <label for="selectElig" class="govuk-label">Select from list</label>
+      <select class="govuk-select govuk-!-width-one-half" id="selectElig" name="reason">
         <option>Select one</option>
         <optgroup label="Automatic">
           <option value="PIP" {% if data['reason'] === 'PIP' %} selected {% endif %}>PIP</option>
