@@ -41,5 +41,11 @@ module.exports = function (env) {
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
+
+  filters.month = function(monthNumber) {
+    var monthName = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return monthName[parseInt(monthNumber) - 1];
+  }
+  
   return filters
 }

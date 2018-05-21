@@ -308,7 +308,7 @@ function sendBackToCheckAnswers(query, nextAction) {
   if (query.change === 'true') {
     console.log('true');
     locals = {
-      'formAction': 'candidate/apply/check-answers',
+      'formAction': '/candidate/apply/check-answers',
       'submitLabel': 'Update'
     }
   } else {
@@ -322,12 +322,17 @@ function sendBackToCheckAnswers(query, nextAction) {
 }
 
 router.get('/candidate/apply', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/name'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/nino'))
+  res.render('candidate/apply/name')
+})
+
+router.get('/candidate/apply/nino', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/dob'))
   res.render('candidate/apply/nino')
 })
 
 router.get('/candidate/apply/name', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/dob'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/nino'))
   res.render('candidate/apply/name')
 })
 

@@ -19,7 +19,7 @@
       <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <form action="/candidate/proof-backend?proveIdentity=upload">
+        <form action="{{ formAction }}?proveIdentity=upload">
           <input type="hidden" id="change" name="change" value="{{change}}">
           <p class="govuk-body">You need to upload a copy of a document which shows {{ you }} live at:<br />{{ data['address']}}.</p>
           <ul class="govuk-list govuk-list--bullet">

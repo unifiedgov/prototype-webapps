@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% import "candidate/macros/upload-component.html" as uploadComponentWidget %}
+
+{% set pageHeading = 'Declaration' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+        <p class="govuk-body">When you submit this {{ application }} {{ you }} agree that:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the details {{ you }}'ve provided are complete and accurate</li>
+          <li>{{ you }} mustn't allow someone else to use the badge</li>
+          <li>{{ you }} mustn't hold more than one Blue Badge at any time</li>
+          <li>{{ you }} must tell  Manchester city council about any changes that may affect {{ your }} entitlement</li>
+          <li>Manchester city council can check any information they already hold about {{ youOrThem }} in order to make a decision about {{ your }} {{ application }}</li>
+        </ul>
+
+        <form novalidate="">
+          {{ govukCheckboxes({
+            "idPrefix": "agree",
+            "name": "agree",
+            "fieldset": {
+              "legend": {
+                "text": 'Do you agree to this declaration?',
+                "isPageHeading": false,
+                "classes": 'govuk-visually-hidden'
+              }
+            },
+            "items": [
+              {
+                "value": "I agree to this declaration",
+                "text": "I agree to this declaration"
+              }
+            ]
+          }) }}
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
