@@ -265,6 +265,14 @@ router.get('/candidate/check-eligibility/existing-badge/review-backend', functio
   }
 });
 
+router.get('/candidate/check-eligibility/benefits-backend', function (req, res) {
+  if (req.query.benefit === 'none') {
+    res.render('candidate/check-eligibility/disability');
+  } else {
+    res.redirect('/candidate/check-eligibility/decision');
+  }
+});
+
 router.get('/candidate/check-eligibility/disability-backend', function (req, res) {
   if (req.session.data['disability'] === 'problems-walking') {
     res.redirect('/candidate/check-eligibility/walking');
@@ -273,13 +281,9 @@ router.get('/candidate/check-eligibility/disability-backend', function (req, res
   }
 });
 
-router.get('/candidate/check-eligibility/walking-backend', function (req, res) {
-  if (req.session.data['disability-walking'] === 'none-describe') {
-    res.redirect('/candidate/check-eligibility/disability');
-  } else {
-  	res.render('candidate/check-eligibility/decision');
-  }
-});
+// router.get('/candidate/check-eligibility/walking-backend', function (req, res) {
+//   res.render('candidate/check-eligibility/decision');
+// });
 
 router.get('/candidate/check-eligibility/existing-badge/not-for-review/', function (req, res) {
   res.locals.formAction = '/candidate/apply';
@@ -293,14 +297,6 @@ router.get('/candidate/check-eligibility/existing-badge/not-for-review/', functi
 router.get('/candidate/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
   res.locals.formAction = '/candidate/check-eligibility/find-your-council';
   res.render('candidate/check-eligibility/existing-badge/not-for-review');
-});
-
-router.get('/candidate/check-eligibility/disability', function (req, res) {
-  if (req.query.benefit === 'none') {
-    res.render('candidate/check-eligibility/disability');
-  } else {
-    res.redirect('/candidate/check-eligibility/decision');
-  }
 });
 
 

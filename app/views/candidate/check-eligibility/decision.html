@@ -20,7 +20,7 @@
           <!-- Receives a benefit or is registered blind = eligible -->
           <h1 class="govuk-heading-l">{{ you | capitalize }}'re eligible for a Blue Badge</h1>
           <p class="govuk-body">Based on {{ your }} answers, {{ you }}'re eligibile for a Blue Badge.</p>
-        {% elif data['disability'] === 'none' %}
+        {% elif data['disability'] === 'none' or data['disability-walking'] === 'none' %}
           <!-- Doesn't receive a benefit and doesn't have a recognizes disability = not eligible -->
           <h1 class="govuk-heading-l">{{ you | capitalize }}'re unlikely to get a Blue Badge</h1>
           <p class="govuk-body">Based on {{ your }} answers, {{ you }}'re unlikely to get a Blue Badge.</p>
