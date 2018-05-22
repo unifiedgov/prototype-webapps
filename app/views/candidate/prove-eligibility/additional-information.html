@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Additonal information' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+        <form action="use-a-mobility-aid">
+          {{ govukTextarea({
+            "name": "more-detail",
+            "id": "more-detail",
+            "label": {
+              "text": "Provide any more information you think will help describe " + your + " walking ability"
+            }
+          }) }}
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

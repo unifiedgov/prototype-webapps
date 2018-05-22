@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'How long can ' + you + ' walk safely, without using a walking aid or stopping?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <form action="what-makes-walking-difficult">
+          {{ govukRadios({
+            "idPrefix": "how-long-walk",
+            "name": "how-long-walk",
+            "fieldset": {
+              "legend": {
+                "text": pageHeading,
+                "isPageHeading": true,
+                "classes": 'govuk-fieldset__legend--l'
+              }
+            },
+            "items": [
+              {
+                "value": "none",
+                "text": you | capitalize + " can't walk at all",
+                  "checked": data['how-long-walk'] === 'none'
+              },
+              {
+                "value": "less-than-a-minute",
+                "text": "Less than a minute",
+                "checked": data['how-long-walk'] === 'less-than-a-minute'
+              },
+              {
+                "value": "a-few-minutes",
+                "text": "A few minutes",
+                "checked": data['how-long-walk'] === 'a-few-minutes'
+              },
+              {
+                "value": "more-than-10",
+                "text": "More than 10 minutes",
+                "checked": data['how-long-walk'] === 'more-than-10'
+              }
+
+            ]
+          }) }}
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

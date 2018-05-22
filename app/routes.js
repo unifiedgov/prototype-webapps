@@ -369,7 +369,7 @@ router.get('/candidate/proof-backend', function (req, res) {
     if (req.session.data['benefit'] === 'none'
         && req.session.data['disability']
         && req.session.data['disability'].includes('problems-walking')) {
-      res.redirect('/candidate/prove-eligibility/how-long-can-you-walk-for');
+      res.redirect('/candidate/prove-eligibility/walking-time');
     } else if (req.session.data['benefit'] === 'dla' || req.session.data['benefit'] === 'pip') {
       res.redirect('/candidate/eligibility-proof/provide-proof-of-your-eligibility');
     } else {

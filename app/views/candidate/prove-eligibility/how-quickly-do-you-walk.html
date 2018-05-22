@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'How quickly do ' + you + ' walk compared to other people?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <form action="additional-information">
+          {{ govukRadios({
+            "idPrefix": "walking-speed",
+            "name": "walking-speed",
+            "fieldset": {
+              "legend": {
+                "text": pageHeading,
+                "isPageHeading": true,
+                "classes": 'govuk-fieldset__legend--l'
+              }
+            },
+            "items": [
+              {
+                "value": "much-slower",
+                "text": "Much slower",
+                "checked": data['walking-speed'] === 'much-slower'
+              },
+              {
+                "value": "slower",
+                "text": "Slower",
+                "checked": data['walking-speed'] === 'slower'
+              },
+              {
+                "value": "same",
+                "text": "About the same",
+                "checked": data['walking-speed'] === 'same'
+              },
+              {
+                "value": "faster",
+                "text": "Faster",
+                "checked": data['walking-speed'] === 'faster'
+              }
+
+            ]
+          }) }}
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

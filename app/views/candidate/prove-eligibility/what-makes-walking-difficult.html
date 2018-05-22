@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'What makes walking difficult for ' + youOrThem + '?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <form action="how-quickly-do-you-walk">
+          {{ govukCheckboxes({
+            "idPrefix": "difficulty",
+            "name": "difficulty",
+            "fieldset": {
+              "legend": {
+                "text": pageHeading,
+                "isPageHeading": true,
+                "classes": 'govuk-fieldset__legend--l'
+              }
+            },
+            "items": [
+              {
+                "value": "shortness",
+                "text": "Shortness of breath",
+                  "checked": data['difficulty'] === 'shortness'
+              },
+              {
+                "value": "pain",
+                "text": "Pain",
+                "checked": data['difficulty'] === 'pain'
+              },
+              {
+                "value": "balance",
+                "text": "Balance",
+                "checked": data['difficulty'] === 'balance'
+              },
+              {
+                "value": "something",
+                "text": "Something else",
+                "checked": data['difficulty'] === 'something'
+              }
+
+            ]
+          }) }}
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
