@@ -23,13 +23,13 @@
         <p class="govuk-body">When you submit this {{ application }} {{ you }} agree that:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li>the details {{ you }}'ve provided are complete and accurate</li>
-          <li>{{ you }} mustn't allow someone else to use the badge</li>
-          <li>{{ you }} mustn't hold more than one Blue Badge at any time</li>
-          <li>{{ you }} must tell  Manchester city council about any changes that may affect {{ your }} entitlement</li>
-          <li>Manchester city council can check any information they already hold about {{ youOrThem }} in order to make a decision about {{ your }} {{ application }}</li>
+          <li>{{ you }} won't allow someone else to use the badge</li>
+          <li>{{ you }} won't hold more than one Blue Badge at any time</li>
+          <li>{{ you }} will tell  Manchester city council about any changes that may affect {{ your }} entitlement</li>
+          <li>{{data['council-name']}} can check any information they already hold about {{ youOrThem }} in order to make a decision about {{ your }} {{ application }}</li>
         </ul>
 
-        <form novalidate="">
+        <form novalidate="" action="paying-for-your-blue-badge">
           {{ govukCheckboxes({
             "idPrefix": "agree",
             "name": "agree",

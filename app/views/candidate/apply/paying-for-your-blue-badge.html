@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% import "candidate/macros/upload-component.html" as uploadComponentWidget %}
+
+{% set pageHeading = 'Paying for your badge' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+        <p class="govuk-body-l">A payment of £10 will be required so that we can issue {{your}} badge.</p>
+
+        <form novalidate="">
+
+          {{ govukButton({
+            "text": "Pay online now"
+          }) }}
+
+          <p class="govuk-body">
+            <a href="paying-for-your-blue-badge-backend?pay-when=later">Submit {{application}} and pay later</a>
+          </p>
+
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
