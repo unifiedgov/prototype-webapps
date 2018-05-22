@@ -460,6 +460,30 @@ router.get('/candidate/apply/upload-your-photo', function (req, res) {
   res.render('candidate/apply/upload-your-photo');
 });
 
+router.get('/candidate/prove-eligibility/use-a-mobility-aid', function(req, res) {
+  res.render('candidate/prove-eligibility/use-a-mobility-aid');
+});
+
+router.get('/candidate/prove-eligibility/use-a-mobility-aid-backend', function(req, res) {
+  if (req.session.data['use-a-mobility-aid'] === 'yes' && req.session.data['mobility-aids-used']) {
+    res.redirect('/candidate/prove-eligibility/how-were-your-mobility-aids-provided');
+  } else {
+    res.redirect('/candidate/prove-eligibility/your-medical-condition');
+  }
+});
+
+router.get('/candidate/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
+  res.render('candidate/prove-eligibility/how-were-your-mobility-aids-provided');
+});
+
+router.get('/candidate/prove-eligibility/your-medical-condition', function(req, res) {
+  res.render('candidate/prove-eligibility/your-medical-condition');
+});
+
+router.get('/candidate/prove-eligibility/surgeries-and-treatment', function(req, res) {
+  res.render('candidate/prove-eligibility/surgeries-and-treatment');
+});
+
 router.get('/candidate/apply/prove-benefit', function (req, res) {
   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/check-answers'))
   res.render('candidate/apply/prove-benefit')

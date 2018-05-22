@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = your | capitalize + ' medical conditions' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+        <form action="">
+          {{ govukTextarea({
+            "name": "know-medical-term-condition-description",
+            "id": "know-medical-term-condition-description",
+            "label": {
+              "text": "List the medical term for each of " + your + " medical conditions or disabilities. If you don't know the medical term, try and describe it."
+            }
+          }) }}
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

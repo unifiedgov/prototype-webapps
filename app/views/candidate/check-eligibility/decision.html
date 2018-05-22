@@ -27,7 +27,7 @@
           <p class="govuk-body">{{ you | capitalize }} can still apply online but {{ you }}'ll need to provide evidence and may be called for an Independent Mobility Assessment.</p>
         {% elif data['disability'] === 'terminal' %}
           <!-- Doesn't receive a benefit and doesn't have a recognizes disability = not eligible -->
-          <h1 class="govuk-heading-l">Contact {{ your | capitalize }} council</h1>
+          <h1 class="govuk-heading-l">Contact {{ your }} council</h1>
           <p class="govuk-body">Because {{ you }} have a terminal illness, {{ you }} should contact {{data['council-name']}} directly and tell them {{ you }} are terminally ill.</p>
           <p class="govuk-body">They might give you instructions that will make the application easier, for example {{ you }} might not need to answer all the questions on the form.</p>
         {% else %}

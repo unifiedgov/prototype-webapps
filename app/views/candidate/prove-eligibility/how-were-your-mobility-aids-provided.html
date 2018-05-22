@@ -1,0 +1,254 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'How were ' + your + ' mobility aids provided?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+        <form action="your-medical-condition">
+          {% if data['mobility-aids-used'].includes('elbow-crutches') %}
+          {{ govukRadios({
+            "idPrefix": "my-elbow-crutch-was",
+            "name": "my-elbow-crutch-was",
+            "fieldset": {
+              "legend": {
+                "text": my | capitalize + " elbow crutch was...",
+                "isPageHeading": false,
+                "classes": 'govuk-fieldset__legend--m'
+              }
+            },
+            "items": [
+              {
+                "value": "private",
+                "text": "obtained privately",
+                "checked": data['my-elbow-crutch-was'] === 'private'
+              },
+              {
+                "value": "social",
+                "text": "provided by social services",
+                "checked": data['my-elbow-crutch-was'] === 'social'
+              },
+              {
+                "value": "professional",
+                "text": "prescribed by a healthcare professional",
+                "checked": data['my-elbow-crutch-was'] === 'professional'
+              }
+            ]
+          }) }}
+          {% endif %}
+
+          {% if data['mobility-aids-used'].includes('walking-sticks') %}
+          {{ govukRadios({
+            "idPrefix": "my-walking-stick-was",
+            "name": "my-walking-stick-was",
+            "fieldset": {
+              "legend": {
+                "text": my | capitalize + " walking stick was...",
+                "isPageHeading": false,
+                "classes": 'govuk-fieldset__legend--m'
+              }
+            },
+            "items": [
+              {
+                "value": "private",
+                "text": "obtained privately",
+                "checked": data['walking-stick-was'] === 'private'
+              },
+              {
+                "value": "social",
+                "text": "provided by social services",
+                "checked": data['walking-stick-was'] === 'social'
+              },
+              {
+                "value": "professional",
+                "text": "prescribed by a healthcare professional",
+                "checked": data['walking-stick-was'] === 'professional'
+              }
+            ]
+          }) }}
+          {% endif %}
+
+          {% if data['mobility-aids-used'].includes('walking-frame') %}
+          {{ govukRadios({
+            "idPrefix": "my-walking-frame-was",
+            "name": "my-walking-frame-was",
+            "fieldset": {
+              "legend": {
+                "text": my | capitalize + " walking frame was...",
+                "isPageHeading": false,
+                "classes": 'govuk-fieldset__legend--m'
+              }
+            },
+            "items": [
+              {
+                "value": "private",
+                "text": "obtained privately",
+                "checked": data['my-walking-frame-was'] === 'private'
+              },
+              {
+                "value": "social",
+                "text": "provided by social services",
+                "checked": data['my-walking-frame-was'] === 'social'
+              },
+              {
+                "value": "professional",
+                "text": "prescribed by a healthcare professional",
+                "checked": data['my-walking-frame-was'] === 'professional'
+              }
+            ]
+          }) }}
+          {% endif %}
+
+          {% if data['mobility-aids-used'].includes('rollator') %}
+          {{ govukRadios({
+            "idPrefix": "my-rollator-was",
+            "name": "my-rollator-was",
+            "fieldset": {
+              "legend": {
+                "text": my | capitalize + " rollator was...",
+                "isPageHeading": false,
+                "classes": 'govuk-fieldset__legend--m'
+              }
+            },
+            "items": [
+              {
+                "value": "private",
+                "text": "obtained privately",
+                "checked": data['my-rollator-was'] === 'private'
+              },
+              {
+                "value": "social",
+                "text": "provided by social services",
+                "checked": data['my-rollator-was'] === 'social'
+              },
+              {
+                "value": "professional",
+                "text": "prescribed by a healthcare professional",
+                "checked": data['my-rollator-was'] === 'professional'
+              }
+            ]
+          }) }}
+          {% endif %}
+
+          {% if data['mobility-aids-used'].includes('wheel-chair') %}
+          {{ govukRadios({
+            "idPrefix": "my-wheelchair-was",
+            "name": "my-wheelchair-was",
+            "fieldset": {
+              "legend": {
+                "text": my | capitalize + " wheelchair was...",
+                "isPageHeading": false,
+                "classes": 'govuk-fieldset__legend--m'
+              }
+            },
+            "items": [
+              {
+                "value": "private",
+                "text": "obtained privately",
+                "checked": data['my-wheelchair-was'] === 'private'
+              },
+              {
+                "value": "social",
+                "text": "provided by social services",
+                "checked": data['my-wheelchair-was'] === 'social'
+              },
+              {
+                "value": "professional",
+                "text": "prescribed by a healthcare professional",
+                "checked": data['my-wheelchair-was'] === 'professional'
+              }
+            ]
+          }) }}
+          {% endif %}
+
+          {% if data['mobility-aids-used'].includes('powered-wheel-chair') %}
+          {{ govukRadios({
+            "idPrefix": "my-powered-wheelchair-was",
+            "name": "my-powered-wheelchair-was",
+            "fieldset": {
+              "legend": {
+                "text": my | capitalize + " powered wheelchair was...",
+                "isPageHeading": false,
+                "classes": 'govuk-fieldset__legend--m'
+              }
+            },
+            "items": [
+              {
+                "value": "private",
+                "text": "obtained privately",
+                "checked": data['my-powered-wheelchair-was'] === 'private'
+              },
+              {
+                "value": "social",
+                "text": "provided by social services",
+                "checked": data['my-powered-wheelchair-was'] === 'social'
+              },
+              {
+                "value": "professional",
+                "text": "prescribed by a healthcare professional",
+                "checked": data['my-powered-wheelchair-was'] === 'professional'
+              }
+            ]
+          }) }}
+          {% endif %}
+
+          {% if data['mobility-aids-used'].includes('mobility-scooter') %}
+          {{ govukRadios({
+            "idPrefix": "my-mobility-scooter-was",
+            "name": "my-mobility-scooter-was",
+            "fieldset": {
+              "legend": {
+                "text": my | capitalize + " mobility scooter was...",
+                "isPageHeading": false,
+                "classes": 'govuk-fieldset__legend--m'
+              }
+            },
+            "items": [
+              {
+                "value": "private",
+                "text": "obtained privately",
+                "checked": data['my-mobility-scooter-was'] === 'private'
+              },
+              {
+                "value": "social",
+                "text": "provided by social services",
+                "checked": data['my-mobility-scooter-was'] === 'social'
+              },
+              {
+                "value": "professional",
+                "text": "prescribed by a healthcare professional",
+                "checked": data['my-mobility-scooter-was'] === 'professional'
+              }
+            ]
+          }) }}
+          {% endif %}
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
