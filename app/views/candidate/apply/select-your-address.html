@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Select ' + your + ' address' %}
+{% if data['applicant'] === 'organisation' %}
+  {% set pageHeading = "Select your organisation's address" %}
+{% else %}
+  {% set pageHeading = 'Select ' + your + ' address' %}
+{% endif %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}

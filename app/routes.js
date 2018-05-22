@@ -334,29 +334,34 @@ function sendBackToCheckAnswers(query, nextAction) {
 }
 
 router.get('/candidate/apply', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/nino'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/dob'))
   res.render('candidate/apply/name')
 })
 
-router.get('/candidate/apply/nino', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/dob'))
-  res.render('candidate/apply/nino')
-})
-
 router.get('/candidate/apply/name', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/nino'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/dob'))
   res.render('candidate/apply/name')
 })
 
 router.get('/candidate/apply/dob', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/select-address'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/nino'))
   res.render('candidate/apply/dob')
+})
+
+router.get('/candidate/apply/nino', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/your-address'))
+  res.render('candidate/apply/nino')
 })
 
 // router.get('/candidate/apply/gender', function (req, res) {
 //   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/select-address'))
 //   res.render('candidate/apply/gender')
 // })
+
+router.get('/candidate/apply/your-address', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/select-address'))
+  res.render('candidate/apply/your-address')
+})
 
 router.get('/candidate/apply/select-address', function (req, res) {
   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/contact'))

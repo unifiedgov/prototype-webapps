@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% if data['applicant'] === 'organisation' %}
+  {% set pageHeading = "What's your organisation's address?" %}
+{% else %}
+  {% set pageHeading = "What's " + your + " address?" %}
+{% endif %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+        <form action="{{formAction}}">
+          {{ govukInput({
+            "label": {
+              "html": 'Building number or name'
+            },
+            "hint": {
+              "text": "For example, 11A"
+            },
+            "classes": 'govuk-!-width-two-thirds',
+            "id": "address-line-1",
+            "name": "address-line-1"
+          }) }}
+
+          {{ govukInput({
+            "label": {
+              "html": 'Postcode'
+            },
+            "hint": {
+              "text": "For example, SW1A 1AA"
+            },
+            "classes": 'govuk-input--width-10',
+            "id": "address-postcode",
+            "name": "address-postcode",
+            "value": userPostcode
+          }) }}
+
+          <p class="govuk-body"><a href="enter-address">Enter address manually</a></p>
+          
+          {{ govukButton({
+            "text": submitLabel
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
