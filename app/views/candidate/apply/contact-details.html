@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'What are ' + your + ' contact details?' %}
+{% set pageHeading = 'Enter contact details' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -22,7 +22,23 @@
         <form action="{{formAction}}">
           {{ govukInput({
             "label": {
-              "text": "Primary phone number"
+              "text": "Full name"
+            },
+            "hint": {
+              "text": "This should be the name of the main point of contact"
+            },
+            id: "contact-full-name",
+            name: "contact-full-name",
+            type: "tel",
+            value: data['contact-full-name']
+          }) }}
+
+          {{ govukInput({
+            "label": {
+              "text": "Phone number"
+            },
+            "hint": {
+              "text": "This can be a work or mobile phone number"
             },
             classes: "govuk-input--width-20",
             id: "primary-phone-number",
@@ -31,26 +47,34 @@
             value: data['primary-phone-number']
           }) }}
 
-          {{ govukInput({
-            "label": {
-              "text": "Secondary phone number"
+          {{ govukCheckboxes({
+            "idPrefix": "contact-preference",
+            "name": "contact-preference",
+            "fieldset": {
+              "legend": {
+                "text": 'Contact preference',
+                "isPageHeading": false,
+                "classes": 'govuk-fieldset__legend--m'
+              }
             },
-            classes: "govuk-input--width-20",
-            id: "secondary-phone-number",
-            name: "secondary-phone-number",
-            type: "tel",
-            value: data['secondary-phone-number']
-          }) }}
-
-          {{ govukInput({
-            "label": {
-              "text": "Email address"
-            },
-            classes: "govuk-input--width-20",
-            id: "email",
-            name: "email",
-            type: "email",
-            value: data['email']
+            "items": [
+              {
+                "value": "email",
+                "text": "Email"
+              },
+              {
+                "value": "text-message",
+                "text": "Text message"
+              },
+              {
+                "value": "phone-call",
+                "text": "Phone call"
+              },
+              {
+                "value": "post",
+                "text": "Post"
+              }
+            ]
           }) }}
           
           {{ govukButton({
