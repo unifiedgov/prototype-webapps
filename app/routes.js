@@ -38,8 +38,7 @@ router.get('/admin/sign-in', function (req, res) {
 });
 
 router.get('/admin/', function (req, res) {
-  res.render('admin/sign-in', {'title':'Sign in'})
-  req.session.destroy()
+  res.redirect('admin/sign-in');
 });
 
 router.get('/admin/reset-password', function (req, res) {
