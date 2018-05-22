@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'What\'s ' + your + ' National insurance number?' %}
+{% set pageHeading = 'What\'s ' + your + ' National Insurance number?' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -22,7 +22,7 @@
         <form action="{{formAction}}">
           {{ govukInput({
             "label": {
-              "text": "National insurance number"
+              "text": "National Insurance number"
             },
             "hint": {
               "text": "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
