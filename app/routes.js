@@ -254,6 +254,7 @@ router.get('/candidate/check-eligibility/existing-badge/index-backend', function
 router.get('/candidate/check-eligibility/existing-badge/review-backend', function (req, res) {
   switch (req.session.data['renewal-council-has-changed']) {
     case "yes":
+      req.session.data['council-name'] = 'Manchester City council';
       res.redirect('/candidate/check-eligibility/enter-age');
       break;
     case "no":
