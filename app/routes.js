@@ -290,9 +290,21 @@ router.get('/candidate/check-eligibility/existing-badge/not-for-review/', functi
   res.render('candidate/check-eligibility/existing-badge/not-for-review.html');
 });
 
-// router.get('/candidate/check-eligibility/enter-age/', function (req, res) {
-//   res.render('candidate/check-eligibility/existing-badge/not-for-review.html');
-// });
+router.get('/candidate/check-eligibility/enter-age', function (req, res) {
+  if (req.session.data['applicant'] === 'organisation') {
+    res.redirect('/candidate/check-eligibility/org-care-for');
+  } else {
+    res.render('candidate/check-eligibility/enter-age');
+  }
+});
+
+router.get('/candidate/check-eligibility/org-transport', function (req, res) {
+  if (req.session.data['org-care-for'] === 'no') {
+    res.redirect('/candidate/check-eligibility/decision');
+  } else {
+    res.render('candidate/check-eligibility/org-transport');
+  }
+});
 
 router.get('/candidate/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
   res.locals.formAction = '/candidate/check-eligibility/find-your-council';

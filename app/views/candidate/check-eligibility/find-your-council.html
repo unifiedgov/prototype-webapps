@@ -18,17 +18,13 @@
       <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+        {% if data['applicant'] === "organisation" %}
+        <p class="govuk-body">This should be the local council where your organisation is registered.</p>
+        {% else %}
         <p class="govuk-body">Blue Badge applications are assessed by {{ your }} local council. <br> {{ you | capitalize }} can't get a Blue Badge if you live outside of the UK.</p>
-        <form action="your-council">
-          <!-- {{ govukInput({
-            "label": {
-              "text": "Start typing, or select your local council"
-            },
-            classes: "govuk-input--width-one-half",
-            id: "local-council-autocomplete",
-            name: "local-council-autocomplete"
-          }) }} -->
+        {% endif %}
 
+        <form action="your-council">
           <div class="govuk-form-group">
             <label for="councilPicker" class="govuk-label">Start typing, or select your council</label>
             <select name="council-name" class="enhanced-select" name="" id="councilPicker">
@@ -36,16 +32,15 @@
             </select>
           </div>
 
+          {% if data['applicant'] === "organisation" %}
+            {% set postcodeLabel = "Enter your organisation's postcode" %}
+          {% else %}
+            {% set postcodeLabel = 'Enter ' + your + ' postcode' %}
+          {% endif %}    
+
           {{ govukDetails({
-            "summaryText": "I don't know " + my + " local council",
-            "html": '
-                     <div class="govuk-form-group"><label class="govuk-label" for="postcode">
-                       Enter ' + your + ' postcode
-                       
-                       <span class="govuk-label__hint">
-                         For example, SW1A 2AA
-                       </span>
-                       
+            "summaryText": "I don't know the local council",
+            "html": ' <div class="govuk-form-group"><label class="govuk-label" for="postcode">' + postcodeLabel + '<span class="govuk-hint">For example, SW1A 2AA</span>
                        
                      </label>
                      <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text">
