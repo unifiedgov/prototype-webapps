@@ -253,7 +253,7 @@ router.get('/candidate/check-eligibility/existing-badge/index-backend', function
 router.get('/candidate/check-eligibility/existing-badge/review-backend', function (req, res) {
   switch (req.session.data['renewal-council-has-changed']) {
     case "yes":
-      req.session.data['council-name'] = 'Manchester City council';
+      req.session.data['council-name'] = 'Manchester city council';
       res.redirect('/candidate/check-eligibility/enter-age');
       break;
     case "no":
@@ -263,6 +263,15 @@ router.get('/candidate/check-eligibility/existing-badge/review-backend', functio
       res.redirect('/candidate/check-eligibility/find-your-council');
       break;
   }
+});
+
+router.get('/candidate/check-eligibility/your-council-backend', function (req, res) {
+  if (req.query.postcode) {
+    req.session.data['council-name'] = 'Manchester city council';
+    res.redirect('/candidate/check-eligibility/your-council');
+  } else {
+    res.redirect('/candidate/check-eligibility/enter-age');
+  } 
 });
 
 router.get('/candidate/check-eligibility/benefits-backend', function (req, res) {
