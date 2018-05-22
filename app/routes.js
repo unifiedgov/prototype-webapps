@@ -337,14 +337,14 @@ router.get('/candidate/apply/name', function (req, res) {
 })
 
 router.get('/candidate/apply/dob', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/gender'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/select-address'))
   res.render('candidate/apply/dob')
 })
 
-router.get('/candidate/apply/gender', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/select-address'))
-  res.render('candidate/apply/gender')
-})
+// router.get('/candidate/apply/gender', function (req, res) {
+//   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/select-address'))
+//   res.render('candidate/apply/gender')
+// })
 
 router.get('/candidate/apply/select-address', function (req, res) {
   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/contact'))
