@@ -20,6 +20,8 @@
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
         <!-- <p class="govuk-body"></p> -->
         <form action="{{formAction}}">
+          {% if  data['applicant'] === "someone-else" %}
+
           {{ govukInput({
             "label": {
               "text": "Full name"
@@ -29,9 +31,11 @@
             },
             id: "contact-full-name",
             name: "contact-full-name",
-            type: "tel",
+            type: "text",
             value: data['contact-full-name']
           }) }}
+
+          {% endif %}
 
           {{ govukInput({
             "label": {
@@ -47,34 +51,14 @@
             value: data['primary-phone-number']
           }) }}
 
-          {{ govukCheckboxes({
-            "idPrefix": "contact-preference",
-            "name": "contact-preference",
-            "fieldset": {
-              "legend": {
-                "text": 'Contact preference',
-                "isPageHeading": false,
-                "classes": 'govuk-fieldset__legend--m'
-              }
+          {{ govukInput({
+            "label": {
+              "text": "Email address"
             },
-            "items": [
-              {
-                "value": "email",
-                "text": "Email"
-              },
-              {
-                "value": "text-message",
-                "text": "Text message"
-              },
-              {
-                "value": "phone-call",
-                "text": "Phone call"
-              },
-              {
-                "value": "post",
-                "text": "Post"
-              }
-            ]
+            id: "email-address",
+            name: "email-address",
+            type: "text",
+            value: data['email-address']
           }) }}
           
           {{ govukButton({
