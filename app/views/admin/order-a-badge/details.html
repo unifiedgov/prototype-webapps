@@ -1,7 +1,17 @@
 {% extends "admin_layout.html" %}
 
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
 {% block page_header %}
 
+  <p class="subtitle">Step 2</p>
   <h1>{{title}}</h1>
   
 {% endblock %}
@@ -12,17 +22,8 @@
 <form action="{{ formAction }}" method="post" class="form" novalidate>
 
   <section class="form-section">
-    <h2 class="govuk-heading-m">Personal details</h2>
-    
-    {{ govukInput({
-      "label": {
-        "text": "National insurance number (optional)"
-      },
-      classes: "govuk-!-width-one-half",
-      id: "nino",
-      name: "nino",
-      value: data['nino']
-    }) }}
+
+    {% if data['badge-type'] === 'person' %}
     
     {{ govukInput({
       "label": {
@@ -61,6 +62,36 @@
       ]
       })
     }}
+
+    {{ govukInput({
+      "label": {
+        "text": "National Insurance number (optional)"
+      },
+      classes: "govuk-!-width-one-half",
+      id: "nino",
+      name: "nino",
+      value: data['nino']
+    }) }}
+
+    {% else %}
+
+    {{ govukInput({
+      "label": {
+        "text": "Organisation name"
+      },
+      classes: "govuk-!-width-one-half",
+      id: "organisation-name",
+      name: "organisation-name",
+      value: data['organisation-name']
+    }) }}
+
+    {% endif %}
+
+  </section>
+    
+  <section class="form-section">
+
+    <h2 class="govuk-heading-m">Address</h2>
     
     {% call govukFieldset({
       "legendText": 'Address',
@@ -108,28 +139,64 @@
       }) }}
     
     {% endcall %}
+
+    </section>
     
-    {{ govukInput({
-      "label": {
-        "text": "Contact number (optional)"
-      },
-      classes: "govuk-!-width-one-half",
-      id: "primary-contact-number",
-      name: "primary-contact-number",
-      type: "tel",
-      value: data['primary-contact-number']
-    }) }}
+    <section class="form-section">
+
+      <h2 class="govuk-heading-m">Contact details</h2>
+
+      {% if data['badge-type'] === 'person' %}
+
+      {{ govukInput({
+          "label": {
+            "text": "Full name (optional)"
+          },
+          classes: "govuk-!-width-one-half",
+          id: "contact-name",
+          name: "contact-name",
+          type: "text",
+          value: data['contact-name']
+        })
+      }}
+
+      {% else %}
+
+      {{ govukInput({
+          "label": {
+            "text": "Full name"
+          },
+          classes: "govuk-!-width-one-half",
+          id: "contact-name",
+          name: "contact-name",
+          type: "text",
+          value: data['contact-name']
+        })
+      }}
+
+      {% endif %}
     
-    {{ govukInput({
-      "label": {
-        "text": "Email address (optional)"
-      },
-      classes: "govuk-!-width-one-half",
-      id: "email-address",
-      name: "email-address",
-      type: "email",
-      value: data['email-address']
-    }) }}
+      {{ govukInput({
+        "label": {
+          "text": "Contact number"
+        },
+        classes: "govuk-!-width-one-half",
+        id: "primary-contact-number",
+        name: "primary-contact-number",
+        type: "tel",
+        value: data['primary-contact-number']
+      }) }}
+      
+      {{ govukInput({
+        "label": {
+          "text": "Email address (optional)"
+        },
+        classes: "govuk-!-width-one-half",
+        id: "email-address",
+        name: "email-address",
+        type: "email",
+        value: data['email-address']
+      }) }}
   
   </section>
 
@@ -153,12 +220,15 @@
           <option value="Child under 3 with bulky medical equipment" {% if data['reason'] === 'Child under 3 with bulky medical equipment' %} selected {% endif %}>Child under 3 with bulky medical equipment</option>
           <option value="Child under 3 who needs to be near a vehicle" {% if data['reason'] === 'Child under 3 who needs to be near a vehicle' %} selected {% endif %}>Child under 3 who needs to be near a vehicle</option>
           <option value="Terminal illness" {% if data['reason'] === 'Terminal illness' %} selected {% endif %}>Terminal illness</option>
+          <option value="Organisation" {% if data['badge-type'] === 'organisation' %} selected {% endif %}>Organisation</option>
         </optgroup>
       </select>
     </div>
  </section>
 
  <section class="form-section">
+
+  {% if data['badge-type'] === 'person' %}
 
   <h2 class="govuk-heading-m">Photo (optional)</h2>
 
@@ -168,6 +238,19 @@
 
   <ul class="govuk-list govuk-list--bullet">
     <li>meet the <a href="">guidelines</a></li>
+
+  {% else %}
+  
+  <h2 class="govuk-heading-m">Logo (optional)</h2>
+
+  <p class="govuk-body">
+    Logos should:
+  </p>
+
+  <ul class="govuk-list govuk-list--bullet">
+
+  {% endif %}
+
     <li>be either .JPEG or .PNG format</li>
     <li>not be bigger than 2MB</li>
   </ul>

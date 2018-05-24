@@ -1,0 +1,48 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+  
+  <p class="subtitle">Step 1</p>
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+<form action="{{ formAction }}" method="post" class="form" novalidate>
+
+  <section class="form-section">
+    
+      {{ govukRadios({
+          "idPrefix": "badge-type",
+          "name": "badge-type",
+          "fieldset": {
+            "legend": {
+              "text": "Who is this badge for?",
+              "isPageHeading": false,
+              "classes": 'govuk-fieldset__legend--m'
+            }
+          },
+          "items": [
+            {
+              "value": "person",
+              "text": "A person",
+              "checked": data['badge-type'] === 'person'
+            },
+            {
+              "value": "organisation",
+              "text": "An organisation",
+              "checked": data['badge-type'] === 'organisation'
+            }
+          ]
+      }) }}
+  
+  </section>
+
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+</form>
+
+{% endblock %}

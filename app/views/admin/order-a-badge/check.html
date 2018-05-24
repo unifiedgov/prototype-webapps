@@ -22,26 +22,26 @@
   <div class="check-answers-heading-with-change">
     <div class="check-answers-heading">
       <h2 class="govuk-heading-m">
+        {% if data['badge-type']  === 'person' %}
         Personal details
+        {% else %}
+        Organisation details
+        {% endif %}
       </h2>
     </div>
   
     <div class="check-answers-change">
-      <a href="/admin/order-a-badge-change">Change<span class="visually-hidden"> personal details</span></a>
+      <a href="/admin/order-a-badge/change-details">Change<span class="visually-hidden"> details</span></a>
     </div>
   
   </div>
+
+  
   
   <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        N.I number
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{data['nino']}}
-      </dd>
-    </div>
-  
+
+    {% if data['badge-type']  === 'person' %}
+    
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         Full name
@@ -50,7 +50,7 @@
         {{data['fullName']}}
       </dd>
     </div>
-  
+
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         Date of birth
@@ -59,15 +59,49 @@
         {{data['dob-day']}}/{{data['dob-month']}}/{{data['dob-year']}}
       </dd>
     </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        N.I number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['nino']}}
+      </dd>
+    </div>
+
+    {% else %}
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Organisation name
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['organisation-name']}}
+      </dd>
+    </div>
+
+    {% endif %}
+  
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Home address
+        Address
       </dt>
       <dd class="govuk-check-your-answers__answer">
         {{data['address-line-1']}}{% if data['address-line-2']%},{{data['address-line-2']}}{% endif %}, {{data['address-town']}}, {{data['address-postcode']}}
       </dd>
     </div>
+
+    {% if data['contact-name'] %}
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Contact name
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['contact-name']}}
+      </dd>
+    </div>
+    {% endif %}
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
@@ -97,12 +131,21 @@
     </div>
   
     <div class="govuk-check-your-answers__contents">
+      {% if data['badge-type']  === 'person' %}
       <dt class="govuk-check-your-answers__question">
         Photo
       </dt>
       <dd class="govuk-check-your-answers__answer">
         <img src="/public/images/margaret.png" alt="Photo of margaret Miller">
       </dd>
+      {% else %}
+      <dt class="govuk-check-your-answers__question">
+        Logo
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        <img src="/public/images/company-logo.png" alt="Company logo">
+      </dd>
+      {% endif %}
     </div>
   </dl>
 </section>
@@ -116,12 +159,24 @@
     </div>
   
     <div class="check-answers-change">
-      <a href="/admin/processing">Change<span class="visually-hidden"> processing details</span></a>
+      <a href="processing">Change<span class="visually-hidden"> processing details</span></a>
     </div>
   
   </div>
   
   <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    
+    {% if data['badge-type'] === 'organisation' %}
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Number of badges
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['number-of-badges']}}
+      </dd>
+    </div>
+    {% endif %}
+
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         Local authority reference
