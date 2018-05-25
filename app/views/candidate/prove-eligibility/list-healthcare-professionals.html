@@ -15,7 +15,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">List medication</h1>
+        <h1 class="govuk-heading-l">List healthcare professionals</h1>
 
         {% if tableRows.length > 0 %}
   
@@ -25,10 +25,7 @@
                   "text": "Name"
                 },
                 {
-                  "text": "Type"
-                },
-                {
-                  "text": "Dosage"
+                  "text": "Hospital or health centre"
                 },
                 {
                   "text": ""
@@ -37,23 +34,22 @@
               "rows": tableRows
             }) }}
 
-          <p class="govuk-body"><a href="add-medication">Add another medication</a></p>
+          <p class="govuk-body"><a href="add-healthcare-professional">Add another healthcare professional</a></p>
 
           {{ govukButton({
-            "text": "Continue",
-            "href": formAction
+            "text": "Continue"
           }) }}
 
         {% else %}
         
-        <p class="govuk-body">List any medication or pain relief {{ you }} take for {{ your }} condition.</p>
+        <p class="govuk-body">List any healthcare professionals who have treated {{ your }} condition.<br />For example, {{ your }} GP, surgeon, specialist.</p>
 
         {{ govukButton({
-          "text": "Add medication",
-          "href": "add-medication"
+          "text": "Add healthcare professional",
+          "href": "add-healthcare-professional"
         }) }}
 
-        <p class="govuk-body"><a href="list-healthcare-professionals">{{ you | capitalize }} don't take any medication</p>
+        <p class="govuk-body"><a href="list-medication">{{ you | capitalize }} don’t know their details</p>
 
         {% endif %}
 

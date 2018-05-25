@@ -394,7 +394,7 @@ router.get('/candidate/proof-backend', function (req, res) {
     } else if (req.session.data['benefit'] === 'dla' || req.session.data['benefit'] === 'pip') {
       res.redirect('/candidate/eligibility-proof/provide-proof-of-your-eligibility');
     } else {
-      res.redirect('/candidate/eligibility-proof/provide-proof-of-your-eligibility');
+      res.redirect('/candidate/prove-eligibility');
     }
   }
 });
@@ -573,6 +573,7 @@ router.get('/candidate/prove-eligibility/list-medication', function(req, res) {
   }
 
   res.locals.tableRows = tableRows;
+  res.locals.formAction = 'list-healthcare-professionals';
   res.render('candidate/prove-eligibility/list-medication');
 });
 
@@ -605,11 +606,58 @@ router.get('/candidate/prove-eligibility/delete-medication/:id', function(req, r
 });
 
 
+// Healthcare professionals
 
+router.get('/candidate/prove-eligibility/list-healthcare-professionals', function(req, res) {
+  var hcps = req.session.data['hcp-array'];
+  delete res.locals.tableRows;
+  if (hcps) {
+    var tableRows = [];
+    hcps.forEach(function(item,index) {
+    tableRows.push([
+        {
+          "text": item.name
+        },
+        {
+          "text": item.hospital
+        },
+        {
+          "html": "<a href='delete-hcp/"+index+"'>Remove this</a>",
+          "format": "numeric"
+        }
+      ])
+    });
+  }
 
+  res.locals.tableRows = tableRows;
+  res.render('candidate/prove-eligibility/list-healthcare-professionals');
+});
 
+router.get('/candidate/prove-eligibility/add-healthcare-professional', function(req, res) {
+  res.locals.formAction = 'create-hcp';
+  res.render('candidate/prove-eligibility/add-healthcare-professional');
+});
 
+router.get('/candidate/prove-eligibility/create-hcp', function(req, res) {
+  var hcp = {
+    "name": req.session.data['hcp-name'],
+    "hospital": req.session.data['hcp-hospital']
+  }
 
+  if (req.session.data['hcp-array']) {
+    req.session.data['hcp-array'].push(hcp);
+  } else {
+    req.session.data['hcp-array'] = [hcp];
+  }
+
+  delete req.session.data['hcp-name','hcp-hospital'];
+  res.redirect('/candidate/prove-eligibility/list-healthcare-professionals');
+});
+
+router.get('/candidate/prove-eligibility/delete-hcp/:id', function(req, res) {
+  req.session.data['hcp-array'].splice(req.params.id, 1);
+  res.redirect('/candidate/prove-eligibility/list-healthcare-professionals');
+});
 
 
 router.get('/candidate/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {

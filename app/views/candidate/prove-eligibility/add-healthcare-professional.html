@@ -17,28 +17,21 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">Add treatment</h1>
+        <h1 class="govuk-heading-l">Add healthcare professional</h1>
         <!-- <p class="govuk-body"></p> -->
         <form action="{{formAction}}">
           {{ govukInput({
             "label": {
-              "text": "Describe the surgery, treatment or special clinic"
+              "text": "Name of "+your+" healthcare professional"
             },
-            "hint": {
-              "html": "For example, hip replacement, physiotherapy, pain clinic"
-            },
-            "name": "treatment-description"
+            "name": "hcp-name"
           }) }}
 
           {{ govukInput({
             "label": {
-              "text": "When did you have this treatment?"
+              "text": "Name of their hospital/ health centre?"
             },
-            "hint": {
-              "html": "For example, 12 May 2016 or 6 months ago"
-            },
-            "classes": 'govuk-!-width-two-thirds',
-            "name": "treatment-date"
+            "name": "hcp-hospital"
           }) }}
 
           {{ govukButton({
