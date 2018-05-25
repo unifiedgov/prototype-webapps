@@ -481,6 +481,142 @@ router.get('/candidate/apply/upload-your-photo', function (req, res) {
   res.render('candidate/apply/upload-your-photo');
 });
 
+
+  /* ------------------------------------------------------------------
+     Prove eligibility
+  ------------------------------------------------------------------ */
+
+router.get('/candidate/prove-eligibility', function(req, res) {
+  res.locals.formAction = 'prove-eligibility/list-treatments';
+  res.render('candidate/prove-eligibility/describe-conditions');
+});
+
+
+// Treatments
+
+router.get('/candidate/prove-eligibility/list-treatments', function(req, res) {
+  var treatments = req.session.data['treatments-array'];
+  delete res.locals.tableRows;
+  if (treatments) {
+    var tableRows = [];
+    treatments.forEach(function(treatment,index) {
+      tableRows.push([
+        {
+          "text": treatment.description
+        },
+        {
+          "text": treatment.date
+        },
+        {
+          "html": "<a href='delete-treatment/"+index+"'>Remove this</a>",
+          "format": "numeric"
+        }
+      ])
+    });
+  }
+
+  res.locals.tableRows = tableRows;
+  res.locals.formAction = 'list-medication';
+  res.render('candidate/prove-eligibility/list-treatments');
+});
+
+router.get('/candidate/prove-eligibility/add-treatment', function(req, res) {
+  res.locals.formAction = 'create-treatment';
+  res.render('candidate/prove-eligibility/add-treatment');
+});
+
+router.get('/candidate/prove-eligibility/create-treatment', function(req, res) {
+  var treatment = {
+    "description": req.session.data['treatment-description'],
+    "date": req.session.data['treatment-date']
+  }
+
+  if (req.session.data['treatments-array']) {
+    req.session.data['treatments-array'].push(treatment);
+  } else {
+    req.session.data['treatments-array'] = [treatment];
+  }
+
+  delete req.session.data['treatment-description','treatment-date'];
+  res.redirect('/candidate/prove-eligibility/list-treatments');
+});
+
+router.get('/candidate/prove-eligibility/delete-treatment/:id', function(req, res) {
+  req.session.data['treatments-array'].splice(req.params.id, 1);
+  res.redirect('/candidate/prove-eligibility/list-treatments');
+});
+
+// Medication
+
+router.get('/candidate/prove-eligibility/list-medication', function(req, res) {
+  var medication = req.session.data['medication-array'];
+  delete res.locals.tableRows;
+  if (medication) {
+    var tableRows = [];
+    medication.forEach(function(item,index) {
+    tableRows.push([
+        {
+          "text": item.name
+        },
+        {
+          "text": item.type
+        },
+        {
+          "text": item.dosage
+        },
+        {
+          "html": "<a href='delete-medication/"+index+"'>Remove this</a>",
+          "format": "numeric"
+        }
+      ])
+    });
+  }
+
+  res.locals.tableRows = tableRows;
+  res.render('candidate/prove-eligibility/list-medication');
+});
+
+router.get('/candidate/prove-eligibility/add-medication', function(req, res) {
+  res.locals.formAction = 'create-medication';
+  res.render('candidate/prove-eligibility/add-medication');
+});
+
+router.get('/candidate/prove-eligibility/create-medication', function(req, res) {
+  var medication = {
+    "name": req.session.data['medication-name'],
+    "type": req.session.data['medication-type'],
+    "regularity": req.session.data['medication-regularity'],
+    "dosage": req.session.data['medication-dosage']
+  }
+
+  if (req.session.data['medication-array']) {
+    req.session.data['medication-array'].push(medication);
+  } else {
+    req.session.data['medication-array'] = [medication];
+  }
+
+  delete req.session.data['medication-name','medication-type','medication-regularity','medication-dosage'];
+  res.redirect('/candidate/prove-eligibility/list-medication');
+});
+
+router.get('/candidate/prove-eligibility/delete-medication/:id', function(req, res) {
+  req.session.data['medication-array'].splice(req.params.id, 1);
+  res.redirect('/candidate/prove-eligibility/list-medication');
+});
+
+
+
+
+
+
+
+
+
+router.get('/candidate/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
+  res.render('candidate/prove-eligibility/how-were-your-mobility-aids-provided');
+});
+
+
 router.get('/candidate/prove-eligibility/use-a-mobility-aid', function(req, res) {
   res.render('candidate/prove-eligibility/use-a-mobility-aid');
 });

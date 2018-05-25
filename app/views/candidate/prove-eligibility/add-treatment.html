@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Add treatment' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+        <!-- <p class="govuk-body"></p> -->
+        <form action="{{formAction}}">
+          {{ govukInput({
+            "label": {
+              "text": "Describe the surgery, treatment or special clinic"
+            },
+            "hint": {
+              "html": "For example, hip replacement, physiotherapy, pain clinic"
+            },
+            "name": "treatment-description"
+          }) }}
+
+          {{ govukInput({
+            "label": {
+              "text": "When did you have this treatment?"
+            },
+            "hint": {
+              "html": "For example, 12 May 2016 or 6 months ago"
+            },
+            "classes": 'govuk-!-width-two-thirds',
+            "name": "treatment-date"
+          }) }}
+
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

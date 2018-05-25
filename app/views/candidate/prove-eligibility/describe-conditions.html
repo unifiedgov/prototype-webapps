@@ -1,7 +1,5 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = your | capitalize + ' medical conditions' %}
-
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
@@ -17,14 +15,14 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+        <h1 class="govuk-heading-l">Describe any health conditions that affect {{ your }} mobility</h1>
   
-        <form action="">
+        <form action="{{ formAction }}">
           {{ govukTextarea({
-            "name": "know-medical-term-condition-description",
-            "id": "know-medical-term-condition-description",
+            "name": "describe-condition",
+            "id": "describe-condition",
             "label": {
-              "text": "List the medical term for each of " + your + " medical conditions or disabilities. If you don't know the medical term, try and describe it."
+              "text": "If you know them, try to use the proper medical terms."
             }
           }) }}
           
@@ -35,9 +33,6 @@
 
       </div>
 
-      <div class="govuk-grid-column-one-third">
-
-        </div>
     </div>
   </main>
 </div>

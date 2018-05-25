@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">List treatments</h1>
+
+        {% if tableRows.length > 0 %}
+  
+            {{ govukTable({
+              "head": [
+                {
+                  "text": "Description"
+                },
+                {
+                  "text": "When"
+                },
+                {
+                  "text": ""
+                }
+              ],
+              "rows": tableRows
+            }) }}
+
+          <p class="govuk-body"><a href="add-treatment">Add another treatment</a></p>
+
+
+          {{ govukButton({
+            "text": "Continue",
+            "href": formAction
+          }) }}
+
+        {% else %}
+        
+        <p class="govuk-body">List any surgeries, treatments or special clinic {{ you }}’ve had for your condition.</p>
+
+        {{ govukButton({
+          "text": "Add treatment",
+          "href": "add-treatment"
+        }) }}
+
+        <p class="govuk-body"><a href="list-medication">{{ you | capitalize }} haven't had any treatment</p>
+
+        {% endif %}
+
+      </div>
+
+    </div>
+  </main>
+</div>
+
+{% endblock %}

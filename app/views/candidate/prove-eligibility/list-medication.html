@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">List medication</h1>
+
+        {% if tableRows.length > 0 %}
+  
+            {{ govukTable({
+              "head": [
+                {
+                  "text": "Name"
+                },
+                {
+                  "text": "Type"
+                },
+                {
+                  "text": "Dosage"
+                },
+                {
+                  "text": ""
+                }
+              ],
+              "rows": tableRows
+            }) }}
+
+          <p class="govuk-body"><a href="add-medication">Add another medication</a></p>
+
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+
+        {% else %}
+        
+        <p class="govuk-body">List any medication or pain relief {{ you }} take for {{ your }} condition.</p>
+
+        {{ govukButton({
+          "text": "Add medication",
+          "href": "add-medication"
+        }) }}
+
+        <p class="govuk-body"><a href="list-medication">{{ you | capitalize }} don't take any medication</p>
+
+        {% endif %}
+
+      </div>
+
+    </div>
+  </main>
+</div>
+
+{% endblock %}
