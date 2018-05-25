@@ -487,7 +487,7 @@ router.get('/candidate/apply/upload-your-photo', function (req, res) {
   ------------------------------------------------------------------ */
 
 router.get('/candidate/prove-eligibility', function(req, res) {
-  res.locals.formAction = 'prove-eligibility/list-treatments';
+  res.locals.formAction = 'list-treatments';
   res.render('candidate/prove-eligibility/describe-conditions');
 });
 
