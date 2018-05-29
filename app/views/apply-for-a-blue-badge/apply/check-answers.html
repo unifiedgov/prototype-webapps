@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% import "candidate/macros/upload-component.html" as uploadComponentWidget %}
+{% import "apply-for-a-blue-badge/macros/upload-component.html" as uploadComponentWidget %}
 
 {% set pageHeading = 'Check your application details' %}
 
@@ -29,7 +29,7 @@
               {% if data['birth-full-name'] %}<br> (Formely: {{ data['birth-full-name'] }}) {% endif %}
             </dd>
             <dd class="govuk-check-your-answers__change">
-              <a href="/candidate/apply/name?change=true">
+              <a href="/apply-for-a-blue-badge/apply/name?change=true">
                 Change<span class="visually-hidden"> name</span>
               </a>
             </dd>
@@ -43,7 +43,7 @@
               {{ data['dob-day'] }} {{ data['dob-month'] | month }} {{ data['dob-year'] }}
             </dd>
             <dd class="govuk-check-your-answers__change">
-              <a href="/candidate/apply/dob?change=true">
+              <a href="/apply-for-a-blue-badge/apply/dob?change=true">
                 Change<span class="visually-hidden"> date of birth</span>
               </a>
             </dd>
@@ -57,7 +57,7 @@
               {{data['nino']}}
             </dd>
             <dd class="govuk-check-your-answers__change">
-              <a href="/candidate/apply/nino?change=true">
+              <a href="/apply-for-a-blue-badge/apply/nino?change=true">
                 Change<span class="visually-hidden"> national insurance number</span>
               </a>
             </dd>
@@ -71,7 +71,7 @@
               {{ data['address'] }}
             </dd>
             <dd class="govuk-check-your-answers__change">
-              <a href="/candidate/apply/select-address?change=true">
+              <a href="/apply-for-a-blue-badge/apply/select-address?change=true">
                 Change<span class="visually-hidden"> address</span>
               </a>
             </dd>
@@ -87,7 +87,7 @@
               {% if data['secondary-phone-number'] %}<br />{{ data['secondary-phone-number'] }}{% endif %}
             </dd>
             <dd class="govuk-check-your-answers__change">
-              <a href="/candidate/apply/contact?change=true">
+              <a href="/apply-for-a-blue-badge/apply/contact?change=true">
                 Change<span class="visually-hidden"> contact details</span>
               </a>
             </dd>
@@ -102,14 +102,14 @@
                 {{ data['your-identity-file-upload'] }}
               </dd>
               <dd class="govuk-check-your-answers__change">
-                <a href="/candidate/apply/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
+                <a href="/apply-for-a-blue-badge/apply/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
               </dd>
               {% else %}
               <dd class="govuk-check-your-answers__answer">
                 You've chosen not to prove your identity
               </dd>
               <dd class="govuk-check-your-answers__change">
-                <a href="/candidate/apply/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
+                <a href="/apply-for-a-blue-badge/apply/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
               </dd>
             {% endif %}
           </div>
@@ -129,7 +129,7 @@
               </dd>
               {% endif %}
               <dd class="govuk-check-your-answers__change">
-                <a href="/candidate/prove-eligibility/evidence-of-your-condition-or-disability?change=true">Change<span class="visually-hidden"> file</span></a>
+                <a href="/apply-for-a-blue-badge/prove-eligibility/evidence-of-your-condition-or-disability?change=true">Change<span class="visually-hidden"> file</span></a>
               </dd>
             {% elif data['benefit'] === 'dla' or data['benefit'] === 'pip' %}
               {% if data['proofOfEligibility'] === 'upload' %}
@@ -142,7 +142,7 @@
               </dd>
               {% endif %}
               <dd class="govuk-check-your-answers__change">
-                <a href="/candidate/eligibility-proof/provide-proof-of-your-eligibility?change=true">Change<span class="visually-hidden"> file</span></a>
+                <a href="/apply-for-a-blue-badge/eligibility-proof/provide-proof-of-your-eligibility?change=true">Change<span class="visually-hidden"> file</span></a>
               </dd>
             {% else %}
               {% if data['proofOfEligibility'] === 'upload' %}
@@ -155,7 +155,7 @@
               </dd>
               {% endif %}
               <dd class="govuk-check-your-answers__change">
-                <a href="/candidate/eligibility-proof/provide-proof-of-your-eligibility?change=true">Change<span class="visually-hidden"> file</span></a>
+                <a href="/apply-for-a-blue-badge/eligibility-proof/provide-proof-of-your-eligibility?change=true">Change<span class="visually-hidden"> file</span></a>
               </dd>
             {% endif %}
           </div>
@@ -169,7 +169,7 @@
                 {{ data['your-identity-file-upload'] }}
               </dd>
               <dd class="govuk-check-your-answers__change">
-                <a href="/candidate/apply/prove-your-address?change=true&identity-upload-shows-current-address=no">Change<span class="visually-hidden"> photo</span></a>
+                <a href="/apply-for-a-blue-badge/apply/prove-your-address?change=true&identity-upload-shows-current-address=no">Change<span class="visually-hidden"> photo</span></a>
               </dd>
               {% elif data['benefit-proof-upload-shows-current-address'] === 'yes' %}
               <dd class="govuk-check-your-answers__answer">
@@ -211,7 +211,7 @@
             </dd>
             {% endif %}
             <dd class="govuk-check-your-answers__change">
-              <a href="/candidate/apply/provide-photo?change=true">Change<span class="visually-hidden"> photo</span></a>
+              <a href="/apply-for-a-blue-badge/apply/provide-photo?change=true">Change<span class="visually-hidden"> photo</span></a>
             </dd>
           </div>
 

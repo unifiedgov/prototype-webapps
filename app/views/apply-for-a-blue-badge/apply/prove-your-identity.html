@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% import "candidate/macros/upload-component.html" as uploadComponentWidget %}
+{% import "apply-for-a-blue-badge/macros/upload-component.html" as uploadComponentWidget %}
 
 {% set pageHeading = 'Prove ' + your + ' identity' %}
 
@@ -19,7 +19,7 @@
       <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <form action="/candidate/proof-backend?proveIdentity=upload">
+        <form action="/apply-for-a-blue-badge/proof-backend?proveIdentity=upload">
           <p class="govuk-body">You need to upload a copy of a document which proves {{ your }} identity such as:
           <ul class="govuk-list govuk-list--bullet">
               <li>the photo page of {{ your }} passport</li>

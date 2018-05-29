@@ -191,129 +191,129 @@ router.get('/admin/cancellations', function (req, res) {
 
 router.get('/candidate', function (req, res) {
   res.locals.hideServiceName = 'yes';
-  res.render('candidate/index.html')
+  res.render('apply-for-a-blue-badge/index.html')
   req.session.destroy()
 });
 
-router.get('/candidate/check-eligibility/', function (req, res) {
-  res.render('candidate/check-eligibility/index.html', {'title':'Who are you applying for?'})
+router.get('/apply-for-a-blue-badge/check-eligibility/', function (req, res) {
+  res.render('apply-for-a-blue-badge/check-eligibility/index.html', {'title':'Who are you applying for?'})
 });
 
-router.get('/candidate/check-eligibility/existing-badge/', function (req, res) {
+router.get('/apply-for-a-blue-badge/check-eligibility/existing-badge/', function (req, res) {
   req.session.data['show'] = undefined;
-  res.render('candidate/check-eligibility/existing-badge/index.html')
+  res.render('apply-for-a-blue-badge/check-eligibility/existing-badge/index.html')
 });
 
-router.get('/candidate/check-eligibility/existing-badge/index-backend', function (req, res) {
+router.get('/apply-for-a-blue-badge/check-eligibility/existing-badge/index-backend', function (req, res) {
   switch (req.session.data['renewal-or-new-application']) {
     case "renewal":
       var blueBadgeNumber = req.session.data['existing-blue-badge-number'];
       if (blueBadgeNumber.indexOf('1111') === 0 && blueBadgeNumber.lastIndexOf('1111') === blueBadgeNumber.length-4) {
-        res.redirect('/candidate/check-eligibility/existing-badge/not-for-renewal');
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-renewal');
       } else if (blueBadgeNumber.indexOf('2222') === 0 && blueBadgeNumber.lastIndexOf('2222') === blueBadgeNumber.length-4) {
-        res.redirect('/candidate/check-eligibility/existing-badge/not-for-review');
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-review');
       } else if (blueBadgeNumber.indexOf('3333') === 0 && blueBadgeNumber.lastIndexOf('3333') === blueBadgeNumber.length-4) {
-        res.redirect('/candidate/check-eligibility/existing-badge?show=errors&existing=yes');
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge?show=errors&existing=yes');
       } else {
-        res.redirect('/candidate/check-eligibility/existing-badge/not-for-review-with-eligibility-questions');
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-review-with-eligibility-questions');
       }
       break;
     case "new":
-      res.redirect('/candidate/check-eligibility/find-your-council');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
       break;
     default:
-      res.redirect('/candidate/check-eligibility/find-your-council');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
       break;
   }
 });
 
-// router.get('/candidate/check-eligibility/existing-badge/badge-not-found-backend', function (req, res) {
+// router.get('/apply-for-a-blue-badge/check-eligibility/existing-badge/badge-not-found-backend', function (req, res) {
 //   switch (req.session.data['badge-not-found-how-to-proceed']) {
 //     case "reenter":
-//       res.redirect('/candidate/check-eligibility/existing-badge');
+//       res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge');
 //       break;
 //     case "new":
 //       req.session.data['renewal-or-new-application'] = 'new';
-//       res.redirect('/candidate/check-eligibility/find-your-council');
+//       res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
 //       break;
 //     case "renewal":
 //       req.session.data['renewal-or-new-application'] = 'renewal';
-//       res.redirect('/candidate/check-eligibility/find-your-council');
+//       res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
 //       break;
 //     default:
-//       res.redirect('/candidate/check-eligibility/find-your-council');
+//       res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
 //       break;
 //   }
 // });
 
-router.get('/candidate/check-eligibility/existing-badge/review-backend', function (req, res) {
+router.get('/apply-for-a-blue-badge/check-eligibility/existing-badge/review-backend', function (req, res) {
   switch (req.session.data['renewal-council-has-changed']) {
     case "yes":
       req.session.data['council-name'] = 'Manchester city council';
-      res.redirect('/candidate/check-eligibility/enter-age');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/enter-age');
       break;
     case "no":
-      res.redirect('/candidate/check-eligibility/find-your-council');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
       break;
     default:
-      res.redirect('/candidate/check-eligibility/find-your-council');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
       break;
   }
 });
 
-router.get('/candidate/check-eligibility/your-council-backend', function (req, res) {
+router.get('/apply-for-a-blue-badge/check-eligibility/your-council-backend', function (req, res) {
   if (req.query.postcode) {
     req.session.data['council-name'] = 'Manchester city council';
-    res.redirect('/candidate/check-eligibility/your-council');
+    res.redirect('/apply-for-a-blue-badge/check-eligibility/your-council');
   } else {
-    res.redirect('/candidate/check-eligibility/enter-age');
+    res.redirect('/apply-for-a-blue-badge/check-eligibility/enter-age');
   } 
 });
 
-router.get('/candidate/check-eligibility/benefits-backend', function (req, res) {
+router.get('/apply-for-a-blue-badge/check-eligibility/benefits-backend', function (req, res) {
   if (req.query.benefit === 'none') {
-    res.render('candidate/check-eligibility/disability');
+    res.render('apply-for-a-blue-badge/check-eligibility/disability');
   } else {
-    res.redirect('/candidate/check-eligibility/decision');
+    res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
   }
 });
 
-router.get('/candidate/check-eligibility/disability-backend', function (req, res) {
+router.get('/apply-for-a-blue-badge/check-eligibility/disability-backend', function (req, res) {
   if (req.session.data['disability'] === 'problems-walking') {
-    res.redirect('/candidate/check-eligibility/walking');
+    res.redirect('/apply-for-a-blue-badge/check-eligibility/walking');
   } else {
-  	res.render('candidate/check-eligibility/decision');
+  	res.render('apply-for-a-blue-badge/check-eligibility/decision');
   }
 });
 
-// router.get('/candidate/check-eligibility/walking-backend', function (req, res) {
-//   res.render('candidate/check-eligibility/decision');
+// router.get('/apply-for-a-blue-badge/check-eligibility/walking-backend', function (req, res) {
+//   res.render('apply-for-a-blue-badge/check-eligibility/decision');
 // });
 
-router.get('/candidate/check-eligibility/existing-badge/not-for-review/', function (req, res) {
-  res.locals.formAction = '/candidate/apply';
-  res.render('candidate/check-eligibility/existing-badge/not-for-review.html');
+router.get('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-review/', function (req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/apply';
+  res.render('apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-review.html');
 });
 
-router.get('/candidate/check-eligibility/enter-age', function (req, res) {
+router.get('/apply-for-a-blue-badge/check-eligibility/enter-age', function (req, res) {
   if (req.session.data['applicant'] === 'organisation') {
-    res.redirect('/candidate/check-eligibility/org-care-for');
+    res.redirect('/apply-for-a-blue-badge/check-eligibility/org-care-for');
   } else {
-    res.render('candidate/check-eligibility/enter-age');
+    res.render('apply-for-a-blue-badge/check-eligibility/enter-age');
   }
 });
 
-router.get('/candidate/check-eligibility/org-transport', function (req, res) {
+router.get('/apply-for-a-blue-badge/check-eligibility/org-transport', function (req, res) {
   if (req.session.data['org-care-for'] === 'no') {
-    res.redirect('/candidate/check-eligibility/decision');
+    res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
   } else {
-    res.render('candidate/check-eligibility/org-transport');
+    res.render('apply-for-a-blue-badge/check-eligibility/org-transport');
   }
 });
 
-router.get('/candidate/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
-  res.locals.formAction = '/candidate/check-eligibility/find-your-council';
-  res.render('candidate/check-eligibility/existing-badge/not-for-review');
+router.get('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/check-eligibility/find-your-council';
+  res.render('apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-review');
 });
 
 
@@ -325,7 +325,7 @@ function sendBackToCheckAnswers(query, nextAction) {
   if (query.change === 'true') {
     console.log('true');
     locals = {
-      'formAction': '/candidate/apply/check-answers',
+      'formAction': '/apply-for-a-blue-badge/apply/check-answers',
       'submitLabel': 'Update'
     }
   } else {
@@ -338,69 +338,69 @@ function sendBackToCheckAnswers(query, nextAction) {
   return locals;
 }
 
-router.get('/candidate/apply', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/dob'))
-  res.render('candidate/apply/name')
+router.get('/apply-for-a-blue-badge/apply', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/apply/dob'))
+  res.render('apply-for-a-blue-badge/apply/name')
 })
 
-router.get('/candidate/apply/name', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/dob'))
-  res.render('candidate/apply/name')
+router.get('/apply-for-a-blue-badge/apply/name', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/apply/dob'))
+  res.render('apply-for-a-blue-badge/apply/name')
 })
 
-router.get('/candidate/apply/dob', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/nino'))
-  res.render('candidate/apply/dob')
+router.get('/apply-for-a-blue-badge/apply/dob', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/apply/nino'))
+  res.render('apply-for-a-blue-badge/apply/dob')
 })
 
-router.get('/candidate/apply/nino', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/your-address'))
-  res.render('candidate/apply/nino')
+router.get('/apply-for-a-blue-badge/apply/nino', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/apply/your-address'))
+  res.render('apply-for-a-blue-badge/apply/nino')
 })
 
-// router.get('/candidate/apply/gender', function (req, res) {
-//   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/select-address'))
-//   res.render('candidate/apply/gender')
+// router.get('/apply-for-a-blue-badge/apply/gender', function (req, res) {
+//   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/apply/select-address'))
+//   res.render('apply-for-a-blue-badge/apply/gender')
 // })
 
-router.get('/candidate/apply/your-address', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/select-address'))
-  res.render('candidate/apply/your-address')
+router.get('/apply-for-a-blue-badge/apply/your-address', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/apply/select-address'))
+  res.render('apply-for-a-blue-badge/apply/your-address')
 })
 
-router.get('/candidate/apply/select-address', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/contact'))
-  res.render('candidate/apply/select-your-address')
+router.get('/apply-for-a-blue-badge/apply/select-address', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/apply/contact'))
+  res.render('apply-for-a-blue-badge/apply/select-your-address')
 })
 
-router.get('/candidate/apply/enter-address', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/contact'))
-  res.render('candidate/apply/enter-your-address')
+router.get('/apply-for-a-blue-badge/apply/enter-address', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/apply/contact'))
+  res.render('apply-for-a-blue-badge/apply/enter-your-address')
 })
 
-router.get('/candidate/apply/contact', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/prove-your-identity'))
-  res.render('candidate/apply/contact-details')
+router.get('/apply-for-a-blue-badge/apply/contact', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/apply/prove-your-identity'))
+  res.render('apply-for-a-blue-badge/apply/contact-details')
 })
 
-router.get('/candidate/proof-backend', function (req, res) {
+router.get('/apply-for-a-blue-badge/proof-backend', function (req, res) {
     if (req.query.change==='true') {
-      res.redirect('/candidate/apply/check-answers');
+      res.redirect('/apply-for-a-blue-badge/apply/check-answers');
     } else {
     if (req.session.data['benefit'] === 'none'
         && req.session.data['disability']
         && req.session.data['disability'].includes('problems-walking')) {
-      res.redirect('/candidate/prove-eligibility/walking-time');
+      res.redirect('/apply-for-a-blue-badge/prove-eligibility/walking-time');
     } else if (req.session.data['benefit'] === 'dla' || req.session.data['benefit'] === 'pip') {
-      res.redirect('/candidate/eligibility-proof/provide-proof-of-your-eligibility');
+      res.redirect('/apply-for-a-blue-badge/eligibility-proof/provide-proof-of-your-eligibility');
     } else {
-      res.redirect('/candidate/prove-eligibility');
+      res.redirect('/apply-for-a-blue-badge/prove-eligibility');
     }
   }
 });
 
-router.get('/candidate/eligibility-proof/provide-proof-of-your-eligibility', function(req, res) {
-  res.locals.formAction = '/candidate/eligibility-proof/upload-proof-of-your-eligibility';
+router.get('/apply-for-a-blue-badge/eligibility-proof/provide-proof-of-your-eligibility', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/eligibility-proof/upload-proof-of-your-eligibility';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
   var question1 = '';
@@ -426,59 +426,59 @@ router.get('/candidate/eligibility-proof/provide-proof-of-your-eligibility', fun
   res.locals.question3 = question3;
   req.session.data['benefit-proof-file-upload'] = undefined;
   req.session.data['benefit-proof-file'] = undefined;
-  res.render('candidate/eligibility-proof/provide-proof-of-your-eligibility');
+  res.render('apply-for-a-blue-badge/eligibility-proof/provide-proof-of-your-eligibility');
 });
 
-router.get('/candidate/eligibility-proof/upload-proof-of-your-eligibility', function (req, res) {
+router.get('/apply-for-a-blue-badge/eligibility-proof/upload-proof-of-your-eligibility', function (req, res) {
   if (req.query.change === 'true') {
-    res.locals.formAction = '/candidate/apply/check-answers';
+    res.locals.formAction = '/apply-for-a-blue-badge/apply/check-answers';
   } else {
-    res.locals.formAction = '/candidate/apply/prove-your-address';
+    res.locals.formAction = '/apply-for-a-blue-badge/apply/prove-your-address';
   }
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
-  res.render('candidate/eligibility-proof/upload-proof-of-your-eligibility')
+  res.render('apply-for-a-blue-badge/eligibility-proof/upload-proof-of-your-eligibility')
 });
 
-router.get('/candidate/apply/prove-your-identity', function (req, res) {
+router.get('/apply-for-a-blue-badge/apply/prove-your-identity', function (req, res) {
   res.locals.formAction = '/proof-backend';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
-  res.render('candidate/apply/prove-your-identity')
+  res.render('apply-for-a-blue-badge/apply/prove-your-identity')
 })
 
-router.get('/candidate/apply/prove-your-address', function (req, res) {
+router.get('/apply-for-a-blue-badge/apply/prove-your-address', function (req, res) {
   if ((req.query.change !== 'true') &&
      (req.session.data['identity-upload-shows-current-address'] === 'yes' ||
       req.session.data['benefit-proof-upload-shows-current-address'] === 'yes' ||
       req.session.data['identity-verified'] === 'yes')) {
-    res.redirect('/candidate/apply/provide-photo');
+    res.redirect('/apply-for-a-blue-badge/apply/provide-photo');
   } else {
-    res.locals.formAction = '/candidate/apply/prove-your-address-backend';
+    res.locals.formAction = '/apply-for-a-blue-badge/apply/prove-your-address-backend';
     console.log('formAction=' + res.locals.formAction);
     res.locals.submitLabel = 'Continue';
     res.locals.change = req.query.change;
-    res.render('candidate/apply/prove-your-address');
+    res.render('apply-for-a-blue-badge/apply/prove-your-address');
   }
 })
 
-router.get('/candidate/apply/prove-your-address-backend', function (req, res) {
+router.get('/apply-for-a-blue-badge/apply/prove-your-address-backend', function (req, res) {
   if (req.query.change === 'true') {
-    res.redirect('/candidate/apply/check-answers');
+    res.redirect('/apply-for-a-blue-badge/apply/check-answers');
   } else {
-    res.redirect('/candidate/apply/provide-photo');
+    res.redirect('/apply-for-a-blue-badge/apply/provide-photo');
   }
 });
 
-router.get('/candidate/apply/provide-photo', function (req, res) {
-//  res.locals.formAction = '/candidate/apply/provide-photo-2';
+router.get('/apply-for-a-blue-badge/apply/provide-photo', function (req, res) {
+//  res.locals.formAction = '/apply-for-a-blue-badge/apply/provide-photo-2';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
-  res.render('candidate/apply/provide-photo');
+  res.render('apply-for-a-blue-badge/apply/provide-photo');
 })
 
-router.get('/candidate/apply/upload-your-photo', function (req, res) {
-  res.render('candidate/apply/upload-your-photo');
+router.get('/apply-for-a-blue-badge/apply/upload-your-photo', function (req, res) {
+  res.render('apply-for-a-blue-badge/apply/upload-your-photo');
 });
 
 
@@ -486,15 +486,15 @@ router.get('/candidate/apply/upload-your-photo', function (req, res) {
      Prove eligibility
   ------------------------------------------------------------------ */
 
-router.get('/candidate/prove-eligibility', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility', function(req, res) {
   res.locals.formAction = 'list-treatments';
-  res.render('candidate/prove-eligibility/describe-conditions');
+  res.render('apply-for-a-blue-badge/prove-eligibility/describe-conditions');
 });
 
 
 // Treatments
 
-router.get('/candidate/prove-eligibility/list-treatments', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/list-treatments', function(req, res) {
   var treatments = req.session.data['treatments-array'];
   delete res.locals.tableRows;
   if (treatments) {
@@ -517,15 +517,15 @@ router.get('/candidate/prove-eligibility/list-treatments', function(req, res) {
 
   res.locals.tableRows = tableRows;
   res.locals.formAction = 'list-medication';
-  res.render('candidate/prove-eligibility/list-treatments');
+  res.render('apply-for-a-blue-badge/prove-eligibility/list-treatments');
 });
 
-router.get('/candidate/prove-eligibility/add-treatment', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/add-treatment', function(req, res) {
   res.locals.formAction = 'create-treatment';
-  res.render('candidate/prove-eligibility/add-treatment');
+  res.render('apply-for-a-blue-badge/prove-eligibility/add-treatment');
 });
 
-router.get('/candidate/prove-eligibility/create-treatment', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/create-treatment', function(req, res) {
   var treatment = {
     "description": req.session.data['treatment-description'],
     "date": req.session.data['treatment-date']
@@ -538,17 +538,17 @@ router.get('/candidate/prove-eligibility/create-treatment', function(req, res) {
   }
 
   delete req.session.data['treatment-description','treatment-date'];
-  res.redirect('/candidate/prove-eligibility/list-treatments');
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-treatments');
 });
 
-router.get('/candidate/prove-eligibility/delete-treatment/:id', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/delete-treatment/:id', function(req, res) {
   req.session.data['treatments-array'].splice(req.params.id, 1);
-  res.redirect('/candidate/prove-eligibility/list-treatments');
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-treatments');
 });
 
 // Medication
 
-router.get('/candidate/prove-eligibility/list-medication', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/list-medication', function(req, res) {
   var medication = req.session.data['medication-array'];
   delete res.locals.tableRows;
   if (medication) {
@@ -574,15 +574,15 @@ router.get('/candidate/prove-eligibility/list-medication', function(req, res) {
 
   res.locals.tableRows = tableRows;
   res.locals.formAction = 'list-healthcare-professionals';
-  res.render('candidate/prove-eligibility/list-medication');
+  res.render('apply-for-a-blue-badge/prove-eligibility/list-medication');
 });
 
-router.get('/candidate/prove-eligibility/add-medication', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/add-medication', function(req, res) {
   res.locals.formAction = 'create-medication';
-  res.render('candidate/prove-eligibility/add-medication');
+  res.render('apply-for-a-blue-badge/prove-eligibility/add-medication');
 });
 
-router.get('/candidate/prove-eligibility/create-medication', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/create-medication', function(req, res) {
   var medication = {
     "name": req.session.data['medication-name'],
     "type": req.session.data['medication-type'],
@@ -597,18 +597,18 @@ router.get('/candidate/prove-eligibility/create-medication', function(req, res) 
   }
 
   delete req.session.data['medication-name','medication-type','medication-regularity','medication-dosage'];
-  res.redirect('/candidate/prove-eligibility/list-medication');
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-medication');
 });
 
-router.get('/candidate/prove-eligibility/delete-medication/:id', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/delete-medication/:id', function(req, res) {
   req.session.data['medication-array'].splice(req.params.id, 1);
-  res.redirect('/candidate/prove-eligibility/list-medication');
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-medication');
 });
 
 
 // Healthcare professionals
 
-router.get('/candidate/prove-eligibility/list-healthcare-professionals', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/list-healthcare-professionals', function(req, res) {
   var hcps = req.session.data['hcp-array'];
   delete res.locals.tableRows;
   if (hcps) {
@@ -630,15 +630,15 @@ router.get('/candidate/prove-eligibility/list-healthcare-professionals', functio
   }
 
   res.locals.tableRows = tableRows;
-  res.render('candidate/prove-eligibility/list-healthcare-professionals');
+  res.render('apply-for-a-blue-badge/prove-eligibility/list-healthcare-professionals');
 });
 
-router.get('/candidate/prove-eligibility/add-healthcare-professional', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/add-healthcare-professional', function(req, res) {
   res.locals.formAction = 'create-hcp';
-  res.render('candidate/prove-eligibility/add-healthcare-professional');
+  res.render('apply-for-a-blue-badge/prove-eligibility/add-healthcare-professional');
 });
 
-router.get('/candidate/prove-eligibility/create-hcp', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/create-hcp', function(req, res) {
   var hcp = {
     "name": req.session.data['hcp-name'],
     "hospital": req.session.data['hcp-hospital']
@@ -651,73 +651,73 @@ router.get('/candidate/prove-eligibility/create-hcp', function(req, res) {
   }
 
   delete req.session.data['hcp-name','hcp-hospital'];
-  res.redirect('/candidate/prove-eligibility/list-healthcare-professionals');
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-healthcare-professionals');
 });
 
-router.get('/candidate/prove-eligibility/delete-hcp/:id', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/delete-hcp/:id', function(req, res) {
   req.session.data['hcp-array'].splice(req.params.id, 1);
-  res.redirect('/candidate/prove-eligibility/list-healthcare-professionals');
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-healthcare-professionals');
 });
 
 
-router.get('/candidate/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
-  res.render('candidate/prove-eligibility/how-were-your-mobility-aids-provided');
+router.get('/apply-for-a-blue-badge/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
+  res.render('apply-for-a-blue-badge/prove-eligibility/how-were-your-mobility-aids-provided');
 });
 
 
-router.get('/candidate/prove-eligibility/use-a-mobility-aid', function(req, res) {
-  res.render('candidate/prove-eligibility/use-a-mobility-aid');
+router.get('/apply-for-a-blue-badge/prove-eligibility/use-a-mobility-aid', function(req, res) {
+  res.render('apply-for-a-blue-badge/prove-eligibility/use-a-mobility-aid');
 });
 
-router.get('/candidate/prove-eligibility/use-a-mobility-aid-backend', function(req, res) {
+router.get('/apply-for-a-blue-badge/prove-eligibility/use-a-mobility-aid-backend', function(req, res) {
   if (req.session.data['use-a-mobility-aid'] === 'yes' && req.session.data['mobility-aids-used']) {
-    res.redirect('/candidate/prove-eligibility/how-were-your-mobility-aids-provided');
+    res.redirect('/apply-for-a-blue-badge/prove-eligibility/how-were-your-mobility-aids-provided');
   } else {
-    res.redirect('/candidate/prove-eligibility/your-medical-condition');
+    res.redirect('/apply-for-a-blue-badge/prove-eligibility/your-medical-condition');
   }
 });
 
-router.get('/candidate/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
-  res.render('candidate/prove-eligibility/how-were-your-mobility-aids-provided');
+router.get('/apply-for-a-blue-badge/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
+  res.render('apply-for-a-blue-badge/prove-eligibility/how-were-your-mobility-aids-provided');
 });
 
-router.get('/candidate/prove-eligibility/your-medical-condition', function(req, res) {
-  res.render('candidate/prove-eligibility/your-medical-condition');
+router.get('/apply-for-a-blue-badge/prove-eligibility/your-medical-condition', function(req, res) {
+  res.render('apply-for-a-blue-badge/prove-eligibility/your-medical-condition');
 });
 
-router.get('/candidate/prove-eligibility/surgeries-and-treatment', function(req, res) {
-  res.render('candidate/prove-eligibility/surgeries-and-treatment');
+router.get('/apply-for-a-blue-badge/prove-eligibility/surgeries-and-treatment', function(req, res) {
+  res.render('apply-for-a-blue-badge/prove-eligibility/surgeries-and-treatment');
 });
 
-router.get('/candidate/apply/prove-benefit', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/candidate/apply/check-answers'))
-  res.render('candidate/apply/prove-benefit')
+router.get('/apply-for-a-blue-badge/apply/prove-benefit', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/apply/check-answers'))
+  res.render('apply-for-a-blue-badge/apply/prove-benefit')
 })
 
-router.get('/candidate/apply/check-answers', function (req, res) {
-  res.render('candidate/apply/check-answers'); //, {'formAction':'/candidate/apply/paying-for-your-blue-badge'})
+router.get('/apply-for-a-blue-badge/apply/check-answers', function (req, res) {
+  res.render('apply-for-a-blue-badge/apply/check-answers'); //, {'formAction':'/apply-for-a-blue-badge/apply/paying-for-your-blue-badge'})
 })
 
-router.get('/candidate/apply/paying-for-your-blue-badge', function(req, res) {
-  res.render('candidate/apply/paying-for-your-blue-badge');
+router.get('/apply-for-a-blue-badge/apply/paying-for-your-blue-badge', function(req, res) {
+  res.render('apply-for-a-blue-badge/apply/paying-for-your-blue-badge');
 });
 
-router.get('/candidate/apply/paying-for-your-blue-badge-backend', function(req, res) {
+router.get('/apply-for-a-blue-badge/apply/paying-for-your-blue-badge-backend', function(req, res) {
   if (req.query['pay-when'] === 'later') {
-    //res.redirect('/candidate/apply/check-answers');
-    res.redirect('/candidate/apply/confirmation');
+    //res.redirect('/apply-for-a-blue-badge/apply/check-answers');
+    res.redirect('/apply-for-a-blue-badge/apply/confirmation');
   } else {
     req.session.data['pay-when'] = 'now';
     res.redirect('https://production-1-production-pay-products-ui.cloudapps.digital/pay/a9e0f2ce1f7148ef879bdc1fa04ba652');
   };
 });
 
-router.get('/candidate/apply/declaration', function (req, res) {
-  res.render('candidate/apply/declaration', {'formAction':'/candidate/apply/complete'})
+router.get('/apply-for-a-blue-badge/apply/declaration', function (req, res) {
+  res.render('apply-for-a-blue-badge/apply/declaration', {'formAction':'/apply-for-a-blue-badge/apply/complete'})
 })
 
-router.get('/candidate/apply/confirmation', function (req, res) {
-  res.render('candidate/apply/confirmation')
+router.get('/apply-for-a-blue-badge/apply/confirmation', function (req, res) {
+  res.render('apply-for-a-blue-badge/apply/confirmation')
 })
 
 router.get('/version-history', function(req, res) {
