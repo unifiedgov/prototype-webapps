@@ -212,10 +212,101 @@ router.get('/personal-details/enter-address', function (req, res) {
   res.render(personDetailsTemplatePath+'enter-your-address')
 })
 
-router.get('/personal-details/contact-details', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-your-identity'))
+// Organisation details
+
+const organisationDetailsPath = '/apply-for-a-blue-badge/organisation-details/';
+const organisationDetailsTemplatePath = 'apply-for-a-blue-badge/prepare/organisation-details/';
+
+router.get('/organisation-details/', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'charity'))
+  res.redirect(organisationDetailsPath+'name')
+})
+
+router.get('/organisation-details/name', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'charity'))
+  res.render(organisationDetailsTemplatePath+'name')
+})
+
+router.get('/organisation-details/charity', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'find-address'))
+  res.render(organisationDetailsTemplatePath+'charity')
+})
+
+router.get('/organisation-details/find-address', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'select-address'))
+  res.render(personDetailsTemplatePath+'your-address')
+})
+
+router.get('/organisation-details/select-address', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'contact-details'))
+  res.render(personDetailsTemplatePath+'select-your-address')
+})
+
+router.get('/organisation-details/enter-address', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'contact-details'))
+  res.render(personDetailsTemplatePath+'enter-your-address')
+})
+
+router.get('/organisation-details/contact-details', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'list-vehicles'))
   res.render(personDetailsTemplatePath+'contact-details')
 })
+
+router.get('/organisation-details/list-vehicles', function(req, res) {
+  var vehicles = req.session.data['vehicle-array'];
+  delete res.locals.tableRows;
+  if (vehicles) {
+    var tableRows = [];
+    vehicles.forEach(function(item,index) {
+    tableRows.push([
+        {
+          "text": item.vrn
+        },
+        {
+          "text": item.type
+        },
+        {
+          "text": item.frequency
+        },
+        {
+          "html": "<a href='delete-vehicle/"+index+"'>Remove this</a>",
+          "format": "numeric"
+        }
+      ])
+    });
+  }
+
+  res.locals.tableRows = tableRows;
+  res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
+  res.render(organisationDetailsTemplatePath+'list-vehicles');
+});
+
+router.get('/organisation-details/add-vehicle', function(req, res) {
+  res.locals.formAction = 'create-vehicle';
+  res.render(organisationDetailsTemplatePath+'add-vehicle');
+});
+
+router.get('/organisation-details/create-vehicle', function(req, res) {
+  var vehicle = {
+    "vrn": req.session.data['vehicle-vrn'],
+    "type": req.session.data['vehicle-type'],
+    "frequency": req.session.data['vehicle-frequency'],
+  }
+
+  if (req.session.data['vehicle-array']) {
+    req.session.data['vehicle-array'].push(vehicle);
+  } else {
+    req.session.data['vehicle-array'] = [vehicle];
+  }
+
+  delete req.session.data['vehicle-name','vehicle-type','vehicle-frequency'];
+  res.redirect('/apply-for-a-blue-badge/organisation-details/list-vehicles');
+});
+
+router.get('/organisation-details/delete-vehicle/:id', function(req, res) {
+  req.session.data['vehicle-array'].splice(req.params.id, 1);
+  res.redirect('/apply-for-a-blue-badge/organisation-details/list-vehicles');
+});
 
 // Prove identity
 

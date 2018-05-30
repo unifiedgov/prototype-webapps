@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">List vehicles</h1>
+
+        {% if tableRows.length > 0 %}
+  
+            {{ govukTable({
+              "head": [
+                {
+                  "text": "VRN"
+                },
+                {
+                  "text": "Type"
+                },
+                {
+                  "text": "Frequency"
+                },
+                {
+                  "text": ""
+                }
+              ],
+              "rows": tableRows
+            }) }}
+
+          <p class="govuk-body"><a href="add-vehicle">Add another vehicle</a></p>
+
+          {{ govukButton({
+            "text": "Continue",
+            "href": formAction
+          }) }}
+
+        {% else %}
+        
+        <p class="govuk-body">List any vehciles your organisation uses to transport people who are eligible for a Blue Badge.</p>
+
+        {{ govukButton({
+          "text": "Add vehicle",
+          "href": 'add-vehicle'
+        }) }}
+
+        {% endif %}
+
+      </div>
+
+    </div>
+  </main>
+</div>
+
+{% endblock %}

@@ -19,10 +19,95 @@
       <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
         <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+
+        {% if data['applicant'] === 'organisation' %}
+
           <div class="govuk-check-your-answers__contents">
             <dt class="govuk-check-your-answers__question">
-              Name
+              Organisation name
+            </dt>
+            <dd class="govuk-check-your-answers__answer">
+              {{data['organisationName']}}
+            </dd>
+            <dd class="govuk-check-your-answers__change">
+              <a href="/apply-for-a-blue-badge/organisation-details/name?change=true">
+                Change<span class="visually-hidden"> organisation name</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-check-your-answers__contents">
+            <dt class="govuk-check-your-answers__question">
+              Registered charity
+            </dt>
+            <dd class="govuk-check-your-answers__answer">
+              {% if data['organisation-charity'] === 'Yes' %}
+              Yes<br >
+              Charity number: {{data['organisation-charity-number']}}
+              {% else %}
+              No
+              {% endif %}
+            </dd>
+            <dd class="govuk-check-your-answers__change">
+              <a href="/apply-for-a-blue-badge/organisation-details/charity?change=true">
+                Change<span class="visually-hidden"> charity status</span>
+              </a>
+            </dd>
+          </div>
+  
+          <div class="govuk-check-your-answers__contents">
+            <dt class="govuk-check-your-answers__question">
+              Address
+            </dt>
+            <dd class="govuk-check-your-answers__answer">
+              {{ data['address'] }}
+            </dd>
+            <dd class="govuk-check-your-answers__change">
+              <a href="/apply-for-a-blue-badge/organisation-details/enter-address?change=true">
+                Change<span class="visually-hidden"> address</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-check-your-answers__contents">
+            <dt class="govuk-check-your-answers__question">
+              Contact details
+            </dt>
+            <dd class="govuk-check-your-answers__answer">
+              {{ data['contact-full-name'] }}<br />
+              {{ data['primary-phone-number'] }}<br />
+              {{ data['email-address'] }}
+            </dd>
+            <dd class="govuk-check-your-answers__change">
+              <a href="/apply-for-a-blue-badge/organisation-details/contact-details?change=true">
+                Change<span class="visually-hidden"> contact details</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-check-your-answers__contents">
+            <dt class="govuk-check-your-answers__question">
+              Vehicles
+            </dt>
+            <dd class="govuk-check-your-answers__answer">
+              {% for vehicle in data['vehicle-array'] %}
+                {{vehicle.vrn}} ({{vehicle.type}})<br />
+              {% endfor %}
+            </dd>
+            <dd class="govuk-check-your-answers__change">
+              <a href="/apply-for-a-blue-badge/organisation-details/list-vehicles?change=true">
+                Change<span class="visually-hidden"> vehicles</span>
+              </a>
+            </dd>
+          </div>
+
+        {% else %}
+        
+          <div class="govuk-check-your-answers__contents">
+            <dt class="govuk-check-your-answers__question">
+              Full name
             </dt>
             <dd class="govuk-check-your-answers__answer">
               {{data['fullName']}}
@@ -82,9 +167,9 @@
               Contact details
             </dt>
             <dd class="govuk-check-your-answers__answer">
-              {% if data['email'] %}{{ data['email'] }}<br />{% endif %}
-              {{ data['primary-phone-number'] }}
-              {% if data['secondary-phone-number'] %}<br />{{ data['secondary-phone-number'] }}{% endif %}
+              {% if data['contact-full-name'] %}{{ data['contact-full-name'] }}<br />{% endif %}
+              {{ data['primary-phone-number'] }}<br />
+              {% if data['email-address'] %}{{ data['email-address'] }}{% endif %}
             </dd>
             <dd class="govuk-check-your-answers__change">
               <a href="/apply-for-a-blue-badge/apply/contact?change=true">
@@ -215,6 +300,11 @@
             </dd>
           </div>
 
+
+
+        {% endif %}
+
+         
         </dl>
 
         {{ govukButton({

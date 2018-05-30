@@ -20,7 +20,7 @@
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
         <!-- <p class="govuk-body"></p> -->
         <form action="{{formAction}}">
-          {% if  data['applicant'] === "someone-else" %}
+          {% if  data['applicant'] === "someone-else" or data['applicant'] === "organisation"   %}
 
           {{ govukInput({
             "label": {

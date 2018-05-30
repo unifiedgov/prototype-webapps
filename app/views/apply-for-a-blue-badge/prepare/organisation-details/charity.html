@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Is your organisation a charity?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <form action="{{formAction}}">
+
+          <div class="expanding-panel-container">
+            {{ govukRadios({
+              "idPrefix": "organisation-charity",
+              "name": "organisation-charity",
+              "attributes": {
+                "data-expanding-radios": "true"
+              },
+              "fieldset": {
+                "legend": {
+                  "text": pageHeading,
+                  "isPageHeading": true,
+                  "classes": 'govuk-fieldset__legend--l'
+                }
+              },
+              "items": [
+                {
+                  "value": "No",
+                  "text": "No",
+                  "checked": data['organisation-charity'] === 'No'
+                },
+                {
+                  "value": "Yes",
+                  "text": "Yes",
+                  "checked": data['organisation-charity'] === 'Yes',
+                  "id": 'charity-yes'
+                }
+              ]
+            }) }}
+
+            <div class="expanding-panel" data-expanded-by="charity-yes">
+              <div class="govuk-details__text">
+                {{ govukInput({
+                  "label": {
+                    "text": "Charity number"
+                  },
+                  id: "organisation-charity-number",
+                  name: "organisation-charity-number"
+                }) }}
+              </div>
+            </div>
+          </div>
+          
+          {{ govukButton({
+            "text": submitLabel
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

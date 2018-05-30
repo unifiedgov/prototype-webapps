@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Add treatment' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Add vehicle details</h1>
+        <!-- <p class="govuk-body"></p> -->
+        <form action="{{formAction}}">
+          {{ govukInput({
+            "label": {
+              "text": "Vehicle Registration Number"
+            },
+            "classes": 'govuk-!-width-two-thirds',
+            "name": "vehicle-vrn"
+          }) }}
+
+          {{ govukInput({
+            "label": {
+              "text": "Vehicle type"
+            },
+            "hint": {
+              "text": "For example, Car, People carrier, Minibus"
+            },
+            "classes": 'govuk-!-width-two-thirds',
+            "name": "vehicle-type"
+          }) }}
+
+          {{ govukInput({
+            "label": {
+              "text": "How often do you use this vehicle to transport people who are eligble for a Blue Badge?"
+            },
+            "hint": {
+              "text": "For example, every day, once a week"
+            },
+            "classes": 'govuk-!-width-two-thirds',
+            "name": "vehicle-frequency"
+          }) }}
+
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
