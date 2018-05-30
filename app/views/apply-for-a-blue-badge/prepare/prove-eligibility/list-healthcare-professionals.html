@@ -46,10 +46,10 @@
 
         {{ govukButton({
           "text": "Add healthcare professional",
-          "href": "add-healthcare-professional"
+          "href": formAction
         }) }}
 
-        <p class="govuk-body"><a href="list-medication">{{ you | capitalize }} don’t know their details</p>
+        <p class="govuk-body"><a href="{{ formAction }}">{{ you | capitalize }} don’t know their details</p>
 
         {% endif %}
 

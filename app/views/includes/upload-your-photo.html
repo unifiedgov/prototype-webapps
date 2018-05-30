@@ -1,6 +1,6 @@
 {% import "apply-for-a-blue-badge/macros/upload-component.html" as uploadComponentWidget %}
 
-<form action="check-answers?providePhoto=upload">
+<form action="{{ formAction }}">
   <div class="hidden-tablet">
     <h1 class="govuk-heading-l">Add a photo</h1>
     <p>You need to provide a photo which will be printed on the back of {{ your }} bage</p>
@@ -18,7 +18,7 @@
 
   {{ uploadComponentWidget.uploadComponent('your-photo-file-upload', 'photo', 'providePhoto',
   '/public/images/phillip.png',
-  '/apply/check-answers?providePhoto=notProvided&your-photo-file-upload=&photo=', your,
+  'apply-for-a-blue-badge/check-answers?providePhoto=notProvided&your-photo-file-upload=&photo=', your,
   'about how to provide ' + your + ' photo.', '', 'no', ''
   )}}
 

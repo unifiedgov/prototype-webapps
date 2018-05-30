@@ -18,10 +18,11 @@
       <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        {% if data['applicant'] === "organisation" %}
-        <p class="govuk-body">This should be the local council where your organisation is registered.</p>
+        {% if data['applicant'] === "organisation" %}        
+        <p class="govuk-body">Blue Badge applications are assessed by {{ your }} organisation's local council.</p> 
         {% else %}
-        <p class="govuk-body">Blue Badge applications are assessed by {{ your }} local council. <br> {{ you | capitalize }} can't get a Blue Badge if you live outside of the UK.</p>
+        <p class="govuk-body">Blue Badge applications are assessed by {{ your }} local council. 
+        <br> {{ you | capitalize }} can't get a Blue Badge if you live outside of the UK.</p>
         {% endif %}
 
         <form action="your-council-backend">

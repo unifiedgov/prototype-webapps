@@ -30,6 +30,10 @@
               <li>The badge issue fee is £10 which is refunded if the application isn't successful</li>
               <li>It can take up to 4 weeks to get a decision</li>
             </ul>
+            {{ govukButton({
+              "text": "Start " + application,
+              "href": '/apply-for-a-blue-badge/organisation-details/'
+            }) }}
           {% endif %}
         {% elif data['benefit'] !== 'none' or data['disability'] === 'blind' %}
           <!-- Receives a benefit or is registered blind = eligible -->
@@ -43,7 +47,7 @@
           </ul>
           {{ govukButton({
             "text": "Start " + application,
-            "href": '/apply-for-a-blue-badge/apply'
+            "href": '/apply-for-a-blue-badge/personal-details/'
           }) }}
           <p class="govuk-body">Alternatively, if you don't want to apply online you can contact
            {{data['council-name']}} council to find out about other ways to apply.</p>
@@ -69,7 +73,7 @@
           </ul>
           {{ govukButton({
             "text": "Start " + application,
-            "href": '/apply-for-a-blue-badge/apply'
+            "href": '/apply-for-a-blue-badge/personal-details/'
           }) }}
 
           <p class="govuk-body">Alternatively, if you don't want to apply online you can contact

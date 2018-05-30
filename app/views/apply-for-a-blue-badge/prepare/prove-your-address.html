@@ -21,7 +21,7 @@
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
         <form action="{{ formAction }}?proveIdentity=upload">
           <input type="hidden" id="change" name="change" value="{{change}}">
-          <p class="govuk-body">You need to upload a copy of a document which shows {{ you }} live at:<br />{{ data['address']}}.</p>
+          <p class="govuk-body">You need to upload a copy of a document which shows {{ you }} live at {{ data['address']}} such as:</p>
           <ul class="govuk-list govuk-list--bullet">
             <li>a recent council tax bill</li>
             <li>{{ your }} driving licence</li>

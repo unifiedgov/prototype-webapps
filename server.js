@@ -16,6 +16,8 @@ const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
+const apply = require('./app/routes/apply.js')
+const manage = require('./app/routes/manage.js')
 const utils = require('./lib/utils.js')
 
 const app = express()
@@ -193,7 +195,9 @@ if (typeof (routes) !== 'function') {
   console.log('Warning: the use of bind in routes is deprecated - please check the prototype kit documentation for writing routes.')
   routes.bind(app)
 } else {
-  app.use('/', routes)
+  app.use('/', routes);
+  app.use('/apply-for-a-blue-badge', apply);
+  app.use('/manage-blue-badges', manage);
 }
 
 // Redirect to the zip of the latest release of the prototype kit on GitHub
