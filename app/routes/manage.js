@@ -1,83 +1,88 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/admin/sign-in', function (req, res) {
-  res.render('admin/sign-in', {'title':'Sign in'})
+router.get('/', function (req, res) {
+  res.redirect('manage-blue-badges/sign-in');
+});
+
+router.get('/sign-in', function (req, res) {
+  res.locals.formAction = '/manage-blue-badges/all-applications';
+  res.render('manage-blue-badges/sign-in', {'title':'Sign in'})
   req.session.destroy()
 });
 
-router.get('/admin/', function (req, res) {
-  res.redirect('admin/sign-in');
-});
-
-router.get('/admin/reset-password', function (req, res) {
+router.get('/reset-password', function (req, res) {
+  res.locals.formAction = '/manage-blue-badges/reset-email-sent';
   req.session.data['show'] = undefined;
-  res.render('admin/reset-password', {'title':'Reset your password'})
+  res.render('manage-blue-badges/reset-password', {'title':'Reset your password'})
 });
 
-router.get('/admin/reset-email-sent', function (req, res) {
-  res.render('admin/reset-email-sent', {'title':'Link sent'})
+router.get('/reset-email-sent', function (req, res) {
+  res.locals.formAction = '/manage-blue-badges/reset-password';
+  res.render('manage-blue-badges/reset-email-sent', {'title':'Link sent'})
 });
 
-router.get('/admin/link-expired', function (req, res) {
-  res.render('admin/link-expired', {'title':'Link expired'})
+router.get('/link-expired', function (req, res) {
+  res.locals.formAction = '/manage-blue-badges/reset-password';
+  res.render('manage-blue-badges/link-expired', {'title':'Link expired'})
 });
 
-router.get('/admin/set-your-password', function (req, res) {
-  res.render('admin/set-your-password', {'title':'Set your password'})
+router.get('/set-your-password', function (req, res) {
+  res.locals.formAction = '/manage-blue-badges/all-applications';
+  res.render('manage-blue-badges/set-your-password', {'title':'Set your password'})
 });
 
-router.get('/admin/all-applications', function (req, res) {
-  res.render('admin/all-applications', {'title':'All applications','app_class':'active'})
+router.get('/all-applications', function (req, res) {
+  res.render('manage-blue-badges/all-applications', {'title':'All applications','app_class':'active'})
 });
 
-router.get('/admin/manage-users', function (req, res) {
+router.get('/manage-users', function (req, res) {
   req.session.data['success'] = undefined;
-  res.render('admin/manage-users', {'title':'Manage users','manage_class':'active'})
+  res.render('manage-blue-badges/manage-users', {'title':'Manage users','manage_class':'active'})
 });
 
-router.get('/admin/users-results', function (req, res) {
+router.get('/users-results', function (req, res) {
   res.locals.searchValue = req.session.data['search-box'];
-  res.render('admin/users-results', {'title':'Manage users','manage_class':'active'})
+  res.render('manage-blue-badges/users-results', {'title':'Manage users','manage_class':'active'})
 });
 
-router.get('/admin/create-user', function (req, res) {
-  res.render('admin/create-user', {'title':'Create a new user','manage_class':'active'})
+router.get('/create-user', function (req, res) {
+  res.render('manage-blue-badges/create-user', {'title':'Create a new user','manage_class':'active'})
 });
 
-router.get('/admin/edit-details', function (req, res) {
-  res.render('admin/edit-details', {'title':'User details','manage_class':'active'})
+router.get('/edit-details', function (req, res) {
+  res.render('manage-blue-badges/edit-details', {'title':'User details','manage_class':'active'})
 });
 
-router.get('/admin/remove-user', function (req, res) {
-  res.render('admin/remove-user', {'title':'Remove user','manage_class':'active'})
+router.get('/remove-user', function (req, res) {
+  res.render('manage-blue-badges/remove-user', {'title':'Remove user','manage_class':'active'})
 });
 
-router.get('/admin/order-a-badge', function (req, res) {
+router.get('/order-a-badge', function (req, res) {
   req.session.data = undefined;
-  res.render('admin/order-a-badge/index', {'title':'Order a badge','order_class':'active', 'formAction':'/admin/order-a-badge/details'})
+  res.render('manage-blue-badges/order-a-badge/index', {'title':'Order a badge','order_class':'active', 'formAction':'/manage-blue-badges/order-a-badge/details'})
 });
 
-router.get('/admin/order-a-badge/details', function (req, res) {
+router.get('/order-a-badge/details', function (req, res) {
   if (req.session.data['badge-type'] === 'person') {
     res.locals.title = 'Personal details';
   } else {
     res.locals.title = 'Organisation details';
   }
 
-  res.render('admin/order-a-badge/details', {'order_class':'active', 'formAction':'/admin/order-a-badge/processing'});
+  res.render('manage-blue-badges/order-a-badge/details', {'order_class':'active', 'formAction':'/manage-blue-badges/order-a-badge/processing'});
 });
 
-router.get('/admin/order-a-badge/change-details', function (req, res) {
+router.get('/order-a-badge/change-details', function (req, res) {
   if (req.session.data['badge-type'] === 'person') {
     res.locals.title = 'Personal details';
   } else {
     res.locals.title = 'Organisation details';
   }
-  res.render('admin/order-a-badge/details', {'title':'Order a badge','order_class':'active', 'formAction':'/admin/order-a-badge/check'})
+  res.render('manage-blue-badges/order-a-badge/details', {'title':'Order a badge','order_class':'active', 'formAction':'/manage-blue-badges/order-a-badge/check'})
 });
 
-router.get('/admin/order-a-badge/processing', function (req, res) {
+router.get('/order-a-badge/processing', function (req, res) {
   var todayDate = new Date();
   var startDay = todayDate.getDate();
   var startMonth = todayDate.getMonth()+1; //January is 0!
@@ -88,72 +93,72 @@ router.get('/admin/order-a-badge/processing', function (req, res) {
   var expiryMonth = expiryDate.getMonth()+1; // January is 0!
   var expiryYear = expiryDate.getFullYear();
 
-  res.render('admin/order-a-badge/processing', {'title':'Processing','order_class':'active',
+  res.render('manage-blue-badges/order-a-badge/processing', {'title':'Processing','order_class':'active',
     'startDay': startDay, 'startMonth': startMonth, 'startYear': startYear,
     'expiryDay': expiryDay, 'expiryMonth': expiryMonth, 'expiryYear': expiryYear
   });
 });
 
-router.get('/admin/order-a-badge/check', function (req, res) {
-  res.render('admin/order-a-badge/check', {'title':'Check order','order_class':'active'})
+router.get('/order-a-badge/check', function (req, res) {
+  res.render('manage-blue-badges/order-a-badge/check', {'title':'Check order','order_class':'active'})
 })
 
-router.get('/admin/order-a-badge/badge-ordered', function (req, res) {
+router.get('/order-a-badge/badge-ordered', function (req, res) {
   req.session.destroy();
-  res.render('admin/badge-ordered', {'order_class':'active'})
+  res.render('manage-blue-badges/badge-ordered', {'order_class':'active'})
 })
 
-router.get('/admin/search-for-a-badge', function (req, res) {
-  res.render('admin/search-for-a-badge', {'title':'Find a badge','search_class':'active'})
+router.get('/search-for-a-badge', function (req, res) {
+  res.render('manage-blue-badges/search-for-a-badge', {'title':'Find a badge','search_class':'active'})
 })
 
-router.get('/admin/search-results', function (req, res) {
+router.get('/search-results', function (req, res) {
   res.locals.searchValue = req.session.data['badge-search'];
-  res.render('admin/search-results', {'title':'Find a badge','search_class':'active'})
+  res.render('manage-blue-badges/search-results', {'title':'Find a badge','search_class':'active'})
 })
 
-router.get('/admin/view-badge', function (req, res) {
-  res.render('admin/view-badge', {'title':'View badge','search_class':'active'})
+router.get('/view-badge', function (req, res) {
+  res.render('manage-blue-badges/view-badge', {'title':'View badge','search_class':'active'})
 })
 
-router.get('/admin/view-badge-external', function (req, res) {
-  res.render('admin/view-badge-external', {'title':'View badge','search_class':'active'})
+router.get('/view-badge-external', function (req, res) {
+  res.render('manage-blue-badges/view-badge-external', {'title':'View badge','search_class':'active'})
 })
 
-router.get('/admin/replace-badge', function (req, res) {
-  res.render('admin/replace-badge', {'title':'Order a replacement badge','search_class':'active'})
+router.get('/replace-badge', function (req, res) {
+  res.render('manage-blue-badges/replace-badge', {'title':'Order a replacement badge','search_class':'active'})
 })
 
-router.get('/admin/replacement-ordered', function (req, res) {
-  res.render('admin/replacement-ordered', {'title':'Replacement ordered','search_class':'active'})
+router.get('/replacement-ordered', function (req, res) {
+  res.render('manage-blue-badges/replacement-ordered', {'title':'Replacement ordered','search_class':'active'})
 })
 
-router.get('/admin/cancel-badge', function (req, res) {
-  res.render('admin/cancel-badge', {'title':'Cancel badge','search_class':'active'})
+router.get('/cancel-badge', function (req, res) {
+  res.render('manage-blue-badges/cancel-badge', {'title':'Cancel badge','search_class':'active'})
 })
 
-router.get('/admin/badge-cancelled', function (req, res) {
-  res.render('admin/badge-cancelled', {'search_class':'active'})
+router.get('/badge-cancelled', function (req, res) {
+  res.render('manage-blue-badges/badge-cancelled', {'search_class':'active'})
 })
 
-router.get('/admin/view-my-details', function (req, res) {
-  res.render('admin/view-my-details', {'title':'View my details','view_class':'active'})
+router.get('/view-my-details', function (req, res) {
+  res.render('manage-blue-badges/view-my-details', {'title':'View my details','view_class':'active'})
 })
 
-router.get('/admin/renewals', function (req, res) {
-  res.render('admin/renewals', {'title':'Renewals','renewals_class':'active'})
+router.get('/renewals', function (req, res) {
+  res.render('manage-blue-badges/renewals', {'title':'Renewals','renewals_class':'active'})
 })
 
-router.get('/admin/replacements', function (req, res) {
-  res.render('admin/replacements', {'title':'Replacements','replacements_class':'active'})
+router.get('/replacements', function (req, res) {
+  res.render('manage-blue-badges/replacements', {'title':'Replacements','replacements_class':'active'})
 })
 
-router.get('/admin/updates', function (req, res) {
-  res.render('admin/updates', {'title':'Updates','updates_class':'active'})
+router.get('/updates', function (req, res) {
+  res.render('manage-blue-badges/updates', {'title':'Updates','updates_class':'active'})
 })
 
-router.get('/admin/cancellations', function (req, res) {
-  res.render('admin/cancellations', {'title':'Cancellations','cancellations_class':'active'})
+router.get('/cancellations', function (req, res) {
+  res.render('manage-blue-badges/cancellations', {'title':'Cancellations','cancellations_class':'active'})
 })
 
 module.exports = router

@@ -1,16 +1,7 @@
 {% extends "admin_layout.html" %}
 
-{% block back_link %}
-  <div class="back-link-container">
-    {{ govukBackLink({
-      "text": "Back",
-      "href": "javascript: window.history.go(-1)"
-    }) }}
-  </div>
-{% endblock %}
-
 {% block page_header %}
-  <h1>{{title}}</h1>
+  <h1>{{title}}</h1><p class="count">29</p>
   <div class="search-box-container">
     <form action="" class="search-box">
       {% include "includes/search.html" %}
@@ -22,8 +13,6 @@
 {% endblock %}
 
 {% block content %}
-
-  <p class="govuk-body">Your search for "John Smith" returned <b>5 results</b></p>
 
   {{ govukTable({
     "firstCellIsHeader": false,

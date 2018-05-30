@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="/admin/reset-password" class="sign-in" novalidate>
+<form action="{{ formAction }}" class="sign-in" novalidate>
 
   <h1 class="govuk-heading-l">{{title}}</h1>
 
@@ -15,7 +15,7 @@
 
   <br>
 
-  <a href="/admin/sign-in">Sign in</a>
+  <a href="/manage-blue-badges/sign-in">Sign in</a>
   
 </form>
 

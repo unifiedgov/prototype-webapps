@@ -39,14 +39,14 @@
   <div class="header-proposition">
     <div class="content">
       <nav id="proposition-menu">
-        <a href="/admin" id="proposition-name">
-          {{ laName }}
-        </a>
-        <h3 class="proposition__authority">
-        {# Set adminServiceName in config.js. Use a block to override on a page. #}
+        <a href="/manage-blue-badges" id="proposition-name">
+           {# Set adminServiceName in config.js. Use a block to override on a page. #}
           {% block service_name %}
             {% if adminServiceName %} {{ adminServiceName }} {% endif %}
           {% endblock %}
+        </a>
+        <h3 class="proposition__authority">
+          {{ laName }}
         </h3>
         <!--
         <ul id="proposition-links">
@@ -72,34 +72,34 @@
   <nav class="side-nav">
     <ul>
       <li class="side-nav__item {{ app_class }}">
-        <a href="/admin/all-applications">All applications<span class="counter">29</span></a>
+        <a href="/manage-blue-badges/all-applications">All applications<span class="counter">29</span></a>
       </li>
       <li class="side-nav__item {{ new_class }}">
-        <a href="/admin/new-applications">New applications<span class="counter">10</span></a>
+        <a href="/manage-blue-badges/new-applications">New applications<span class="counter">10</span></a>
       </li>
       <li class="side-nav__item {{ renewals_class }}" >
-        <a href="/admin/renewals">Renewals<span class="counter">12</span></a>
+        <a href="/manage-blue-badges/renewals">Renewals<span class="counter">12</span></a>
       </li>
       <li class="side-nav__item {{ replacements_class }}">
-        <a href="/admin/replacements">Replacements<span class="counter">1</span></a>
+        <a href="/manage-blue-badges/replacements">Replacements<span class="counter">1</span></a>
       </li>
       <li class="side-nav__item {{ updates_class }}">
-        <a href="/admin/updates">Updates<span class="counter">3</span></a>
+        <a href="/manage-blue-badges/updates">Updates<span class="counter">3</span></a>
       </li>
       <li class="side-nav__item {{ cancellations_class }}">
-        <a href="/admin/cancellations">Cancellations<span class="counter">3</span></a>
+        <a href="/manage-blue-badges/cancellations">Cancellations<span class="counter">3</span></a>
       </li>
       <li class="side-nav__item {{ order_class }}">
-        <a href="/admin/order-a-badge">Order a badge</a>
+        <a href="/manage-blue-badges/order-a-badge">Order a badge</a>
       </li>
       <li class="side-nav__item {{ search_class }}">
-        <a href="/admin/search-for-a-badge">Find a badge</a>
+        <a href="/manage-blue-badges/search-for-a-badge">Find a badge</a>
       </li>
       <li class="side-nav__item {{ manage_class }}">
-        <a href="/admin/manage-users ">Manage users</a>
+        <a href="/manage-blue-badges/manage-users ">Manage users</a>
       </li>
       <li class="side-nav__item {{ view_class }}">
-        <a href="/admin/view-my-details ">View my details</a>
+        <a href="/manage-blue-badges/view-my-details ">View my details</a>
       </li>
     </ul>
   </nav>
