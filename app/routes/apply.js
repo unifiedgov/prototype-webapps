@@ -281,11 +281,23 @@ router.get('/prove-eligibility/upload-benefit', function (req, res) {
 
 // Walking ability
 
-router.get('/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
-  res.render(proveEligibilityTemplatePath+'how-were-your-mobility-aids-provided');
+router.get('/prove-eligibility/walking-time', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/what-makes-walking-difficult';
+  res.render(proveEligibilityTemplatePath+'walking-time');
+});
+
+router.get('/prove-eligibility/what-makes-walking-difficult', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/how-quickly-do-you-walk';
+  res.render(proveEligibilityTemplatePath+'what-makes-walking-difficult');
+});
+
+router.get('/prove-eligibility/how-quickly-do-you-walk', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/use-a-mobility-aid';
+  res.render(proveEligibilityTemplatePath+'how-quickly-do-you-walk');
 });
 
 router.get('/prove-eligibility/use-a-mobility-aid', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/use-a-mobility-aid-backend';
   res.render(proveEligibilityTemplatePath+'use-a-mobility-aid');
 });
 
@@ -298,6 +310,7 @@ router.get('/prove-eligibility/use-a-mobility-aid-backend', function(req, res) {
 });
 
 router.get('/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/describe-conditions';
   res.render(proveEligibilityTemplatePath+'how-were-your-mobility-aids-provided');
 });
 

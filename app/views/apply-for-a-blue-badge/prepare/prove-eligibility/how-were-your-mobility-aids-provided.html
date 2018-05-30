@@ -19,7 +19,7 @@
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-        <form action="your-medical-condition">
+        <form action="{{ formAction }}">
           {% if data['mobility-aids-used'].includes('elbow-crutches') %}
           {{ govukRadios({
             "idPrefix": "my-elbow-crutch-was",
