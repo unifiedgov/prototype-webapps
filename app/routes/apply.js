@@ -634,7 +634,6 @@ router.get('/declaration', function (req, res) {
   res.render('apply-for-a-blue-badge/apply/declaration', {'formAction':'/apply-for-a-blue-badge/apply/complete'})
 })
 
-
 router.get('/paying-for-your-blue-badge', function(req, res) {
   res.locals.formAction = '/apply-for-a-blue-badge/paying-for-your-blue-badge-backend';
   res.render('apply-for-a-blue-badge/apply/paying-for-your-blue-badge');
@@ -648,7 +647,6 @@ router.get('/paying-for-your-blue-badge-backend', function(req, res) {
     res.redirect('https://production-1-production-pay-products-ui.cloudapps.digital/pay/a9e0f2ce1f7148ef879bdc1fa04ba652');
   };
 });
-
 
 router.get('/confirmation', function (req, res) {
   res.render('apply-for-a-blue-badge/apply/confirmation')

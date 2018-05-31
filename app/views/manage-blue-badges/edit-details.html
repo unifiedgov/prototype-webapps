@@ -39,7 +39,7 @@
       {{ govukRadios({
         "idPrefix": "permissions",
         "name": "permissions",
-        "classes": "govuk-radios--inline",
+        "classes": "govuk-radios",
         "fieldset": {
           "legend": {
             "text": "Permissions"
@@ -48,12 +48,12 @@
         "items": [
           {
             "value": "standard",
-            "text": "Standard",
+            "html": "<b>Standard</b><br />Can only manage badges and application",
             "checked": data['permissions'] === "standard"
           },
           {
-            "value": "owner",
-            "text": "Owner",
+            "value": "adminstrator",
+            "html": "<b>Administrator</b><br />Can manage local authority users, badges and application",
             "checked": data['permissions'] === "owner"
           }
         ]
