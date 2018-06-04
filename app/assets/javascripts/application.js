@@ -109,10 +109,4 @@ $(document).ready(function () {
     //   source: councils
     // })
 
-    accessibleAutocomplete.enhanceSelectElement({
-      defaultValue: '',
-      showAllValues: true,
-      selectElement: document.querySelector('#councilPicker')
-    })
-
 })

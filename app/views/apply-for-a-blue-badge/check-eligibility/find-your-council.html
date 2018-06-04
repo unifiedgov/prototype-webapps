@@ -67,3 +67,15 @@
 </div>
 
 {% endblock %}
+
+{% block page_scripts %}
+  <script>
+    $(document).ready(function () {
+      accessibleAutocomplete.enhanceSelectElement({
+        defaultValue: '',
+        showAllValues: true,
+        selectElement: document.querySelector('#councilPicker')
+      });
+    });
+  </script>
+{% endblock %}
