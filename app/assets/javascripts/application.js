@@ -30,6 +30,14 @@ $(document).ready(function () {
 
   }
 
+  if(gup('user-removed')) {
+
+    var gupDecoded = unescape(gup('user-removed'));
+
+    $('.govuk-table').find("tr:contains('" + gupDecoded + "')").remove();
+
+  }
+
   $('[data-expanding-radios] input').on('click', function() {
     var $this = $(this),
       thisID = $this.attr('id'),

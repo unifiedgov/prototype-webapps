@@ -54,7 +54,7 @@
           {
             "value": "adminstrator",
             "html": "<b>Administrator</b><br />Can manage local authority users, badges and application",
-            "checked": data['permissions'] === "owner"
+            "checked": data['permissions'] === "adminstrator"
           }
         ]
       }) }}
@@ -90,6 +90,7 @@
                         <p>Are you sure you want to remove access for <b>' + data['full-name'] + '</b>?</p>
                         <p>You won\'t be able to undo this.</p>
                         <input id="success" name="success" type="hidden" value="User removed">
+                        <input id="user-removed" name="user-removed" type="hidden" value=' + data['email-address'] + '>
                         <input value="Yes, remove user" type="submit" class="govuk-button">
                       </form>
                       <p class="govuk-body">
