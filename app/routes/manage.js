@@ -22,6 +22,14 @@ router.get('/reset-email-sent', function (req, res) {
   res.render('manage-blue-badges/reset-email-sent', {'title':'Link sent'})
 });
 
+router.get('/error-404', function (req, res) {
+  res.render('manage-blue-badges/error-404', {'title':'Page not found'})
+});
+
+router.get('/error-500', function (req, res) {
+  res.render('manage-blue-badges/error-500', {'title':'Something went wrong'})
+});
+
 router.get('/link-expired', function (req, res) {
   res.locals.formAction = '/manage-blue-badges/reset-password';
   res.render('manage-blue-badges/link-expired', {'title':'Link expired'})

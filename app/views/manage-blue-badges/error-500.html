@@ -1,0 +1,24 @@
+
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+
+<h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+<p class="govuk-body">We're currently experiencing technical difficulties.</p> 
+<p class="govuk-body">Please try again later. Alternatively, you can <a href="">contact us</a>.</p>
+
+{% endblock %}
