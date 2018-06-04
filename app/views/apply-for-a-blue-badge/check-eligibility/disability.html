@@ -19,7 +19,15 @@
       <div class="govuk-grid-column-two-thirds">
 
         <form action="disability-backend">
-          <div class="expanding-panel-container">
+          {% set disabilityNoneHtml %}
+            {{ govukTextarea({
+              "name": "describe",
+              "id": "describe",
+              "label": {
+                "text": "Describe " + your + " medical condition or disability"
+              }
+            }) }}
+          {% endset -%}
 
             {% if  data['council-name'] === "wales" %}
   
@@ -53,7 +61,10 @@
                 {
                   "value": "none",
                   "text": "None of these reasons",
-                  "id": "disability-none"
+                  "id": "disability-none",
+                  "conditional": {
+                    "html": disabilityNoneHtml
+                  }
                 }
               ]
               %}
@@ -80,7 +91,10 @@
                 {
                   "value": "none",
                   "text": "None of these describe " + you + " medical condition or disability",
-                  "id": "disability-none"
+                  "id": "disability-none",
+                  "conditional": {
+                    "html": disabilityNoneHtml
+                  }
                 }
               ]
             %}
@@ -103,7 +117,10 @@
                 {
                   "value": "none",
                   "text": "None of these reasons",
-                  "id": "disability-none"
+                  "id": "disability-none",
+                  "conditional": {
+                    "html": disabilityNoneHtml
+                  }
                 }
               ]
             %}
@@ -113,9 +130,6 @@
             {{ govukRadios({
               "idPrefix": "disability",
               "name": "disability",
-                "attributes": {
-                  "data-expanding-radios": "true"
-                },
               "fieldset": {
                 "legend": {
                   "text": pageHeading,
@@ -125,20 +139,6 @@
               },
               "items": differentOptions
             }) }}
-
-
-            <div class="expanding-panel" data-expanded-by="disability-none">
-              <div class="govuk-details__text">
-                {{ govukTextarea({
-                  "name": "describe",
-                  "id": "describe",
-                  "label": {
-                    "text": "Describe " + your + " medical condition or disability"
-                  }
-                }) }}
-              </div>
-            </div>
-          </div>
           
           
           {{ govukButton({

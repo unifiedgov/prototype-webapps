@@ -29,47 +29,44 @@
             value: data['fullName']
           }) }}
 
-          <div class="expanding-panel-container">
-            {{ govukRadios({
-              "idPrefix": "name-changed",
-              "name": "name-changed",
-              "attributes": {
-                "data-expanding-radios": "true"
+          {% set nameHtml %}
+            {{ govukInput({
+              "label": {
+                "text": "What was " + your + " full name at birth?"
               },
-              "fieldset": {
-                "legend": {
-                  "text": "Has " + your + " name changed since birth?",
-                  "isPageHeading": false,
-                  "classes": 'govuk-fieldset__legend--m'
-                }
-              },
-              "items": [
-                {
-                  "value": "no",
-                  "text": "No, " + your + " name hasn't changed",
-                  "checked": data['name-changed'] === 'no'
-                },
-                {
-                  "value": "yes",
-                  "text": "Yes, " + your + " name has changed",
-                  "checked": data['name-changed'] === 'yes',
-                  "id": 'name-changed-yes'
-                }
-              ]
+              id: "birth-full-name",
+              name: "birth-full-name"
             }) }}
+          {% endset -%}
 
-            <div class="expanding-panel" data-expanded-by="name-changed-yes">
-              <div class="govuk-details__text">
-                {{ govukInput({
-                  "label": {
-                    "text": "What was " + your + " full name at birth?"
-                  },
-                  id: "birth-full-name",
-                  name: "birth-full-name"
-                }) }}
-              </div>
-            </div>
-          </div>
+          {{ govukRadios({
+            "idPrefix": "name-changed",
+            "name": "name-changed",
+            "fieldset": {
+              "legend": {
+                "text": "Has " + your + " name changed since birth?",
+                "isPageHeading": false,
+                "classes": 'govuk-fieldset__legend--m'
+              }
+            },
+            "items": [
+              {
+                "value": "no",
+                "text": "No, " + your + " name hasn't changed",
+                "checked": data['name-changed'] === 'no'
+              },
+              {
+                "value": "yes",
+                "text": "Yes, " + your + " name has changed",
+                "checked": data['name-changed'] === 'yes',
+                "id": 'name-changed-yes',
+                "conditional": {
+                  "html": nameHtml
+                }
+              }
+            ]
+          }) }}
+
           
           {{ govukButton({
             "text": submitLabel

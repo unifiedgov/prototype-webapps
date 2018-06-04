@@ -42,52 +42,49 @@
 
           {% endif %}
 
-          <div class="expanding-panel-container">
-            {{ govukRadios({
-              "idPrefix": "renewal-or-new-application",
-              "name": "renewal-or-new-application",
-              "attributes": {
-                "data-expanding-radios": "true"
+          {% set badgeHtml %}
+            {{ govukInput({
+              "label": {
+                "text": "Existing badge number"
               },
-              "fieldset": {
-                "legend": {
-                  "text": pageHeading,
-                  "isPageHeading": true,
-                  "classes": 'govuk-fieldset__legend--l'
-                }
+              "hint": {
+                "text": "For example, 0957X1114"
               },
-              "items": [
-                {
-                  "value": "renewal",
-                  "text": "Yes",
-                  "checked": data['existing'] === "yes",
-                  "id": "renewal-or-new-application-renewal"
-                },
-                {
-                  "value": "new",
-                  "text": "No",
-                  "id": "renewal-or-new-application-new"
-                }
-              ]
+              classes: "govuk-!-width-two-thirds",
+              errorMessage: errorArray.existingBadge,
+              id: formIDs.existingBadge.id,
+              name: formIDs.existingBadge.id
             }) }}
+          {% endset -%}
+
+          {{ govukRadios({
+            "idPrefix": "renewal-or-new-application",
+            "name": "renewal-or-new-application",
+            "fieldset": {
+              "legend": {
+                "text": pageHeading,
+                "isPageHeading": true,
+                "classes": 'govuk-fieldset__legend--l'
+              }
+            },
+            "items": [
+              {
+                "value": "renewal",
+                "text": "Yes",
+                "checked": data['existing'] === "yes",
+                "id": "renewal-or-new-application-renewal",
+                "conditional": {
+                  "html": badgeHtml
+                }
+              },
+              {
+                "value": "new",
+                "text": "No",
+                "id": "renewal-or-new-application-new"
+              }
+            ]
+          }) }}
             
-            <div class='expanding-panel {% if data["show"] === "errors" %} has-error {% endif %}' data-expanded-by="renewal-or-new-application-renewal">
-              <div class="govuk-details__text">
-                {{ govukInput({
-                  "label": {
-                    "text": "Existing badge number"
-                  },
-                  "hint": {
-                    "text": "For example, 0957X1114"
-                  },
-                  classes: "govuk-!-width-two-thirds",
-                  errorMessage: errorArray.existingBadge,
-                  id: formIDs.existingBadge.id,
-                  name: formIDs.existingBadge.id
-                }) }}
-              </div>
-            </div>
-          </div>
           
           {{ govukButton({
             "text": "Continue"

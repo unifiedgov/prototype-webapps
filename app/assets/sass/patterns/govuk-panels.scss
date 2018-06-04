@@ -21,3 +21,10 @@
 		margin-bottom: 0;
 	}
 }
+
+.govuk-radios__conditional {
+	.govuk-form-group--error {
+		margin-left: -37px; /* Hacky solution to style the error inside the conditional reveal */
+		padding-left: 30px;
+	}
+}

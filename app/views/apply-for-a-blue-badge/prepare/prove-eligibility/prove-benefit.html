@@ -19,13 +19,38 @@
       <div class="govuk-grid-column-two-thirds">
 
         <form action="{{formAction}}">
-          <div class="expanding-panel-container">
+          {% set dateAwardHtml %}
+            {{ govukDateInput({
+              "fieldset": {
+                "legend": {
+                  "text": 'When is ' + your +' award of this benefit due to end?',
+                  "isPageHeading": false,
+                  "classes": 'govuk-fieldset__legend--m'
+                }
+              },
+              "hint": {
+                "text": 'For example, 31 3 2020'
+              },
+              id: 'awarded-benefit-before-start',
+              name: 'awarded-benefit-before-start',
+              items:[
+                {
+                  name: 'day'
+                },
+                {
+                  name: 'month'
+                },
+                {
+                  name: 'year'
+                }
+              ]
+              })
+            }}
+          {% endset -%}
+
             {{ govukRadios({
               "idPrefix": "awarded-benefit-indefinitely-before",
               "name": "awarded-benefit-indefinitely-before",
-              "attributes": {
-                "data-expanding-radios": "true"
-              },
               "fieldset": {
                 "legend": {
                   "text": pageHeading,
@@ -41,42 +66,13 @@
                 {
                   "value": "no",
                   "text": "No",
-                  "id": "awarded-benefit-indefinitely-before-no"
+                  "id": "awarded-benefit-indefinitely-before-no",
+                  "conditional": {
+                    "html": dateAwardHtml
+                  }
                 }
               ]
             }) }}
-            
-            <div class="expanding-panel" data-expanded-by="awarded-benefit-indefinitely-before-no">
-              <div class="govuk-details__text">
-                {{ govukDateInput({
-                  "fieldset": {
-                    "legend": {
-                      "text": 'When is ' + your +' award of this benefit due to end?',
-                      "isPageHeading": false,
-                      "classes": 'govuk-fieldset__legend--m'
-                    }
-                  },
-                  "hint": {
-                    "text": 'For example, 31 3 2020'
-                  },
-                  id: 'awarded-benefit-before-start',
-                  name: 'awarded-benefit-before-start',
-                  items:[
-                    {
-                      name: 'day'
-                    },
-                    {
-                      name: 'month'
-                    },
-                    {
-                      name: 'year'
-                    }
-                  ]
-                  })
-                }}
-              </div>
-            </div>
-          </div>
           
           {{ govukButton({
             "text": "Continue"
