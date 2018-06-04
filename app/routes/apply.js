@@ -212,6 +212,11 @@ router.get('/personal-details/enter-address', function (req, res) {
   res.render(personDetailsTemplatePath+'enter-your-address')
 })
 
+router.get('/personal-details/contact-details', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-your-identity'))
+  res.render(personDetailsTemplatePath+'contact-details')
+})
+
 // Organisation details
 
 const organisationDetailsPath = '/apply-for-a-blue-badge/organisation-details/';
