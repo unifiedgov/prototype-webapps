@@ -20,6 +20,20 @@
 
   {% endif %}
 
+  {% if  data['show'] == "lockedout" %}
+
+    {{ govukErrorSummary({
+      "titleText": "You've been locked out",
+      "classes": "system-error",
+      "errorList": [
+        {
+          "html": "There has been too many attempts to sign in to your account. <br> <br> You can either wait an hour, reset your password or contact your administration to unlock your account."
+        }
+      ]
+    }) }}
+
+  {% endif %}
+
   {% if  data['show'] == "cant-signin" %}
 
     {{ govukErrorSummary({
