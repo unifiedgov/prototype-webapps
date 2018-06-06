@@ -565,7 +565,7 @@ router.get('/prove-eligibility/list-healthcare-professionals', function(req, res
   }
 
   res.locals.tableRows = tableRows;
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-your-address'
+  res.locals.formAction = '/apply-for-a-blue-badge/prepare/check-answers'
   res.render(proveEligibilityTemplatePath+'list-healthcare-professionals');
 });
 
