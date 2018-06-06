@@ -18,6 +18,18 @@
       <div class="govuk-grid-column-two-thirds">
 
         <form action="{{ formAction }}">
+
+          {% set somethingHtml %}
+            {{ govukInput({
+              "label": {
+                "text": "Give a description"
+              },
+              classes: "govuk-!-width-two-thirds",
+              id: "something-description",
+              name: "something-description"
+            }) }}
+          {% endset -%}
+
           {{ govukCheckboxes({
             "idPrefix": "difficulty",
             "name": "difficulty",
@@ -30,26 +42,33 @@
             },
             "items": [
               {
-                "value": "shortness",
-                "text": "Shortness of breath",
-                  "checked": data['difficulty'] === 'shortness'
-              },
-              {
                 "value": "pain",
-                "text": "Pain",
+                "text": "Excessive pain",
                 "checked": data['difficulty'] === 'pain'
               },
               {
+                "value": "breathlessness",
+                "text": "Breathlessness",
+                  "checked": data['difficulty'] === 'breathlessness'
+              },
+              {
                 "value": "balance",
-                "text": "Balance",
+                "text": "Balance or coordination",
                 "checked": data['difficulty'] === 'balance'
+              },
+              {
+                "value": "dangerous",
+                "text": "It's dangerous to my health",
+                "checked": data['difficulty'] === 'dangerous'
               },
               {
                 "value": "something",
                 "text": "Something else",
-                "checked": data['difficulty'] === 'something'
+                "checked": data['difficulty'] === 'something',
+                "conditional": {
+                  "html": somethingHtml
+                }
               }
-
             ]
           }) }}
           

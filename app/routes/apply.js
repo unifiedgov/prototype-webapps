@@ -331,7 +331,7 @@ router.get('/prove-eligibility', function(req, res) {
   if (req.session.data['benefit'] !== 'none') {
   	res.redirect('/apply-for-a-blue-badge/prove-benefit');
   } else if (req.session.data['disability'] === 'problems-walking') {
-    res.redirect(proveEligibilityPath+'walking-time');
+    res.redirect(proveEligibilityPath+'what-makes-walking-difficult');
   } else {
     res.redirect(proveEligibilityPath+'describe-conditions');
   }
@@ -377,14 +377,22 @@ router.get('/prove-eligibility/upload-benefit', function (req, res) {
 
 // Walking ability
 
+router.get('/prove-eligibility/what-makes-walking-difficult', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/walking-time';
+  res.render(proveEligibilityTemplatePath+'what-makes-walking-difficult');
+});
+
 router.get('/prove-eligibility/walking-time', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/what-makes-walking-difficult';
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/walking-time-backend';
   res.render(proveEligibilityTemplatePath+'walking-time');
 });
 
-router.get('/prove-eligibility/what-makes-walking-difficult', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/how-quickly-do-you-walk';
-  res.render(proveEligibilityTemplatePath+'what-makes-walking-difficult');
+router.get('/prove-eligibility/walking-time-backend', function(req, res) {
+  if (req.session.data['how-long-walk'] === 'cant-walk') {
+    res.redirect(proveEligibilityPath+'use-a-mobility-aid');
+  } else {
+    res.redirect(proveEligibilityPath+'how-quickly-do-you-walk');
+  }
 });
 
 router.get('/prove-eligibility/how-quickly-do-you-walk', function(req, res) {
@@ -398,10 +406,10 @@ router.get('/prove-eligibility/use-a-mobility-aid', function(req, res) {
 });
 
 router.get('/prove-eligibility/use-a-mobility-aid-backend', function(req, res) {
-  if (req.session.data['use-a-mobility-aid'] === 'yes' && req.session.data['mobility-aids-used']) {
-    res.redirect(proveEligibilityPath+'how-were-your-mobility-aids-provided');
-  } else {
+  if (req.session.data['mobility-aids-used'] == 'dont-use') {
     res.redirect(proveEligibilityPath+'describe-conditions');
+  } else {
+    res.redirect(proveEligibilityPath+'how-were-your-mobility-aids-provided');
   }
 });
 

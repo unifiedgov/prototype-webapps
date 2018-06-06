@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Do ' + you + ' use a mobility aid?' %}
+{% set pageHeading = 'Which of the following mobility aids do ' + you + ' use?' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -19,27 +19,31 @@
 
         <form action="{{ formAction }}">
 
-          {% set mobilityAidHtml %}
             {{ govukCheckboxes({
               "idPrefix": "mobility-aids-used",
               "name": "mobility-aids-used",
               "fieldset": {
                 "legend": {
-                  "text": 'Which of the following mobility aids do ' + you + ' use?',
-                  "isPageHeading": false,
-                  "classes": 'govuk-fieldset__legend--m'
+                  "text": pageHeading,
+                  "isPageHeading": true,
+                  "classes": 'govuk-fieldset__legend--l'
                 }
               },
               "items": [
                 {
-                  "value": "elbow-crutches",
-                  "text": "Elbow crutches",
-                  "checked": data['mobility-aids-used'] === 'elbow-crutches'
+                  "value": "wheel-chair",
+                  "text": "Wheelchair",
+                  "checked": data['mobility-aids-used'] === 'wheel-chair'
                 },
                 {
-                  "value": "walking-sticks",
-                  "text": "Walking stick",
-                  "checked": data['mobility-aids-used'] === 'walking-sticks'
+                  "value": "mobility-scooter",
+                  "text": "Mobility scooter",
+                  "checked": data['mobility-aids-used'] === 'mobility-scooter'
+                },
+                {
+                  "value": "prosthetic",
+                  "text": "Prosthetic lower limbs",
+                  "checked": data['mobility-aids-used'] === 'prosthetic'
                 },
                 {
                   "value": "walking-frame",
@@ -47,56 +51,23 @@
                   "checked": data['mobility-aids-used'] === 'walking-frame'
                 },
                 {
-                  "value": "rollator",
-                  "text": "Rollator",
-                  "checked": data['mobility-aids-used'] === 'rollator'
+                  "value": "elbow-crutches",
+                  "text": "Elbow crutches",
+                  "checked": data['mobility-aids-used'] === 'elbow-crutches'
                 },
                 {
-                  "value": "wheel-chair",
-                  "text": "Wheel chair",
-                  "checked": data['mobility-aids-used'] === 'wheel-chair'
+                  "value": "walking-sticks",
+                  "text": "Walking sticks",
+                  "checked": data['mobility-aids-used'] === 'walking-sticks'
                 },
                 {
-                  "value": "powered-wheel-chair",
-                  "text": "Powered wheel chair",
-                  "checked": data['mobility-aids-used'] === 'powered-wheel-chair'
-                },
-                {
-                  "value": "mobility-scooter",
-                  "text": "Mobility scooter",
-                  "checked": data['mobility-aids-used'] === 'mobility-scooter'
+                  "value": "dont-use",
+                  "text": "I don't use any of these mobility aids",
+                  "checked": data['mobility-aids-used'] === 'dont-use'
                 }
+                
               ]
             }) }}
-          {% endset -%}
-
-          {{ govukRadios({
-            "idPrefix": "use-a-mobility-aid",
-            "name": "use-a-mobility-aid",
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "no",
-                "text": "No, " + you + " don't use a mobility aid",
-                "checked": data['use-a-mobility-aid'] === 'no'
-              },
-              {
-                "value": "yes",
-                "text": "Yes, " + you + " use at least one mobility aid",
-                "checked": data['use-a-mobility-aid'] === 'yes',
-                "id": "mobility-aid-yes",
-                "conditional": {
-                  "html": mobilityAidHtml
-                }
-              }
-            ]
-          }) }}
             
 
           {{ govukButton({
