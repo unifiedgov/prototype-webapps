@@ -44,6 +44,10 @@ router.get('/all-applications', function (req, res) {
   res.render('manage-blue-badges/all-applications', {'title':'All applications','app_class':'active'})
 });
 
+router.get('/new-application', function (req, res) {
+  res.render('manage-blue-badges/new-application', {'title':'New application','app_class':'active'})
+})
+
 router.get('/manage-users', function (req, res) {
   req.session.data['success'] = undefined;
   res.render('manage-blue-badges/manage-users', {'title':'Manage users','manage_class':'active'})
