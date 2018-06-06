@@ -130,6 +130,9 @@
             {{ govukRadios({
               "idPrefix": "disability",
               "name": "disability",
+              "attributes": {
+                "data-catchoption-label": true
+              },
               "fieldset": {
                 "legend": {
                   "text": pageHeading,
@@ -139,6 +142,10 @@
               },
               "items": differentOptions
             }) }}
+
+            <div id="hiddenCaughtInputs">
+              
+            </div>
           
           
           {{ govukButton({

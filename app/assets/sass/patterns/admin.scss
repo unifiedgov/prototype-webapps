@@ -116,19 +116,6 @@
 			@include govuk-font-regular-19;
 		}
 	}
-	.form-section, .split-section {
-		border-bottom: 1px solid $govuk-grey-3;
-		@include govuk-responsive-margin($govuk-spacing-responsive-6, "bottom");
-		padding-top: 1rem;
-		padding-bottom: 1rem;
-		&:last-of-type {
-			border: none;
-			margin-bottom: 0;
-		}
-	}
-	.split-section {
-		border: none;
-	}
 }
 
 .check-answers-heading-with-change {

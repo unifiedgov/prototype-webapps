@@ -38,6 +38,27 @@ $(document).ready(function () {
 
   }
 
+  // Radio options updating a hidden input
+
+  $('[data-catchoption-label] input').on('change', function() {
+    var $this = $(this),
+        $thisParent = $this.closest('[data-catchoption-label]'),
+        $checkedItems = $thisParent.find('input:checked'),
+        thisGroupName = $checkedItems.attr('name'),
+        listOfValues = '';
+
+    $checkedItems.each(function() {
+      var $this = $(this),
+          thisLabelText = $this.next('label').text().trim();
+
+      listOfValues += thisLabelText + '\n';
+    });
+
+    $('#hiddenCaughtInputs')
+      .html('<input type="hidden" name="' + thisGroupName + '-chosen-value" value="' + listOfValues + '">');
+
+  });
+
   $('[data-expanding-radios] input').on('click', function() {
     var $this = $(this),
       thisID = $this.attr('id'),
