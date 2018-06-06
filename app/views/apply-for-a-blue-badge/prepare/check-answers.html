@@ -343,7 +343,7 @@
                 {{data['difficulty-chosen-value'] | striptags(true) | escape | nl2br}}
               </dd>
               <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/CHANGEME">
+                <a href="/apply-for-a-blue-badge/prove-eligibility/what-makes-walking-difficult?change=true">
                   Change<span class="visually-hidden"> walking difficulty</span>
                 </a>
               </dd>
@@ -357,7 +357,7 @@
                 {{data['how-long-walk-chosen-value']}}
               </dd>
               <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/CHANGEME">
+                <a href="/apply-for-a-blue-badge/prove-eligibility/walking-time?change=true">
                   Change<span class="visually-hidden"> walking duration</span>
                 </a>
               </dd>
@@ -368,10 +368,10 @@
                 Walking speed
               </dt>
               <dd class="govuk-check-your-answers__answer">
-                {{data['walking-speed-chosen-value']}}
+                {{data['walking-speed-chosen-value']}} than other people
               </dd>
               <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/CHANGEME">
+                <a href="/apply-for-a-blue-badge/prove-eligibility/how-quickly-do-you-walk?change=true">
                   Change<span class="visually-hidden"> walking speed</span>
                 </a>
               </dd>
@@ -385,7 +385,7 @@
                 {{data['mobility-aids-used-chosen-value'] | striptags(true) | escape | nl2br}}
               </dd>
               <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/CHANGEME">
+                <a href="/apply-for-a-blue-badge/prove-eligibility/use-a-mobility-aid?change=true">
                   Change<span class="visually-hidden"> mobility aids</span>
                 </a>
               </dd>
@@ -399,11 +399,80 @@
                 {{data['mobility-aids-provided-chosen-value'] | striptags(true) | escape | nl2br}}
               </dd>
               <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/CHANGEME">
+                <a href="/apply-for-a-blue-badge/prove-eligibility/how-were-your-mobility-aids-provided?change=true">
                   Change<span class="visually-hidden"> how the mobility aids were provided</span>
                 </a>
               </dd>
             </div>
+          {% endif %}
+
+          <div class="govuk-check-your-answers__contents">
+            <dt class="govuk-check-your-answers__question">
+              Health condition
+            </dt>
+            <dd class="govuk-check-your-answers__answer">
+              {{data['describe-condition']}}
+            </dd>
+            <dd class="govuk-check-your-answers__change">
+              <a href="/apply-for-a-blue-badge/prove-eligibility/describe-conditions?change=true">
+                Change<span class="visually-hidden"> health condition description</span>
+              </a>
+            </dd>
+          </div>
+          {% if (data['disability'] === 'problems-walking') %}
+            <div class="govuk-check-your-answers__contents">
+              <dt class="govuk-check-your-answers__question">
+                Treatments
+              </dt>
+              <dd class="govuk-check-your-answers__answer">
+                {% for treatment in data['treatments-array'] %}
+                  {{treatment.description}},
+                  {{treatment.date}} <br>
+                {% endfor %}
+              </dd>
+              <dd class="govuk-check-your-answers__change">
+                <a href="/apply-for-a-blue-badge/prove-eligibility/list-treatments?change=true">
+                  Change<span class="visually-hidden"> treatments</span>
+                </a>
+              </dd>
+            </div>
+
+            <div class="govuk-check-your-answers__contents">
+              <dt class="govuk-check-your-answers__question">
+                Medication
+              </dt>
+              <dd class="govuk-check-your-answers__answer">
+                {% for medication in data['medication-array'] %}
+                  {{medication.name}},
+                  {{medication.type}},
+                  {{medication.regularity}},
+                  {{medication.dosage}} <br>
+                {% endfor %}
+              </dd>
+              <dd class="govuk-check-your-answers__change">
+                <a href="/apply-for-a-blue-badge/prove-eligibility/list-medication?change=true">
+                  Change<span class="visually-hidden"> medication</span>
+                </a>
+              </dd>
+            </div>
+
+            <div class="govuk-check-your-answers__contents">
+              <dt class="govuk-check-your-answers__question">
+                Healthcare professionals
+              </dt>
+              <dd class="govuk-check-your-answers__answer">
+                {% for hcp in data['hcp-array'] %}
+                  {{hcp.name}},
+                  {{hcp.hospital}} <br>
+                {% endfor %}
+              </dd>
+              <dd class="govuk-check-your-answers__change">
+                <a href="/apply-for-a-blue-badge/prove-eligibility/list-healthcare-professionals?change=true">
+                  Change<span class="visually-hidden"> healthcare professionals</span>
+                </a>
+              </dd>
+            </div>
+
           {% endif %}
         {% endif %}
 
