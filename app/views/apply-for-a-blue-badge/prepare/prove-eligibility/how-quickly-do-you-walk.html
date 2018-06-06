@@ -21,6 +21,9 @@
           {{ govukRadios({
             "idPrefix": "walking-speed",
             "name": "walking-speed",
+            "attributes": {
+              "data-catchoption-label": true
+            },
             "fieldset": {
               "legend": {
                 "text": pageHeading,
@@ -52,6 +55,8 @@
 
             ]
           }) }}
+
+          <div id="hiddenCaughtInputs"></div>
           
           {{ govukButton({
             "text": "Continue"

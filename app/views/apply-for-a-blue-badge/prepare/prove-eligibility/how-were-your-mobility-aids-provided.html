@@ -21,6 +21,9 @@
           {{ govukCheckboxes({
             "idPrefix": "mobility-aids-provided",
             "name": "mobility-aids-provided",
+            "attributes": {
+                "data-catchoption-label": true
+              },
             "fieldset": {
               "legend": {
                 "text": pageHeading,
@@ -46,6 +49,8 @@
               }
             ]
           }) }}
+
+          <div id="hiddenCaughtInputs"></div>
           
           {{ govukButton({
             "text": "Continue"

@@ -354,7 +354,7 @@
                 Walking duration
               </dt>
               <dd class="govuk-check-your-answers__answer">
-                {{data['']}}
+                {{data['how-long-walk-chosen-value']}}
               </dd>
               <dd class="govuk-check-your-answers__change">
                 <a href="/apply-for-a-blue-badge/CHANGEME">
@@ -368,7 +368,7 @@
                 Walking speed
               </dt>
               <dd class="govuk-check-your-answers__answer">
-                {{data['']}}
+                {{data['walking-speed-chosen-value']}}
               </dd>
               <dd class="govuk-check-your-answers__change">
                 <a href="/apply-for-a-blue-badge/CHANGEME">
@@ -382,7 +382,7 @@
                 Mobility aids
               </dt>
               <dd class="govuk-check-your-answers__answer">
-                {{data['']}}
+                {{data['mobility-aids-used-chosen-value'] | striptags(true) | escape | nl2br}}
               </dd>
               <dd class="govuk-check-your-answers__change">
                 <a href="/apply-for-a-blue-badge/CHANGEME">
@@ -396,7 +396,7 @@
                 How the mobility aids were provided
               </dt>
               <dd class="govuk-check-your-answers__answer">
-                {{data['']}}
+                {{data['mobility-aids-provided-chosen-value'] | striptags(true) | escape | nl2br}}
               </dd>
               <dd class="govuk-check-your-answers__change">
                 <a href="/apply-for-a-blue-badge/CHANGEME">
