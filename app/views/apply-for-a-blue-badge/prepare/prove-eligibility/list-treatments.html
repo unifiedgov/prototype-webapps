@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% set pageHeading = 'List treatments' %}
+
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
@@ -15,7 +17,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">List treatments</h1>
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
         {% if tableRows.length > 0 %}
   

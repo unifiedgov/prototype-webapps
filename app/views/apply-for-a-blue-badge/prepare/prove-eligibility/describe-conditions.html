@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% set pageHeading = 'Describe any health conditions that affect ' + your + ' mobility' %}
+
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
@@ -15,7 +17,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">Describe any health conditions that affect {{ your }} mobility</h1>
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
   
         <form action="{{ formAction }}">
           {{ govukTextarea({

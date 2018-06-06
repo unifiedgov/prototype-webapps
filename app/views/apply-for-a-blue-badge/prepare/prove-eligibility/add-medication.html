@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Add treatment' %}
+{% set pageHeading = 'Add medication' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -17,7 +17,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">Add medication</h1>
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
         <!-- <p class="govuk-body"></p> -->
         <form action="{{formAction}}">
           {{ govukInput({
