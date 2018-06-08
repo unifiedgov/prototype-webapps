@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = you | capitalize + ' need to visit NI Direct' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+        
+        <p class="govuk-body">Because {{you}} live in Northern Ireland, {{you}} should visit the NI Direct website to continue {{your}} application.</p>
+
+        <p class="govuk-body"><a href="https://www.nidirect.gov.uk/articles/apply-or-renew-blue-badge">Visit the NI Direct website (this will open an external link)</a></p>
+
+        
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

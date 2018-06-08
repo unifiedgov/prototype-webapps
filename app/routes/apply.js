@@ -91,9 +91,17 @@ router.get('/check-eligibility/existing-badge/review-backend', function (req, re
 router.get('/check-eligibility/your-council-backend', function (req, res) {
   if (req.query.postcode) {
     req.session.data['council-name'] = 'Manchester city council';
-    res.redirect('/apply-for-a-blue-badge/check-eligibility/your-council');
+    if(req.query.postcode.indexOf("BT1") >= 0) {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/nir-explain');
+    } else {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/your-council');
+    }
   } else {
-    res.redirect('/apply-for-a-blue-badge/check-eligibility/enter-age');
+    if(req.session.data['council-name'] == 'Northern Ireland') {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/nir-explain');
+    } else {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/enter-age');
+    }
   } 
 });
 
