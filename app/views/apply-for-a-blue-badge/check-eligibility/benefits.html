@@ -85,6 +85,9 @@
           {{ govukRadios({
             "idPrefix": "benefit",
             "name": "benefit",
+            "attributes": {
+                "data-catchoption-label": true
+              },
             "fieldset": {
               "legend": {
                 "text": pageHeading,
@@ -94,6 +97,8 @@
             },
             "items": differentOptions
           }) }}
+
+          <div id="hiddenCaughtInputs"></div>
           
           
           {{ govukButton({

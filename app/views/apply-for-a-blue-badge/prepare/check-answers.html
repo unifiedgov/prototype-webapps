@@ -181,7 +181,7 @@
             {% if data['email-address'] %}{{ data['email-address'] }}{% endif %}
           </dd>
           <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/apply/contact?change=true">
+            <a href="/apply-for-a-blue-badge/personal-details/contact-details?change=true">
               Change<span class="visually-hidden"> contact details</span>
             </a>
           </dd>
@@ -196,14 +196,14 @@
               {{ data['your-identity-file-upload'] }}
             </dd>
             <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/apply/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
+              <a href="/apply-for-a-blue-badge/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
             </dd>
             {% else %}
             <dd class="govuk-check-your-answers__answer">
               You've chosen not to prove your identity
             </dd>
             <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/apply/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
+              <a href="/apply-for-a-blue-badge/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
             </dd>
           {% endif %}
         </div>
@@ -223,7 +223,7 @@
             </dd>
             {% endif %}
             <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/prove-eligibility/evidence-of-your-condition-or-disability?change=true">Change<span class="visually-hidden"> file</span></a>
+              <a href="/apply-for-a-blue-badge/prove-eligibility/prove-benefit?change=true">Change<span class="visually-hidden"> file</span></a>
             </dd>
           {% elif data['benefit'] === 'dla' or data['benefit'] === 'pip' %}
             {% if data['proofOfEligibility'] === 'upload' %}
@@ -315,6 +315,7 @@
       </dl>
     </section>
     
+    {% if data['applicant'] !== 'organisation' %}
     <section class="split-section">
       <h2 class="govuk-heading-m">Eligibility</h2>
 
@@ -324,7 +325,11 @@
             Reason for applying
           </dt>
           <dd class="govuk-check-your-answers__answer">
-            {{data['disability-chosen-value']}}
+            {% if (data['benefit'] === 'none') %}
+              {{data['disability-chosen-value']}}
+            {% else %}
+              {{data['benefit-chosen-value']}}
+            {% endif %}
           </dd>
           <dd class="govuk-check-your-answers__change">
             
@@ -478,6 +483,7 @@
 
       </dl>
     </section>
+    {% endif %}
 
     {{ govukButton({
       "text": "Continue",

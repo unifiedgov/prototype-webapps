@@ -49,9 +49,17 @@ $(document).ready(function () {
 
     $checkedItems.each(function() {
       var $this = $(this),
-          thisLabelText = $this.next('label').text().trim();
+          $thisLabel = $this.next('label'),
+          labelHasBTag = $thisLabel.find('b').length,
+          $thisNextHtmlB = $thisLabel.find('b'), 
+          thisLabelText = '';
 
-      listOfValues += thisLabelText + '\n';
+      if(labelHasBTag) {
+        listOfValues += $thisLabel.find('b').text().trim() + '\n';
+      } else {
+        listOfValues += $thisLabel.text().trim() + '\n';
+      }
+      
     });
 
     $('#hiddenCaughtInputs')
