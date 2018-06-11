@@ -4,7 +4,7 @@
 
 {% set pageHeading = 'Describe any health conditions that affect ' + your + ' mobility' %}
 
-{% elif (data['disability'] === 'child-bulky-equipment') %}
+{% else %}
 
 {% set pageHeading = 'Describe ' + your + ' health conditions' %}
 
@@ -27,12 +27,18 @@
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
   
+        {% if (data['disability'] === 'child-bulky-equipment') %}
+          {% set describeLabel = "Give details about the health conditions that mean " + you + " need to be accompanied by medical equipment." %}
+        {% else %}
+          {% set describeLabel = 'If you know them, try to use the proper medical terms.' %}
+        {% endif %}
+
         <form action="{{ formAction }}">
           {{ govukTextarea({
             "name": "describe-condition",
             "id": "describe-condition",
             "label": {
-              "text": "Give details about the health conditions that mean " + you + " need to be accompanied by medical equipment."
+              "text": describeLabel
             }
           }) }}
           
