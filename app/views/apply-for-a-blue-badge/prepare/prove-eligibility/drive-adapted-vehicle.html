@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Do ' + you + ' drive an adapted vehicle?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <form action="{{ formAction }}">
+          {% set adaptedHtml %}
+            {{ govukTextarea({
+              "name": "describe-adapted",
+              "id": "describe-adapted",
+              "label": {
+                "text": "Describe how " + your + " vehicle has been adapted"
+              }
+            }) }}
+          {% endset -%}
+
+          {{ govukRadios({
+            "idPrefix": "drive-adapted-vehicle",
+            "name": "drive-adapted-vehicle",
+            "fieldset": {
+              "legend": {
+                "text": pageHeading,
+                "isPageHeading": true,
+                "classes": 'govuk-fieldset__legend--l'
+              }
+            },
+            "items": [
+              {
+                "value": "yes",
+                "text": "Yes",
+                "checked": data['drive-adapted-vehicle'] === 'yes',
+                "conditional": {
+                  "html": adaptedHtml
+                }
+              },
+              {
+                "value": "no",
+                "text": "No",
+                "checked": data['drive-adapted-vehicle'] === 'no'
+              }
+
+            ]
+          }) }}
+
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

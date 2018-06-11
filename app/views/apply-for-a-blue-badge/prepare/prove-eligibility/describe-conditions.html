@@ -29,6 +29,10 @@
   
         {% if (data['disability'] === 'child-bulky-equipment') %}
           {% set describeLabel = "Give details about the health conditions that mean " + you + " need to be accompanied by medical equipment." %}
+        {% elif (data['disability'] === 'child-close-to-vehicle') %}
+          {% set describeLabel = 'Give details about the conditions that mean they need to have quick access to a vehicle.' %}
+        {% elif (data['disability'] === 'arms') %}
+          {% set describeLabel = 'Give details about the health conditions that make it difficult to operate parking meters or pay-and-display machines' %}
         {% else %}
           {% set describeLabel = 'If you know them, try to use the proper medical terms.' %}
         {% endif %}

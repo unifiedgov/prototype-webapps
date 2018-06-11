@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'How often do ' + you + ' drive?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+        <form action="{{ formAction }}">
+
+            {{ govukInput({
+              label: {
+                text: "For example, every day, a few time a week"
+              },
+              id: "how-often-drive",
+              name: "how-often-drive"
+            }) }}
+            
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

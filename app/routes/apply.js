@@ -430,6 +430,33 @@ router.get('/prove-eligibility/how-were-your-mobility-aids-provided', function(r
   res.render(proveEligibilityTemplatePath+'how-were-your-mobility-aids-provided');
 });
 
+// Both arms
+
+router.get('/prove-eligibility/how-often-drive', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/drive-adapted-vehicle';
+  res.render(proveEligibilityTemplatePath+'how-often-drive');
+});
+
+router.get('/prove-eligibility/drive-adapted-vehicle', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/drive-adapted-backend';
+  res.render(proveEligibilityTemplatePath+'drive-adapted-vehicle');
+});
+
+router.get('/prove-eligibility/drive-adapted-backend', function(req, res) {
+  if (req.session.data['drive-adapted-vehicle'] == 'yes') {
+    res.redirect(proveEligibilityPath+'upload-adapted-evidence');
+  } else {
+    res.redirect(proveEligibilityPath+'describe-conditions');
+  }
+});
+
+router.get('/prove-eligibility/upload-adapted-evidence', function (req, res) {
+  res.locals.formAction = 'describe-conditions';
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  res.render(proveEligibilityTemplatePath+'upload-adapted-evidence')
+});
+
 // Under 3
 
 router.get('/prove-eligibility/medical-equipment', function(req, res) {
