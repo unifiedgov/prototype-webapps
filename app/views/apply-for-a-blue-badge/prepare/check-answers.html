@@ -410,7 +410,23 @@
               </dd>
             </div>
           {% endif %}
+          
 
+          {% if (data['disability'] === 'child-bulky-equipment') %}
+            <div class="govuk-check-your-answers__contents">
+              <dt class="govuk-check-your-answers__question">
+                Medical equipment
+              </dt>
+              <dd class="govuk-check-your-answers__answer">
+                {{data['medical-equipment-chosen-value'] | striptags(true) | escape | nl2br}}
+              </dd>
+              <dd class="govuk-check-your-answers__change">
+                <a href="/apply-for-a-blue-badge/prove-eligibility/medical-equipment?change=true">
+                  Change<span class="visually-hidden"> medical equipment</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
           <div class="govuk-check-your-answers__contents">
             <dt class="govuk-check-your-answers__question">
               Health condition

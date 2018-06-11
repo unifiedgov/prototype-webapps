@@ -1,6 +1,14 @@
 {% extends "layout.html" %}
 
+{% if (data['disability'] === 'problems-walking') %}
+
 {% set pageHeading = 'Describe any health conditions that affect ' + your + ' mobility' %}
+
+{% elif (data['disability'] === 'child-bulky-equipment') %}
+
+{% set pageHeading = 'Describe ' + your + ' health conditions' %}
+
+{% endif %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -24,7 +32,7 @@
             "name": "describe-condition",
             "id": "describe-condition",
             "label": {
-              "text": "If you know them, try to use the proper medical terms."
+              "text": "Give details about the health conditions that mean " + you + " need to be accompanied by medical equipment."
             }
           }) }}
           

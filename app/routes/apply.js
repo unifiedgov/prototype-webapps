@@ -340,6 +340,10 @@ router.get('/prove-eligibility', function(req, res) {
   	res.redirect('/apply-for-a-blue-badge/prove-benefit');
   } else if (req.session.data['disability'] === 'problems-walking') {
     res.redirect(proveEligibilityPath+'what-makes-walking-difficult');
+  } else if (req.session.data['disability'] === 'child-bulky-equipment') {
+    res.redirect(proveEligibilityPath+'medical-equipment');
+  } else if (req.session.data['disability'] === 'arms') {
+    res.redirect(proveEligibilityPath+'how-often-drive');
   } else {
     res.redirect(proveEligibilityPath+'describe-conditions');
   }
@@ -426,11 +430,23 @@ router.get('/prove-eligibility/how-were-your-mobility-aids-provided', function(r
   res.render(proveEligibilityTemplatePath+'how-were-your-mobility-aids-provided');
 });
 
+// Under 3
+
+router.get('/prove-eligibility/medical-equipment', function(req, res) {
+  res.locals.formAction = 'describe-conditions';
+  res.render(proveEligibilityTemplatePath+'medical-equipment');
+});
+
 
 // Describe condition
 
 router.get('/prove-eligibility/describe-conditions', function(req, res) {
-  res.locals.formAction = 'list-treatments';
+  if (req.session.data['disability'] == 'problems-walking' || req.session.data['disability'] == 'arms') {
+    res.locals.formAction = 'list-treatments';
+  } else if (req.session.data['disability'] == 'child-bulky-equipment' || req.session.data['disability'] == 'child-close-to-vehicle'){
+    res.locals.formAction = 'list-healthcare-professionals';
+  }
+  
   res.render(proveEligibilityTemplatePath+'describe-conditions');
 });
 
