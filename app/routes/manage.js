@@ -48,6 +48,22 @@ router.get('/new-application', function (req, res) {
   res.render('manage-blue-badges/new-application', {'title':'New application','app_class':'active'})
 })
 
+router.get('/new-application-walking', function (req, res) {
+  res.render('manage-blue-badges/new-application-walking', {'title':'New application','app_class':'active'})
+})
+
+router.get('/new-application-arms', function (req, res) {
+  res.render('manage-blue-badges/new-application-arms', {'title':'New application','app_class':'active'})
+})
+
+router.get('/new-application-child-bulky', function (req, res) {
+  res.render('manage-blue-badges/new-application-child-bulky', {'title':'New application','app_class':'active'})
+})
+
+router.get('/new-application-child-near', function (req, res) {
+  res.render('manage-blue-badges/new-application-child-near', {'title':'New application','app_class':'active'})
+})
+
 router.get('/manage-users', function (req, res) {
   req.session.data['success'] = undefined;
   res.render('manage-blue-badges/manage-users', {'title':'Manage users','manage_class':'active'})

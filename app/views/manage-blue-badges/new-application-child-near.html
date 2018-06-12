@@ -1,0 +1,205 @@
+{% extends "admin_layout.html" %}
+
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+  <div class="check-answers-heading-with-change">
+    <div class="check-answers-heading">
+      <p class="subtitle">1234252426</p>
+      <h1>{{title}}</h1>
+    </div>
+  
+    <div class="check-answers-change">
+      <p>
+        <a href="#applicationDetails">View application details &darr;</a>
+      </p>
+    </div>
+  
+  </div>
+  
+{% endblock %}
+
+{% block content %}
+
+<section class="split-section">
+  <h2 class="govuk-heading-m">
+    Personal details
+  </h2>
+  
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Full name
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+          Lucy Kraven
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Date of birth
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        2 Feb 2016
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        National insurance number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        N/A
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Home address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        9 Tower Heights, Sale, M24 0LK
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Contact details
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Jim Kraven <br>
+        0121 987 939 <br>
+        james.kraven@email.com
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Proof of identity
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        <a href="">birth_certificate.jpg</a>
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Proof of address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        <a href="">birth_certificate.jpg</a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Photo
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        <img src="/public/images/lucy.png" alt="Photo of Margaret Miller">
+      </dd>
+    </div>
+  </dl>
+</section>
+
+<section class="split-section">
+  <h2 class="govuk-heading-m">
+    Proof of eligibility
+  </h2>
+  
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Reason for applying
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Child that needs to be near a vehicle to receive or be taken for treatment
+      </dd>
+    </div>
+
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Health condition
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Severe epilepsy/fitting
+      </dd>
+    </div>
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Healthcare professionals
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Doctor Paul Bundy, Manchester Hospital <br>
+        Doctor Michael Willington, Crumpsall Surgery
+      </dd>
+    </div>
+  </dl>
+</section>
+
+<section class="split-section" id="applicationDetails">
+  <h2 class="govuk-heading-m">
+    Application details
+  </h2>
+
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Reference
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        1234252426
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Submitted
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        13 June 2018 at 13:04
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Applicant
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Self applicant
+      </dd>
+    </div>
+  </dl>
+</section>
+
+{{ govukButton({
+    "text": "Order badge",
+    "href": "order-a-badge/processing"
+  }) }}
+
+<p><a href="">Export application</a></p>
+
+  {{ govukDetails({
+    "summaryText": "Delete application",
+    "html": '
+              <form action="all-applications">
+                <p>Are you sure you want to delete this application?</p>
+                <input id="success" name="success" type="hidden" value="Application deleted">
+                <input value="Yes, delete application" type="submit" class="govuk-button">
+              </form>
+              <p class="govuk-body">
+                <a href="#">No, don\'t delete the application</a>
+              </p>' 
+  }) }}
+
+{% endblock %}
