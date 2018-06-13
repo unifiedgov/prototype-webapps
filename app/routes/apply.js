@@ -598,31 +598,27 @@ router.get('/prove-eligibility/list-healthcare-professionals', function(req, res
   var hcps = req.session.data['hcp-array'];
   delete res.locals.tableRows;
 
-  if (req.session.data['treatments-array'] || req.session.data['medication-array']) {
-    if (hcps) {
-      var tableRows = [];
-      hcps.forEach(function(item,index) {
-      tableRows.push([
-          {
-            "text": item.name
-          },
-          {
-            "text": item.hospital
-          },
-          {
-            "html": "<a href='delete-hcp/"+index+"'>Remove this</a>",
-            "format": "numeric"
-          }
-        ])
-      });
-    }
-
-    res.locals.tableRows = tableRows;
-    res.locals.formAction = '/apply-for-a-blue-badge/prepare/check-answers'
-    res.render(proveEligibilityTemplatePath+'list-healthcare-professionals');
-  } else {
-    res.redirect('/apply-for-a-blue-badge/prepare/check-answers');
+  if (hcps) {
+    var tableRows = [];
+    hcps.forEach(function(item,index) {
+    tableRows.push([
+        {
+          "text": item.name
+        },
+        {
+          "text": item.hospital
+        },
+        {
+          "html": "<a href='delete-hcp/"+index+"'>Remove this</a>",
+          "format": "numeric"
+        }
+      ])
+    });
   }
+
+  res.locals.tableRows = tableRows;
+  res.locals.formAction = '/apply-for-a-blue-badge/prepare/check-answers'
+  res.render(proveEligibilityTemplatePath+'list-healthcare-professionals');
 });
 
 router.get('/prove-eligibility/add-healthcare-professional', function(req, res) {
