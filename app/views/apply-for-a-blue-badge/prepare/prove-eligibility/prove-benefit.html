@@ -1,6 +1,14 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = question1 %}
+{% if (data['benefit'] === 'dla') %}
+
+{% set pageHeading = 'Have ' + you + ' been awarded the Disability Living Allowance, indefinitely?' %}
+
+{% elif (data['benefit'] === 'pip') %}
+
+{% set pageHeading = 'Have ' + you + ' been awarded the Personal Independence Payment, indefinitely?' %}
+
+{% endif %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}

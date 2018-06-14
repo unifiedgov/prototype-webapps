@@ -350,33 +350,16 @@ router.get('/prove-eligibility', function(req, res) {
 });
 
 router.get('/prove-benefit', function(req, res) {
-  res.locals.formAction = proveEligibilityPath+'upload-benefit';
-  res.locals.submitLabel = 'Continue';
-  res.locals.change = req.query.change;
-  var question1 = '';
-  var question3 = '';
-  var applicant = req.session.data['applicant'];
-  var you = applicant === 'someone-else' ? 'they' : 'you';
-  var your = applicant === 'someone-else' ? 'their' : 'your';
-  switch(req.session.data['benefit']) {
-    case "dla":
-      question1 = 'Have ' + you + ' been awarded the Disability Living Allowance, indefinitely?';
-      question3 = 'You must provide a copy of your letter of entitlement, issued within the last twelve months. How would you like to provide this?'
-      break;
-    case "pip":
-      question1 = 'Have ' + you + ' been awarded the Personal Independence Payment, indefinitely?';
-      question3 = 'You must provide a copy of your decision letter or your annual uprating letter, issued within the last twelve months. How would you like to provide this?';
-      break;
-    default:
-      question1 = 'Have ' + you + ' been awarded the Personal Independence Payment, indefinitely?';
-      question3 = 'You must provide a copy of your decision letter or your annual uprating letter, issued within the last twelve months. How would you like to provide this?';
-      break;
+  if (req.session.data['benefit'] === 'armed-forces' || req.session.data['benefit'] === 'war-pensioners') {
+    res.redirect(proveEligibilityPath+'upload-benefit');
+  } else {
+    res.locals.formAction = proveEligibilityPath+'upload-benefit';
+    res.locals.submitLabel = 'Continue';
+    res.locals.change = req.query.change;
+    req.session.data['benefit-proof-file-upload'] = undefined;
+    req.session.data['benefit-proof-file'] = undefined;
+    res.render(proveEligibilityTemplatePath+'prove-benefit');
   }
-  res.locals.question1 = question1;
-  res.locals.question3 = question3;
-  req.session.data['benefit-proof-file-upload'] = undefined;
-  req.session.data['benefit-proof-file'] = undefined;
-  res.render(proveEligibilityTemplatePath+'prove-benefit');
 });
 
 router.get('/prove-eligibility/upload-benefit', function (req, res) {
