@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'List mobility aids' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+        {% if tableRows.length > 0 %}
+  
+            {{ govukTable({
+              "head": [
+                {
+                  "text": "Name"
+                },
+                {
+                  "text": "Usage"
+                },
+                {
+                  "text": ""
+                }
+              ],
+              "rows": tableRows
+            }) }}
+
+          <p class="govuk-body"><a href="add-mobility-aid">Add another mobility aid</a></p>
+
+          {{ govukButton({
+            "text": "Continue",
+            "href": formAction
+          }) }}
+
+        {% else %}
+        
+        <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
+
+        {{ govukButton({
+          "text": "Add mobility aid",
+          "href": "add-mobility-aid"
+        }) }}
+
+        <p class="govuk-body"><a href="{{ formAction }}">{{ you | capitalize }} don't use any mobility aids</p>
+
+        {% endif %}
+
+      </div>
+
+    </div>
+  </main>
+</div>
+
+{% endblock %}

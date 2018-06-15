@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'How long can ' + you + ' walk safely, without using a walking aid or stopping?' %}
+{% if data['mobility-aids-array'].length %}
+{% set pageHeading = 'How long can ' + you + ' walk using a mobility aid, without stopping?' %}
+{% else %}
+{% set pageHeading = 'How long can ' + you + ' walk safely, without stopping?' %}
+{% endif %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -17,6 +21,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
+        
         <form action="{{ formAction }}">
           {{ govukRadios({
             "idPrefix": "how-long-walk",

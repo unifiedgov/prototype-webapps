@@ -373,9 +373,52 @@ router.get('/prove-eligibility/upload-benefit', function (req, res) {
 // Walking ability
 
 router.get('/prove-eligibility/what-makes-walking-difficult', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/walking-time';
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids';
   res.render(proveEligibilityTemplatePath+'what-makes-walking-difficult');
 });
+
+router.get('/prove-eligibility/list-mobility-aids', function(req, res) {
+  var mobilityAids = req.session.data['mobility-aids-array'];
+  delete res.locals.tableRows;
+  if (mobilityAids) {
+    var tableRows = [];
+    mobilityAids.forEach(function(aid,index) {
+      tableRows.push([{"text": aid.name},{"text": aid.usage},{"html": "<a href='delete-mobility-aid/"+index+"'>Remove this</a>","format": "numeric"}])
+    });
+  }
+
+  res.locals.tableRows = tableRows;
+  res.locals.formAction = 'walking-time';
+  res.render(proveEligibilityTemplatePath+'list-mobility-aids');
+});
+
+router.get('/prove-eligibility/add-mobility-aid', function(req, res) {
+  res.locals.formAction = 'create-mobility-aid';
+  res.render(proveEligibilityTemplatePath+'add-mobility-aid');
+});
+
+router.get('/prove-eligibility/create-mobility-aid', function(req, res) {
+  var mobilityAid = {
+    "name": req.session.data['mobility-aid-name'],
+    "usage": req.session.data['mobility-aid-usage'],
+    "source": req.session.data['mobility-aid-source']
+  }
+
+  if (req.session.data['mobility-aids-array']) {
+    req.session.data['mobility-aids-array'].push(mobilityAid);
+  } else {
+    req.session.data['mobility-aids-array'] = [mobilityAid];
+  }
+
+  delete req.session.data['mobility-aid-name','mobility-aid-usage','mobility-aid-source'];
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids');
+});
+
+router.get('/prove-eligibility/delete-mobility-aid/:id', function(req, res) {
+  req.session.data['mobility-aids-array'].splice(req.params.id, 1);
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids');
+});
+
 
 router.get('/prove-eligibility/walking-time', function(req, res) {
   res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/walking-time-backend';
@@ -384,34 +427,35 @@ router.get('/prove-eligibility/walking-time', function(req, res) {
 
 router.get('/prove-eligibility/walking-time-backend', function(req, res) {
   if (req.session.data['how-long-walk'] === 'cant-walk') {
-    res.redirect(proveEligibilityPath+'use-a-mobility-aid');
+    res.redirect('/apply-for-a-blue-badge/describe-conditions');
   } else {
     res.redirect(proveEligibilityPath+'how-quickly-do-you-walk');
   }
 });
 
 router.get('/prove-eligibility/how-quickly-do-you-walk', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/use-a-mobility-aid';
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/describe-conditions';
   res.render(proveEligibilityTemplatePath+'how-quickly-do-you-walk');
 });
 
-router.get('/prove-eligibility/use-a-mobility-aid', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/use-a-mobility-aid-backend';
-  res.render(proveEligibilityTemplatePath+'use-a-mobility-aid');
-});
 
-router.get('/prove-eligibility/use-a-mobility-aid-backend', function(req, res) {
-  if (req.session.data['mobility-aids-used'] == 'dont-use') {
-    res.redirect(proveEligibilityPath+'describe-conditions');
-  } else {
-    res.redirect(proveEligibilityPath+'how-were-your-mobility-aids-provided');
-  }
-});
+// router.get('/prove-eligibility/use-a-mobility-aid', function(req, res) {
+//   res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/use-a-mobility-aid-backend';
+//   res.render(proveEligibilityTemplatePath+'use-a-mobility-aid');
+// });
 
-router.get('/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/describe-conditions';
-  res.render(proveEligibilityTemplatePath+'how-were-your-mobility-aids-provided');
-});
+// router.get('/prove-eligibility/use-a-mobility-aid-backend', function(req, res) {
+//   if (req.session.data['mobility-aids-used'] == 'dont-use') {
+//     res.redirect(proveEligibilityPath+'describe-conditions');
+//   } else {
+//     res.redirect(proveEligibilityPath+'how-were-your-mobility-aids-provided');
+//   }
+// });
+
+// router.get('/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
+//   res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/describe-conditions';
+//   res.render(proveEligibilityTemplatePath+'how-were-your-mobility-aids-provided');
+// });
 
 // Both arms
 

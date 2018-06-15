@@ -1,6 +1,17 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'How quickly can ' + you + ' walk compared to someone without walking difficulties?' %}
+{% if data['variant'] == 'B' %}
+  {% set comparedTo = 'someone who doesn\'t have walking difficulties' %}
+{% else %}
+  {% set comparedTo = 'other people' %}
+{% endif %}
+
+{% if data['mobility-aids-array'].length %}
+  {% set pageHeading = 'How quickly can ' + you + ' walk using mobility aids, compared to ' + comparedTo + ' ?' %}
+{% else %}
+  {% set pageHeading = 'How quickly can ' + you + ' walk, compared to ' + comparedTo + '?' %}
+{% endif %}
+
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -33,24 +44,24 @@
             },
             "items": [
               {
-                "value": "much-slower",
+                "value": "very-slow",
                 "text": "Much slower",
-                "checked": data['walking-speed'] === 'much-slower'
+                "checked": data['walking-speed'] === 'very-slow'
               },
               {
-                "value": "slower",
+                "value": "slow",
                 "text": "Slower",
-                "checked": data['walking-speed'] === 'slower'
+                "checked": data['walking-speed'] === 'slow'
               },
               {
-                "value": "same",
+                "value": "average",
                 "text": "About the same",
-                "checked": data['walking-speed'] === 'same'
+                "checked": data['walking-speed'] === 'average'
               },
               {
-                "value": "faster",
+                "value": "fast",
                 "text": "Faster",
-                "checked": data['walking-speed'] === 'faster'
+                "checked": data['walking-speed'] === 'fast'
               }
 
             ]
