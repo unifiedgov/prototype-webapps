@@ -10,17 +10,13 @@
 {% block content %}
 
 <div class="govuk-width-container">
-  {{ govukBackLink({
-      "text": "Back",
-      "href": "javascript: window.history.go(-1)"
-    }) }}
   <main role="main" class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
         {{ govukPanel({
           "titleHtml": '<h1 class="govuk-panel__title govuk-!-f-36">' + pageHeading + '</h1>',
-          "html": '<span class="govuk-!-f-27">Reference number is<br><strong>HDJ2123F</strong></span>'
+          "html": '<span class="govuk-!-f-27">Your reference number is<br><strong>HDJ2123F</strong></span>'
         })
         }}
 
@@ -28,7 +24,7 @@
         <p class="govuk-body">You've paid by card.</p>
         {% endif %}
 
-        {% if data['email'] !== '' %}<p class="govuk-body">We have sent a confirmation email to <span class="bold">{{ data['email'] }}</span>.</p>{% endif %}
+        {% if data['email'] !== '' %}<p class="govuk-body">We have sent a confirmation email to <span class="bold">{{ data['email-address'] }}</span>.</p>{% endif %}
 
         <h2 class="govuk-heading-m">What happens next</h2>
 
@@ -55,17 +51,17 @@
           </div>
         {% else %}
           <div id="all-evidence-present">
-            <p class=govuk-body>We've sent {{ your }} {{ application }} to {{data['council-name']}} who might contact {{ you }} to ask for more information.</p>
+            <p class=govuk-body>We've sent {{ your }} {{ application }} to {{data['council-name']}} who may contact {{ you }} to ask for more information.</p>
           </div>
         {% endif %}
 
-        <p class="govuk-body">We'll send {{ you }} a notification by email and text when a decision has been made about {{ your }} {{ application }}.</p>
+        <p class="govuk-body">We'll send {{ you }} a notification when a decision has been made about {{ your }} {{ application }}.</p>
 
         <h2 class="govuk-heading-m">{{data['council-name']}} contact details</h2>
         <p class="govuk-body">
           {{data['council-name']}}
           <br/>Church Lane
-          <br/>Town
+          <br/>Manchester
           <br/>M1 4AA
           <br/>
         </p>
