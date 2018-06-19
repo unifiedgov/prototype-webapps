@@ -8,6 +8,11 @@ router.use(function(req, res, next) {
   res.locals.you = applicant === 'someone-else' ? 'they' : 'you';
   res.locals.your = applicant === 'someone-else' ? 'their' : 'your';
   res.locals.youOrThem = applicant === 'someone-else' ? 'them' : 'you';
+
+  if (!req.session.data['council-name']) {
+    res.locals.data['council-name'] = 'your local council';
+  } 
+
   var application = "application";
   switch(req.session.data['renewal-or-new-application']) {
     case "new":
