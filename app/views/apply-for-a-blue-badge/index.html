@@ -33,20 +33,31 @@
           {% if serviceName %} {{ serviceName }} {% endif %}
         </h1>
 
-        <p class="govuk-body">Answer questions about your disability, check your eligibility and fill in an application form to apply for or renew a Blue Badge. Your application will then be sent to your council for a decision.</p>
+        <p class="govuk-body">You can apply for or renew a Blue Badge in England, Wales and Scotland using this service. For applicants in Northern Ireland, you can <a href="https://www.nidirect.gov.uk/articles/apply-or-renew-blue-badge">apply for a Blue Badge using the NI Direct website</a>.</p>
+
+        <!-- <p class="govuk-body">Applicants will be asked for information about their disabilities and personal details, which will then be sent to the local council for a decision.</p> -->
 
         <h2 class="govuk-heading-m">Before you start</h2>
 
-        <p class="govuk-body">You'll be asked for the following when you apply for a Blue Badge:</p>
+        <p class="govuk-body">If you're applying for yourself or someone else, you'll need to provide the following information:</p>
 
         <ul class="govuk-list govuk-list--bullet">
-          <li>your National Insurance number</li>
-          <li>proof of your benefit or disability</li>
-          <li>proof of your identity and address</li>
-          <li>a recent photograph</li>
+          <li>National Insurance number for the applicant</li>
+          <li>Proof of benefit or disability</li>
+          <li>Proof of identity and address</li>
+          <li>A recent photograph</li>
         </ul>
 
-        <p class="govuk-body">Your local council may call you in for an assessment if you don't provide enough information in the application form.</p>
+        <p class="govuk-body">If you're applying on behalf of an organisation, you'll need to provide the following information:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Name and address of the organisation</li>
+          <li>Charity number (if your organisation is a registered charity)</li>
+          <li>Details of the vehicles you'll use to transport people</li>
+        </ul>
+
+
+        <p class="govuk-body">Your local council may call you in for an assessment if you're unable to provide enough information in the application form.</p>
 
         {{ govukButton({
           "text": "Start now",
@@ -56,15 +67,15 @@
 
         <h2 class="govuk-heading-m">After you apply</h2>
 
-        <p class="govuk-body">Your local council will contact you to confirm:.</p>
+        <p class="govuk-body">Your local council will contact you to confirm:</p>
 
         <ul class="govuk-list govuk-list--bullet">
           <li>if your application will be accepted</li>
           <li>if you're required to go for an assessment</li>
-          <li>if your application will be refused</li>
+          <li>if they have refused your application</li>
         </ul>
 
-        <p class="govuk-body">If you’re refused, your local council should tell you why. You can appeal if you disagree with the decision. You can also re-apply if your medical condition or disability gets worse.</p>
+        <p class="govuk-body">If your local council refuse your application, should tell you why. You can appeal if you disagree with their decision. You can also re-apply if your medical condition or disability gets worse.</p>
 
         <h2 class="govuk-heading-m">Questions</h2>
 
