@@ -226,7 +226,7 @@ router.get('/personal-details/enter-address', function (req, res) {
 })
 
 router.get('/personal-details/contact-details', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-your-identity'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility'))
   res.render(personDetailsTemplatePath+'contact-details')
 })
 
@@ -329,7 +329,7 @@ router.get('/organisation-details/delete-vehicle/:id', function(req, res) {
 // Prove identity
 
 router.get('/prove-your-identity', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility';
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-your-address';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
   res.render('apply-for-a-blue-badge/prepare/prove-your-identity')
@@ -541,7 +541,7 @@ router.get('/prove-eligibility/medical-equipment', function(req, res) {
 // Describe condition
 
 router.get('/prove-eligibility/describe-conditions', function(req, res) {
-  if (req.session.data['disability'] == 'problems-walking' || req.session.data['disability'] == 'arms') {
+  if (req.session.data['disability'] == 'problems-walking') {
     res.locals.formAction = 'list-treatments';
   } else if (req.session.data['disability'] == 'child-bulky-equipment' || req.session.data['disability'] == 'child-close-to-vehicle'){
     res.locals.formAction = 'list-healthcare-professionals';
@@ -692,7 +692,7 @@ router.get('/prove-eligibility/list-healthcare-professionals', function(req, res
   }
 
   res.locals.tableRows = tableRows;
-  res.locals.formAction = '/apply-for-a-blue-badge/prepare/check-answers'
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-your-identity'
   res.render(proveEligibilityTemplatePath+'list-healthcare-professionals');
 });
 
