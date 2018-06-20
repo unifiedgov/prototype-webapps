@@ -549,7 +549,8 @@
             </div>
 
             {% endif %}
-
+          
+          {% if data['disability'] != 'blind' %}
           <div class="govuk-check-your-answers__contents">
             <dt class="govuk-check-your-answers__question">
               Healthcare professionals
@@ -570,6 +571,28 @@
               </a>
             </dd>
           </div>
+          {% endif %}
+
+          {% if data['disability'] === 'blind' %}
+          <div class="govuk-check-your-answers__contents">
+            <dt class="govuk-check-your-answers__question">
+              Proof of visual impairment
+            </dt>
+            <dd class="govuk-check-your-answers__answer">
+              {% if data['registered-blind'] === 'yes' and data['blind-consent'] === 'yes' %}
+                Registered as severely sight impaired at: <br>
+                {{data['blind-council-name']}}
+              {% else %}
+                {{data['impairment-proof-file-upload']}}
+              {% endif %}
+            </dd>
+            <dd class="govuk-check-your-answers__change">
+              <a href="/apply-for-a-blue-badge/prove-eligibility?change=true">
+                Change<span class="visually-hidden"> proof of visual impairment</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
 
         {% endif %}
 
