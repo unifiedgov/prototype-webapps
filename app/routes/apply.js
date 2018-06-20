@@ -343,6 +343,8 @@ const proveEligibilityTemplatePath = 'apply-for-a-blue-badge/prepare/prove-eligi
 router.get('/prove-eligibility', function(req, res) {
   if (req.session.data['benefit'] !== 'none') {
   	res.redirect('/apply-for-a-blue-badge/prove-benefit');
+  } else if (req.session.data['disability'] === 'blind') {
+    res.redirect(proveEligibilityPath+'are-you-registered-blind');
   } else if (req.session.data['disability'] === 'problems-walking') {
     res.redirect(proveEligibilityPath+'what-makes-walking-difficult');
   } else if (req.session.data['disability'] === 'child-bulky-equipment') {
@@ -374,6 +376,45 @@ router.get('/prove-eligibility/upload-benefit', function (req, res) {
   res.render(proveEligibilityTemplatePath+'upload-benefit')
 });
 
+// Registered blind (severely sight impaired)
+
+router.get('/prove-eligibility/are-you-registered-blind', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/registered-blind-backend';
+  res.render(proveEligibilityTemplatePath+'are-you-registered-blind');
+});
+
+router.get('/prove-eligibility/registered-blind-backend', function(req, res) {
+  if (req.session.data['registered-blind'] === 'yes') {
+    res.redirect(proveEligibilityPath+'blind-consent-la');
+  } else {
+    res.redirect(proveEligibilityPath+'upload-blind-cvi');
+  }
+});
+
+router.get('/prove-eligibility/blind-consent-la', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/blind-consent-backend';
+  res.render(proveEligibilityTemplatePath+'blind-consent-la');
+});
+
+router.get('/prove-eligibility/blind-consent-backend', function(req, res) {
+  if (req.session.data['blind-consent'] === 'yes') {
+    res.redirect(proveEligibilityPath+'blind-select-council');
+  } else {
+    res.redirect(proveEligibilityPath+'upload-blind-cvi');
+  }
+});
+
+router.get('/prove-eligibility/blind-select-council', function(req, res) {
+  res.locals.formAction = proveEligibilityPath+'describe-conditions';
+  res.render(proveEligibilityTemplatePath+'blind-select-council');
+});
+
+router.get('/prove-eligibility/upload-blind-cvi', function (req, res) {
+  res.locals.formAction = 'describe-conditions';
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  res.render(proveEligibilityTemplatePath+'upload-blind-cvi')
+});
 
 // Walking ability
 
@@ -504,6 +545,8 @@ router.get('/prove-eligibility/describe-conditions', function(req, res) {
     res.locals.formAction = 'list-treatments';
   } else if (req.session.data['disability'] == 'child-bulky-equipment' || req.session.data['disability'] == 'child-close-to-vehicle'){
     res.locals.formAction = 'list-healthcare-professionals';
+  } else {
+    res.locals.formAction = '/apply-for-a-blue-badge/prove-your-identity';
   }
   
   res.render(proveEligibilityTemplatePath+'describe-conditions');

@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'What Local Authority are ' + you + ' registered as severely sight impaired (blind) with?' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+        
+        <p class="govuk-body">We'll contact your Local Authority to check your details on the register.</p>
+
+        <form action="{{ formAction }}">
+          <div class="govuk-form-group">
+            <label for="councilPicker" class="govuk-label">Start typing, or select your council</label>
+            <select name="blind-council-name" class="enhanced-select" id="councilPicker">
+              {% include "includes/councils-options.html" %}
+            </select>
+          </div>
+          
+          {{ govukButton({
+            "text": "Continue"
+          }) }}
+
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    $(document).ready(function () {
+      accessibleAutocomplete.enhanceSelectElement({
+        defaultValue: '',
+        showAllValues: true,
+        selectElement: document.querySelector('#councilPicker')
+      });
+    });
+  </script>
+{% endblock %}

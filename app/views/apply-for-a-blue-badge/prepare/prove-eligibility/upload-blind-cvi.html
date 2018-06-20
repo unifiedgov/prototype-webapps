@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% import "apply-for-a-blue-badge/macros/upload-component.html" as uploadComponentWidget %}
+
+{% set pageHeading = "Upload proof of " + your + " sight impairment" %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <form action="{{ formAction }}?proofOfCVI=upload">
+          <input type="hidden" id="change" name="change" value="{{change}}">
+          <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+          
+          <p class="govuk-body">You need to upload a scan or photo of an official document as proof that {{you}} are registered as severely sight impaired (blind).</p>
+
+          <p class="govuk-body">We accept the following as proof:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Certificate of Vision Impairment (CVI) form</li>
+            <li>VINCYP document (Under 16s in Scotland)</li>
+            <li>BP1 form (Scotland before 2018)</li>
+            <li>CVI 2003 (Before 2005)</li>
+            <li>BD8 form (Before 1990)</li>
+          </ul>
+
+          <p class="govuk-heading-m">Upload a photo or a scan</p>
+          {{ uploadComponentWidget.uploadComponent('impairment-proof-file-upload',
+          'proof of impairment', 'proofOfCVI', '/public/images/cvi-form.png',
+          formAction + '?proofOfCVI=notProvided&impairment-proof-file-upload=',
+          your, 'about how to prove ' + you + ' have a severe sight impairment', change, 'no', "impairment-proof-upload-shows-current-address")}}
+        </form>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
