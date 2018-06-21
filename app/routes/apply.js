@@ -192,8 +192,13 @@ router.get('/personal-details', function (req, res) {
 })
 
 router.get('/personal-details/name', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'dob'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'gender'))
   res.render(personDetailsTemplatePath+'name')
+})
+
+router.get('/personal-details/gender', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'dob'))
+  res.render(personDetailsTemplatePath+'gender')
 })
 
 router.get('/personal-details/dob', function (req, res) {
