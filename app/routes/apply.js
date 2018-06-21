@@ -789,7 +789,7 @@ router.get('/paying-for-your-blue-badge-backend', function(req, res) {
     res.redirect('/apply-for-a-blue-badge/apply/confirmation');
   } else {
     req.session.data['pay-when'] = 'now';
-    res.redirect('https://production-1-production-pay-products-ui.cloudapps.digital/pay/a9e0f2ce1f7148ef879bdc1fa04ba652');
+    res.redirect('https://products.payments.service.gov.uk/pay/6082e5de8f0542ed8ae20ef9b9feaeac');
   };
 });
 
