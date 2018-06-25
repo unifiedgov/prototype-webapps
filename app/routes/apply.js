@@ -760,7 +760,7 @@ router.get('/provide-photo', function (req, res) {
   res.render('apply-for-a-blue-badge/prepare/provide-photo');
 })
 
-router.get('/provide-photo/upload-your-photo', function (req, res) {
+router.get('/upload-your-photo', function (req, res) {
   res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
   res.render('apply-for-a-blue-badge/prepare/upload-your-photo');
 });
