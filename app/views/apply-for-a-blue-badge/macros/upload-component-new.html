@@ -1,0 +1,112 @@
+
+{% macro uploadComponent(
+    provideType, 
+    notUploadingUrl,
+    your, 
+    aboutHowTo, 
+    change, 
+    askIfUploadShowAddress
+  )%}
+
+{{ chooseYourFile(
+    provideType, 
+    notUploadingUrl, 
+    your, 
+    askIfUploadShowAddress
+  ) 
+}}
+
+{{ iCantUploadAPhotoOrScan(
+    your, 
+    aboutHowTo, 
+    change
+  ) 
+}}
+
+{% endmacro %}
+
+{% from 'radios/macro.njk' import govukRadios %}
+{% from 'button/macro.njk' import govukButton %}
+
+{% macro chooseYourFile(
+  provideType, 
+  notUploadingUrl, 
+  your, 
+  askIfUploadShowAddress
+  ) 
+%}
+
+<div id="drop-area">
+  <div id="dragDropInstructions">
+    <div class="icon--upload-arrow">
+      {% include "includes/icon-arrow-down.html" %}
+    </div>
+    <div class="upload-section-text">
+      <p class="govuk-body">
+        <span class="drag-drop-text">You can drag and drop your file here <br> <b>or</b> <br></span>
+        <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+        <label class="govuk-link fake-link" for="fileElem">Select a file from your device</label>
+      </p>
+    </div>
+  </div>
+  <div id="progressContainer" class="hidden">
+    <h3 class="govuk-heading-s">Upload progress</h3>
+    <progress id="progress-bar" max=100 value=0 class=""></progress>
+  </div>
+</div>
+
+<div id="fileUploadedBox" class="hidden">
+  <h3 class="govuk-heading-m">Your uploaded file</h3>
+
+  <div id="gallery"/></div>
+  <p class="govuk-body">
+    <a href="">Upload a different file</a>
+  </p>
+  <input type="hidden" name="{{provideType}}" value="upload">
+  
+  {% if (askIfUploadShowAddress==='yes') %}
+    {{ govukRadios({
+      "idPrefix": "identity-upload-shows-current-address",
+      "name": "identity-upload-shows-current-address",
+      "fieldset": {
+        "legend": {
+          "text": 'Does ' + your + ' upload show ' + your + ' current address?',
+          "isPageHeading": false,
+          "classes": 'govuk-fieldset__legend--m'
+        }
+      },
+      "items": [
+        {
+          "value": "yes",
+          "text": "Yes"
+        },
+        {
+          "value": "no",
+          "text": "No"
+        }
+      ]
+    }) }}
+  {% endif %}
+
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+  
+</div>
+
+
+
+{% endmacro %}
+
+{% macro iCantUploadAPhotoOrScan(your, aboutHowTo, change) %}
+<details class="govuk-details file-upload empty" id="cantUploadDetails">
+  <summary class="govuk-details__summary">I can't upload a photo or scan</summary>
+  <div class="govuk-details__text panel panel-border">
+    <p class="govuk-body">If you can't upload a photo or scan Manchester city council will contact you {{ aboutHowTo }}.</p>
+    <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
+    <p class="govuk-body">
+      <a href="{{notUploadingUrl}}" class="govuk-button-secondary">Continue without uploading</a>
+    </p>
+  </div>
+</details>
+{% endmacro %}

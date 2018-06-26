@@ -42,3 +42,92 @@
 .split-section {
 	border: none;
 }
+
+.icon--upload-arrow {
+	background: $govuk-grey-2;
+	border-radius: 50%;
+	line-height: 0;
+	padding: 10px;
+	display: inline-block;
+	margin-right: 20px;
+	vertical-align: top;
+	svg {
+		width: 20px; height: 20px;
+	}
+	@include mq($from: tablet) {
+		padding: 20px;
+		svg {
+			width: 40px; height: 40px;
+		}
+	}
+	path {
+		fill: white;
+	}
+}
+
+
+#drop-area {
+  border: 2px dashed $govuk-grey-2;
+  max-width: 480px;
+  margin-bottom: 30px;
+  padding: 30px;
+  @include mq($from: tablet) {
+	padding: 60px;
+  }
+  p.govuk-body {
+  	margin-bottom: 0;
+  }
+  .drag-drop-text {
+  	display: none;
+  	  @include mq($from: tablet) {
+  		display: inline;
+  	  }
+  }
+}
+#drop-area.highlight {
+  border-color: $govuk-focus-colour;
+  .icon--upload-arrow {
+  	background: lighten($govuk-focus-colour, 10%);
+  }
+}
+.upload-section-text {
+	display: inline-block;
+	vertical-align: text-top;
+	// padding-top: 20px;
+}
+#gallery {
+  margin-top: 10px;
+}
+#gallery img {
+  width: 300px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+#fileElem {
+  display: none;
+}
+
+progress {
+	padding: 0;
+	border: none;
+	border-radius: 0;
+
+	display: block;
+	color: $govuk-link-colour;
+	background-color: $govuk-grey-3;
+	width: 100%;
+}
+
+/* Chrome */
+progress::-webkit-progress-bar {
+    background-color: $govuk-grey-3;
+}
+
+progress::-moz-progress-bar { 
+  background-color: $govuk-link-colour;	
+}
+
+progress::-webkit-progress-value {
+  background-color: $govuk-link-colour;
+}
