@@ -67,34 +67,6 @@ $(document).ready(function () {
 
   });
 
-  $('[data-expanding-radios] input').on('click', function() {
-    var $this = $(this),
-      thisID = $this.attr('id'),
-      $thePanel = $this.closest('.expanding-panel-container').find('.expanding-panel'),
-      thePanelTrigger = $thePanel.attr('data-expanded-by');
-
-
-    if(thisID === thePanelTrigger) {
-      $thePanel.show();
-    } else {
-      $thePanel.hide();
-    }
-
-  });
-
-  $('[data-expanding-radios] input:checked').each(function() {
-    var $this = $(this),
-      thisID = $this.attr('id'),
-      $thePanel = $this.closest('.expanding-panel-container').find('.expanding-panel'),
-      thePanelTrigger = $thePanel.attr('data-expanded-by');
-
-    if(thisID === thePanelTrigger) {
-      $thePanel.show();
-    } else {
-      $thePanel.hide();
-    }
-  });
-
   fileUpload()
   passportPhoto()
 
@@ -134,16 +106,5 @@ $(document).ready(function () {
     })
   }
 
-  // const countries = [
-  //     'France',
-  //     'Germany',
-  //     'United Kingdom'
-  //   ]
-
-    // accessibleAutocomplete({
-    //   element: document.querySelector('#local-council-autocomplete-container'),
-    //   id: 'local-council-autocomplete', // To match it to the existing <label>.
-    //   source: councils
-    // })
 
 })
