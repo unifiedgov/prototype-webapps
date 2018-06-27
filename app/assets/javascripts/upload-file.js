@@ -75,7 +75,11 @@ function previewFile(file) {
     let img = document.createElement('img')
     img.src = reader.result
     document.getElementById('fileUploadedBox').classList.remove('hidden')
-    document.getElementById('cantUploadDetails').classList.add('hidden')
+    
+    if(document.getElementById('cantUploadDetails')) {
+      document.getElementById('cantUploadDetails').classList.add('hidden')  
+    }
+    
     document.getElementById('drop-area').classList.add('hidden')
     
     document.getElementById('gallery').appendChild(img)

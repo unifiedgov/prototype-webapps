@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = "Add a photo" %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  <main role="main" class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <div id="computer" class="hidden-mobile">
+          <h1 class="govuk-heading-l">Add a photo</h1>
+          <p class="govuk-body">{{ you | capitalize }} need to add a photo which will be printed on the back of {{ your }} badge.</p>
+
+          <section id='start-section'>
+            <h2 class="govuk-heading-m">Take a photo with a webcam</h2>
+
+            <p class="govuk-body">Use your device's camera to take a photo for {{ your }} Blue Badge</p>
+            <p class="govuk-body"><button class='govuk-button' onclick='takePhotoWebcam.start()'>Open {{ your }} camera</button></p>
+            <p class="govuk-body"><a href="upload-your-photo?change={{change}}">{{ you | capitalize }} already have a photo to upload</a></p>
+            <p class="govuk-body"><a href="upload-your-photo?change={{change}}">You don't have a camera on your device</a></p>
+          </section>
+
+          <section id='cannot-section' style='display:none'>
+            <h2 class="govuk-heading-m">Upload a photo or a scan</h2>
+
+            <p class="govuk-body">Your device can't be used to take a picture.</p>
+            <p class="govuk-body">
+              <a class="button" href='upload-your-photo?change={{change}}'>Choose another way to upload a photo</a>
+            </p>
+          </section>
+
+          <section id='capture-section' style='display:none'>
+            <h2 class="govuk-heading-m">Take a photo with a webcam</h2>
+
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-one-half">
+                <div class="video-container">
+                  <video id='webcam-video' width='320' height='240'>Webcam not available</video><br>
+                </div>
+              </div>
+
+              <div class="govuk-grid-column-one-half">
+                <p class="govuk-body">Make sure it
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>has a plain, light background</li>
+                  <li>includes {{ your }} shoulders</li>
+                  <li>shows {{ your }} face clearly</li>
+                </ul>
+                </p>
+                <button class='govuk-button' onclick='takePhotoWebcam.captureImage()'>Take photo</button>
+              </div>
+            </div>
+          </section>
+
+          <section id='upload-section' style='display:none;'>
+            <h2 class="govuk-heading-m">Take a photo with a webcam</h2>
+
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-one-half">
+                <div class="photo-container">
+                  <img id='webcam-photo' alt='result' class="webcam-photo"><br>
+                  <div id="blackbox"></div>
+                </div>
+              </div>
+
+              <div class="govuk-grid-column-one-half">
+                <p class="govuk-body">Make sure it
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>has a plain, light background</li>
+                    <li>includes {{ your }} shoulders</li>
+                    <li>shows {{ your }} face clearly</li>
+                  </ul>
+                </p>
+                <p class="govuk-body">
+                  <a class='govuk-button' href='check-answers?providePhoto=webcam&your-photo-file-upload=&photo='>Use this photo</a>
+                </p>
+                <p class="govuk-body"><a href="#" onclick='takePhotoWebcam.showCaptureSection()'>Take another photo</a></p>
+              </div>
+            </div>
+
+          </section>
+          <!-- TODO: Do we need to copy the .js to our local -->
+          <script src="/public/javascripts/webcam.js"></script>
+        </div>
+        <div id="mobile" class="hidden-tablet">
+          {% include "includes/upload-your-photo.html" %}
+        </div>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

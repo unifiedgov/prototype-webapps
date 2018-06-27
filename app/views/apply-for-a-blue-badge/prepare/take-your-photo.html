@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
-{% set pageHeading = "Add a photo" %}
+{% set pageHeading = "Take a photo" %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -18,8 +18,14 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">Add a photo</h1>
-        <p class="govuk-body">{{ you | capitalize }} need to add a photo which will be printed on the back of {{ your }} badge.</p>
+        <h1 class="govuk-heading-l">Take a photo</h1>
+        <p class="govuk-body">{{ you | capitalize }} need a photo taken of {{your}} face which will be printed on the back of {{ your }} badge.</p>
+
+        {% if data['applicant'] !== 'someone-else' %}
+
+        <p class="govuk-body">It may be easier to get somebody to help you with this.</p>
+
+        {% endif %}
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-third">
