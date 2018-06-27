@@ -758,20 +758,30 @@ router.get('/provide-photo', function (req, res) {
 
 router.get('/prepare/provide-photo-backend', function(req, res) {
   if (req.session.data['already-have-photo'] == 'yes') {
-    res.redirect('/apply-for-a-blue-badge/check-answers');
+    res.redirect('/apply-for-a-blue-badge/prepare/upload-your-photo');
   } else {
     res.redirect('/apply-for-a-blue-badge/prepare/take-your-photo');
   }
 });
 
-router.get('/upload-your-photo', function (req, res) {
+router.get('/device-take-photo', function (req, res) {
   res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
-  res.render('apply-for-a-blue-badge/prepare/upload-your-photo');
+  res.locals.submitLabel = 'Continue';
+  res.render('apply-for-a-blue-badge/prepare/device-take-photo');
 });
 
 router.get('/take-your-photo', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
+  res.locals.formAction = '/apply-for-a-blue-badge/prepare/take-photo-backend';
+  res.locals.submitLabel = 'Continue';
   res.render('apply-for-a-blue-badge/prepare/take-your-photo');
+});
+
+router.get('/prepare/take-photo-backend', function(req, res) {
+  if (req.session.data['devices-camera'] == 'yes') {
+    res.redirect('/apply-for-a-blue-badge/prepare/device-take-photo');
+  } else {
+    res.redirect('/apply-for-a-blue-badge/check-answers');
+  }
 });
 
 router.get('/check-answers', function (req, res) {

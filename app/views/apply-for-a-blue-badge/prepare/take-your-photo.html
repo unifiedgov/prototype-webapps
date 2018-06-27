@@ -23,27 +23,19 @@
 
         {% if data['applicant'] !== 'someone-else' %}
 
-        <p class="govuk-body">It may be easier to get somebody to help you with this.</p>
-
-        {% endif %}
-
         <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-third">
-            <img class="responsive-image passport-photo" src="{{ asset_path }}/images/passport-photo.png" alt="">
+          <div class="govuk-grid-column-one-half">
+            <img class="responsive-image passport-help-photo" src="{{ asset_path }}/images/photo-help.png" alt="">
           </div>
-
-          <div class="govuk-grid-column-two-thirds">
-            <p class="govuk-body">Make sure it
-            <ul class="govuk-list govuk-list--bullet">
-              <li>has a plain, light background</li>
-              <li>includes {{ your }} shoulders</li>
-              <li>shows {{ your }} face clearly</li>
-            </ul>
-            </p>
+          <div class="govuk-grid-column-one-half">
+            <p class="govuk-body">It may be easier to get somebody to help you with this.</p>
           </div>
         </div>
-        <form action="{{ formAction }}">
+        {% endif %}
+        <form action="take-photo-backend">
           {% set uploadHtml %}
+            <p class="govuk-body">Once {{you}} have {{your}} photo taken, get it onto this device, either by scanning it or taking a photo of it. You can then upload it here.</p>
+
             {{ uploadComponentWidget.uploadComponent(
               'passportPhoto', 
               formAction + '?passportPhoto=notProvided&passport-photo-file-upload=',
@@ -59,14 +51,14 @@
           
 
           {{ govukRadios({
-            "idPrefix": "already-have-photo",
-            "name": "already-have-photo",
+            "idPrefix": "devices-camera",
+            "name": "devices-camera",
             "attributes": {
               "data-catchoption-label": true
             },
             "fieldset": {
               "legend": {
-                "text": "Do you already have a suitable digital photo on your device?",
+                "text": "Do you want to use this device's camera?",
                 "isPageHeading": false,
                 "classes": 'govuk-fieldset__legend--m'
               }
@@ -75,15 +67,15 @@
               {
                 "value": "yes",
                 "text": "Yes",
-                "checked": data['already-have-photo'] === 'yes',
-                "conditional": {
-                  "html": uploadHtml
-                }
+                "checked": data['devices-camera'] === 'yes'
               },
               {
                 "value": "no",
                 "text": "No",
-                "checked": data['already-have-photo'] === 'no'
+                "checked": data['devices-camera'] === 'no',
+                "conditional": {
+                  "html": uploadHtml
+                }
               }
 
             ]
@@ -92,7 +84,7 @@
           <div id="hiddenCaughtInputs"></div>
 
           {{ govukButton({
-            "text": submitLabel
+            "text": "Continue"
           }) }}
         </form>
       </div>
