@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% import "apply-for-a-blue-badge/macros/upload-component.html" as uploadComponentWidget %}
+{% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
 {% set pageHeading = 'Prove ' + your + ' address' %}
 
@@ -33,7 +33,7 @@
             'proveAddress', 
             formAction + '?proveAddress=notProvided&your-address-file-upload=',
             your, 
-            'about how to prove ' + your + ' address' 
+            'about how to prove ' + your + ' address',
             change, 
             'no',
             'your-address-file-upload'
@@ -49,4 +49,8 @@
   </main>
 </div>
 
+{% endblock %}
+
+{% block page_scripts %}
+  <script src="{{ asset_path }}javascripts/upload-file.js"></script>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% import "apply-for-a-blue-badge/macros/upload-component.html" as uploadComponentWidget %}
+{% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
 <form action="{{ formAction }}">
   <div class="hidden-tablet">
@@ -16,10 +16,18 @@
     <li>shows {{ your }} face clearly</li>
   </ul>
 
-  {{ uploadComponentWidget.uploadComponent('your-photo-file-upload', 'photo', 'providePhoto',
-  '/public/images/phillip.png',
-  'apply-for-a-blue-badge/check-answers?providePhoto=notProvided&your-photo-file-upload=&photo=', your,
-  'about how to provide ' + your + ' photo.', '', 'no', ''
+  {{ uploadComponentWidget.uploadComponent(
+    'providePhoto', 
+    formAction + '?providePhoto=notProvided&photo-file-upload=',
+    your, 
+    'about how to provide ' + your + ' photo.', 
+    change, 
+    'no',
+    'photo-file-upload'
   )}}
 
 </form>
+
+{% block page_scripts %}
+  <script src="{{ asset_path }}javascripts/upload-file.js"></script>
+{% endblock %}
