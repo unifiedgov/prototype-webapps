@@ -18,15 +18,14 @@
         {% if data['applicant'] === 'organisation' %}
           <!-- Org -->
           {% if data['org-care-for'] === 'no' or data['org-transport'] === 'no' %}
-            <h1 class="govuk-heading-l">Your organisation isn't eligible for a Blue Badge</h1>
-            <p class="govuk-body">Based on your answers, your organisation isn't eligible for a Blue Badge.</p>
+            <h1 class="govuk-heading-l">Based on your answers, your organisation isn't eligible for a Blue Badge</h1>
             <p class="govuk-body">Blue Badges are only given to organisations who transport and care for people who need a Blue Badge.</p>
             <p class="govuk-body">If you think that your organisation is eligible you should contact your local council directly:</p>
             {% else %}
-            <h1 class="govuk-heading-l">Your organisation may be eligible for a Blue Badge</h1>
-            <p class="govuk-body">Based on your answers, your organisation may be eligible for a Blue Badge.</p>
+            <h1 class="govuk-heading-l">Based on your answers, your organisation may be eligible for a Blue Badge</h1>
             <p class="govuk-body">You'll need to be authorised by your organisation to apply on their behalf and may be contacted by your local council to provide more information.</p>
             <ul class="govuk-list govuk-list--bullet">
+              <li>You'll need the details of the vehicles used to transport people</li>
               <li>The badge issue fee is £10 which is refunded if the application isn't successful</li>
               <li>It can take up to 4 weeks to get a decision</li>
             </ul>
