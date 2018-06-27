@@ -286,9 +286,6 @@ router.get('/organisation-details/list-vehicles', function(req, res) {
           "text": item.vrn
         },
         {
-          "text": item.type
-        },
-        {
           "text": item.frequency
         },
         {
@@ -312,7 +309,6 @@ router.get('/organisation-details/add-vehicle', function(req, res) {
 router.get('/organisation-details/create-vehicle', function(req, res) {
   var vehicle = {
     "vrn": req.session.data['vehicle-vrn'],
-    "type": req.session.data['vehicle-type'],
     "frequency": req.session.data['vehicle-frequency'],
   }
 
@@ -322,7 +318,7 @@ router.get('/organisation-details/create-vehicle', function(req, res) {
     req.session.data['vehicle-array'] = [vehicle];
   }
 
-  delete req.session.data['vehicle-name','vehicle-type','vehicle-frequency'];
+  delete req.session.data['vehicle-name','vehicle-frequency'];
   res.redirect('/apply-for-a-blue-badge/organisation-details/list-vehicles');
 });
 
