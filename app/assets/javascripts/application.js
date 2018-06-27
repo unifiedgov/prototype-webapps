@@ -67,44 +67,4 @@ $(document).ready(function () {
 
   });
 
-  // fileUpload()
-  passportPhoto()
-
-
-  // function fileUpload() {
-  //     var input = '.file-upload__input';
-    
-  //     $('label span[role=button]').bind('keypress keyup', function(e) {
-  //       if(e.which === 32 || e.which === 13){
-  //         e.preventDefault();
-  //         $(input).click();
-  //       }    
-  //     });
-
-  //     $(input).change(function(){
-  //       $('.file-upload').addClass('js-hidden')
-  //       $('.photo-guidance').addClass('js-hidden')
-  //       $('.loading').removeClass('js-hidden')
-  //       setTimeout(function(){ 
-  //         $('.file-upload.uploaded').removeClass('js-hidden')
-  //         $('.loading').addClass('js-hidden')
-  //       }, 3000);
-  //     });
-
-  // }
-
-
-  function passportPhoto() {
-    $(document).on('click', '.passport-button', function(e) {
-      e.preventDefault;
-      $('.passport-search').addClass('js-hidden')
-      $('.loading').removeClass('js-hidden')
-      setTimeout(function(){ 
-          $('.passport-photo').removeClass('js-hidden')
-          $('.loading').addClass('js-hidden')
-        }, 3000);   
-    })
-  }
-
-
-})
+});
