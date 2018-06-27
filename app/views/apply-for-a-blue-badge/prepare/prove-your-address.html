@@ -28,12 +28,16 @@
             <li>a letter from a government department such as HMRC or the Department for Work and Pensions</li>
           </ul>
           </p>
-          <h2 class="govuk-heading-m">Upload a photo or a scan</h2>
 
-          {{ uploadComponentWidget.uploadComponent('your-address-file-upload',
-          'address', 'proveAddress', '/public/images/dla_letter.png',
-          formAction + '?proveAddress=notProvided&your-address-file-upload=',
-          your, 'about how to prove ' + your + ' address', change, 'no')}}
+          {{ uploadComponentWidget.uploadComponent(
+            'proveAddress', 
+            formAction + '?proveAddress=notProvided&your-address-file-upload=',
+            your, 
+            'about how to prove ' + your + ' address' 
+            change, 
+            'no',
+            'your-address-file-upload'
+          )}}
         </form>
 
       </div>

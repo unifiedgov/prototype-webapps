@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% import "apply-for-a-blue-badge/macros/upload-component.html" as uploadComponentWidget %}
+{% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
 {% set pageHeading = "Upload proof of " + your + " sight impairment" %}
 
@@ -35,11 +35,15 @@
             <li>BD8 form (Before 1990)</li>
           </ul>
 
-          <p class="govuk-heading-m">Upload a photo or a scan</p>
-          {{ uploadComponentWidget.uploadComponent('impairment-proof-file-upload',
-          'proof of impairment', 'proofOfCVI', '/public/images/cvi-form.png',
-          formAction + '?proofOfCVI=notProvided&impairment-proof-file-upload=',
-          your, 'about how to prove ' + you + ' have a severe sight impairment', change, 'no', "impairment-proof-upload-shows-current-address")}}
+          {{ uploadComponentWidget.uploadComponent(
+            'proofOfCVI', 
+            formAction + '?proofOfCVI=notProvided&impairment-proof-file-upload=',
+            your, 
+            'about how to prove ' + you + ' have a severe sight impairment', 
+            change, 
+            'no',
+            'impairment-proof-file-upload'
+          )}}
         </form>
 
       </div>

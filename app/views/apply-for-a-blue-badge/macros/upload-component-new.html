@@ -5,14 +5,16 @@
     your, 
     aboutHowTo, 
     change, 
-    askIfUploadShowAddress
+    askIfUploadShowAddress,
+    nameOfDataItem
   )%}
 
 {{ chooseYourFile(
     provideType, 
     notUploadingUrl, 
     your, 
-    askIfUploadShowAddress
+    askIfUploadShowAddress,
+    nameOfDataItem
   ) 
 }}
 
@@ -32,7 +34,8 @@
   provideType, 
   notUploadingUrl, 
   your, 
-  askIfUploadShowAddress
+  askIfUploadShowAddress,
+  nameOfDataItem
   ) 
 %}
 
@@ -63,6 +66,8 @@
     <a href="">Upload a different file</a>
   </p>
   <input type="hidden" name="{{provideType}}" value="upload">
+
+  <input type="hidden" id="theNameOfFile" name="{{nameOfDataItem}}" value="">
   
   {% if (askIfUploadShowAddress==='yes') %}
     {{ govukRadios({

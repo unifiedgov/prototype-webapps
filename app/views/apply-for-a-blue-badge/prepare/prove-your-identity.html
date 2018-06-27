@@ -27,12 +27,16 @@
               <li>{{ your }} birth or adoption certificate</li>
               <li>{{ your }} marriage, civil partnership, divorce or dissolution certificate</li>
           </ul>
-          <h2 class="govuk-heading-m">Upload a photo or scan</h2>
-          
-          {{ uploadComponentWidget.uploadComponent('your-identity-file-upload',
-          'identity', 'proveIdentity', '/public/images/rsz_uk-driving-licence_full_front_flag.jpg',
-          formAction + '?identity-upload-shows-current-address=&proveIdentity=notProvided&your-identity-file-upload=',
-          your, 'about how to prove ' + your + ' identity', change, 'yes', "identity-upload-shows-current-address")}}
+
+          {{ uploadComponentWidget.uploadComponent(
+            'proveIdentity', 
+            formAction + '?proveIdentity=notProvided&your-identity-file-upload=',
+            your, 
+            'about how to prove ' + you + ' have a severe sight impairment', 
+            change, 
+            'yes',
+            'your-identity-file-upload'
+          )}}
         </form>
 
       </div>

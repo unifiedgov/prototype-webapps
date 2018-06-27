@@ -22,7 +22,34 @@
         <form action="{{ formAction }}?proofOfEligibility=upload">
           <input type="hidden" id="change" name="change" value="{{change}}">
           <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-          <p class="govuk-body">You need to upload a copy of {{ your }} PIP decision letter or {{ your }} annual uprating letter, issued within the last twelve months.</p>
+          {% if data['benefit'] === 'dla' %}
+
+            <p class="govuk-body">You need to upload a copy of {{ your }} letter of entitlement, issued within the last 12 months.</p>
+
+          {% elif data['benefit'] === 'pip' %}
+
+            <p class="govuk-body">You need to upload a copy of {{ your }} PIP decision letter or {{ your }} annual uprating letter, issued within the last twelve months.</p>
+
+          {% elif data['benefit'] === 'armed-forces' %}
+
+            <p class="govuk-body">You need to upload a letter from the Service Personnel and Veteran’s Agency, confirming you:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+              <li>were injured in service on or after 6 April 2005</li>
+              <li>have been awarded a benefit by the Armed Forces Compensation Scheme, with a lump sum payment within Tariffs 1 to 8</li>
+              <li>are certified as having a permanent, substantial disability which causes inability to walk or very considerable difficulty in walking</li>
+            </ul>
+
+          {% elif data['benefit'] === 'war-pensioners' %}
+
+            <p class="govuk-body">You need to upload an official letter, confirming you:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+              <li>were injured in service before 6 April 2005</li>
+              <li>are in receipt of a War Pensioner's Mobility Supplement</li>
+            </ul>
+            
+          {% endif %}
 
           {{ uploadComponentWidget.uploadComponent(
             'proofOfEligibility', 
@@ -30,7 +57,8 @@
             your, 
             'about how to prove ' + your + ' eligibility', 
             change, 
-            'yes'
+            'yes',
+            'benefit-proof-file-upload'
           )}}
           
         </form>

@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% import "apply-for-a-blue-badge/macros/upload-component.html" as uploadComponentWidget %}
+{% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
 {% set pageHeading = "Upload evidence that " + your + " vehicle has been adapted" %}
 
@@ -30,11 +30,15 @@
             <li>44 - Adapted accelerator</li>
           </ul>
 
-          <p class="govuk-heading-m">Upload a photo or a scan</p>
-          {{ uploadComponentWidget.uploadComponent('adapted-proof-file-upload',
-          'proof of adapted', 'proofOfAdapted', '/public/images/adapted-evidence.jpg',
-          formAction + '?proofOfAdapted=notProvided&adapted-proof-file-upload=',
-          your, 'about how to prove ' + you + ' have an adapted vehicle', change, 'no', "benefit-proof-upload-shows-current-address")}}
+          {{ uploadComponentWidget.uploadComponent(
+            'proofOfAdapted', 
+            formAction + '?proofOfAdapted=notProvided&adapted-proof-file-upload=',
+            your, 
+            'about how to prove ' + you + ' have an adapted vehicle', 
+            change, 
+            'no',
+            'adapted-proof-file-upload'
+          )}}
         </form>
 
       </div>

@@ -79,11 +79,12 @@ function previewFile(file) {
     document.getElementById('drop-area').classList.add('hidden')
     
     document.getElementById('gallery').appendChild(img)
+    document.getElementById('theNameOfFile').value = file.name
   }
 }
 
 function uploadFile(file, i) {
-  var url = 'https://api.cloudinary.com/v1_1/henryneves/image/upload'
+  var url = 'https://api.cloudinary.com/v1_1/joezim007/image/upload'
   var xhr = new XMLHttpRequest()
   var formData = new FormData()
   xhr.open('POST', url, true)
