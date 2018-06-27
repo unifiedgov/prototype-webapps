@@ -750,15 +750,28 @@ router.get('/prove-your-address-backend', function (req, res) {
 // Add photo
 
 router.get('/provide-photo', function (req, res) {
-  // Form action specified in view
+  res.locals.formAction = '/apply-for-a-blue-badge/prepare/provide-photo-backend';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
   res.render('apply-for-a-blue-badge/prepare/provide-photo');
 })
 
+router.get('/prepare/provide-photo-backend', function(req, res) {
+  if (req.session.data['already-have-photo'] == 'yes') {
+    res.redirect('/apply-for-a-blue-badge/check-answers');
+  } else {
+    res.redirect('/apply-for-a-blue-badge/prepare/take-your-photo');
+  }
+});
+
 router.get('/upload-your-photo', function (req, res) {
   res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
   res.render('apply-for-a-blue-badge/prepare/upload-your-photo');
+});
+
+router.get('/take-your-photo', function (req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
+  res.render('apply-for-a-blue-badge/prepare/take-your-photo');
 });
 
 router.get('/check-answers', function (req, res) {

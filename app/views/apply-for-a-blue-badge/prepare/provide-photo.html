@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
 {% set pageHeading = "Add a photo" %}
 
@@ -17,85 +18,77 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <div id="computer" class="hidden-mobile">
-          <h1 class="govuk-heading-l">Add a photo</h1>
-          <p class="govuk-body">{{ you | capitalize }} need to add a photo which will be printed on the back of {{ your }} badge.</p>
+        <h1 class="govuk-heading-l">Add a photo</h1>
+        <p class="govuk-body">{{ you | capitalize }} need to add a photo which will be printed on the back of {{ your }} badge.</p>
 
-          <section id='start-section'>
-            <h2 class="govuk-heading-m">Take a photo with a webcam</h2>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-third">
+            <img class="responsive-image passport-photo" src="{{ asset_path }}/images/passport-photo.png" alt="">
+          </div>
 
-            <p class="govuk-body">Use your device's camera to take a photo for {{ your }} Blue Badge</p>
-            <p class="govuk-body"><button class='govuk-button' onclick='takePhotoWebcam.start()'>Open {{ your }} camera</button></p>
-            <p class="govuk-body"><a href="upload-your-photo?change={{change}}">{{ you | capitalize }} already have a photo to upload</a></p>
-            <p class="govuk-body"><a href="upload-your-photo?change={{change}}">You don't have a camera on your device</a></p>
-          </section>
-
-          <section id='cannot-section' style='display:none'>
-            <h2 class="govuk-heading-m">Upload a photo or a scan</h2>
-
-            <p class="govuk-body">Your device can't be used to take a picture.</p>
-            <p class="govuk-body">
-              <a class="button" href='upload-your-photo?change={{change}}'>Choose another way to upload a photo</a>
+          <div class="govuk-grid-column-two-thirds">
+            <p class="govuk-body">Make sure it
+            <ul class="govuk-list govuk-list--bullet">
+              <li>has a plain, light background</li>
+              <li>includes {{ your }} shoulders</li>
+              <li>shows {{ your }} face clearly</li>
+            </ul>
             </p>
-          </section>
-
-          <section id='capture-section' style='display:none'>
-            <h2 class="govuk-heading-m">Take a photo with a webcam</h2>
-
-            <div class="govuk-grid-row">
-              <div class="govuk-grid-column-one-half">
-                <div class="video-container">
-                  <video id='webcam-video' width='320' height='240'>Webcam not available</video><br>
-                </div>
-              </div>
-
-              <div class="govuk-grid-column-one-half">
-                <p class="govuk-body">Make sure it
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>has a plain, light background</li>
-                  <li>includes {{ your }} shoulders</li>
-                  <li>shows {{ your }} face clearly</li>
-                </ul>
-                </p>
-                <button class='govuk-button' onclick='takePhotoWebcam.captureImage()'>Take photo</button>
-              </div>
-            </div>
-          </section>
-
-          <section id='upload-section' style='display:none;'>
-            <h2 class="govuk-heading-m">Take a photo with a webcam</h2>
-
-            <div class="govuk-grid-row">
-              <div class="govuk-grid-column-one-half">
-                <div class="photo-container">
-                  <img id='webcam-photo' alt='result' class="webcam-photo"><br>
-                  <div id="blackbox"></div>
-                </div>
-              </div>
-
-              <div class="govuk-grid-column-one-half">
-                <p class="govuk-body">Make sure it
-                  <ul class="govuk-list govuk-list--bullet">
-                    <li>has a plain, light background</li>
-                    <li>includes {{ your }} shoulders</li>
-                    <li>shows {{ your }} face clearly</li>
-                  </ul>
-                </p>
-                <p class="govuk-body">
-                  <a class='govuk-button' href='check-answers?providePhoto=webcam&your-photo-file-upload=&photo='>Use this photo</a>
-                </p>
-                <p class="govuk-body"><a href="#" onclick='takePhotoWebcam.showCaptureSection()'>Take another photo</a></p>
-              </div>
-            </div>
-
-          </section>
-          <!-- TODO: Do we need to copy the .js to our local -->
-          <script src="/public/javascripts/webcam.js"></script>
+          </div>
         </div>
-        <div id="mobile" class="hidden-tablet">
-          {% include "includes/upload-your-photo.html" %}
-        </div>
+        <form action="{{ formAction }}">
+          {% set uploadHtml %}
+            {{ uploadComponentWidget.uploadComponent(
+              'passportPhoto', 
+              formAction + '?passportPhoto=notProvided&passport-photo-file-upload=',
+              your, 
+              '', 
+              change, 
+              'no',
+              'passport-photo-file-upload',
+              'yes'
+            )}}
+          {% endset -%}
 
+          
+
+          {{ govukRadios({
+            "idPrefix": "already-have-photo",
+            "name": "already-have-photo",
+            "attributes": {
+              "data-catchoption-label": true
+            },
+            "fieldset": {
+              "legend": {
+                "text": "Do you already have a suitable digital photo on your device?",
+                "isPageHeading": false,
+                "classes": 'govuk-fieldset__legend--m'
+              }
+            },
+            "items": [
+              {
+                "value": "yes",
+                "text": "Yes",
+                "checked": data['already-have-photo'] === 'yes',
+                "conditional": {
+                  "html": uploadHtml
+                }
+              },
+              {
+                "value": "no",
+                "text": "No",
+                "checked": data['already-have-photo'] === 'no'
+              }
+
+            ]
+          }) }}
+
+          <div id="hiddenCaughtInputs"></div>
+
+          {{ govukButton({
+            "text": submitLabel
+          }) }}
+        </form>
       </div>
 
       <div class="govuk-grid-column-one-third">
@@ -105,4 +98,9 @@
   </main>
 </div>
 
+{% endblock %}
+
+
+{% block page_scripts %}
+  <script src="{{ asset_path }}javascripts/upload-file.js"></script>
 {% endblock %}

@@ -6,7 +6,8 @@
     aboutHowTo, 
     change, 
     askIfUploadShowAddress,
-    nameOfDataItem
+    nameOfDataItem,
+    isAnInlineUpload
   )%}
 
 {{ chooseYourFile(
@@ -14,14 +15,16 @@
     notUploadingUrl, 
     your, 
     askIfUploadShowAddress,
-    nameOfDataItem
+    nameOfDataItem,
+    isAnInlineUpload
   ) 
 }}
 
 {{ iCantUploadAPhotoOrScan(
     your, 
     aboutHowTo, 
-    change
+    change,
+    isAnInlineUpload
   ) 
 }}
 
@@ -35,7 +38,8 @@
   notUploadingUrl, 
   your, 
   askIfUploadShowAddress,
-  nameOfDataItem
+  nameOfDataItem,
+  isAnInlineUpload
   ) 
 %}
 
@@ -92,32 +96,38 @@
       ]
     }) }}
   {% endif %}
-
-  {{ govukButton({
-    "text": "Continue"
-  }) }}
+  
+  {% if (isAnInlineUpload!=='yes') %}
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  {% endif %}
   
 </div>
 
-<div class="js-hidden">
-  {{ govukButton({
-    "text": "Continue"
-  }) }}
-</div>
+{% if (isAnInlineUpload!=='yes') %}
+  <div class="js-hidden">
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  </div>
+{% endif %}
 
 
 
 {% endmacro %}
 
-{% macro iCantUploadAPhotoOrScan(your, aboutHowTo, change) %}
-<details class="govuk-details file-upload empty" id="cantUploadDetails">
-  <summary class="govuk-details__summary">I can't upload a photo or scan</summary>
-  <div class="govuk-details__text panel panel-border">
-    <p class="govuk-body">If you can't upload a photo or scan Manchester city council will contact you {{ aboutHowTo }}.</p>
-    <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
-    <p class="govuk-body">
-      <a href="{{notUploadingUrl}}" class="govuk-button-secondary">Continue without uploading</a>
-    </p>
-  </div>
-</details>
+{% macro iCantUploadAPhotoOrScan(your, aboutHowTo, change, isAnInlineUpload) %}
+{% if (isAnInlineUpload!=='yes') %}
+  <details class="govuk-details file-upload empty" id="cantUploadDetails">
+    <summary class="govuk-details__summary">I can't upload a photo or scan</summary>
+    <div class="govuk-details__text panel panel-border">
+      <p class="govuk-body">If you can't upload a photo or scan Manchester city council will contact you {{ aboutHowTo }}.</p>
+      <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
+      <p class="govuk-body">
+        <a href="{{notUploadingUrl}}" class="govuk-button-secondary">Continue without uploading</a>
+      </p>
+    </div>
+  </details>
+{% endif %}
 {% endmacro %}
