@@ -52,6 +52,10 @@ router.get('/new-application-walking', function (req, res) {
   res.render('manage-blue-badges/new-application-walking', {'title':'New application','app_class':'active'})
 })
 
+router.get('/new-application-walking-2', function (req, res) {
+  res.render('manage-blue-badges/new-application-walking-2', {'title':'New application','app_class':'active'})
+})
+
 router.get('/new-application-arms', function (req, res) {
   res.render('manage-blue-badges/new-application-arms', {'title':'New application','app_class':'active'})
 })
