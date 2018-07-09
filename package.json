@@ -9,7 +9,9 @@
   "scripts": {
     "start": "node start.js",
     "lint": "standard",
-    "test": "gulp test && npm run lint"
+    "test": "gulp test && npm run lint",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@govuk-frontend/frontend": "0.0.29-alpha",
@@ -44,11 +46,13 @@
     "supertest": "^3.0.0",
     "sync-request": "^4.0.3",
     "universal-analytics": "^0.4.16",
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "snyk": "^1.88.2"
   },
   "greenkeeper": {
     "ignore": [
       "nunjucks"
     ]
-  }
+  },
+  "snyk": true
 }
