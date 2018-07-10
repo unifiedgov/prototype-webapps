@@ -35,8 +35,6 @@
     </div>
   
   </div>
-
-  
   
   <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 
@@ -47,7 +45,7 @@
         Full name
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['fullName']}}
+        {{ data['fullName'] }}
       </dd>
     </div>
 
@@ -57,6 +55,16 @@
       </dt>
       <dd class="govuk-check-your-answers__answer">
         {{data['dob-day']}}/{{data['dob-month']}}/{{data['dob-year']}}
+      </dd>
+    </div>
+
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Gender
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['gender']}}
       </dd>
     </div>
 
