@@ -34,6 +34,36 @@
       name: "fullName",
       value: data['fullName']
     }) }}
+
+    {{ govukRadios({
+      "idPrefix": "gender",
+      "name": "gender",
+      "fieldset": {
+        "legend": {
+          "text": "Gender",
+          "isPageHeading": false,
+          "classes": 'govuk-fieldset__legend--s'
+        }
+      },
+      "items": [
+        {
+          "value": "Female",
+          "text": "Female",
+            "checked": data['gender'] === 'Female'
+        },
+        {
+          "value": "Male",
+          "text": "Male",
+          "checked": data['gender'] === 'Male'
+        },
+        {
+          "value": "Unspecified",
+          "text": "Unspecified",
+          "checked": data['gender'] === 'Unspecified'
+        }
+
+      ]
+    }) }}
     
     {{ govukDateInput({
       fieldset: {
@@ -240,20 +270,7 @@
   </p>
 
   <ul class="govuk-list govuk-list--bullet">
-    <li>meet the <a href="">guidelines</a></li>
-
-  {% else %}
-  
-  <h2 class="govuk-heading-m">Logo (optional)</h2>
-
-  <p class="govuk-body">
-    Logos should:
-  </p>
-
-  <ul class="govuk-list govuk-list--bullet">
-
-  {% endif %}
-
+    <li>meet the <a href="">guidelines</a></li>  
     <li>be either .JPEG or .PNG format</li>
     <li>not be bigger than 2MB</li>
   </ul>
@@ -265,6 +282,8 @@
       text: 'Upload a file'
     }
   }) }}
+
+  {% endif %}
    
  </section>
 
