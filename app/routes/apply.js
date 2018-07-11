@@ -758,7 +758,7 @@ router.get('/provide-photo', function (req, res) {
 
 router.get('/prepare/provide-photo-backend', function(req, res) {
   if (req.session.data['already-have-photo'] == 'yes') {
-    res.redirect('/apply-for-a-blue-badge/prepare/upload-your-photo');
+    res.redirect('/apply-for-a-blue-badge/check-answers');
   } else {
     res.redirect('/apply-for-a-blue-badge/prepare/take-your-photo');
   }

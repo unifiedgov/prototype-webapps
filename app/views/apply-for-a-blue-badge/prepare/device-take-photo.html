@@ -21,78 +21,73 @@
           <h1 class="govuk-heading-l">{{pageHeading}}</h1>
           <p class="govuk-body">{{ you | capitalize }} need to add a photo which will be printed on the back of {{ your }} badge.</p>
 
-          <section id='start-section'>
-            <h2 class="govuk-heading-m">Take a photo with a webcam</h2>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+              <img class="responsive-image passport-photo" src="{{ asset_path }}/images/passport-photo.png" alt="">
+            </div>
 
-            <p class="govuk-body"><button class='govuk-button' onclick='takePhotoWebcam.start()'>Open {{ your }} camera</button></p>
-            <p class="govuk-body"><a href="upload-your-photo?change={{change}}">{{ you | capitalize }} already have a photo to upload</a></p>
-            <p class="govuk-body"><a href="upload-your-photo?change={{change}}">You don't have a camera on your device</a></p>
+            <div class="govuk-grid-column-two-thirds">
+              <p class="govuk-body">Make sure it
+              <ul class="govuk-list govuk-list--bullet">
+                <li>has a plain, light background</li>
+                <li>includes {{ your }} shoulders</li>
+                <li>shows {{ your }} face clearly</li>
+              </ul>
+              </p>
+            </div>
+          </div>
+
+          <section id='start-section'>
+            <h2 class="govuk-heading-m">Take {{your}} photo</h2>
+
+            {{ govukDetails({
+              "summaryText": "Open my camera",
+              "html": '<p class="govuk-body">You may be prompted to allow access to your device\'s camera.</p> <button class="govuk-button" onclick="takePhotoWebcam.start()">Open my camera</button>' 
+            }) }}
+
           </section>
 
           <section id='cannot-section' style='display:none'>
-            <h2 class="govuk-heading-m">Upload a photo or a scan</h2>
+            <!-- TODO: Replace this with proper error handling -->
 
-            <p class="govuk-body">Your device can't be used to take a picture.</p>
-            <p class="govuk-body">
-              <a class="button" href='upload-your-photo?change={{change}}'>Choose another way to upload a photo</a>
-            </p>
+            <h2 class="govuk-heading-m">There's been a problem</h2>
+
+            <p class="govuk-body">You'll need to upload your photo instead.</p>
+
+            {{ govukButton({
+              "text": "Upload photo"
+            }) }}
           </section>
 
           <section id='capture-section' style='display:none'>
-            <h2 class="govuk-heading-m">Take a photo with a webcam</h2>
+            <h2 class="govuk-heading-m">Take {{your}} photo</h2>
 
             <div class="govuk-grid-row">
-              <div class="govuk-grid-column-one-half">
+              <div class="govuk-grid-column-one-third">
                 <div class="video-container">
                   <video id='webcam-video' width='320' height='240'>Webcam not available</video><br>
                 </div>
-              </div>
-
-              <div class="govuk-grid-column-one-half">
-                <p class="govuk-body">Make sure it
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>has a plain, light background</li>
-                  <li>includes {{ your }} shoulders</li>
-                  <li>shows {{ your }} face clearly</li>
-                </ul>
-                </p>
-                <button class='govuk-button' onclick='takePhotoWebcam.captureImage()'>Take photo</button>
-              </div>
-            </div>
-          </section>
-
-          <section id='upload-section' style='display:none;'>
-            <h2 class="govuk-heading-m">Take a photo with a webcam</h2>
-
-            <div class="govuk-grid-row">
-              <div class="govuk-grid-column-one-half">
                 <div class="photo-container">
                   <img id='webcam-photo' alt='result' class="webcam-photo"><br>
                   <div id="blackbox"></div>
                 </div>
               </div>
 
-              <div class="govuk-grid-column-one-half">
-                <p class="govuk-body">Make sure it
-                  <ul class="govuk-list govuk-list--bullet">
-                    <li>has a plain, light background</li>
-                    <li>includes {{ your }} shoulders</li>
-                    <li>shows {{ your }} face clearly</li>
-                  </ul>
-                </p>
-                <p class="govuk-body">
-                  <a class='govuk-button' href='check-answers?providePhoto=webcam&your-photo-file-upload=&photo='>Use this photo</a>
-                </p>
-                <p class="govuk-body"><a href="#" onclick='takePhotoWebcam.showCaptureSection()'>Take another photo</a></p>
+              <div class="govuk-grid-column-two-thirds">
+                <h3 class="govuk-heading-s">Instructions</h3>
+                <ul class="govuk-list govuk-list--number">
+                  <li>Look at the camera</li>
+                  <li>Make sure your face and shoulders are in shot</li>
+                  <li>Press the button, and the countdown will start</li>
+                  <li>After 3 seconds, the photo will be taken</li>
+                </ul>
+                <button class='govuk-button' onclick='takePhotoWebcam.captureImage()'>Start countdown</button>
               </div>
             </div>
-
           </section>
+
           <!-- TODO: Do we need to copy the .js to our local -->
           <script src="/public/javascripts/webcam.js"></script>
-        </div>
-        <div id="mobile" class="hidden-tablet">
-          {% include "includes/upload-your-photo.html" %}
         </div>
 
       </div>
