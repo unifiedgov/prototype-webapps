@@ -23,7 +23,14 @@
         <p class="govuk-body">You've paid by card.</p>
         {% endif %}
 
-        {% if data['email'] !== '' %}<p class="govuk-body">We have sent a confirmation email to <span class="bold">{{ data['email-address'] }}</span>.</p>{% endif %}
+        <p class="govuk-body">We have sent a confirmation email to 
+          <strong>
+            {% if data['email-address'] %}
+            {{ data['email-address'] }}
+            {% else %}
+            yourname@email.com
+            {% endif %}
+          </strong>.</p>
 
         <h2 class="govuk-heading-m">What happens next</h2>
 
@@ -56,9 +63,11 @@
 
         <p class="govuk-body">We'll send {{ you }} a notification when a decision has been made about {{ your }} {{ application }}.</p>
 
-        <h2 class="govuk-heading-m">{{data['council-name']}} contact details</h2>
+        <p class="govuk-body">It's now safe to close this window.</p>
+
+        <h2 class="govuk-heading-m">{{data['council-name'] | capitalize}} contact details</h2>
         <p class="govuk-body">
-          {{data['council-name']}}
+          {{data['council-name'] | capitalize}}
           <br/>Church Lane
           <br/>Manchester
           <br/>M1 4AA

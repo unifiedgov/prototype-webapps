@@ -60,7 +60,7 @@
             },
             "fieldset": {
               "legend": {
-                "text": "Do you already have a suitable digital photo on your device?",
+                "text": "Do you already have a suitable digital photo on this device?",
                 "isPageHeading": false,
                 "classes": 'govuk-fieldset__legend--m'
               }
@@ -88,6 +88,15 @@
           {{ govukButton({
             "text": submitLabel
           }) }}
+
+          <div>
+            {{ govukButton({
+              "text": "Save your progress",
+              "href": "/progress-saved",
+              "classes": "govuk-button--secondary"
+            }) }}
+          </div>
+
         </form>
       </div>
 

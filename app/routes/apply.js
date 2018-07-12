@@ -45,6 +45,10 @@ router.get('/', function (req, res) {
   req.session.destroy();
 });
 
+router.get('/apply-for-a-blue-badge/progress-saved', function (req, res) {
+  res.render('apply-for-a-blue-badge/progress-saved');
+});
+
 router.get('/check-eligibility/', function (req, res) {
   res.render(checkEligibilityTemplatePath+'index.html', {'title':'Who are you applying for?'})
 });

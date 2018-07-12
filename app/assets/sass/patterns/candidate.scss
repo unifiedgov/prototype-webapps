@@ -29,6 +29,12 @@
   text-align: center;
 }
 
+.govuk-button.govuk-button--secondary{
+  background-color: $govuk-grey-3;
+  color: $govuk-black;
+  box-shadow: $govuk-grey-2 0px 2px 0px 0px;
+}
+
 // Loader
 .loading {
   text-align: center;
