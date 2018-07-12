@@ -39,7 +39,7 @@ window.takePhotoWebcam = (function () {
     var context = canvasEl.getContext('2d')
     canvasEl.width = videoEl.width
     canvasEl.height = videoEl.height
-    context.drawImage(videoEl, 0, 0, videoEl.width, videoEl.height)
+    context.drawImage(videoEl, 75, 0, videoEl.width, videoEl.height)
     return canvasEl.toDataURL('image/png')
   }
 
@@ -67,18 +67,34 @@ window.takePhotoWebcam = (function () {
     },
 
     captureImage: function () {
-      $('#blackbox').fadeIn(10);
-      q('#webcam-photo').src = captureImage(q('#webcam-video'))
-      hide(q('#capture-section'))
-      //$('h1').text('Confirm your photo');
-      show(q('#upload-section'))
-      $('#blackbox').fadeOut(2000);
+      hide(q('#photoInstructions'))
+      show(q('#countdownTimer'))
+
+      var timeleft = 2;
+      var downloadTimer = setInterval(function(){
+        document.getElementById("countdownTimer").innerHTML = 3 - --timeleft;
+        if(timeleft <= 0) {
+          clearInterval(downloadTimer);
+          q('#webcam-photo').src = captureImage(q('#webcam-video'))
+          hide(q('#camPreview'))
+          show(q('#camResult'))
+          show(q('#photoReady'))
+          $('#blackbox').fadeOut(2000);
+          hide(q('#countdownTimer'))
+        }
+          
+
+      },1000);
+
+      
     },
 
-    showCaptureSection: function () {
-      hide(q('#upload-section'))
-      //$('h1').text('Take a photo for your bus pass');
-      show(q('#capture-section'))
+    showCaptureSection: function (e) {
+      e.preventDefault();
+      hide(q('#camResult'))
+      hide(q('#photoReady'))
+      show(q('#camPreview'))
+      show(q('#photoInstructions'))
     }
 
   }

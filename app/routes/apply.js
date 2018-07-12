@@ -750,17 +750,17 @@ router.get('/prove-your-address-backend', function (req, res) {
 // Add photo
 
 router.get('/provide-photo', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prepare/provide-photo-backend';
+  res.locals.formAction = '/apply-for-a-blue-badge/provide-photo-backend';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
   res.render('apply-for-a-blue-badge/prepare/provide-photo');
 })
 
-router.get('/prepare/provide-photo-backend', function(req, res) {
+router.get('/provide-photo-backend', function(req, res) {
   if (req.session.data['already-have-photo'] == 'yes') {
     res.redirect('/apply-for-a-blue-badge/check-answers');
   } else {
-    res.redirect('/apply-for-a-blue-badge/prepare/take-your-photo');
+    res.redirect('/apply-for-a-blue-badge/take-your-photo');
   }
 });
 
@@ -771,14 +771,14 @@ router.get('/device-take-photo', function (req, res) {
 });
 
 router.get('/take-your-photo', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prepare/take-photo-backend';
+  res.locals.formAction = '/apply-for-a-blue-badge/take-photo-backend';
   res.locals.submitLabel = 'Continue';
   res.render('apply-for-a-blue-badge/prepare/take-your-photo');
 });
 
-router.get('/prepare/take-photo-backend', function(req, res) {
+router.get('/take-photo-backend', function(req, res) {
   if (req.session.data['devices-camera'] == 'yes') {
-    res.redirect('/apply-for-a-blue-badge/prepare/device-take-photo');
+    res.redirect('/apply-for-a-blue-badge/device-take-photo');
   } else {
     res.redirect('/apply-for-a-blue-badge/check-answers');
   }
