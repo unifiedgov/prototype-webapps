@@ -32,7 +32,7 @@
           </div>
         </div>
         {% endif %}
-        <form action="take-photo-backend">
+        <form action="{{formAction}}">
           {% set uploadHtml %}
             <p class="govuk-body">Once {{you}} have {{your}} photo taken, get it onto this device, either by scanning it or taking a photo of it. You can then upload it here.</p>
 
@@ -84,8 +84,16 @@
           <div id="hiddenCaughtInputs"></div>
 
           {{ govukButton({
-            "text": "Continue"
+            "text": submitLabel
           }) }}
+
+          <div>
+            {{ govukButton({
+              "text": "Save your progress",
+              "href": "/apply-for-a-blue-badge/progress-saved",
+              "classes": "govuk-button--secondary"
+            }) }}
+          </div>
         </form>
       </div>
 

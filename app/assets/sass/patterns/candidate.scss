@@ -35,6 +35,10 @@
   box-shadow: $govuk-grey-2 0px 2px 0px 0px;
 }
 
+.govuk-details.hidden {
+  display: none;
+}
+
 // Loader
 .loading {
   text-align: center;
