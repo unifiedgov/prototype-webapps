@@ -21,6 +21,17 @@
         <h1 class="govuk-heading-l">Take a photo</h1>
         <p class="govuk-body">{{ you | capitalize }} need a photo taken of {{your}} face which will be printed on the back of {{ your }} badge.</p>
 
+        <details class="govuk-details file-upload empty" id="cantUploadDetails">
+          <summary class="govuk-details__summary">I can't upload {{my}} photo</summary>
+          <div class="govuk-details__text panel panel-border">
+            <p class="govuk-body">If you can't upload {{your}} photo {{data['council-name']}} will contact you about how to send it by post.</p>
+            <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
+            <p class="govuk-body">
+              <a href="/apply-for-a-blue-badge/check-answers" class="govuk-button-secondary">Continue without uploading</a>
+            </p>
+          </div>
+        </details>
+
         {% if data['applicant'] !== 'someone-else' %}
 
         <div class="govuk-grid-row">
@@ -31,6 +42,7 @@
             <p class="govuk-body">It may be easier to get somebody to help you with this.</p>
           </div>
         </div>
+
         {% endif %}
         <form action="{{formAction}}">
           {% set uploadHtml %}

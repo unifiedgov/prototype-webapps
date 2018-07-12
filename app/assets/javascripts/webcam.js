@@ -39,7 +39,7 @@ window.takePhotoWebcam = (function () {
     var context = canvasEl.getContext('2d')
     canvasEl.width = videoEl.width
     canvasEl.height = videoEl.height
-    context.drawImage(videoEl, 75, 0, videoEl.width, videoEl.height)
+    context.drawImage(videoEl, 69, 0, videoEl.width, videoEl.height)
     return canvasEl.toDataURL('image/png')
   }
 

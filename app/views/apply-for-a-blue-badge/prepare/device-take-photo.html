@@ -82,7 +82,7 @@
               </ul>
               <button class='govuk-button' onclick='takePhotoWebcam.captureImage()'>Start countdown</button>
             </div>
-            <div id="countdownTimer" class="countdown-timer" style='display:none'>3</div>
+            <div id="countdownTimer" aria-live="polite" class="countdown-timer" style='display:none'>3</div>
 
             <div class="govuk-grid-column-two-thirds" id="photoReady" style='display:none'>
               <form action="{{formAction}}">
