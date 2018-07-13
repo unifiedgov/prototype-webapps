@@ -29,8 +29,8 @@
 {% endset -%}
 
 {{ govukRadios({
-  "idPrefix": "name-changed",
-  "name": "name-changed",
+  "idPrefix": "is-photo-on-device",
+  "name": "is-photo-on-device",
   "fieldset": {
     "legend": {
       "text": "Did you take the photo on this device?",
@@ -56,9 +56,11 @@
   ]
 }) }}
 
+
+
 {{ govukButton({
-  "text": "Continue",
-  "href": "prove-eligibility/upload-benefit"
+  "text": "Return to " + your + " " + application,
+  "href": data['upload-origin-page']
 }) }}
 
 {% endblock %}

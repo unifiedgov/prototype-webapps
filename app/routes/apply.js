@@ -818,9 +818,13 @@ router.get('/taking-the-photo', function (req, res) {
 
 router.get('/transfer-the-image', function (req, res) {
   res.render('apply-for-a-blue-badge/guidance/transfer-the-image');
+
+  res.locals.originPage = res.locals.data['upload-origin-page'];
 })
 
-
+// if (!req.session.data['upload-origin-page']) {
+//   res.locals.originPage = 'prove-eligibility/upload-benefit';
+// } 
 
 /* 
   ---------------------------------------------------------------
