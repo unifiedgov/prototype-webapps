@@ -795,6 +795,35 @@ router.get('/check-answers', function (req, res) {
 
 /* 
   ---------------------------------------------------------------
+  Guidance
+  --------------------------------------------------------------- 
+*/
+
+router.get('/guidance', function (req, res) {
+  res.render('apply-for-a-blue-badge/guidance/find-camera');
+})
+
+router.get('/get-document', function (req, res) {
+  res.render('apply-for-a-blue-badge/guidance/get-document');
+})
+
+
+router.get('/before-take-photo', function (req, res) {
+  res.render('apply-for-a-blue-badge/guidance/before-take-photo');
+})
+
+router.get('/taking-the-photo', function (req, res) {
+  res.render('apply-for-a-blue-badge/guidance/taking-the-photo');
+})
+
+router.get('/transfer-the-image', function (req, res) {
+  res.render('apply-for-a-blue-badge/guidance/transfer-the-image');
+})
+
+
+
+/* 
+  ---------------------------------------------------------------
   Apply
   --------------------------------------------------------------- 
 */

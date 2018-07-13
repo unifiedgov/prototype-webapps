@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <main role="main" class="govuk-main-wrapper">
+    {{ govukBackLink({
+        "text": "Back",
+        "href": "javascript: window.history.go(-1)"
+      }) }}
+    <section class="guidance-container">
+      {% block guidance_content %}{% endblock %}
+    </section>
+  </main>
+</div>
+
+{% endblock %}

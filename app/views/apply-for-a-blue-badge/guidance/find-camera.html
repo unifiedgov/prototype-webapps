@@ -1,0 +1,35 @@
+{% extends "guidance_layout.html" %}
+
+{% set pageHeading = 'What you\'ll need'  %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block guidance_content %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<p class="govuk-body">The easiest way to get {{your}} physical document onto a device as a digital file is to take a photo of it.</p>
+
+<h2 class="govuk-heading-m">Find a camera</h2>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-half">
+
+		<p class="govuk-body">You can use any device that has a camera on it. For example, a mobile phone, tablet or digital camera.</p>
+	</div>
+
+	<div class="govuk-grid-column-one-half">
+
+		<img class="responsive-image" src="{{ asset_path }}/images/diagram-cameras-2x.png" alt="">
+		
+	</div>
+</div>
+
+{{ govukButton({
+  "text": "Continue",
+  "href": "get-document"
+}) }}
+
+{% endblock %}

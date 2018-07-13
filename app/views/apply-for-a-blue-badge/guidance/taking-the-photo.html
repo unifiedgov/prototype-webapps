@@ -1,0 +1,36 @@
+{% extends "guidance_layout.html" %}
+
+{% set pageHeading = 'Taking the photo'  %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block guidance_content %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		<ul class="govuk-list govuk-list--number guidance-numbered-steps">
+			<li>Ensure the whole document is in shot</li>
+			<li>Use autofocus if available</li>
+			<li>Take the photo</li>
+			<li>Make sure the document is readable</li>
+		</ul>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+
+		<img class="responsive-image" src="{{ asset_path }}/images/photo-fulldoc-small.jpeg" alt="">
+		
+	</div>
+</div>
+
+{{ govukButton({
+  "text": "Continue",
+  "href": "transfer-the-image"
+}) }}
+
+{% endblock %}

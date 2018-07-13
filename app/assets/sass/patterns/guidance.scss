@@ -1,0 +1,27 @@
+.guidance-container {
+	background: $govuk-blue;
+	color: $govuk-white;
+	padding: $govuk-spacing-scale-6;
+	h1, h2, h3, p, ul, legend, label {
+		color: $govuk-white;
+		max-width: 60rem;
+	}
+	p.govuk-body, label, li {
+		@include govuk-font-regular-24;
+	}
+	.govuk-button {
+		background-color: $govuk-white;
+		color: $govuk-blue;
+		box-shadow: darken($govuk-blue, 20%) 0px 2px 0px 0px;
+	}
+	img {
+		margin-bottom: $govuk-spacing-scale-6;
+	}
+}
+
+.guidance-numbered-steps {
+	@include govuk-font-regular-24;
+	li {
+		margin-bottom: $govuk-spacing-scale-2;
+	}
+}

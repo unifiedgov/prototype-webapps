@@ -1,0 +1,35 @@
+{% extends "guidance_layout.html" %}
+
+{% set pageHeading = 'What you\'ll need'  %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block guidance_content %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<p class="govuk-body">The easiest way to get {{your}} physical document onto a device as a digital file is to take a photo of it.</p>
+
+<h2 class="govuk-heading-m">Find {{your}} document</h2>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		<p class="govuk-body">You'll need to find the document that you need a digital copy of. If it's folded then you'll need to unfold it and make sure it's flat.</p>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+
+		<img class="responsive-image" src="{{ asset_path }}/images/document-example-template.png" alt="">
+		
+	</div>
+</div>
+
+{{ govukButton({
+  "text": "Continue",
+  "href": "before-take-photo"
+}) }}
+
+{% endblock %}
