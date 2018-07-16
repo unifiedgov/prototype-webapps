@@ -20,7 +20,16 @@
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-        <p class="govuk-body-l">We've found {{ your }} badge.</p>
+        <p class="govuk-body">We've found the badge number <b>{{ data['existing-blue-badge-number'] }}</b>.</p>
+
+        <p class="govuk-body">
+        You need to reapply so that your local council can:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>make sure your details are up to date</li>
+          <li>issue Blue Badges to those people that need them</li>
+          <li>cancel or refuse applications for Blue Badges that are no longer needed</li>
+        </ul>
 
         <form action="/apply-for-a-blue-badge/check-eligibility/existing-badge/review-backend">
           {{ govukRadios({
@@ -53,9 +62,6 @@
 
       </div>
 
-      <div class="govuk-grid-column-one-third">
-
-        </div>
     </div>
   </main>
 </div>

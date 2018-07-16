@@ -32,9 +32,10 @@
 
         <div class="govuk-details__text govuk-body">
           <p>Renew {{ your }} badge after 8 June 2018.</p>
-          <p>Alternatively, contact {{ your }} local council for assistance:</p>
+          <p>Alternatively, contact {{data['council-name']}} for assistance:</p>
           <ul class="govuk-list">
-            <li>Website: <a href="http://www.manchester.gov.uk">www.manchester.gov.uk</a></li>
+            <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
+            <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
             <li>Phone: 0161 205 7321</li>
           </ul>
 

@@ -20,10 +20,10 @@
           {% if data['org-care-for'] === 'no' or data['org-transport'] === 'no' %}
             <h1 class="govuk-heading-l">Based on your answers, your organisation isn't eligible for a Blue Badge</h1>
             <p class="govuk-body">Blue Badges are only given to organisations who transport and care for people who need a Blue Badge.</p>
-            <p class="govuk-body">If you think that your organisation is eligible you should contact your local council directly:</p>
+            <p class="govuk-body">If you think that your organisation is eligible you should contact {{ data["council-name"] }} directly:</p>
             {% else %}
             <h1 class="govuk-heading-l">Based on your answers, your organisation may be eligible for a Blue Badge</h1>
-            <p class="govuk-body">You'll need to be authorised by your organisation to apply on their behalf and may be contacted by your local council to provide more information.</p>
+            <p class="govuk-body">You'll need to be authorised by your organisation to apply on their behalf and may be contacted by {{ data["council-name"] }} to provide more information.</p>
             <ul class="govuk-list govuk-list--bullet">
               <li>You'll need the details of the vehicles used to transport people</li>
               <li>The badge issue fee is £10 which is refunded if the application isn't successful</li>
@@ -49,16 +49,16 @@
             "href": '/apply-for-a-blue-badge/personal-details/'
           }) }}
           <p class="govuk-body">Alternatively, if you don't want to apply online you can contact
-           {{data['council-name']}} council to find out about other ways to apply.</p>
+           {{data['council-name']}} to find out about other ways to apply.</p>
         {% elif data['disability'] === 'none' or data['disability-walking'] === 'none' %}
           <!-- Doesn't receive a benefit and doesn't have a recognized disability = not eligible -->
           <h1 class="govuk-heading-l">{{ you | capitalize }}'re not eligible for a Blue Badge</h1>
           <p class="govuk-body">Based on {{ your }} answers, {{ you }}'re not eligible for get a Blue Badge.</p>
-          <p class="govuk-body">If you still think that {{ you }} are, you can contact {{ your }} local council:
+          <p class="govuk-body">If you still think that {{ you }} are, you can contact {{ data["council-name"] }}:
         {% elif data['disability'] === 'terminal' %}
           <!-- Doesn't receive a benefit and doesn't have a recognizes disability = not eligible -->
-          <h1 class="govuk-heading-l">Contact {{ your }} local council</h1>
-          <p class="govuk-body">Because {{ you }} have a terminal illness, {{ you }} should contact {{data['council-name']}} council directly and tell them {{ you }} are terminally ill.</p>
+          <h1 class="govuk-heading-l">Contact {{ data["council-name"] }}</h1>
+          <p class="govuk-body">Because {{ you }} have a terminal illness, {{ you }} should contact {{data['council-name']}} directly and tell them {{ you }} are terminally ill.</p>
           <p class="govuk-body">They might give you instructions that will make the application easier, for example {{ you }} might not need to answer all the questions on the form.</p>
         {% else %}
           <!-- Doesn't receive a benefit and doesn't have a recognizes disability = needs assessing -->
@@ -76,14 +76,14 @@
           }) }}
 
           <p class="govuk-body">Alternatively, if you don't want to apply online you can contact
-           {{data['council-name']}} council to find out about other ways to apply.
+           {{data['council-name']}} to find out about other ways to apply.
           </p>
         {% endif %}
 
         <ul class="govuk-list">
-         <li><a href="#">{{data['council-name']}} council</a></li>
-         <li/>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
-         <li>Phone: 0161 205 7321</li>
+          <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
+          <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
+          <li>Phone: 0161 205 7321</li>
         </ul>
 
       </div>

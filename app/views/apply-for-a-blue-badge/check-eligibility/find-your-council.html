@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'What is ' + your + ' local council?' %}
+{% set pageHeading = 'Which is ' + your + ' local council' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -40,7 +40,7 @@
           {% endif %}    
 
           {{ govukDetails({
-            "summaryText": "I don't know the local council",
+            "summaryText": "I don't know " + my + " local council",
             "html": ' <div class="govuk-form-group"><label class="govuk-label" for="postcode">' + postcodeLabel + '<span class="govuk-hint">For example, SW1A 2AA</span>
                        
                      </label>
