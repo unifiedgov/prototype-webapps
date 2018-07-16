@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% set hasSaveClass = 'show-save-button' %}
 
 {% set pageHeading = 'List medication' %}
 
@@ -9,10 +10,18 @@
 {% block content %}
 
 <div class="govuk-width-container">
-  {{ govukBackLink({
-      "text": "Back",
-      "href": "javascript: window.history.go(-1)"
-    }) }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      {{ govukBackLink({
+          "text": "Back",
+          "href": "javascript: window.history.go(-1)"
+        }) 
+      }}
+    </div>
+    <div class="govuk-grid-column-one-half">
+      <p class="govuk-body save-progress-container hidden-mobile"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+    </div>
+  </div>
   <main role="main" class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -59,18 +68,13 @@
 
         {% endif %}
 
-        <div>
-          {{ govukButton({
-            "text": "Save your progress",
-            "href": "/apply-for-a-blue-badge/progress-saved",
-            "classes": "govuk-button--secondary"
-          }) }}
-        </div>
+        <!-- Has save -->
 
       </div>
 
     </div>
-  </main>
+    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+</main>
 </div>
 
 {% endblock %}
