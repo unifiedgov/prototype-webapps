@@ -21,7 +21,8 @@
 }}
 
 {{ iCantUploadAPhotoOrScan(
-    your, 
+    your,
+    notUploadingUrl,
     aboutHowTo, 
     change,
     isAnInlineUpload
@@ -117,7 +118,7 @@
 
 {% endmacro %}
 
-{% macro iCantUploadAPhotoOrScan(your, aboutHowTo, change, isAnInlineUpload) %}
+{% macro iCantUploadAPhotoOrScan(your, notUploadingUrl, aboutHowTo, change, isAnInlineUpload) %}
 {% if (isAnInlineUpload!=='yes') %}
   <details class="govuk-details file-upload empty" id="cantUploadDetails">
     <summary class="govuk-details__summary">I can't upload a photo or scan</summary>
