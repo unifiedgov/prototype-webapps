@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'Add vehicle details' %}
+{% set pageHeading = 'Add a vehicle' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -60,8 +60,12 @@
           }) }}
 
           {{ govukButton({
-            "text": "Continue"
+            "text": "Add this vehicle"
           }) }}
+
+          <div class="govuk-info-panel">
+            <p class="govuk-body">You can add another vehicle afterwards, if required.</p>
+          </div>
 
           <!-- Has save -->
         </form>
