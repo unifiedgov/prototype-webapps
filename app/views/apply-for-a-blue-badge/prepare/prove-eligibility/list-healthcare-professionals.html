@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'List healthcare professionals' %}
+{% set pageHeading = "Do " + you + " know the details of " + your +  " healthcare professionals?" %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -26,44 +26,84 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-        {% if tableRows.length > 0 %}
-  
-            {{ govukTable({
-              "head": [
-                {
-                  "text": "Name"
-                },
-                {
-                  "text": "Hospital or health centre"
-                },
-                {
-                  "text": ""
-                }
-              ],
-              "rows": tableRows
-            }) }}
+        {% set hcpHtml %}
+          {% if tableRows.length > 0 %}
+    
+              <p class="govuk-body">List any healthcare professionals who have treated {{ your }} condition.<br />For example, {{ your }} GP, surgeon, specialist.</p>
 
-          <p class="govuk-body"><a href="add-healthcare-professional">Add another healthcare professional</a></p>
+              {{ govukTable({
+                "head": [
+                  {
+                    "text": "Name"
+                  },
+                  {
+                    "text": "Hospital or health centre"
+                  },
+                  {
+                    "text": ""
+                  }
+                ],
+                "rows": tableRows
+              }) }}
 
-          {{ govukButton({
-            "text": "Continue",
-            "href": formAction
+            <p class="govuk-body"><a href="add-healthcare-professional">Add another healthcare professional</a></p>
+
+          {% else %}
+          
+          <p class="govuk-body">List any healthcare professionals who have treated {{ your }} condition.<br />For example, {{ your }} GP, surgeon, specialist.</p>
+
+          {{ govukTable({
+            "head": [
+              {
+                "text": "Name"
+              },
+              {
+                "text": "Hospital or health centre"
+              },
+              {
+                "text": ""
+              }
+            ],
+            "rows": ""
           }) }}
 
-        {% else %}
-        
-        <p class="govuk-body">List any healthcare professionals who have treated {{ your }} condition.<br />For example, {{ your }} GP, surgeon, specialist.</p>
+          <p class="govuk-body"><a href="add-healthcare-professional">Add first healthcare professional</a></p>
+
+          {% endif %}
+        {% endset -%}
+
+          {{ govukRadios({
+            "idPrefix": "hcp-details",
+            "name": "hcp-details",
+            "fieldset": {
+              "legend": {
+                "text": pageHeading,
+                "isPageHeading": true,
+                "classes": 'govuk-fieldset__legend--l'
+              }
+            },
+            "items": [
+              {
+                "value": "yes",
+                "text": "Yes",
+                "checked": tableRows.length > 0,
+                "conditional": {
+                  "html": hcpHtml
+                }
+              },
+              {
+                "value": "no",
+                "text": "No"
+              }
+            ]
+          }) 
+        }}
 
         {{ govukButton({
-          "text": "Add healthcare professional",
-          "href": 'add-healthcare-professional'
+          "text": "Continue",
+          "href": formAction
         }) }}
-
-        <p class="govuk-body"><a href="{{ formAction }}">{{ you | capitalize }} don’t know their details</p>
-
-        {% endif %}
 
         <!-- Has save -->
 

@@ -16,6 +16,15 @@
 	}
 }
 
+.govuk-info-panel {
+	padding: $govuk-spacing-scale-3;
+    padding-left: $govuk-spacing-scale-4;
+    border-left: $govuk-border-width solid $govuk-border-colour;
+    p {
+    	margin-bottom: 0;
+    }
+}
+
 .govuk-details {
 	li & {
 		margin-bottom: 0;

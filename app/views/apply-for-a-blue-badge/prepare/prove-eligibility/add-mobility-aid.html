@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'Add mobility aid' %}
+{% set pageHeading = 'Add a mobility aid' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -32,9 +32,6 @@
           {{ govukInput({
             "label": {
               "text": "Name of the mobility aid"
-            },
-            "hint": {
-              "html": "For example, a motorised scooter, walking frame or crutches"
             },
             "name": "mobility-aid-name"
           }) }}
@@ -75,9 +72,15 @@
             ]
           }) }}
 
+          
+
           {{ govukButton({
-            "text": "Continue"
+            "text": "Add this mobility aid"
           }) }}
+
+          <div class="govuk-info-panel">
+            <p class="govuk-body">You can add another mobility aid afterwards, if required.</p>
+          </div>
 
           <!-- Has save -->
         </form>

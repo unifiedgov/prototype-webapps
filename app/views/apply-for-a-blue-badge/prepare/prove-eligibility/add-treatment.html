@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'Add treatment' %}
+{% set pageHeading = 'Add a treatment' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -31,12 +31,14 @@
         <form action="{{formAction}}">
           {{ govukInput({
             "label": {
-              "text": "Describe the surgery, treatment or clinic"
-            },
-            "hint": {
-              "html": "For example, hip replacement, physiotherapy, pain clinic"
+              "text": "Describe the treatment"
             },
             "name": "treatment-description"
+          }) }}
+
+          {{ govukDetails({
+            summaryText: "What counts as treatment?",
+            text: "You should include anything that " + you + "'ve seen a professional for that is relevant to " + your + " condition. Including surgery, clinics or treatments. For example, hip replacement, physiotherapy or a pain clinic."
           }) }}
 
           {{ govukInput({
@@ -51,8 +53,12 @@
           }) }}
 
           {{ govukButton({
-            "text": "Continue"
+            "text": "Add this treatment"
           }) }}
+
+          <div class="govuk-info-panel">
+            <p class="govuk-body">You can add another treatment afterwards, if required.</p>
+          </div>
 
           <!-- Has save -->
         </form>
