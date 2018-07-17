@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Reapply for a Blue Badge' %}
+{% set pageHeading = 'Reapplying for a Blue Badge' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -31,34 +31,10 @@
           <li>cancel or refuse applications for Blue Badges that are no longer needed</li>
         </ul>
 
-        <form action="/apply-for-a-blue-badge/check-eligibility/existing-badge/review-backend">
-          {{ govukRadios({
-            "idPrefix": "renewal-council-has-changed",
-            "name": "renewal-council-has-changed",
-            "fieldset": {
-              "legend": {
-                "text": 'Is ' + your + ' local council still Manchester City Council?',
-                "isPageHeading": false,
-                "classes": 'govuk-fieldset__legend--m'
-              }
-            },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes"
-              },
-              {
-                "value": "no",
-                "text": "No"
-              }
-            ]
-          }) }}
-            
-          
           {{ govukButton({
-            "text": "Continue"
+            "text": "Continue",
+            "href": formAction
           }) }}
-        </form>
 
       </div>
 

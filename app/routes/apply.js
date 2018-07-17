@@ -53,6 +53,23 @@ router.get('/check-eligibility/', function (req, res) {
   res.render(checkEligibilityTemplatePath+'index.html', {'title':'Who are you applying for?'})
 });
 
+router.get('/check-eligibility/your-council-backend', function (req, res) {
+  if (req.query.postcode) {
+    req.session.data['council-name'] = 'Manchester city council';
+    if(req.query.postcode.indexOf("BT1") >= 0) {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/nir-explain');
+    } else {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/your-council');
+    }
+  } else {
+    if(req.session.data['council-name'] == 'Northern Ireland') {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/nir-explain');
+    } else {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge');
+    }
+  } 
+});
+
 router.get('/check-eligibility/existing-badge/', function (req, res) {
   req.session.data['show'] = undefined;
   res.locals.formAction = '/apply-for-a-blue-badge/check-eligibility/existing-badge/index-backend';
@@ -74,10 +91,10 @@ router.get('/check-eligibility/existing-badge/index-backend', function (req, res
       }
       break;
     case "new":
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/enter-age');
       break;
     default:
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/enter-age');
       break;
   }
 });
@@ -97,22 +114,7 @@ router.get('/check-eligibility/existing-badge/review-backend', function (req, re
   }
 });
 
-router.get('/check-eligibility/your-council-backend', function (req, res) {
-  if (req.query.postcode) {
-    req.session.data['council-name'] = 'Manchester city council';
-    if(req.query.postcode.indexOf("BT1") >= 0) {
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/nir-explain');
-    } else {
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/your-council');
-    }
-  } else {
-    if(req.session.data['council-name'] == 'Northern Ireland') {
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/nir-explain');
-    } else {
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/enter-age');
-    }
-  } 
-});
+
 
 router.get('/check-eligibility/benefits-backend', function (req, res) {
   if (req.query.benefit === 'none') {
@@ -156,7 +158,7 @@ router.get('/check-eligibility/org-transport', function (req, res) {
 });
 
 router.get('/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/check-eligibility/find-your-council';
+  res.locals.formAction = '/apply-for-a-blue-badge/check-eligibility/enter-age';
   res.render(checkEligibilityTemplatePath+'existing-badge/not-for-review');
 });
 
