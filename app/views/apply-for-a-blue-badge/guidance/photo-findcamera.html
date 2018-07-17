@@ -1,0 +1,35 @@
+{% extends "guidance_layout.html" %}
+
+{% set pageHeading = 'How to take a good photo'  %}
+{% set guidanceTitle =  'Find a camera' %}
+{% set guidancePageCount =  '1 of 5' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block guidance_content %}
+
+<h3 class="govuk-heading-m">Ask somebody else to take your photo</h3>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-half">
+
+		<p class="govuk-body">They can use any device that takes digital photos, including a phone, digital camera or tablet.
+
+		<p class="govuk-body">It’s best to use the auto settings.</p>
+	</div>
+
+	<div class="govuk-grid-column-one-half">
+
+		<img class="responsive-image" src="{{ asset_path }}/images/diagram-cameras-2x.png" alt="">
+		
+	</div>
+</div>
+
+{{ govukButton({
+  "text": "Continue",
+  "href": "photo-background"
+}) }}
+
+{% endblock %}

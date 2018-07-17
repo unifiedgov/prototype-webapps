@@ -1,0 +1,30 @@
+{% extends "guidance_layout.html" %}
+
+{% set pageHeading = 'How to take a good photo'  %}
+{% set guidanceTitle =  'Get in a good position' %}
+{% set guidancePageCount =  '4 of 5' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block guidance_content %}
+
+<p class="govuk-body">To avoid shadows, be around 50 centimetres (1.5 feet) away from your plain background. The person taking your photo needs to be 1.5 metres (5 feet) away from you.</p>
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-third">
+		&nbsp;
+	</div>
+	<div class="govuk-grid-column-two-thirds">
+
+		<div class="svg-container">{% include "includes/icon-position.html" %}</div>
+		
+	</div>
+</div>
+
+{{ govukButton({
+  "text": "Continue",
+  "href": "photo-takephoto"
+}) }}
+
+{% endblock %}

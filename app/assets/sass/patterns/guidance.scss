@@ -19,6 +19,9 @@
 		background-color: $govuk-white;
 		color: $govuk-blue;
 		box-shadow: darken($govuk-blue, 20%) 0px 2px 0px 0px;
+		&:focus, &:hover {
+			color: $govuk-blue;
+		}
 	}
 	img {
 		margin-bottom: $govuk-spacing-scale-6;
@@ -39,6 +42,7 @@
 .guidance-page-title-wrapper {
 	@include mq($from: tablet) {
 		float: left;
+		width: 60%;
 	}
 }
 
@@ -46,6 +50,7 @@
 	@include mq($from: tablet) {
 		float: right;
 		text-align: right;
+		width: 40%;
 	}
 	margin-bottom: $govuk-spacing-scale-6;
 }
@@ -57,4 +62,51 @@
 .guidance-step-count {
 	@include govuk-font-regular-19;
 	display: block;
+}
+
+.photo-guidance-images-with-results {
+	list-style: none;
+	margin: 0; padding: 0;
+	margin-bottom: $govuk-spacing-scale-6;
+	img {
+		margin: 0;
+	}
+	li {
+		display: inline-block;
+		margin-right: 5px;
+		position: relative;
+		.result {
+			background: $govuk-white;
+			bottom: 0;
+			color: $govuk-black;
+			position: absolute;
+			width: 100%;
+			p {
+				@include govuk-font-regular-16;
+				color: $govuk-black;
+
+			}
+		}
+	}
+	.result {
+		.failed, .approved {
+			margin: 0;
+			padding: 8px 28px 5px 8px;
+			background-repeat: no-repeat;
+			background-position: right 7px center;
+			background-size: 18px;
+			@include mq($from: tablet) {
+				padding-top: 11px;
+				padding-right: 34px;
+				padding-bottom: 8px;
+				background-size: 22px;
+			}
+		}
+		.approved {
+			background-image: url(../images/icon-thick-tick.svg);
+		}
+		.failed {
+			background-image: url(../images/icon-thick-cross.svg);
+		}
+	}
 }
