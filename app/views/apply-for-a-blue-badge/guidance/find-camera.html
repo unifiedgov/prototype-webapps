@@ -1,14 +1,14 @@
 {% extends "guidance_layout.html" %}
 
 {% set pageHeading = 'How to upload ' + your + ' document'  %}
+{% set guidanceTitle =  'What you\'ll need' %}
+{% set guidancePageCount =  '1 of 5' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
 {% block guidance_content %}
-
-<h2 class="govuk-heading-l">What you'll need</h2>
 
 <p class="govuk-body">The easiest way to get {{your}} physical document onto a device as a digital file is to take a photo of it.</p>
 
@@ -17,7 +17,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-one-half">
 
-		<p class="govuk-body">You can use anything that has a camera on it. For example, a mobile phone, tablet or digital camera.</p>
+		<p class="govuk-body">You can use anything that has a digital camera on it. For example, a mobile phone, tablet or digital camera.</p>
 	</div>
 
 	<div class="govuk-grid-column-one-half">

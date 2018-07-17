@@ -1,3 +1,9 @@
+.guidance-layout {
+	.govuk-back-link {
+		margin-bottom: 0;
+	}
+}
+
 .guidance-container {
 	background: $govuk-blue;
 	color: $govuk-white;
@@ -24,4 +30,31 @@
 	li {
 		margin-bottom: $govuk-spacing-scale-2;
 	}
+}
+
+.guidance-titles-wrapper {
+	@include govuk-clearfix;
+}
+
+.guidance-page-title-wrapper {
+	@include mq($from: tablet) {
+		float: left;
+	}
+}
+
+.guidance-title-wrapper {
+	@include mq($from: tablet) {
+		float: right;
+		text-align: right;
+	}
+	margin-bottom: $govuk-spacing-scale-6;
+}
+
+.guidance-title {
+	@include govuk-font-bold-19;
+}
+
+.guidance-step-count {
+	@include govuk-font-regular-19;
+	display: block;
 }

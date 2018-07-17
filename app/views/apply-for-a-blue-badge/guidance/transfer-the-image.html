@@ -1,6 +1,8 @@
 {% extends "guidance_layout.html" %}
 
 {% set pageHeading = 'How to upload ' + your + ' document' %}
+{% set guidanceTitle =  'Transfer the photo' %}
+{% set guidancePageCount =  '5 of 5' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -8,12 +10,10 @@
 
 {% block guidance_content %}
 
-<h2 class="govuk-heading-l">Transfer the photo</h2>
-
 {% set yesHTML %}
   <p class="govuk-body">If you took the photo on this device, you can continue and upload directly from this device.</p>
 
-  <p class="govuk-body">When you return to {{your}} {{application}} there will be a link that will allow you to "Select a file from this device". Use this to locate  the photo on this device.</p>
+  <p class="govuk-body">When you return to {{your}} Blue Badge {{application}} there will be a link that will allow you to 'Select a file from this device'. Use the link to locate the photo on this device.</p>
 {% endset -%}
 
 {% set noHTML %}

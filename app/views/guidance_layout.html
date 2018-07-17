@@ -2,14 +2,23 @@
 
 {% block content %}
 
-<div class="govuk-width-container">
+<div class="govuk-width-container guidance-layout">
 	{{ govukBackLink({
 	    "text": "Back",
 	    "href": "javascript: window.history.go(-1)"
 	  }) }}
   <main role="main" class="govuk-main-wrapper">
-  	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
     <section class="guidance-container">
+	  	<div class="guidance-titles-wrapper">
+	  		<div class="guidance-title-wrapper">
+				<h1 class="guidance-title">{{pageHeading}}</h1>
+				<span class="guidance-step-count">Step {{guidancePageCount}}</span>
+			</div>
+	  		<div class="guidance-page-title-wrapper">
+	  			<h2 class="govuk-heading-l">{{guidanceTitle}}</h2>
+	  		</div>
+			
+	  	</div>
       {% block guidance_content %}{% endblock %}
     </section>
   </main>

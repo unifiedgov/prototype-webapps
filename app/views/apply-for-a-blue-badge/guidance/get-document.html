@@ -1,15 +1,14 @@
 {% extends "guidance_layout.html" %}
 
 {% set pageHeading = 'How to upload ' + your + ' document'  %}
+{% set guidanceTitle =  'What you\'ll need' %}
+{% set guidancePageCount =  '2 of 5' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
 {% block guidance_content %}
-
-<h2 class="govuk-heading-l">What you'll need</h2>
-
 
 <h3 class="govuk-heading-m">Find {{your}} document</h3>
 
