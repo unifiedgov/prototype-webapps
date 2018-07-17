@@ -481,7 +481,7 @@ router.get('/prove-eligibility/walking-time', function(req, res) {
 
 router.get('/prove-eligibility/walking-time-backend', function(req, res) {
   if (req.session.data['how-long-walk'] === 'cant-walk') {
-    res.redirect('/apply-for-a-blue-badge/describe-conditions');
+    res.redirect(proveEligibilityPath+'describe-conditions');
   } else {
     res.redirect(proveEligibilityPath+'how-quickly-do-you-walk');
   }
