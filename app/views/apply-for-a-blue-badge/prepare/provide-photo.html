@@ -48,6 +48,7 @@
         <form action="{{ formAction }}">
           {% set uploadHtml %}
             {{ uploadComponentWidget.uploadComponent(
+              '',
               'passportPhoto', 
               formAction + '?passportPhoto=notProvided&passport-photo-file-upload=',
               your, 

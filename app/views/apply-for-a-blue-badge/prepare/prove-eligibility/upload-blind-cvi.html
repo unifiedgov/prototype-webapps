@@ -44,39 +44,8 @@
             <li>BD8 form (Before 1990)</li>
           </ul>
 
-          {% set yesHTML %}
-            <p class="govuk-body">To help you upload {{your}} document, we've created a guide on taking a photo and transferring it to the device to upload.</p>
-            <p class="govuk-body">Once you've completed the guide, you'll be taken back to this page.</p>
-            <p class="govuk-body"><a href="/apply-for-a-blue-badge/guidance?upload-origin-page=prove-eligibility/upload-blind-cvi">How to upload your document</a></p>
-          {% endset -%}
-
-
-          {{ govukRadios({
-            "idPrefix": "help-uploading",
-            "name": "help-uploading",
-            "fieldset": {
-              "legend": {
-                "text": "Do you need help uploading " + your + " document?",
-                "isPageHeading": false,
-                "classes": 'govuk-fieldset__legend--m'
-              }
-            },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes",
-                "conditional": {
-                  "html": yesHTML
-                }
-              },
-              {
-                "value": "no",
-                "text": "No"
-              }
-            ]
-          }) }}
-
           {{ uploadComponentWidget.uploadComponent(
+            'prove-eligibility/upload-blind-cvi',
             'proofOfCVI', 
             formAction + '?proofOfCVI=notProvided&impairment-proof-file-upload=',
             your, 

@@ -1,5 +1,6 @@
 
 {% macro uploadComponent(
+    originPage,
     provideType, 
     notUploadingUrl,
     your, 
@@ -11,6 +12,7 @@
   )%}
 
 {{ chooseYourFile(
+    originPage,
     provideType, 
     notUploadingUrl, 
     your, 
@@ -35,6 +37,7 @@
 {% from 'button/macro.njk' import govukButton %}
 
 {% macro chooseYourFile(
+  originPage,
   provideType, 
   notUploadingUrl, 
   your, 
@@ -43,6 +46,40 @@
   isAnInlineUpload
   ) 
 %}
+
+{% set yesHTML %}
+  <p class="govuk-body">To help you upload {{your}} document, we've created a guide on taking a photo and transferring it to the device to upload.</p>
+  <p class="govuk-body">Once you've completed the guide, you'll be taken back to this page.</p>
+  <p class="govuk-body"><a href="/apply-for-a-blue-badge/guidance?upload-origin-page={{originPage}}">How to upload your document</a></p>
+{% endset -%}
+
+
+{% if (isAnInlineUpload!=='yes') %}
+  {{ govukRadios({
+    "idPrefix": "help-uploading",
+    "name": "help-uploading",
+    "fieldset": {
+      "legend": {
+        "text": "Do you need help uploading " + your + " document?",
+        "isPageHeading": false,
+        "classes": 'govuk-fieldset__legend--m'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "conditional": {
+          "html": yesHTML
+        }
+      },
+      {
+        "value": "no",
+        "text": "No"
+      }
+    ]
+  }) }}
+{% endif %}
 
 <div id="drop-area">
   <div id="dragDropInstructions">
