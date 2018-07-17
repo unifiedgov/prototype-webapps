@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'List treatments' %}
+{% set pageHeading = "Have " + you + " had any treatments?" %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -26,10 +26,11 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+        {% set treatmentHtml %}
+          {% if tableRows.length > 0 %}
+    
+            <p class="govuk-body">List any surgeries, treatments or clinics {{ you }}’ve had for your condition.</p>
 
-        {% if tableRows.length > 0 %}
-  
             {{ govukTable({
               "head": [
                 {
@@ -45,26 +46,63 @@
               "rows": tableRows
             }) }}
 
-          <p class="govuk-body"><a href="add-treatment">Add another treatment</a></p>
+            <p class="govuk-body"><a href="add-treatment">Add another treatment</a></p>
 
+          {% else %}
+          
+          <p class="govuk-body">List any surgeries, treatments or clinics {{ you }}’ve had for your condition.</p>
 
-          {{ govukButton({
-            "text": "Continue",
-            "href": formAction
+          {{ govukTable({
+            "head": [
+              {
+                "text": "Description"
+              },
+              {
+                "text": "When"
+              },
+              {
+                "text": ""
+              }
+            ],
+            "rows": ""
           }) }}
 
-        {% else %}
-        
-        <p class="govuk-body">List any surgeries, treatments or clinics {{ you }}’ve had for your condition.</p>
+          <p class="govuk-body"><a href="add-treatment">Add first treatment</a></p>
+
+          {% endif %}
+        {% endset -%}
+
+          {{ govukRadios({
+            "idPrefix": "had-treatment",
+            "name": "had-treatment",
+            "fieldset": {
+              "legend": {
+                "text": pageHeading,
+                "isPageHeading": true,
+                "classes": 'govuk-fieldset__legend--l'
+              }
+            },
+            "items": [
+              {
+                "value": "yes",
+                "text": "Yes",
+                "checked": tableRows.length > 0,
+                "conditional": {
+                  "html": treatmentHtml
+                }
+              },
+              {
+                "value": "no",
+                "text": "No"
+              }
+            ]
+          }) 
+        }}
 
         {{ govukButton({
-          "text": "Add treatment",
-          "href": "add-treatment"
+          "text": "Continue",
+          "href": formAction
         }) }}
-
-        <p class="govuk-body"><a href="list-medication">{{ you | capitalize }} haven't had any treatment</p>
-
-        {% endif %}
 
         <!-- Has save -->
 

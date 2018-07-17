@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'Add medication' %}
+{% set pageHeading = 'Add a medication' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -82,8 +82,12 @@
           }) }}
 
           {{ govukButton({
-            "text": "Continue"
+            "text": "Add this medication"
           }) }}
+
+          <div class="govuk-info-panel">
+            <p class="govuk-body">You can add another medication afterwards, if required.</p>
+          </div>
 
           <!-- Has save -->
         </form>

@@ -305,6 +305,7 @@ router.get('/organisation-details/list-vehicles', function(req, res) {
 
   res.locals.tableRows = tableRows;
   res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
+  res.locals.submitLabel = 'Continue';
   res.render(organisationDetailsTemplatePath+'list-vehicles');
 });
 

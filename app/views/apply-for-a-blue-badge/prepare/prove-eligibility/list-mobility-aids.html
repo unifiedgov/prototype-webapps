@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'List mobility aids' %}
+{% set pageHeading = "Do " + you + " use a mobility aid?" %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -26,44 +26,83 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+        {% set mobilityHtml %}
+          {% if tableRows.length > 0 %}
+          
+              <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
 
-        {% if tableRows.length > 0 %}
-  
-            {{ govukTable({
-              "head": [
-                {
-                  "text": "Name"
-                },
-                {
-                  "text": "Usage"
-                },
-                {
-                  "text": ""
-                }
-              ],
-              "rows": tableRows
-            }) }}
+              {{ govukTable({
+                "head": [
+                  {
+                    "text": "Name"
+                  },
+                  {
+                    "text": "Usage"
+                  },
+                  {
+                    "text": ""
+                  }
+                ],
+                "rows": tableRows
+              }) }}
 
-          <p class="govuk-body"><a href="add-mobility-aid">Add another mobility aid</a></p>
+            <p class="govuk-body"><a href="add-mobility-aid">Add another mobility aid</a></p>
 
-          {{ govukButton({
-            "text": "Continue",
-            "href": formAction
+          {% else %}
+          
+          <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
+
+          {{ govukTable({
+            "head": [
+              {
+                "text": "Name"
+              },
+              {
+                "text": "Usage"
+              },
+              {
+                "text": ""
+              }
+            ],
+            "rows": ""
           }) }}
 
-        {% else %}
-        
-        <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
+          <p class="govuk-body"><a href="add-mobility-aid">Add first mobility aid</a></p>
 
-        {{ govukButton({
-          "text": "Add mobility aid",
-          "href": "add-mobility-aid"
-        }) }}
+          {% endif %}
+        {% endset -%}
 
-        <p class="govuk-body"><a href="{{ formAction }}">{{ you | capitalize }} don't use any mobility aids</p>
+        {{ govukRadios({
+          "idPrefix": "use-mobility-aid",
+          "name": "use-mobility-aid",
+          "fieldset": {
+            "legend": {
+              "text": pageHeading,
+              "isPageHeading": true,
+              "classes": 'govuk-fieldset__legend--l'
+            }
+          },
+          "items": [
+            {
+              "value": "yes",
+              "text": "Yes",
+              "checked": tableRows.length > 0,
+              "conditional": {
+                "html": mobilityHtml
+              }
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ]
+        }) 
+      }}
 
-        {% endif %}
+      {{ govukButton({
+        "text": "Continue",
+        "href": formAction
+      }) }}
 
 
         <!-- Has save -->

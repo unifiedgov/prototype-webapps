@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'Add treatment' %}
+{% set pageHeading = 'Add a healthcare professional' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -26,7 +26,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">Add healthcare professional</h1>
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
         <!-- <p class="govuk-body"></p> -->
         <form action="{{formAction}}">
           {{ govukInput({
@@ -38,14 +38,18 @@
 
           {{ govukInput({
             "label": {
-              "text": "Name of their hospital/ health centre?"
+              "text": "Name of their hospital or health centre?"
             },
             "name": "hcp-hospital"
           }) }}
 
           {{ govukButton({
-            "text": "Continue"
+            "text": "Add this healthcare professional"
           }) }}
+
+          <div class="govuk-info-panel">
+            <p class="govuk-body">You can add another healthcare professional afterwards, if required.</p>
+          </div>
 
           <!-- Has save -->
         </form>
