@@ -27,7 +27,7 @@
       <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <p class="govuk-body">{{ you | capitalize }} need to add a photo which will be printed on the back of {{ your }} badge.</p>
+        <p class="govuk-body">You need to add a photo to be printed on the back of {{ your }} badge.</p>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-third">
@@ -49,8 +49,8 @@
           <h2 class="govuk-heading-m">Take {{your}} photo</h2>
 
           {{ govukDetails({
-            "summaryText": "Open my camera",
-            "html": '<p class="govuk-body">You may be prompted to allow access to your device\'s camera.</p> <button class="govuk-button" onclick="takePhotoWebcam.start()">Open my camera</button>' 
+            "summaryText": "Open the camera",
+            "html": '<p class="govuk-body">You may be prompted to allow access to your device\'s camera.</p> <button class="govuk-button" onclick="takePhotoWebcam.start()">Open the camera</button>' 
           }) }}
 
         </section>
