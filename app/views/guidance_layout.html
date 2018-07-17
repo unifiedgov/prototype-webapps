@@ -3,11 +3,12 @@
 {% block content %}
 
 <div class="govuk-width-container">
+	{{ govukBackLink({
+	    "text": "Back",
+	    "href": "javascript: window.history.go(-1)"
+	  }) }}
   <main role="main" class="govuk-main-wrapper">
-    {{ govukBackLink({
-        "text": "Back",
-        "href": "javascript: window.history.go(-1)"
-      }) }}
+  	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
     <section class="guidance-container">
       {% block guidance_content %}{% endblock %}
     </section>

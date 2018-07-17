@@ -1,6 +1,6 @@
 {% extends "guidance_layout.html" %}
 
-{% set pageHeading = 'Before you take the photo'  %}
+{% set pageHeading =  'How to upload ' + your + ' document' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -8,15 +8,15 @@
 
 {% block guidance_content %}
 
-<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<h2 class="govuk-heading-l">Take the photo</h2>
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
 		<ul class="govuk-list govuk-list--number guidance-numbered-steps">
 			<li>Place {{your}} document on a flat surface</li>
-			<li>Hold the camera 30cm directly above the document</li>
-			<li>Ensure the whole document is in shot</li>
+			<li>Hold the camera 30cm (1 foot) directly above the document</li>
+			<li>Make sure you take a photo of the whole page</li>
 		</ul>
 	</div>
 
