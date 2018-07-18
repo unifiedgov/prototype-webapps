@@ -29,18 +29,22 @@
 {% endset -%}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-third">
-    <img class="responsive-image passport-photo" src="{{ asset_path }}/images/image-f1-plain.jpg" alt="">
-  </div>
-
-  <div class="govuk-grid-column-two-thirds">
-    <p class="govuk-body">Make sure it
-    <ul class="govuk-list govuk-list--bullet">
-      <li>has a plain, light background</li>
-      <li>includes {{ your }} shoulders</li>
-      <li>shows {{ your }} face clearly</li>
-    </ul>
-    </p>
+  <div class="govuk-grid-column-three-quarters">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third">
+        <img class="responsive-image" src="{{ asset_path }}/images/image-f1-plain.jpg" alt="">
+      </div>
+    
+      <div class="govuk-grid-column-two-thirds">
+        <p class="govuk-body">Make sure it
+        <ul class="govuk-list govuk-list--bullet">
+          <li>has a plain, light background</li>
+          <li>includes {{ your }} shoulders</li>
+          <li>shows {{ your }} face clearly</li>
+        </ul>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 
