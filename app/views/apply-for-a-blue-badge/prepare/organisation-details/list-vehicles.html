@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
 
 {% set pageHeading = 'List vehicles' %}
 
@@ -10,35 +9,25 @@
 {% block content %}
 
 <div class="govuk-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
-      {{ govukBackLink({
-          "text": "Back",
-          "href": "javascript: window.history.go(-1)"
-        }) 
-      }}
-    </div>
-    <div class="govuk-grid-column-one-half">
-      <p class="govuk-body save-progress-container hidden-mobile"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-    </div>
-  </div>
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
   <main role="main" class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-        <p class="govuk-body">List any vehicles your organisation uses to transport people who are eligible for a Blue Badge.</p>
-
         {% if tableRows.length > 0 %}
   
             {{ govukTable({
               "head": [
                 {
-                  "text": "Vehicle Registration Number"
+                  "text": "VRN"
                 },
                 {
-                  "text": "Frequency used"
+                  "text": "Frequency"
                 },
                 {
                   "text": ""
@@ -50,38 +39,25 @@
           <p class="govuk-body"><a href="add-vehicle">Add another vehicle</a></p>
 
           {{ govukButton({
-            "text": submitLabel,
+            "text": "Continue",
             "href": formAction
           }) }}
 
         {% else %}
+        
+        <p class="govuk-body">List any vehicles your organisation uses to transport people who are eligible for a Blue Badge.</p>
 
-        {{ govukTable({
-          "head": [
-            {
-              "text": "Vehicle Registration Number"
-            },
-            {
-              "text": "Frequency used"
-            },
-            {
-              "text": ""
-            }
-          ],
-          "rows": ""
+        {{ govukButton({
+          "text": "Add vehicle",
+          "href": 'add-vehicle'
         }) }}
 
-        <p class="govuk-body"><a href="add-vehicle">Add first vehicle</a></p>
-
         {% endif %}
-
-        <!-- Has save -->
 
       </div>
 
     </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-</main>
+  </main>
 </div>
 
 {% endblock %}

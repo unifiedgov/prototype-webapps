@@ -1,33 +1,27 @@
 
 {% macro uploadComponent(
-    originPage,
     provideType, 
     notUploadingUrl,
     your, 
     aboutHowTo, 
     change, 
     askIfUploadShowAddress,
-    nameOfDataItem,
-    isAnInlineUpload
+    nameOfDataItem
   )%}
 
 {{ chooseYourFile(
-    originPage,
     provideType, 
     notUploadingUrl, 
     your, 
     askIfUploadShowAddress,
-    nameOfDataItem,
-    isAnInlineUpload
+    nameOfDataItem
   ) 
 }}
 
 {{ iCantUploadAPhotoOrScan(
-    your,
-    notUploadingUrl,
+    your, 
     aboutHowTo, 
-    change,
-    isAnInlineUpload
+    change
   ) 
 }}
 
@@ -37,49 +31,13 @@
 {% from 'button/macro.njk' import govukButton %}
 
 {% macro chooseYourFile(
-  originPage,
   provideType, 
   notUploadingUrl, 
   your, 
   askIfUploadShowAddress,
-  nameOfDataItem,
-  isAnInlineUpload
+  nameOfDataItem
   ) 
 %}
-
-{% set yesHTML %}
-  <p class="govuk-body">To help you upload {{your}} document, we've created a step-by-step guide on taking a photo and transferring it to a device to upload.</p>
-  <p class="govuk-body">We'll return you to this page once you have read the guide.</p>
-  <p class="govuk-body"><a href="/apply-for-a-blue-badge/guidance?upload-origin-page={{originPage}}">How to upload documents</a></p>
-{% endset -%}
-
-
-{% if (isAnInlineUpload!=='yes') %}
-  {{ govukRadios({
-    "idPrefix": "help-uploading",
-    "name": "help-uploading",
-    "fieldset": {
-      "legend": {
-        "text": "Need help uploading " + your + " document?",
-        "isPageHeading": false,
-        "classes": 'govuk-fieldset__legend--m'
-      }
-    },
-    "items": [
-      {
-        "value": "yes",
-        "text": "Yes",
-        "conditional": {
-          "html": yesHTML
-        }
-      },
-      {
-        "value": "no",
-        "text": "No"
-      }
-    ]
-  }) }}
-{% endif %}
 
 <div id="drop-area">
   <div id="dragDropInstructions">
@@ -88,9 +46,9 @@
     </div>
     <div class="upload-section-text">
       <p class="govuk-body">
-        <span class="drag-drop-text">You can drag and drop the file here <br> <b>or</b> <br></span>
+        <span class="drag-drop-text">You can drag and drop your file here <br> <b>or</b> <br></span>
         <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-        <label class="govuk-link fake-link" for="fileElem">Select a file from this device</label>
+        <label class="govuk-link fake-link" for="fileElem">Select a file from your device</label>
       </p>
     </div>
   </div>
@@ -134,38 +92,32 @@
       ]
     }) }}
   {% endif %}
-  
-  {% if (isAnInlineUpload!=='yes') %}
-    {{ govukButton({
-      "text": "Continue"
-    }) }}
-  {% endif %}
+
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
   
 </div>
 
-{% if (isAnInlineUpload!=='yes') %}
-  <div class="js-hidden">
-    {{ govukButton({
-      "text": "Continue"
-    }) }}
-  </div>
-{% endif %}
+<div class="js-hidden">
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+</div>
 
 
 
 {% endmacro %}
 
-{% macro iCantUploadAPhotoOrScan(your, notUploadingUrl, aboutHowTo, change, isAnInlineUpload) %}
-{% if (isAnInlineUpload!=='yes') %}
-  <details class="govuk-details file-upload empty" id="cantUploadDetails">
-    <summary class="govuk-details__summary">I can't upload a photo or scan</summary>
-    <div class="govuk-details__text panel panel-border">
-      <p class="govuk-body">If you can't upload a photo or scan Manchester city council will contact you {{ aboutHowTo }}.</p>
-      <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
-      <p class="govuk-body">
-        <a href="{{notUploadingUrl}}" class="govuk-button-secondary">Continue without uploading</a>
-      </p>
-    </div>
-  </details>
-{% endif %}
+{% macro iCantUploadAPhotoOrScan(your, aboutHowTo, change) %}
+<details class="govuk-details file-upload empty" id="cantUploadDetails">
+  <summary class="govuk-details__summary">I can't upload a photo or scan</summary>
+  <div class="govuk-details__text panel panel-border">
+    <p class="govuk-body">If you can't upload a photo or scan Manchester city council will contact you {{ aboutHowTo }}.</p>
+    <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
+    <p class="govuk-body">
+      <a href="{{notUploadingUrl}}" class="govuk-button-secondary">Continue without uploading</a>
+    </p>
+  </div>
+</details>
 {% endmacro %}

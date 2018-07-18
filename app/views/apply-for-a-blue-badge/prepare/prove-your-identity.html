@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
 {% set pageHeading = 'Prove ' + your + ' identity' %}
@@ -11,18 +10,10 @@
 {% block content %}
 
 <div class="govuk-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
-      {{ govukBackLink({
-          "text": "Back",
-          "href": "javascript: window.history.go(-1)"
-        }) 
-      }}
-    </div>
-    <div class="govuk-grid-column-one-half">
-      <p class="govuk-body save-progress-container hidden-mobile"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-    </div>
-  </div>
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
   <main role="main" class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -38,7 +29,6 @@
           </ul>
 
           {{ uploadComponentWidget.uploadComponent(
-            'prove-your-identity',
             'proveIdentity', 
             formAction + '?proveIdentity=notProvided&your-identity-file-upload=',
             your, 
@@ -47,8 +37,6 @@
             'yes',
             'your-identity-file-upload'
           )}}
-
-          <!-- Has save -->
         </form>
 
       </div>
@@ -57,8 +45,7 @@
 
         </div>
     </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-</main>
+  </main>
 </div>
 
 {% endblock %}

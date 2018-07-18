@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'Add a mobility aid' %}
+{% set pageHeading = 'Add mobility aid' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -10,18 +9,10 @@
 {% block content %}
 
 <div class="govuk-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
-      {{ govukBackLink({
-          "text": "Back",
-          "href": "javascript: window.history.go(-1)"
-        }) 
-      }}
-    </div>
-    <div class="govuk-grid-column-one-half">
-      <p class="govuk-body save-progress-container hidden-mobile"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-    </div>
-  </div>
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
   <main role="main" class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -32,6 +23,9 @@
           {{ govukInput({
             "label": {
               "text": "Name of the mobility aid"
+            },
+            "hint": {
+              "html": "For example, a motorised scooter, walking frame or crutches"
             },
             "name": "mobility-aid-name"
           }) }}
@@ -72,23 +66,14 @@
             ]
           }) }}
 
-          
-
           {{ govukButton({
-            "text": "Add this mobility aid"
+            "text": "Continue"
           }) }}
-
-          <div class="govuk-info-panel">
-            <p class="govuk-body">You can add another mobility aid afterwards, if required.</p>
-          </div>
-
-          <!-- Has save -->
         </form>
 
       </div>
     </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-</main>
+  </main>
 </div>
 
 {% endblock %}

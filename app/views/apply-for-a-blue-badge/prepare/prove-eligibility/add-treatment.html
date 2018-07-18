@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'Add a treatment' %}
+{% set pageHeading = 'Add treatment' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -10,18 +9,10 @@
 {% block content %}
 
 <div class="govuk-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
-      {{ govukBackLink({
-          "text": "Back",
-          "href": "javascript: window.history.go(-1)"
-        }) 
-      }}
-    </div>
-    <div class="govuk-grid-column-one-half">
-      <p class="govuk-body save-progress-container hidden-mobile"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-    </div>
-  </div>
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
   <main role="main" class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -31,14 +22,12 @@
         <form action="{{formAction}}">
           {{ govukInput({
             "label": {
-              "text": "Describe the treatment"
+              "text": "Describe the surgery, treatment or clinic"
+            },
+            "hint": {
+              "html": "For example, hip replacement, physiotherapy, pain clinic"
             },
             "name": "treatment-description"
-          }) }}
-
-          {{ govukDetails({
-            summaryText: "What counts as treatment?",
-            text: "You should include anything that " + you + "'ve seen a professional for that is relevant to " + your + " condition. Including surgery, clinics or treatments. For example, hip replacement, physiotherapy or a pain clinic."
           }) }}
 
           {{ govukInput({
@@ -53,20 +42,13 @@
           }) }}
 
           {{ govukButton({
-            "text": "Add this treatment"
+            "text": "Continue"
           }) }}
-
-          <div class="govuk-info-panel">
-            <p class="govuk-body">You can add another treatment afterwards, if required.</p>
-          </div>
-
-          <!-- Has save -->
         </form>
 
       </div>
     </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-</main>
+  </main>
 </div>
 
 {% endblock %}

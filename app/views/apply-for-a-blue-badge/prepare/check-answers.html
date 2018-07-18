@@ -9,18 +9,10 @@
 {% block content %}
 
 <div class="govuk-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
-      {{ govukBackLink({
-          "text": "Back",
-          "href": "javascript: window.history.go(-1)"
-        }) 
-      }}
-    </div>
-    <div class="govuk-grid-column-one-half">
-      <p class="govuk-body save-progress-container hidden-mobile"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-    </div>
-  </div>
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
   <main role="main" class="govuk-main-wrapper">
     <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
@@ -511,21 +503,6 @@
             {% endif %}
           {% endif %}
 
-
-          <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Difficulty using parking meters
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {{ data['difficulty-parking-meters'] }}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/difficulty-with-parking-meters?change=true">
-                  Change<span class="visually-hidden"> difficulty with parking meters</span>
-                </a>
-              </dd>
-            </div>
-
           <div class="govuk-check-your-answers__contents">
             <dt class="govuk-check-your-answers__question">
               Health condition
@@ -539,7 +516,7 @@
               </a>
             </dd>
           </div>
-          {% if data['disability'] === 'problems-walking' %}
+          {% if data['disability'] === 'problems-walking' or data['disability'] === 'arms' %}
             <div class="govuk-check-your-answers__contents">
               <dt class="govuk-check-your-answers__question">
                 Treatments
@@ -584,9 +561,9 @@
               </dd>
             </div>
 
-          {% endif %}
+            {% endif %}
           
-          {% if data['disability'] === 'problems-walking' or data['disability'] === 'child-bulky-equipment' or data['disability'] === 'child-close-to-vehicle'  %}
+          {% if data['disability'] != 'blind' %}
           <div class="govuk-check-your-answers__contents">
             <dt class="govuk-check-your-answers__question">
               Healthcare professionals
@@ -598,7 +575,7 @@
                   {{hcp.hospital}} <br>
                 {% endfor %}
               {% else %}
-                No healthcare professionals entered
+                No Healthcare professionals entered
               {% endif %}
             </dd>
             <dd class="govuk-check-your-answers__change">
@@ -641,7 +618,6 @@
       "href": '/apply-for-a-blue-badge/declaration'
     }) }}
 
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
   </main>
 </div>
 

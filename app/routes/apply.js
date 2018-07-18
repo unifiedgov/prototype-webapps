@@ -45,29 +45,8 @@ router.get('/', function (req, res) {
   req.session.destroy();
 });
 
-router.get('/apply-for-a-blue-badge/progress-saved', function (req, res) {
-  res.render('apply-for-a-blue-badge/progress-saved');
-});
-
 router.get('/check-eligibility/', function (req, res) {
   res.render(checkEligibilityTemplatePath+'index.html', {'title':'Who are you applying for?'})
-});
-
-router.get('/check-eligibility/your-council-backend', function (req, res) {
-  if (req.query.postcode) {
-    req.session.data['council-name'] = 'Manchester city council';
-    if(req.query.postcode.indexOf("BT1") >= 0) {
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/nir-explain');
-    } else {
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/your-council');
-    }
-  } else {
-    if(req.session.data['council-name'] == 'Northern Ireland') {
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/nir-explain');
-    } else {
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge');
-    }
-  } 
 });
 
 router.get('/check-eligibility/existing-badge/', function (req, res) {
@@ -91,10 +70,10 @@ router.get('/check-eligibility/existing-badge/index-backend', function (req, res
       }
       break;
     case "new":
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/enter-age');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
       break;
     default:
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/enter-age');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/find-your-council');
       break;
   }
 });
@@ -114,7 +93,22 @@ router.get('/check-eligibility/existing-badge/review-backend', function (req, re
   }
 });
 
-
+router.get('/check-eligibility/your-council-backend', function (req, res) {
+  if (req.query.postcode) {
+    req.session.data['council-name'] = 'Manchester city council';
+    if(req.query.postcode.indexOf("BT1") >= 0) {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/nir-explain');
+    } else {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/your-council');
+    }
+  } else {
+    if(req.session.data['council-name'] == 'Northern Ireland') {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/nir-explain');
+    } else {
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/enter-age');
+    }
+  } 
+});
 
 router.get('/check-eligibility/benefits-backend', function (req, res) {
   if (req.query.benefit === 'none') {
@@ -158,7 +152,7 @@ router.get('/check-eligibility/org-transport', function (req, res) {
 });
 
 router.get('/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/check-eligibility/enter-age';
+  res.locals.formAction = '/apply-for-a-blue-badge/check-eligibility/find-your-council';
   res.render(checkEligibilityTemplatePath+'existing-badge/not-for-review');
 });
 
@@ -223,7 +217,6 @@ router.get('/personal-details/your-address', function (req, res) {
   } else {
     res.locals.formAction = 'select-address';
   }
-  res.locals.submitLabel = 'Continue';
   res.render(personDetailsTemplatePath+'your-address');
 })
 
@@ -305,7 +298,6 @@ router.get('/organisation-details/list-vehicles', function(req, res) {
 
   res.locals.tableRows = tableRows;
   res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
-  res.locals.submitLabel = 'Continue';
   res.render(organisationDetailsTemplatePath+'list-vehicles');
 });
 
@@ -482,7 +474,7 @@ router.get('/prove-eligibility/walking-time', function(req, res) {
 
 router.get('/prove-eligibility/walking-time-backend', function(req, res) {
   if (req.session.data['how-long-walk'] === 'cant-walk') {
-    res.redirect(proveEligibilityPath+'describe-conditions');
+    res.redirect('/apply-for-a-blue-badge/describe-conditions');
   } else {
     res.redirect(proveEligibilityPath+'how-quickly-do-you-walk');
   }
@@ -528,18 +520,12 @@ router.get('/prove-eligibility/drive-adapted-backend', function(req, res) {
   if (req.session.data['drive-adapted-vehicle'] == 'yes') {
     res.redirect(proveEligibilityPath+'upload-adapted-evidence');
   } else {
-    res.redirect(proveEligibilityPath+'difficulty-with-parking-meters');
+    res.redirect(proveEligibilityPath+'describe-conditions');
   }
 });
 
-router.get('/prove-eligibility/difficulty-with-parking-meters', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/describe-conditions';
-  res.render(proveEligibilityTemplatePath+'difficulty-parking-meters');
-});
-
-
 router.get('/prove-eligibility/upload-adapted-evidence', function (req, res) {
-  res.locals.formAction = 'difficulty-with-parking-meters';
+  res.locals.formAction = 'describe-conditions';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
   res.render(proveEligibilityTemplatePath+'upload-adapted-evidence')
@@ -764,90 +750,19 @@ router.get('/prove-your-address-backend', function (req, res) {
 // Add photo
 
 router.get('/provide-photo', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/provide-photo-backend';
+  // Form action specified in view
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
   res.render('apply-for-a-blue-badge/prepare/provide-photo');
 })
 
-router.get('/provide-photo-backend', function(req, res) {
-  if (req.session.data['already-have-photo'] == 'yes') {
-    res.redirect('/apply-for-a-blue-badge/check-answers');
-  } else {
-    res.redirect('/apply-for-a-blue-badge/take-your-photo');
-  }
-});
-
-router.get('/device-take-photo', function (req, res) {
+router.get('/upload-your-photo', function (req, res) {
   res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
-  res.locals.submitLabel = 'Continue';
-  res.render('apply-for-a-blue-badge/prepare/device-take-photo');
-});
-
-router.get('/take-your-photo', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/take-photo-backend';
-  res.locals.submitLabel = 'Continue';
-  res.render('apply-for-a-blue-badge/prepare/take-your-photo');
-});
-
-router.get('/take-photo-backend', function(req, res) {
-  if (req.session.data['devices-camera'] == 'yes') {
-    res.redirect('/apply-for-a-blue-badge/device-take-photo');
-  } else {
-    res.redirect('/apply-for-a-blue-badge/check-answers');
-  }
+  res.render('apply-for-a-blue-badge/prepare/upload-your-photo');
 });
 
 router.get('/check-answers', function (req, res) {
   res.render('apply-for-a-blue-badge/prepare/check-answers'); //, {'formAction':'/apply-for-a-blue-badge/prepare/paying-for-your-blue-badge'})
-})
-
-/* 
-  ---------------------------------------------------------------
-  Guidance
-  --------------------------------------------------------------- 
-*/
-
-router.get('/guidance', function (req, res) {
-  res.render('apply-for-a-blue-badge/guidance/find-camera');
-})
-
-router.get('/get-document', function (req, res) {
-  res.render('apply-for-a-blue-badge/guidance/get-document');
-})
-
-
-router.get('/before-take-photo', function (req, res) {
-  res.render('apply-for-a-blue-badge/guidance/before-take-photo');
-})
-
-router.get('/taking-the-photo', function (req, res) {
-  res.render('apply-for-a-blue-badge/guidance/taking-the-photo');
-})
-
-router.get('/transfer-the-image', function (req, res) {
-  res.render('apply-for-a-blue-badge/guidance/transfer-the-image');
-})
-
-
-router.get('/photo-findcamera', function (req, res) {
-  res.render('apply-for-a-blue-badge/guidance/photo-findcamera');
-})
-
-router.get('/photo-background', function (req, res) {
-  res.render('apply-for-a-blue-badge/guidance/photo-background');
-})
-
-router.get('/photo-lighting', function (req, res) {
-  res.render('apply-for-a-blue-badge/guidance/photo-lighting');
-})
-
-router.get('/photo-position', function (req, res) {
-  res.render('apply-for-a-blue-badge/guidance/photo-position');
-})
-
-router.get('/photo-takephoto', function (req, res) {
-  res.render('apply-for-a-blue-badge/guidance/photo-takephoto');
 })
 
 /* 

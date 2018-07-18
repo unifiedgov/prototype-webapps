@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'Add a healthcare professional' %}
+{% set pageHeading = 'Add treatment' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -10,23 +9,15 @@
 {% block content %}
 
 <div class="govuk-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
-      {{ govukBackLink({
-          "text": "Back",
-          "href": "javascript: window.history.go(-1)"
-        }) 
-      }}
-    </div>
-    <div class="govuk-grid-column-one-half">
-      <p class="govuk-body save-progress-container hidden-mobile"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-    </div>
-  </div>
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
   <main role="main" class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+        <h1 class="govuk-heading-l">Add healthcare professional</h1>
         <!-- <p class="govuk-body"></p> -->
         <form action="{{formAction}}">
           {{ govukInput({
@@ -38,26 +29,19 @@
 
           {{ govukInput({
             "label": {
-              "text": "Name of their hospital or health centre?"
+              "text": "Name of their hospital/ health centre?"
             },
             "name": "hcp-hospital"
           }) }}
 
           {{ govukButton({
-            "text": "Add this healthcare professional"
+            "text": "Continue"
           }) }}
-
-          <div class="govuk-info-panel">
-            <p class="govuk-body">You can add another healthcare professional afterwards, if required.</p>
-          </div>
-
-          <!-- Has save -->
         </form>
 
       </div>
     </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-</main>
+  </main>
 </div>
 
 {% endblock %}

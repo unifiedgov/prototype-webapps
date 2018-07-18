@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Choose ' + your + ' local council' %}
+{% set pageHeading = 'What is ' + your + ' local council?' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -22,7 +22,7 @@
         <p class="govuk-body">Blue Badge applications are assessed by {{ your }} organisation's local council.</p> 
         {% else %}
         <p class="govuk-body">Blue Badge applications are assessed by {{ your }} local council. 
-        <br> {{ you | capitalize }} can not get a Blue Badge if you live outside of the UK.</p>
+        <br> {{ you | capitalize }} can't get a Blue Badge if you live outside of the UK.</p>
         {% endif %}
 
         <form action="your-council-backend">
@@ -40,7 +40,7 @@
           {% endif %}    
 
           {{ govukDetails({
-            "summaryText": "I don't know " + my + " local council",
+            "summaryText": "I don't know the local council",
             "html": ' <div class="govuk-form-group"><label class="govuk-label" for="postcode">' + postcodeLabel + '<span class="govuk-hint">For example, SW1A 2AA</span>
                        
                      </label>

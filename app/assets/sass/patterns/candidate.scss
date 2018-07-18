@@ -11,47 +11,6 @@
 	}
 }
 
-.responsive-image {
-  max-width: 100%;
-}
-
-.passport-photo {
-  margin-bottom: 30px;
-  max-width: 150px;
-}
-
-.passport-help-photo {
-  margin-bottom: 30px;
-}
-
-.countdown-timer {
-  font-size: 10rem;
-  text-align: center;
-}
-
-.govuk-button.govuk-button--secondary{
-  background-color: $govuk-grey-3;
-  color: $govuk-black;
-  box-shadow: $govuk-grey-2 0px 2px 0px 0px;
-}
-
-.govuk-details.hidden {
-  display: none;
-}
-
-.save-progress-container {
-  @include govuk-font-bold-19;
-  margin-top: $govuk-spacing-scale-2;
-  margin-bottom: 0;
-  &.hidden-mobile {
-    text-align: right;
-  }
-  a {
-    // text-decoration: none;
-    // border-bottom: 1px solid $govuk-blue;
-  }
-}
-
 // Loader
 .loading {
   text-align: center;

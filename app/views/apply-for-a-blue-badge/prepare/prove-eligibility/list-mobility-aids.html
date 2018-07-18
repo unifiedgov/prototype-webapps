@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = "Do " + you + " use a mobility aid?" %}
+{% set pageHeading = 'List mobility aids' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -10,107 +9,57 @@
 {% block content %}
 
 <div class="govuk-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
-      {{ govukBackLink({
-          "text": "Back",
-          "href": "javascript: window.history.go(-1)"
-        }) 
-      }}
-    </div>
-    <div class="govuk-grid-column-one-half">
-      <p class="govuk-body save-progress-container hidden-mobile"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-    </div>
-  </div>
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
   <main role="main" class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        {% set mobilityHtml %}
-          {% if tableRows.length > 0 %}
-          
-              <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
+        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-              {{ govukTable({
-                "head": [
-                  {
-                    "text": "Name"
-                  },
-                  {
-                    "text": "Usage"
-                  },
-                  {
-                    "text": ""
-                  }
-                ],
-                "rows": tableRows
-              }) }}
+        {% if tableRows.length > 0 %}
+  
+            {{ govukTable({
+              "head": [
+                {
+                  "text": "Name"
+                },
+                {
+                  "text": "Usage"
+                },
+                {
+                  "text": ""
+                }
+              ],
+              "rows": tableRows
+            }) }}
 
-            <p class="govuk-body"><a href="add-mobility-aid">Add another mobility aid</a></p>
+          <p class="govuk-body"><a href="add-mobility-aid">Add another mobility aid</a></p>
 
-          {% else %}
-          
-          <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
-
-          {{ govukTable({
-            "head": [
-              {
-                "text": "Name"
-              },
-              {
-                "text": "Usage"
-              },
-              {
-                "text": ""
-              }
-            ],
-            "rows": ""
+          {{ govukButton({
+            "text": "Continue",
+            "href": formAction
           }) }}
 
-          <p class="govuk-body"><a href="add-mobility-aid">Add first mobility aid</a></p>
+        {% else %}
+        
+        <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
 
-          {% endif %}
-        {% endset -%}
+        {{ govukButton({
+          "text": "Add mobility aid",
+          "href": "add-mobility-aid"
+        }) }}
 
-        {{ govukRadios({
-          "idPrefix": "use-mobility-aid",
-          "name": "use-mobility-aid",
-          "fieldset": {
-            "legend": {
-              "text": pageHeading,
-              "isPageHeading": true,
-              "classes": 'govuk-fieldset__legend--l'
-            }
-          },
-          "items": [
-            {
-              "value": "yes",
-              "text": "Yes",
-              "checked": tableRows.length > 0,
-              "conditional": {
-                "html": mobilityHtml
-              }
-            },
-            {
-              "value": "no",
-              "text": "No"
-            }
-          ]
-        }) 
-      }}
+        <p class="govuk-body"><a href="{{ formAction }}">{{ you | capitalize }} don't use any mobility aids</p>
 
-      {{ govukButton({
-        "text": "Continue",
-        "href": formAction
-      }) }}
+        {% endif %}
 
-
-        <!-- Has save -->
       </div>
 
     </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-</main>
+  </main>
 </div>
 
 {% endblock %}
