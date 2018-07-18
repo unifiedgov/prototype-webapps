@@ -24,7 +24,14 @@
 		}
 	}
 	img {
-		margin-bottom: $govuk-spacing-scale-6;
+		@include mq($until: tablet) {
+			margin-bottom: $govuk-spacing-scale-6;
+		}
+	}
+	.guidance-pull-button {
+		@include mq($from: tablet) {
+			margin-top: -45px;
+		}
 	}
 }
 
