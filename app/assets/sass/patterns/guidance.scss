@@ -28,6 +28,9 @@
 			margin-bottom: $govuk-spacing-scale-6;
 		}
 	}
+	.image-with-margin {
+		margin-bottom: $govuk-spacing-scale-6;
+	}
 	.guidance-pull-button {
 		@include mq($from: tablet) {
 			margin-top: -45px;
