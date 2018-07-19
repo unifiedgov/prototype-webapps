@@ -28,7 +28,7 @@
       <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-l">Take a photo</h1>
-        <p class="govuk-body">{{ you | capitalize }} need a photo taken of {{your}} face which will be printed on the back of {{ your }} badge.</p>
+        <p class="govuk-body">{{ you | capitalize }}'ll need to take a photo that clearly shows {{your}} face and shoulders. We'll print this on the back of {{ your }} badge.</p>
 
         <details class="govuk-details file-upload empty" id="cantUploadDetails">
           <summary class="govuk-details__summary">I can't upload {{my}} photo</summary>
@@ -46,16 +46,15 @@
             <div class="svg-container passport-help-photo">{% include "includes/icon-help-photo.html" %}</div>
           </div>
           <div class="govuk-grid-column-two-thirds">
-            <p class="govuk-body">To help {{you}} take a good photo, we've created a step-by-step guide on taking a photo. </p>
+            <p class="govuk-body">Follow our step-by-step guide on <a href="/apply-for-a-blue-badge/guidance/photo-findcamera?upload-origin-page=/apply-for-a-blue-badge/take-your-photo">how to take a good photo</a>.</p>
             <p class="govuk-body">We'll return you to this page once you've read the guide.</p>
-            <p class="govuk-body"><a href="/apply-for-a-blue-badge/guidance/photo-findcamera?upload-origin-page=/apply-for-a-blue-badge/take-your-photo">How to take a good photo</a></p>
           </div>
         </div>
 
         
         <form action="{{formAction}}">
           {% set uploadHtml %}
-            <p class="govuk-body">Once {{you}} have {{your}} photo taken, get it onto this device, either by scanning it or taking a photo of it. You can then upload it here.</p>
+            <p class="govuk-body">{{you | capitalize}}'ll need to transfer {{your}} photo onto this device as a file. Select the file and upload it from here.</p>
 
             {{ uploadComponentWidget.uploadComponent(
               '',
