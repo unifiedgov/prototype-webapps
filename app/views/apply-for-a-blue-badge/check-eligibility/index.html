@@ -11,6 +11,16 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
+        {% set someoneElseHtml %}
+          {{ govukInput({
+            "label": {
+              "text": "What is your relationship to the applicant?"
+            },
+            id: "someone-relationship",
+            name: "someone-relationship"
+          }) }}
+        {% endset -%}
+
         <form action="find-your-council">
           {{ govukRadios({
             "idPrefix": "applicant",
@@ -29,7 +39,10 @@
               },
               {
                 "value": "someone-else",
-                "text": "Someone else"
+                "text": "Someone else",
+                "conditional": {
+                  "html": someoneElseHtml
+                }
               },
               {
                 "value": "organisation",

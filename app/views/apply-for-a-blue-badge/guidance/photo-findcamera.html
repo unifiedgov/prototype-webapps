@@ -1,7 +1,7 @@
 {% extends "guidance_layout.html" %}
 
-{% set pageHeading = 'How to upload ' + your + ' document'  %}
-{% set guidanceTitle =  'What you\'ll need' %}
+{% set pageHeading = 'How to take a good photo'  %}
+{% set guidanceTitle =  'Find a camera' %}
 {% set guidancePageCount =  '1 of 5' %}
 
 {% block page_title %}
@@ -10,14 +10,14 @@
 
 {% block guidance_content %}
 
-<p class="govuk-body">The easiest way to get {{your}} physical document onto a device as a digital file is to take a photo of it.</p>
-
-<h3 class="govuk-heading-m">Find a camera</h3>
+<h3 class="govuk-heading-m">Ask someone else to take your photo</h3>
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-one-half">
 
-		<p class="govuk-body">You can use anything that has a digital camera on it. For example, a mobile phone, tablet or digital camera.</p>
+		<p class="govuk-body">They can use any device that takes digital photos, including a phone, digital camera or tablet.
+
+		<p class="govuk-body">It's best to use the auto settings.</p>
 	</div>
 
 	<div class="govuk-grid-column-one-half">
@@ -29,7 +29,7 @@
 
 {{ govukButton({
   "text": "Continue",
-  "href": "get-document"
+  "href": "photo-background"
 }) }}
 
 {% endblock %}

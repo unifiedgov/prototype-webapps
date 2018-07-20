@@ -1,7 +1,7 @@
 {% extends "guidance_layout.html" %}
 
-{% set pageHeading = 'How to upload ' + your + ' document' %}
-{% set guidanceTitle =  'Transfer the photo' %}
+{% set pageHeading = 'How to take a good photo'  %}
+{% set guidanceTitle =  'Take the photo' %}
 {% set guidancePageCount =  '5 of 5' %}
 
 {% block page_title %}
@@ -11,8 +11,6 @@
 {% block guidance_content %}
 
 {% set yesHTML %}
-  <p class="govuk-body">If you took the photo on this device, you can continue and upload directly from this device.</p>
-
   <p class="govuk-body">When you return to {{your}} Blue Badge {{application}} there will be a link that will allow you to 'Select a file from this device'. Use the link to locate the photo on this device.</p>
 {% endset -%}
 
@@ -27,6 +25,26 @@
 
 	<p class="govuk-body">You can continue once you have saved the photo as a file to this device.</p>
 {% endset -%}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third">
+        <img class="responsive-image image-with-margin" src="{{ asset_path }}/images/image-f1-plain.jpg" alt="">
+      </div>
+    
+      <div class="govuk-grid-column-two-thirds">
+        <p class="govuk-body">Make sure the photo:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>has a plain, light background</li>
+          <li>includes {{ your }} shoulders</li>
+          <li>clearly shows {{ your }} face</li>
+        </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 {{ govukRadios({
   "idPrefix": "is-photo-on-device",

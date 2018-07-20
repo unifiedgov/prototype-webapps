@@ -1,3 +1,9 @@
+.guidance-layout {
+	.govuk-back-link {
+		margin-bottom: 0;
+	}
+}
+
 .guidance-container {
 	background: $govuk-blue;
 	color: $govuk-white;
@@ -13,9 +19,22 @@
 		background-color: $govuk-white;
 		color: $govuk-blue;
 		box-shadow: darken($govuk-blue, 20%) 0px 2px 0px 0px;
+		&:focus, &:hover {
+			color: $govuk-blue;
+		}
 	}
 	img {
+		@include mq($until: tablet) {
+			margin-bottom: $govuk-spacing-scale-6;
+		}
+	}
+	.image-with-margin {
 		margin-bottom: $govuk-spacing-scale-6;
+	}
+	.guidance-pull-button {
+		@include mq($from: tablet) {
+			margin-top: -45px;
+		}
 	}
 }
 
@@ -23,5 +42,81 @@
 	@include govuk-font-regular-24;
 	li {
 		margin-bottom: $govuk-spacing-scale-2;
+	}
+}
+
+.guidance-titles-wrapper {
+	@include govuk-clearfix;
+}
+
+.guidance-page-title-wrapper {
+	@include mq($from: tablet) {
+		float: left;
+		width: 60%;
+	}
+}
+
+.guidance-title-wrapper {
+	@include mq($from: tablet) {
+		float: right;
+		text-align: right;
+		width: 40%;
+	}
+	margin-bottom: $govuk-spacing-scale-6;
+}
+
+.guidance-title {
+	@include govuk-font-bold-19;
+}
+
+.guidance-step-count {
+	@include govuk-font-regular-19;
+	display: block;
+}
+
+.photo-guidance-images-with-results {
+	list-style: none;
+	margin: 0; padding: 0;
+	margin-bottom: $govuk-spacing-scale-6;
+	img {
+		margin: 0;
+	}
+	li {
+		display: inline-block;
+		margin-right: 5px;
+		position: relative;
+		.result {
+			background: $govuk-white;
+			bottom: 0;
+			color: $govuk-black;
+			position: absolute;
+			width: 100%;
+			p {
+				@include govuk-font-regular-16;
+				color: $govuk-black;
+
+			}
+		}
+	}
+	.result {
+		.failed, .approved {
+			margin: 0;
+			padding: 8px 28px 5px 8px;
+			background-repeat: no-repeat;
+			background-position: right 7px center;
+			background-size: 18px;
+			@include mq($from: tablet) {
+				padding-top: 11px;
+				padding-right: 34px;
+				padding-bottom: 8px;
+				background-size: 22px;
+			}
+		}
+		.approved {
+			background-image: url(../images/icon-thick-tick.svg);
+		}
+		.failed {
+			background-image: url(../images/icon-thick-cross.svg);
+		}
 	}
 }

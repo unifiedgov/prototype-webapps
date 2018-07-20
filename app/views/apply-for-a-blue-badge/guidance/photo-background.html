@@ -1,0 +1,36 @@
+{% extends "guidance_layout.html" %}
+
+{% set pageHeading = 'How to take a good photo'  %}
+{% set guidanceTitle =  'Find a plain background' %}
+{% set guidancePageCount =  '2 of 5' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block guidance_content %}
+
+<p class="govuk-body">A light grey or cream wall works best. Check there are no objects behind you.
+
+<ul class="photo-guidance-images-with-results">
+    <li>
+        <img src="{{ asset_path }}/images/image-m2-plain.jpg" alt="">
+        <div class="result">
+            <p class="approved">Approved</p>
+        </div>
+    </li>
+    <li>
+        <img src="{{ asset_path }}/images/image-m2-object-in-background.jpg" alt="">
+        <div class="result">
+            <p class="failed">Object in background</p>
+        </div>
+    </li>
+</ul>
+		
+
+{{ govukButton({
+  "text": "Continue",
+  "href": "photo-lighting"
+}) }}
+
+{% endblock %}

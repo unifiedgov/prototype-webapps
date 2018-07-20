@@ -1,6 +1,8 @@
 {% extends "guidance_layout.html" %}
 
-{% set pageHeading = 'Taking the photo'  %}
+{% set pageHeading = 'How to upload ' + your + ' document'  %}
+{% set guidanceTitle =  'Check the photo' %}
+{% set guidancePageCount =  '4 of 5' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -8,16 +10,13 @@
 
 {% block guidance_content %}
 
-<h1 class="govuk-heading-l">{{pageHeading}}</h1>
-
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-		<ul class="govuk-list govuk-list--number guidance-numbered-steps">
-			<li>Ensure the whole document is in shot</li>
-			<li>Use autofocus if available</li>
-			<li>Take the photo</li>
-			<li>Make sure the document is readable</li>
+		<ul class="govuk-list govuk-list--bullet guidance-numbered-steps">
+			<li>Can you see the whole page?</li>
+			<li>Is everything in focus?</li>
+			<li>Can you read everything on the page?</li>
 		</ul>
 	</div>
 
@@ -30,7 +29,8 @@
 
 {{ govukButton({
   "text": "Continue",
-  "href": "transfer-the-image"
+  "href": "transfer-the-image",
+  "classes": "guidance-pull-button"
 }) }}
 
 {% endblock %}

@@ -1,0 +1,36 @@
+{% extends "guidance_layout.html" %}
+
+{% set pageHeading = 'How to take a good photo'  %}
+{% set guidanceTitle =  'Get the lighting right' %}
+{% set guidancePageCount =  '3 of 5' %}
+
+{% block page_title %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block guidance_content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-half">
+
+		<p class="govuk-body">It's best to use natural daylight, for example facing a window.</p>
+
+		<p class="govuk-body">If it isn't daylight, use a ceiling light or a lamp.</p>
+
+		<p class="govuk-body">You'll need to be in the light but not directly under it.</p>
+	</div>
+
+	<div class="govuk-grid-column-one-half">
+
+		<div class="svg-container">{% include "includes/icon-lighting.html" %}</div>
+		
+	</div>
+</div>
+
+{{ govukButton({
+  "text": "Continue",
+  "href": "photo-position",
+  "classes": "guidance-pull-button"
+}) }}
+
+{% endblock %}

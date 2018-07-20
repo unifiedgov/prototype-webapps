@@ -1,6 +1,8 @@
 {% extends "guidance_layout.html" %}
 
-{% set pageHeading = 'What you\'ll need'  %}
+{% set pageHeading = 'How to upload ' + your + ' document'  %}
+{% set guidanceTitle =  'What you\'ll need' %}
+{% set guidancePageCount =  '2 of 5' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -8,16 +10,12 @@
 
 {% block guidance_content %}
 
-<h1 class="govuk-heading-l">{{pageHeading}}</h1>
-
-<p class="govuk-body">The easiest way to get {{your}} physical document onto a device as a digital file is to take a photo of it.</p>
-
-<h2 class="govuk-heading-m">Find {{your}} document</h2>
+<h3 class="govuk-heading-m">Find {{your}} document</h3>
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-		<p class="govuk-body">You'll need to find the document that you need a digital copy of. If it's folded then you'll need to unfold it and make sure it's flat.</p>
+		<p class="govuk-body">Make sure it's flat. You may need to unfold it.</p>
 	</div>
 
 	<div class="govuk-grid-column-one-third">
@@ -29,7 +27,8 @@
 
 {{ govukButton({
   "text": "Continue",
-  "href": "before-take-photo"
+  "href": "before-take-photo",
+  "classes": "guidance-pull-button"
 }) }}
 
 {% endblock %}
