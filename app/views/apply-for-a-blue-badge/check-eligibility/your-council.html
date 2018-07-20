@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = your + ' local council' %}
+{% set pageHeading = your + ' issuing authority' %}
 
 {% block page_title %}
   {{pageHeading | capitalize}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -18,7 +18,7 @@
       <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-l">{{pageHeading | capitalize}}</h1>
-        <p class="govuk-body-l"><b>{{ data['council-name']}}</b> are responsible for managing Blue Badges in your area.</p>
+        <p class="govuk-body-l"><b>{{ data['council-name']}}</b> are responsible for issuing Blue Badges in your area.</p>
         <form action="enter-age">
 
           {{ govukButton({
