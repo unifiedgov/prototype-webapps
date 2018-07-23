@@ -30,17 +30,6 @@
         <h1 class="govuk-heading-l">Take a photo</h1>
         <p class="govuk-body">{{ you | capitalize }}'ll need to take a photo that clearly shows {{your}} face and shoulders. We'll print this on the back of {{ your }} badge.</p>
 
-        <details class="govuk-details file-upload empty" id="cantUploadDetails">
-          <summary class="govuk-details__summary">I can't upload {{my}} photo</summary>
-          <div class="govuk-details__text panel panel-border">
-            <p class="govuk-body">If you can't upload {{your}} photo {{data['council-name']}} will contact you about how to send it by post.</p>
-            <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
-            <p class="govuk-body">
-              <a href="/apply-for-a-blue-badge/check-answers" class="govuk-button-secondary">Continue without uploading</a>
-            </p>
-          </div>
-        </details>
-
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-third">
             <div class="svg-container passport-help-photo">{% include "includes/icon-help-photo.html" %}</div>
@@ -107,6 +96,17 @@
           {{ govukButton({
             "text": submitLabel
           }) }}
+
+          <details class="govuk-details file-upload empty" id="cantUploadDetails">
+            <summary class="govuk-details__summary">I can't upload {{my}} photo</summary>
+            <div class="govuk-details__text panel panel-border">
+              <p class="govuk-body">If you can't upload {{your}} photo {{data['council-name']}} will contact you about how to send it by post.</p>
+              <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
+              <p class="govuk-body">
+                <a href="/apply-for-a-blue-badge/check-answers" class="govuk-button-secondary">Continue without uploading</a>
+              </p>
+            </div>
+          </details>
 
           <!-- Has save -->
         </form>
