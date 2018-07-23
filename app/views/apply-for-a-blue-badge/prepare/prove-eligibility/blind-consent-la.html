@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'Do ' + you + ' give us permission to contact your Local Authority?' %}
+{% set pageHeading = 'Do ' + you + ' give us permission to contact ' + your + ' local council?' %}
 
 
 {% block page_title %}
@@ -42,7 +42,7 @@
               }
             },
             "hint": {
-              "text": "This will enable us to contact " + your + "  Local Authority to check the register for " + your + " details."
+              "text": "This allows us to confirm " + your + " details on " + your + " local council's register"
             },
             "items": [
               {
