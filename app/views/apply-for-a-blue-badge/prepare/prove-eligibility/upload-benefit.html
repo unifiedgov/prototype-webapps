@@ -2,7 +2,23 @@
 {% set hasSaveClass = 'show-save-button' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
-{% set pageHeading = "Add proof of " + your + " benefit" %}
+{% if (data['benefit'] === 'dla') %}
+
+{% set pageHeading = 'Upload ' + your + ' latest DLA entitlement letter' %}
+
+{% elif (data['benefit'] === 'pip') %}
+
+{% set pageHeading = 'Upload ' + your + ' latest PIP award letter' %}
+
+{% elif (data['benefit'] === 'armed-forces') %}
+
+{% set pageHeading = 'Upload the latest letter from Veterans UK about ' + your + ' AFCS award' %}
+
+{% elif (data['benefit'] === 'war-pensioners') %}
+
+{% set pageHeading = 'Upload the latest letter from Veterans UK about ' + your + ' WPMS award' %}
+
+{% endif %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -31,17 +47,31 @@
         <form action="{{ formAction }}?proofOfEligibility=upload">
           <input type="hidden" id="change" name="change" value="{{change}}">
           <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+          <p class="govuk-body">You must have received this in the last 12 months.</p>
           {% if data['benefit'] === 'dla' %}
 
-            <p class="govuk-body">You need to upload a copy of {{ your }} letter of entitlement, issued within the last 12 months.</p>
+            <p class="govuk-body">The letter must include {{your}}:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+              <li>current address</li>
+              <li>mobility rating </li>
+              <li>certificate of entitlement DLA</li>
+            </ul>
 
           {% elif data['benefit'] === 'pip' %}
 
-            <p class="govuk-body">You need to upload a copy of {{ your }} PIP decision letter or {{ your }} annual uprating letter, issued within the last twelve months.</p>
+            <p class="govuk-body">The letter must include {{your}}:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+              <li>current address</li>
+              <li>mobility score</li>
+              <li>certificate of entitlement to Personal Independence Payment</li>
+            </ul>
 
           {% elif data['benefit'] === 'armed-forces' %}
 
-            <p class="govuk-body">You need to upload a letter from the Service Personnel and Veteran’s Agency, confirming you:</p>
+            <p class="govuk-body">This letter should confirm {{you}}:</p>
 
             <ul class="govuk-list govuk-list--bullet">
               <li>were injured in service on or after 6 April 2005</li>
@@ -51,7 +81,7 @@
 
           {% elif data['benefit'] === 'war-pensioners' %}
 
-            <p class="govuk-body">You need to upload an official letter, confirming you:</p>
+            <p class="govuk-body">This letter should confirm {{you}}:</p>
 
             <ul class="govuk-list govuk-list--bullet">
               <li>were injured in service before 6 April 2005</li>
