@@ -48,16 +48,24 @@
 
           {{ govukInput({
             "label": {
-              "text": "Phone number"
-            },
-            "hint": {
-              "text": "This can be a work or mobile phone number"
+              "text": "Primary contact number"
             },
             classes: "govuk-input--width-20",
             id: "primary-phone-number",
             name: "primary-phone-number",
             type: "tel",
             value: data['primary-phone-number']
+          }) }}
+
+          {{ govukInput({
+            "label": {
+              "text": "Secondary contact number"
+            },
+            classes: "govuk-input--width-20",
+            id: "secondary-phone-number",
+            name: "secondary-phone-number",
+            type: "tel",
+            value: data['secondary-phone-number']
           }) }}
 
           {{ govukInput({

@@ -37,7 +37,7 @@
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
   
         {% if (data['disability'] === 'child-bulky-equipment') %}
-          {% set describeLabel = "Give details about the health conditions that mean " + you + " need to be accompanied by medical equipment." %}
+          {% set describeLabel = "Give details of the child's health conditions that mean they always need to be accompanied by medical equipment." %}
         {% elif (data['disability'] === 'child-close-to-vehicle') %}
           {% set describeLabel = 'Give details about the conditions that mean they need to have quick access to a vehicle.' %}
         {% else %}
