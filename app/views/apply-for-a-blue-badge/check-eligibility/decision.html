@@ -58,8 +58,8 @@
         {% elif data['disability'] === 'terminal' %}
           <!-- Doesn't receive a benefit and doesn't have a recognizes disability = not eligible -->
           <h1 class="govuk-heading-l">Contact {{ data["council-name"] }}</h1>
-          <p class="govuk-body">Because {{ you }} have a terminal illness, {{ you }} should contact {{data['council-name']}} directly and tell them {{ you }} are terminally ill.</p>
-          <p class="govuk-body">They might give you instructions that will make the application easier, for example {{ you }} might not need to answer all the questions on the form.</p>
+          <p class="govuk-body">{{you | capitalize}} should contact {{data["council-name"]}} and tell them that {{you}} are terminally ill.</p>
+          <p class="govuk-body">The council will offer help that will make {{your}} application easier.</p>
         {% else %}
           <!-- Doesn't receive a benefit and doesn't have a recognizes disability = needs assessing -->
           <h1 class="govuk-heading-l">{{ you | capitalize }} may be eligible for a Blue Badge</h1>

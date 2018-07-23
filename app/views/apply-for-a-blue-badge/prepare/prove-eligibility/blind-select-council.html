@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'show-save-button' %}
 
-{% set pageHeading = 'What Local Authority are ' + you + ' registered as severely sight impaired (blind) with?' %}
+{% set pageHeading = 'With which local council are ' + you + ' registered as severely sight impaired (blind)?' %}
 
 {% block page_title %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -28,7 +28,7 @@
 
         <h1 class="govuk-heading-l">{{pageHeading}}</h1>
         
-        <p class="govuk-body">We'll contact your Local Authority to check your details on the register.</p>
+        <p class="govuk-body">We'll contact your local council to confirm your details on their register.</p>
 
         <form action="{{ formAction }}">
           <div class="govuk-form-group">
