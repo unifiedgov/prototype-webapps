@@ -2,7 +2,6 @@
 const path = require('path')
 const fs = require('fs')
 
-// Check /express since we are committing in node_modules in this prototype version of the kit
 checkFiles()
 
 // Local dependencies
@@ -38,8 +37,7 @@ if (usageDataConfig.collectUsageData === undefined) {
 
 // Warn if node_modules folder doesn't exist
 function checkFiles () {
-  // HACK: Check /express since we are committing in node_modules in this prototype version of the kit
-  const nodeModulesExists = fs.existsSync(path.join(__dirname, '/node_modules', '/express'))
+  const nodeModulesExists = fs.existsSync(path.join(__dirname, '/node_modules'))
   if (!nodeModulesExists) {
     console.error('ERROR: Node module folder missing. Try running `npm install`')
     process.exit(0)
@@ -51,6 +49,21 @@ function checkFiles () {
     fs.createReadStream(path.join(__dirname, '/lib/template.env'))
     .pipe(fs.createWriteStream(path.join(__dirname, '/.env')))
   }
+}
+
+// Create template session data defaults file if it doesn't exist
+const dataDirectory = path.join(__dirname, '/app/data')
+const sessionDataDefaultsFile = path.join(dataDirectory, '/session-data-defaults.js')
+const sessionDataDefaultsFileExists = fs.existsSync(sessionDataDefaultsFile)
+
+if (!sessionDataDefaultsFileExists) {
+  console.log('Creating session data defaults file')
+  if (!fs.existsSync(dataDirectory)) {
+    fs.mkdirSync(dataDirectory)
+  }
+
+  fs.createReadStream(path.join(__dirname, '/lib/template.session-data-defaults.js'))
+  .pipe(fs.createWriteStream(sessionDataDefaultsFile))
 }
 
 // Run gulp

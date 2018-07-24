@@ -7,22 +7,27 @@ const bodyParser = require('body-parser')
 const browserSync = require('browser-sync')
 const dotenv = require('dotenv')
 const express = require('express')
-const favicon = require('serve-favicon')
 const nunjucks = require('nunjucks')
 const session = require('express-session')
+const cookieParser = require('cookie-parser')
 
 // Local dependencies
 const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
-const apply = require('./app/routes/apply.js')
-const manage = require('./app/routes/manage.js')
 const utils = require('./lib/utils.js')
 
 const app = express()
 const documentationApp = express()
 dotenv.config()
+
+// Set cookies for use in cookie banner.
+app.use(cookieParser())
+documentationApp.use(cookieParser())
+const handleCookies = utils.handleCookies(app)
+app.use(handleCookies)
+documentationApp.use(handleCookies)
 
 // Set up configuration variables
 var releaseVersion = packageJson.version
@@ -33,7 +38,6 @@ var useAuth = process.env.USE_AUTH || config.useAuth
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var useBrowserSync = config.useBrowserSync
-var analyticsId = process.env.ANALYTICS_TRACKING_ID
 var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
 
 env = env.toLowerCase()
@@ -64,10 +68,12 @@ if (env === 'production' && useAuth === 'true') {
 }
 
 // Set up App
-var appViews = [path.join(__dirname, '/app/views/'),
-  path.join(__dirname, '/lib/'),
-  path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts'),
-  path.join(__dirname, '/node_modules/@govuk-frontend/frontend/components')]
+var appViews = [
+  path.join(__dirname, '/node_modules/govuk-frontend/'),
+  path.join(__dirname, '/node_modules/govuk-frontend/components'),
+  path.join(__dirname, '/app/views/'),
+  path.join(__dirname, '/lib/')
+]
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
   autoescape: true,
@@ -83,24 +89,20 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 app.set('view engine', 'html')
 
 // Middleware to serve static assets
-app.use('/assets', express.static(path.join(__dirname, '/node_modules/@govuk-frontend/frontend/assets')))
 app.use('/public', express.static(path.join(__dirname, '/public')))
-app.use('/public', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
-// app.use('/public', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit')))
-// app.use('/public/images/icons', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/images')))
+app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets')))
 
-// load govuk-frontend 'all' js
-app.use('/public/javascripts', express.static(path.join(__dirname, '/node_modules/@govuk-frontend/frontend')))
-
-// Elements refers to icon folder instead of images folder
-app.use(favicon(path.join(__dirname, 'node_modules', 'govuk_template_jinja', 'assets', 'images', 'favicon.ico')))
+// Serve govuk-frontend in /public
+app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
 
 // Set up documentation app
 if (useDocumentation) {
-  var documentationViews = [path.join(__dirname, '/docs/views/'),
-    path.join(__dirname, '/lib/'),
-    path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts'),
-    path.join(__dirname, '/node_modules/@govuk-frontend/frontend')]
+  var documentationViews = [
+    path.join(__dirname, '/node_modules/govuk-frontend/'),
+    path.join(__dirname, '/node_modules/govuk-frontend/components'),
+    path.join(__dirname, '/docs/views/'),
+    path.join(__dirname, '/lib/')
+  ]
 
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
     autoescape: true,
@@ -121,8 +123,16 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
+// Add global variable to determine if DoNotTrack is enabled.
+// This indicates a user has explicitly opted-out of tracking.
+// Therefore we can avoid injecting third-party scripts that do not respect this decision.
+app.use(function (req, res, next) {
+  // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/DNT
+  app.locals.doNotTrackEnabled = (req.header('DNT') === '1')
+  next()
+})
+
 // Add variables that are available in all views
-app.locals.analyticsId = analyticsId
 app.locals.gtmId = gtmId
 app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
@@ -130,9 +140,6 @@ app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
-app.locals.adminServiceName = config.adminServiceName
-app.locals.laName = config.laName
-app.locals.username = config.username
 
 // Support session data
 app.use(session({
@@ -162,7 +169,7 @@ app.get('/prototype-admin/clear-data', function (req, res) {
 
 // Redirect root to /docs when in promo mode.
 if (promoMode === 'true') {
-  console.log('Prototype kit running in promo mode')
+  console.log('Prototype Kit running in promo mode')
 
   app.locals.cookieText = 'GOV.UK uses cookies to make the site simpler. <a href="/docs/cookies">Find out more about cookies</a>'
 
@@ -170,7 +177,7 @@ if (promoMode === 'true') {
     res.redirect('/docs')
   })
 
-  // Allow search engines to index the prototype kit promo site
+  // Allow search engines to index the Prototype Kit promo site
   app.get('/robots.txt', function (req, res) {
     res.type('text/plain')
     res.send('User-agent: *\nAllow: /')
@@ -192,23 +199,24 @@ if (promoMode === 'true') {
 // Load routes (found in app/routes.js)
 if (typeof (routes) !== 'function') {
   console.log(routes.bind)
-  console.log('Warning: the use of bind in routes is deprecated - please check the prototype kit documentation for writing routes.')
+  console.log('Warning: the use of bind in routes is deprecated - please check the Prototype Kit documentation for writing routes.')
   routes.bind(app)
 } else {
-  app.use('/', routes);
-  app.use('/apply-for-a-blue-badge', apply);
-  app.use('/manage-blue-badges', manage);
+  app.use('/', routes)
 }
 
-// Redirect to the zip of the latest release of the prototype kit on GitHub
+// Redirect to the zip of the latest release of the Prototype Kit on GitHub
 app.get('/prototype-admin/download-latest', function (req, res) {
   var url = utils.getLatestRelease()
   res.redirect(url)
 })
 
 if (useDocumentation) {
-  // Copy app locals to documentation app locals
-  documentationApp.locals = app.locals
+  // Clone app locals to documentation app locals
+  // Use Object.assign to ensure app.locals is cloned to prevent additions from
+  // updating the original app.locals
+  documentationApp.locals = Object.assign({}, app.locals)
+  documentationApp.locals.serviceName = 'Prototype Kit'
 
   // Create separate router for docs
   app.use('/docs', documentationApp)
@@ -247,7 +255,7 @@ app.post(/^\/([^.]+)$/, function (req, res) {
   res.redirect('/' + req.params[0])
 })
 
-console.log('\nGOV.UK Prototype kit v' + releaseVersion)
+console.log('\nGOV.UK Prototype Kit v' + releaseVersion)
 console.log('\nNOTICE: the kit is for building prototypes, do not use it for production services.')
 
 // Find a free port and start the server
