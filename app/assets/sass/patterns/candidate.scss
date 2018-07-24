@@ -30,9 +30,9 @@
 }
 
 .govuk-button.govuk-button--secondary{
-  background-color: $govuk-grey-3;
-  color: $govuk-black;
-  box-shadow: $govuk-grey-2 0px 2px 0px 0px;
+  background-color: govuk-colour(grey-3);
+  color: govuk-colour(black);
+  box-shadow: govuk-colour(grey-2) 0px 2px 0px 0px;
 }
 
 .govuk-details.hidden {
@@ -40,8 +40,8 @@
 }
 
 .save-progress-container {
-  @include govuk-font-bold-19;
-  margin-top: $govuk-spacing-scale-2;
+  @include govuk-font(19, $weight: bold);
+  margin-top: govuk-spacing(2);
   margin-bottom: 0;
   &.hidden-mobile {
     text-align: right;
@@ -128,7 +128,7 @@
 
 .govuk-details {
 	&.file-upload {
-		margin-bottom: $govuk-spacing-scale-1;
+		margin-bottom: govuk-spacing(1);
 	}
 }
 

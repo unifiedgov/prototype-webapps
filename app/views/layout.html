@@ -1,4 +1,4 @@
-{% extends "govuk_template.html" %}
+{% extends "template.njk" %}
 
 {% from "back-link/macro.njk"     import govukBackLink %}
 {% from "breadcrumbs/macro.njk"   import govukBreadcrumbs %}
@@ -43,12 +43,6 @@
             {% endif %}
           {% endblock %}
         </a>
-        <!--
-        <ul id="proposition-links">
-          <li><a href="url-to-page-1" class="active">Navigation item #1</a></li>
-          <li><a href="url-to-page-2">Navigation item #2</a></li>
-        </ul>
-        -->
       </nav>
     </div>
   </div>

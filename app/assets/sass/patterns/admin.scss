@@ -12,8 +12,8 @@
 }
 
 .success-panel {
-	@include govuk-font-regular-19;
-	background: rgba($govuk-turquoise, 0.8);
+	@include govuk-font(19);
+	background: rgba(govuk-colour(turquoise), 0.8);
 	color: white;
 	display: none;
 	padding: 0 60px;
@@ -46,13 +46,13 @@
 		padding-top: 0;
 	}
 	#global-header .header-proposition #proposition-name {
-		@include govuk-font-bold-19;
+		@include govuk-font(19, $weight: bold);
 	}
 	#global-header.with-proposition .header-wrapper .header-proposition {
 		width: 100%;
 	}
 	.govuk-fieldset__legend {
-		@include govuk-font-bold-19;
+		@include govuk-font(19, $weight: bold);
 	}
 	.govuk-label,
 	.govuk-hint,
@@ -63,10 +63,10 @@
 	.govuk-file-upload,
 	details,
 	summary {
-		@include govuk-font-regular-16;
+		@include govuk-font(16);
 	}
 	.govuk-error-message {
-		@include govuk-font-bold-16;
+		@include govuk-font(16, $weight: bold);
 	}
 	// .fieldset-with-inputs .govuk-fieldset__legend {
 	// 	margin-bottom: 0;
@@ -75,13 +75,13 @@
 		margin-bottom: 5px;
 	}
 	.govuk-check-your-answers__question{
-		@include govuk-font-bold-16;
+		@include govuk-font(16, $weight: bold);
 	}
 	.govuk-check-your-answers__answer,
 	.govuk-check-your-answers__change {
-		@include govuk-font-regular-16;
+		@include govuk-font(16);
 		img {
-			outline: 2px solid $govuk-grey-2;
+			outline: 2px solid govuk-colour(grey-2);
 			border: 2px solid white;
 			width: 8rem;
 		}
@@ -90,11 +90,11 @@
 		display: inline-block;
 	}
 	thead tr {
-	  border-bottom: 2px solid $govuk-grey-3;
+	  border-bottom: 2px solid govuk-colour(grey-3);
 	}
 	td {
-		@include govuk-font-regular-16;
-		border-color: $govuk-grey-3;
+		@include govuk-font(16);
+		border-color: govuk-colour(grey-3);
 		a {
 			display: block;
 			text-decoration: none;
@@ -104,7 +104,7 @@
 		}
 	}
 	th {
-		@include govuk-font-bold-16;
+		@include govuk-font(16, $weight: bold);
 	}
 	.back-link-container {
 		margin-top: -30px;
@@ -113,7 +113,7 @@
 	.system-error {
 		a {
 			color: $govuk-link-colour;
-			@include govuk-font-regular-19;
+			@include govuk-font(19);
 		}
 	}
 }
@@ -126,7 +126,7 @@
 			margin-right: -4px;
 		}
 		.check-answers-change {
-			@include govuk-font-regular-19;
+			@include govuk-font(19);
 			display: inline-block;
 			width: 40%;
 			margin-right: -4px;

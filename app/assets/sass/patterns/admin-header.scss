@@ -34,7 +34,7 @@
   // .proposition {
   //   display: inline-block;
   //   > * {
-  //     @include govuk-font-regular-19;
+  //     @include govuk-font(19);
   //     display: inline-block;
   //     margin: 0;
   //   }
@@ -46,7 +46,7 @@
   }
 
   .proposition__authority {
-    @include govuk-font-regular-19;
+    @include govuk-font(19);
     margin-left: 5px;
     display: none;
     @include mq($from: tablet) {
@@ -55,13 +55,13 @@
   }
 
   .proposition__version {
-    @include govuk-font-regular-16;
+    @include govuk-font(16);
     margin-left: 5px;
   }
 
 
   .user-menu {
-    @include govuk-font-regular-16;
+    @include govuk-font(16);
     margin-top: 4px;
     float: right;
     p {

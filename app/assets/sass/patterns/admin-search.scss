@@ -5,7 +5,7 @@
 /*Testing*/
 
 .search-box-container {
-  background: $govuk-grey-4;
+  background: govuk-colour(grey-4);
   margin-top: 25px;
   padding: 20px;
 }
@@ -16,7 +16,7 @@
     margin-bottom: 0;
   }
   select {
-    border: 2px solid $govuk-grey-3;
+    border: 2px solid govuk-colour(grey-3);
   }
 }
 
@@ -25,16 +25,16 @@
 }
 
 .search-box {
-  @include govuk-font-regular-19;
+  @include govuk-font(19);
   display: inline-block;
   input[type="text"] {
-    @include govuk-font-regular-19;
+    @include govuk-font(19);
   	padding: 9px 15px 6px;
-  	border: 2px solid $govuk-grey-3;
+  	border: 2px solid govuk-colour(grey-3);
   	outline: none;
   	width: 275px;
   	&:focus {
-  		border: 2px solid $govuk-yellow;
+  		border: 2px solid govuk-colour(yellow);
   	}
   }
   .inline-search-button {
@@ -53,7 +53,7 @@
 }
 
 .search-box__options {
-  @include govuk-font-regular-16;
+  @include govuk-font(16);
   float: right; 
   p {
     display: inline-block;

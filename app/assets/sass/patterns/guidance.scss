@@ -5,31 +5,31 @@
 }
 
 .guidance-container {
-	background: $govuk-blue;
-	color: $govuk-white;
-	padding: $govuk-spacing-scale-6;
+	background: govuk-colour(blue);
+	color: govuk-colour(white);
+	padding: govuk-spacing(6);
 	h1, h2, h3, p, ul, legend, label {
-		color: $govuk-white;
+		color: govuk-colour(white);
 		max-width: 60rem;
 	}
 	p.govuk-body, label, li {
-		@include govuk-font-regular-24;
+		@include govuk-font(24);
 	}
 	.govuk-button {
-		background-color: $govuk-white;
-		color: $govuk-blue;
-		box-shadow: darken($govuk-blue, 20%) 0px 2px 0px 0px;
+		background-color: govuk-colour(white);
+		color: govuk-colour(blue);
+		box-shadow: darken(govuk-colour(blue), 20%) 0px 2px 0px 0px;
 		&:focus, &:hover {
-			color: $govuk-blue;
+			color: govuk-colour(blue);
 		}
 	}
 	img {
 		@include mq($until: tablet) {
-			margin-bottom: $govuk-spacing-scale-6;
+			margin-bottom: govuk-spacing(6);
 		}
 	}
 	.image-with-margin {
-		margin-bottom: $govuk-spacing-scale-6;
+		margin-bottom: govuk-spacing(6);
 	}
 	.guidance-pull-button {
 		@include mq($from: tablet) {
@@ -39,9 +39,9 @@
 }
 
 .guidance-numbered-steps {
-	@include govuk-font-regular-24;
+	@include govuk-font(24);
 	li {
-		margin-bottom: $govuk-spacing-scale-2;
+		margin-bottom: govuk-spacing(2);
 	}
 }
 
@@ -62,22 +62,22 @@
 		text-align: right;
 		width: 40%;
 	}
-	margin-bottom: $govuk-spacing-scale-6;
+	margin-bottom: govuk-spacing(6);
 }
 
 .guidance-title {
-	@include govuk-font-bold-19;
+	@include govuk-font(19, $weight: bold);
 }
 
 .guidance-step-count {
-	@include govuk-font-regular-19;
+	@include govuk-font(19);
 	display: block;
 }
 
 .photo-guidance-images-with-results {
 	list-style: none;
 	margin: 0; padding: 0;
-	margin-bottom: $govuk-spacing-scale-6;
+	margin-bottom: govuk-spacing(6);
 	img {
 		margin: 0;
 	}
@@ -86,14 +86,14 @@
 		margin-right: 5px;
 		position: relative;
 		.result {
-			background: $govuk-white;
+			background: govuk-colour(white);
 			bottom: 0;
-			color: $govuk-black;
+			color: govuk-colour(black);
 			position: absolute;
 			width: 100%;
 			p {
-				@include govuk-font-regular-16;
-				color: $govuk-black;
+				@include govuk-font(16);
+				color: govuk-colour(black);
 
 			}
 		}

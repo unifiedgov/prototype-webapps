@@ -5,9 +5,9 @@
 // Component styles
 
 .side-nav {
-  @include govuk-font-regular-19;
+  @include govuk-font(19);
   float: left;
-  background: $govuk-grey-4;
+  background: govuk-colour(grey-4);
   width: 100%;
   color: $la-blue;
   overflow: hidden;

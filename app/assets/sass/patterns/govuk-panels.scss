@@ -1,8 +1,8 @@
 .expanding-panel {
 	display: none;
-	margin-bottom: $govuk-spacing-scale-4;
+	margin-bottom: govuk-spacing(4);
 	@include mq($from: tablet) {
-		margin-bottom: $govuk-spacing-scale-6;
+		margin-bottom: govuk-spacing(6);
 	}
 }
 
@@ -17,8 +17,8 @@
 }
 
 .govuk-info-panel {
-	padding: $govuk-spacing-scale-3;
-    padding-left: $govuk-spacing-scale-4;
+	padding: govuk-spacing(3);
+    padding-left: govuk-spacing(4);
     border-left: $govuk-border-width solid $govuk-border-colour;
     p {
     	margin-bottom: 0;
@@ -39,8 +39,8 @@
 }
 
 .form-section, .split-section {
-	border-bottom: 1px solid $govuk-grey-3;
-	@include govuk-responsive-margin($govuk-spacing-responsive-6, "bottom");
+	border-bottom: 1px solid govuk-colour(grey-3);
+	margin-bottom: govuk-spacing(6);
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 	&:last-of-type {
@@ -53,7 +53,7 @@
 }
 
 .icon--upload-arrow {
-	background: $govuk-grey-2;
+	background: govuk-colour(grey-2);
 	border-radius: 50%;
 	line-height: 0;
 	padding: 10px;
@@ -76,7 +76,7 @@
 
 
 #drop-area {
-  border: 2px dashed $govuk-grey-2;
+  border: 2px dashed govuk-colour(grey-2);
   max-width: 480px;
   margin-bottom: 30px;
   padding: 30px;
@@ -124,13 +124,13 @@ progress {
 
 	display: block;
 	color: $govuk-link-colour;
-	background-color: $govuk-grey-3;
+	background-color: govuk-colour(grey-3);
 	width: 100%;
 }
 
 /* Chrome */
 progress::-webkit-progress-bar {
-    background-color: $govuk-grey-3;
+    background-color: govuk-colour(grey-3);
 }
 
 progress::-moz-progress-bar { 

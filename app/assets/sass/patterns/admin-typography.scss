@@ -3,20 +3,20 @@
 \*------------------------------------*/
 
 h1 {
-  @include govuk-font-bold-36;
+  @include govuk-font(36, $weight: bold);
   display: inline-block;
 }
 
 .subtitle {
-  @include govuk-font-regular-19;
+  @include govuk-font(19);
   margin-bottom: 5px;
-  color: $govuk-grey-1;
+  color: govuk-colour(grey-1);
 }
 
 .count {
-  @include govuk-font-regular-19;
+  @include govuk-font(19);
   display: inline-block;
-  color: $govuk-grey-1;
+  color: govuk-colour(grey-1);
   margin: 0;
   margin-left: 5px;
 }
