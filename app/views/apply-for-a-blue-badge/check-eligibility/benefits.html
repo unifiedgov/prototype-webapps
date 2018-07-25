@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-
+{% set isFullWidth = 'yes' %}
 {% set pageHeading = 'Do ' + you + ' receive any of these benefits?' %}
 
 {% block pageTitle %}
@@ -7,97 +7,95 @@
 {% endblock %}
 
 {% block inner_content %}
-
-
-
-  
-
-<form action="benefits-backend">
-  
-  {% if  data['council-name'] === "Northern Ireland" %}
-
-  {% set pipText = 'and scored 8 points or more in the "moving around" activity of ' + your + ' assessment.' %}
-
-  {% else %}
-
-  {% set pipText = 'and scored either: 
-                    <ul class="govuk-list govuk-list--bullet">
-                      <li>8 points or more in the "moving around" activity of ' + your + ' assessment</li>
-                      <li>12 points in the "planning and following a journey" activity of ' + your + ' assessment</li>
-                    </ul>' 
-                      %}
-  
-  {% endif %}
-
-  {% if  data['age'] > 16 %}
-
-    {% set differentOptions = [
-          {
-            "value": "pip",
-            "html": '<b>Personal Independence Payment (PIP)</b> <br>' + pipText
+  <div class="govuk-grid-column-three-quarters">
+    
+    <form action="benefits-backend">
+      
+      {% if  data['council-name'] === "Northern Ireland" %}
+    
+      {% set pipText = 'and scored 8 points or more in the "moving around" activity of ' + your + ' assessment.' %}
+    
+      {% else %}
+    
+      {% set pipText = 'and scored either: 
+                        <ul class="govuk-list govuk-list--bullet">
+                          <li>8 points or more in the "moving around" activity of ' + your + ' assessment</li>
+                          <li>12 points in the "planning and following a journey" activity of ' + your + ' assessment</li>
+                        </ul>' 
+                          %}
+      
+      {% endif %}
+    
+      {% if  data['age'] > 16 %}
+    
+        {% set differentOptions = [
+              {
+                "value": "pip",
+                "html": '<b>Personal Independence Payment (PIP)</b> <br>' + pipText
+              },
+              {
+                "value": "dla",
+                "html": '<b>Disability Living Allowance (DLA)</b> <br> and have been awarded the higher rate of the mobility component'
+              },
+              {
+                "value": "armed-forces",
+                "html": '<b>Armed Forces Compensation scheme</b> <br> and received a lump sum payment within tariff levels 1-8 and have been certified as having a permanent and substantial disability'
+              },
+              {
+                "value": "war-pensioners",
+                "html": '<b>War Pensioners’ Mobility Supplement</b>'
+              },
+              {
+                "value": "none",
+                "html": '<b>None of these benefits</b>'
+              }
+            ]
+        %}
+    
+      {% else %}
+    
+      {% set differentOptions = [
+            {
+              "value": "pip",
+              "html": '<b>Personal Independence Payment (PIP)</b> <br>' + pipText
+            },
+            {
+              "value": "dla",
+              "html": '<b>Disability Living Allowance (DLA)</b> <br> and have been awarded the higher rate of the mobility component'
+            },
+            {
+              "value": "none",
+              "html": '<b>'+ you | capitalize + ' don’t receive any of these benefits</b>'
+            }
+          ]
+      %}
+    
+      {% endif %}
+    
+    
+      {{ govukRadios({
+        "idPrefix": "benefit",
+        "name": "benefit",
+        "attributes": {
+            "data-catchoption-label": true
           },
-          {
-            "value": "dla",
-            "html": '<b>Disability Living Allowance (DLA)</b> <br> and have been awarded the higher rate of the mobility component'
-          },
-          {
-            "value": "armed-forces",
-            "html": '<b>Armed Forces Compensation scheme</b> <br> and received a lump sum payment within tariff levels 1-8 and have been certified as having a permanent and substantial disability'
-          },
-          {
-            "value": "war-pensioners",
-            "html": '<b>War Pensioners’ Mobility Supplement</b>'
-          },
-          {
-            "value": "none",
-            "html": '<b>None of these benefits</b>'
+        "fieldset": {
+          "legend": {
+            "text": pageHeading,
+            "isPageHeading": true,
+            "classes": 'govuk-fieldset__legend--l'
           }
-        ]
-    %}
-
-  {% else %}
-
-  {% set differentOptions = [
-        {
-          "value": "pip",
-          "html": '<b>Personal Independence Payment (PIP)</b> <br>' + pipText
         },
-        {
-          "value": "dla",
-          "html": '<b>Disability Living Allowance (DLA)</b> <br> and have been awarded the higher rate of the mobility component'
-        },
-        {
-          "value": "none",
-          "html": '<b>'+ you | capitalize + ' don’t receive any of these benefits</b>'
-        }
-      ]
-  %}
-
-  {% endif %}
-
-
-  {{ govukRadios({
-    "idPrefix": "benefit",
-    "name": "benefit",
-    "attributes": {
-        "data-catchoption-label": true
-      },
-    "fieldset": {
-      "legend": {
-        "text": pageHeading,
-        "isPageHeading": true,
-        "classes": 'govuk-fieldset__legend--l'
-      }
-    },
-    "items": differentOptions
-  }) }}
-
-  <div id="hiddenCaughtInputs"></div>
-  
-  
-  {{ govukButton({
-    "text": "Continue"
-  }) }}
-</form>
+        "items": differentOptions
+      }) }}
+    
+      <div id="hiddenCaughtInputs"></div>
+      
+      
+      {{ govukButton({
+        "text": "Continue"
+      }) }}
+    </form>
+  </div>
 
 {% endblock %}
