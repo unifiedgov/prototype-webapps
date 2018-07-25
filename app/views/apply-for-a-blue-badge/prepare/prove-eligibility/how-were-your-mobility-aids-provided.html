@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
+{% set hasSaveClass = 'yes' %}
 
 {% set pageHeading = 'How were ' + your + ' mobility aids provided?' %}
 
@@ -10,7 +10,7 @@
 {% block content %}
 
 
-{% include "includes/back-and-save.html" %}
+
 <form action="{{ formAction }}">
   {{ govukCheckboxes({
     "idPrefix": "mobility-aids-provided",
@@ -55,7 +55,7 @@
 </form>
 
       
-<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+
 
 
 {% endblock %}

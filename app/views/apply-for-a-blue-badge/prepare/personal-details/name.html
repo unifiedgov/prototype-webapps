@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
+{% set hasSaveClass = 'yes' %}
 
 {% set pageHeading = 'What\'s ' + your + ' name?' %}
 
@@ -10,7 +10,7 @@
 {% block content %}
 
 
-{% include "includes/back-and-save.html" %}
+
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 <!-- <p class="govuk-body"></p> -->
 <form action="{{formAction}}">
@@ -67,7 +67,7 @@
 </form>
 
       
-<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+
 
 
 {% endblock %}

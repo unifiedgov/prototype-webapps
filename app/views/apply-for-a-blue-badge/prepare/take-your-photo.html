@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
+{% set hasSaveClass = 'yes' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
 {% set pageHeading = "Take a photo" %}
@@ -11,7 +11,7 @@
 {% block content %}
 
 
-{% include "includes/back-and-save.html" %}
+
 <h1 class="govuk-heading-l">Take a photo</h1>
 <p class="govuk-body">{{ you | capitalize }}'ll need to take a photo that clearly shows {{your}} face and shoulders. We'll print this on the back of {{ your }} badge.</p>
 
@@ -93,7 +93,7 @@
   <!-- Has save -->
 </form>
       
-<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+
 
 
 {% endblock %}

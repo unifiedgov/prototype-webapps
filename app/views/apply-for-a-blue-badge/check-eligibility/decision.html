@@ -7,10 +7,7 @@
 {% block content %}
 
 
-{{ govukBackLink({
-  "text": "Back",
-  "href": "javascript: window.history.go(-1)"
-}) }}
+
 {% if data['applicant'] === 'organisation' %}
   <!-- Org -->
   {% if data['org-care-for'] === 'no' or data['org-transport'] === 'no' %}

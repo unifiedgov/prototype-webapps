@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
+{% set hasSaveClass = 'yes' %}
 
 {% if data['mobility-aids-array'].length %}
 {% set pageHeading = 'How long can ' + you + ' walk using a mobility aid, without stopping?' %}
@@ -14,7 +14,7 @@
 {% block content %}
 
 
-{% include "includes/back-and-save.html" %}
+
         
 <form action="{{ formAction }}">
   {{ govukRadios({
@@ -65,7 +65,7 @@
 </form>
 
       
-<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+
 
 
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
+{% set hasSaveClass = 'yes' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
 {% set pageHeading = "Upload evidence that " + your + " vehicle has been adapted" %}
@@ -11,7 +11,7 @@
 {% block content %}
 
 
-{% include "includes/back-and-save.html" %}
+
 
 <form action="{{ formAction }}?proofOfAdapted=upload">
   <input type="hidden" id="change" name="change" value="{{change}}">
@@ -39,7 +39,7 @@
 </form>
 
       
-<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+
 
 
 {% endblock %}

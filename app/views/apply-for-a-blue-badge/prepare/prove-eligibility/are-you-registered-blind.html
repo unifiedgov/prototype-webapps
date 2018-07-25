@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
+{% set hasSaveClass = 'yes' %}
 
 {% set pageHeading = 'Are ' + you + ' registered as severely sight impaired (blind)?' %}
 
@@ -11,7 +11,7 @@
 {% block content %}
 
 
-{% include "includes/back-and-save.html" %}
+
 <form action="{{ formAction }}">
   {{ govukRadios({
     "idPrefix": "registered-blind",
@@ -51,7 +51,7 @@
 </form>
 
       
-<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+
 
 
 {% endblock %}

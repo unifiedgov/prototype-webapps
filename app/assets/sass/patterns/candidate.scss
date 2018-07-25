@@ -42,8 +42,8 @@
 .save-progress-container {
   @include govuk-font(19, $weight: bold);
   margin-top: govuk-spacing(2);
-  margin-bottom: 0;
   &.hidden-mobile {
+    margin-bottom: 0;
     text-align: right;
   }
   a {

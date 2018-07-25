@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% set hasSaveClass = 'show-save-button' %}
+{% set hasSaveClass = 'yes' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
 {% set pageHeading = 'Prove ' + your + ' identity' %}
@@ -11,7 +11,7 @@
 {% block content %}
 
 
-{% include "includes/back-and-save.html" %}
+
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 <form action="{{ formAction }}">
   <p class="govuk-body">You need to upload a copy of a document which proves {{ your }} identity such as:</p>
@@ -37,7 +37,7 @@
 </form>
 
       
-<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+
 
 
 {% endblock %}

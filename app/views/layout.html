@@ -26,17 +26,6 @@
   {% include "includes/head.html" %}
 {% endblock %}
 
-{% block after_header %}
-  <div class="phase-banner-wrapper govuk-width-container">
-    {{ govukPhaseBanner({
-      "tag": {
-        "text": "Prototype"
-      },
-      "html": 'This is work in progress and not a functioning service.'
-    }) }}
-  </div>
-{% endblock %}
-
 {% block header %}
   {% include "includes/cookie-banner.html" %}
   {# Set serviceName in config.js. #}
@@ -47,10 +36,39 @@
     containerClasses: "govuk-width-container",
     classes: 'hide-service-name-' + hideServiceName
   }) }}
+
+  <div class="govuk-width-container">
+    {{ govukPhaseBanner({
+      "tag": {
+        "text": "Prototype"
+      },
+      "html": 'This is work in progress and not a functioning service.'
+    }) }}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        {{ govukBackLink({
+            "text": "Back",
+            "href": "javascript: window.history.go(-1)"
+          }) 
+        }}
+      </div>
+      {% if hasSaveClass === 'yes' %}
+        <div class="govuk-grid-column-one-half">
+          <p class="govuk-body save-progress-container hidden-mobile"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+        </div>
+      {% endif %}
+      
+    </div>
+
+  </div>
 {% endblock %}
 
 {% if useAutoStoreData %}
   {% block footer %}
+  <div class="govuk-width-container">
+    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+  </div>
     {{ govukFooter({
       meta: {
         items: [
