@@ -10,41 +10,32 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<!-- <p class="govuk-body"></p> -->
+<form action="{{formAction}}">
+  {{ govukInput({
+    "label": {
+      "text": "National Insurance number"
+    },
+    "hint": {
+      "text": "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
+    },
+    classes: "govuk-input--width-20",
+    id: "nino",
+    name: "nino",
+    value: data['nino']
+  }) }}
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <!-- <p class="govuk-body"></p> -->
-        <form action="{{formAction}}">
-          {{ govukInput({
-            "label": {
-              "text": "National Insurance number"
-            },
-            "hint": {
-              "text": "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
-            },
-            classes: "govuk-input--width-20",
-            id: "nino",
-            name: "nino",
-            value: data['nino']
-          }) }}
-          
-          {{ govukButton({
-            "text": submitLabel
-          }) }}
+  <!-- Has save -->
+</form>
 
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

@@ -10,42 +10,36 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<!-- <p class="govuk-body"></p> -->
+<form action="{{formAction}}">
+  {{ govukInput({
+    "label": {
+      "text": "Name of "+your+" healthcare professional"
+    },
+    "name": "hcp-name"
+  }) }}
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <!-- <p class="govuk-body"></p> -->
-        <form action="{{formAction}}">
-          {{ govukInput({
-            "label": {
-              "text": "Name of "+your+" healthcare professional"
-            },
-            "name": "hcp-name"
-          }) }}
+  {{ govukInput({
+    "label": {
+      "text": "Name of their hospital or health centre?"
+    },
+    "name": "hcp-hospital"
+  }) }}
 
-          {{ govukInput({
-            "label": {
-              "text": "Name of their hospital or health centre?"
-            },
-            "name": "hcp-hospital"
-          }) }}
+  {{ govukButton({
+    "text": "Add this healthcare professional"
+  }) }}
 
-          {{ govukButton({
-            "text": "Add this healthcare professional"
-          }) }}
+  <div class="govuk-info-panel">
+    <p class="govuk-body">You can add another healthcare professional afterwards, if required.</p>
+  </div>
 
-          <div class="govuk-info-panel">
-            <p class="govuk-body">You can add another healthcare professional afterwards, if required.</p>
-          </div>
+  <!-- Has save -->
+</form>
 
-          <!-- Has save -->
-        </form>
-
-      </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

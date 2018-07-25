@@ -7,84 +7,46 @@
 {% block content %}
 
 
-  {{ govukBreadcrumbs({
-    "items": [
-      {
-        "text": "Home",
-        "href": "#"
-      },
-      {
-        "text": "Driving and transport",
-        "href": "#"
-      },
-      {
-        "text": "Driving with medical conditions, Blue Badges and public transport if you're disabled",
-        "href": "#"
-      }
-    ]
-  }) }}
+{{ govukBreadcrumbs({
+  "items": [
+    {
+      "text": "Home",
+      "href": "#"
+    },
+    {
+      "text": "Driving and transport",
+      "href": "#"
+    },
+    {
+      "text": "Driving with medical conditions, Blue Badges and public transport if you're disabled",
+      "href": "#"
+    }
+  ]
+}) }}
 
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-xl">
+  {% if serviceName %} {{ serviceName }} {% endif %}
+</h1>
 
-        <h1 class="govuk-heading-xl">
-          {% if serviceName %} {{ serviceName }} {% endif %}
-        </h1>
+<p class="govuk-body">You can apply for or renew a blue badge and pay for it online.</p>
 
-        <p class="govuk-body">You can apply for or renew a blue badge and pay for it online.</p>
+{{ govukButton({
+  "text": "Start now",
+  "href": "check-eligibility/",
+  "classes": "govuk-button--start govuk-!-mt-r2 govuk-!-mb-r8"
+}) }}
 
-        {{ govukButton({
-          "text": "Start now",
-          "href": "check-eligibility/",
-          "classes": "govuk-button--start govuk-!-mt-r2 govuk-!-mb-r8"
-        }) }}
+<p class="govuk-body">There is another service to <a href="https://www.nidirect.gov.uk/articles/apply-or-renew-blue-badge">apply for a Blue Badge in Northern Ireland</a>.</p>
 
-        <p class="govuk-body">There is another service to <a href="https://www.nidirect.gov.uk/articles/apply-or-renew-blue-badge">apply for a Blue Badge in Northern Ireland</a>.</p>
+<p class="govuk-body">You'll need to provide a photo and other documents as proof of your eligibility.</p>
 
-        <p class="govuk-body">You'll need to provide a photo and other documents as proof of your eligibility.</p>
+<p class="govuk-body">You'll also need a credit or debit card to pay a £10 fee, which is returnable if your application is unsuccessful.</p>
 
-        <p class="govuk-body">You'll also need a credit or debit card to pay a £10 fee, which is returnable if your application is unsuccessful.</p>
+<h2 class="govuk-heading-m">Questions</h2>
 
-        <h2 class="govuk-heading-m">Questions</h2>
+<p class="govuk-body">For questions about the Blue Badge scheme, <a href="/blue-badge-scheme-information-council">contact your local council</a> or the initial enquiry support service.</p>
 
-        <p class="govuk-body">For questions about the Blue Badge scheme, <a href="/blue-badge-scheme-information-council">contact your local council</a> or the initial enquiry support service.</p>
+<p class="govuk-body">Last updated: 4 May 2018</p>
 
-        <p class="govuk-body">Last updated: 4 May 2018</p>
-
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
-
-       <!--  <aside class="app-related-items" role="complementary">
-          <h2 class="govuk-heading-m" id="subsection-title">
-            Subsection
-          </h2>
-          <nav role="navigation" aria-labelledby="subsection-title">
-            <ul class="govuk-list govuk-!-f-16">
-              <li>
-                <a href="#">
-                  Related link
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Related link
-                </a>
-              </li>
-              <li>
-                <a href="#" class="govuk-!-w-bold">
-                  More <span class="govuk-visually-hidden">in Subsection</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </aside> -->
-
-        </div>
-    </div>
 
 {% endblock %}

@@ -11,56 +11,47 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+<form action="{{ formAction }}">
+  {{ govukRadios({
+    "idPrefix": "registered-blind",
+    "name": "registered-blind",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": data['registered-blind'] === 'yes'
+      },
+      {
+        "value": "no",
+        "text": "No",
+        "checked": data['registered-blind'] === 'no'
+      }
+
+    ]
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
 
-        <form action="{{ formAction }}">
-          {{ govukRadios({
-            "idPrefix": "registered-blind",
-            "name": "registered-blind",
-            "attributes": {
-              "data-catchoption-label": true
-            },
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes",
-                "checked": data['registered-blind'] === 'yes'
-              },
-              {
-                "value": "no",
-                "text": "No",
-                "checked": data['registered-blind'] === 'no'
-              }
+  <!-- Has save -->
+</form>
 
-            ]
-          }) }}
-
-          <div id="hiddenCaughtInputs"></div>
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

@@ -8,82 +8,69 @@
 
 {% block content %}
 
+{{ govukPanel({
+  "titleHtml": '<h1 class="govuk-panel__title govuk-!-f-36">' + pageHeading + '</h1>',
+  "html": '<span class="govuk-!-f-27">Your reference number is<br><strong>HDJ2123F</strong></span>'
+})
+}}
 
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% if data['pay-when'] === 'now' %}
+<p class="govuk-body">You've paid by card.</p>
+{% endif %}
 
-        {{ govukPanel({
-          "titleHtml": '<h1 class="govuk-panel__title govuk-!-f-36">' + pageHeading + '</h1>',
-          "html": '<span class="govuk-!-f-27">Your reference number is<br><strong>HDJ2123F</strong></span>'
-        })
-        }}
+<p class="govuk-body">We have sent a confirmation email to 
+  <strong>
+    {% if data['email-address'] %}
+    {{ data['email-address'] }}
+    {% else %}
+    yourname@email.com
+    {% endif %}
+  </strong>.</p>
 
-        {% if data['pay-when'] === 'now' %}
-        <p class="govuk-body">You've paid by card.</p>
-        {% endif %}
+<h2 class="govuk-heading-m">What happens next</h2>
 
-        <p class="govuk-body">We have sent a confirmation email to 
-          <strong>
-            {% if data['email-address'] %}
-            {{ data['email-address'] }}
-            {% else %}
-            yourname@email.com
-            {% endif %}
-          </strong>.</p>
+{% if ((data['proofOfEligibility'] === 'notProvided' and (data['benefit'] === 'dla' or data['benefit'] === 'pip')) or
+  (data['proveIdentity'] === 'notProvided') or (data['proveAddress'] === 'notProvided') or (data['providePhoto'] === 'notProvided')) %}
 
-        <h2 class="govuk-heading-m">What happens next</h2>
+  <div id="some-evidence-missing">
+    <p class="govuk-body">We've sent {{ your }} {{ application }} to {{data['council-name']}} who will contact {{ you }} about providing:</p>
+    <ol class="govuk-list govuk-list--bullet">
+      {% if data['proofOfEligibility'] === 'notProvided' and (data['benefit'] === 'dla' or data['benefit'] === 'pip') %}
+      <li>proof of eligibility</li>
+      {% endif %}
+      {% if data['proveIdentity'] === 'notProvided' %}
+      <li>proof or identity</li>
+      {% endif %}
+      {% if data['proveAddress'] === 'notProvided' %}
+      <li>proof of address</li>
+      {% endif %}
+      {% if data['providePhoto'] === 'notProvided' %}
+      <li>photo</li>
+      {% endif %}
+    </ol>
+    <p>{{ your | capitalize }} {{ application }} can not be processed until they've received these documents.</p>
+  </div>
+{% else %}
+  <div id="all-evidence-present">
+    <p class=govuk-body>We've sent {{ your }} {{ application }} to {{data['council-name']}} who may contact {{ you }} to ask for more information.</p>
+  </div>
+{% endif %}
 
-        {% if ((data['proofOfEligibility'] === 'notProvided' and (data['benefit'] === 'dla' or data['benefit'] === 'pip')) or
-          (data['proveIdentity'] === 'notProvided') or (data['proveAddress'] === 'notProvided') or (data['providePhoto'] === 'notProvided')) %}
+<p class="govuk-body">We'll send {{ you }} a notification when a decision has been made about {{ your }} {{ application }}.</p>
 
-          <div id="some-evidence-missing">
-            <p class="govuk-body">We've sent {{ your }} {{ application }} to {{data['council-name']}} who will contact {{ you }} about providing:</p>
-            <ol class="govuk-list govuk-list--bullet">
-              {% if data['proofOfEligibility'] === 'notProvided' and (data['benefit'] === 'dla' or data['benefit'] === 'pip') %}
-              <li>proof of eligibility</li>
-              {% endif %}
-              {% if data['proveIdentity'] === 'notProvided' %}
-              <li>proof or identity</li>
-              {% endif %}
-              {% if data['proveAddress'] === 'notProvided' %}
-              <li>proof of address</li>
-              {% endif %}
-              {% if data['providePhoto'] === 'notProvided' %}
-              <li>photo</li>
-              {% endif %}
-            </ol>
-            <p>{{ your | capitalize }} {{ application }} can not be processed until they've received these documents.</p>
-          </div>
-        {% else %}
-          <div id="all-evidence-present">
-            <p class=govuk-body>We've sent {{ your }} {{ application }} to {{data['council-name']}} who may contact {{ you }} to ask for more information.</p>
-          </div>
-        {% endif %}
+<p class="govuk-body">It's now safe to close this window.</p>
 
-        <p class="govuk-body">We'll send {{ you }} a notification when a decision has been made about {{ your }} {{ application }}.</p>
-
-        <p class="govuk-body">It's now safe to close this window.</p>
-
-        <h2 class="govuk-heading-m">{{data['council-name'] | capitalize}} contact details</h2>
-        <p class="govuk-body">
-          {{data['council-name'] | capitalize}}
-          <br/>Church Lane
-          <br/>Manchester
-          <br/>M1 4AA
-          <br/>
-        </p>
-        <p class="govuk-body">
-          Email: <a href="mailto:bluebadge@manchester.gov.uk">bluebadge@council.gov.uk</a>
-          <br/>Telephone: 0161 277 5919
-        </p>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-  
+<h2 class="govuk-heading-m">{{data['council-name'] | capitalize}} contact details</h2>
+<p class="govuk-body">
+  {{data['council-name'] | capitalize}}
+  <br/>Church Lane
+  <br/>Manchester
+  <br/>M1 4AA
+  <br/>
+</p>
+<p class="govuk-body">
+  Email: <a href="mailto:bluebadge@manchester.gov.uk">bluebadge@council.gov.uk</a>
+  <br/>Telephone: 0161 277 5919
+</p>
 
 {% endblock %}

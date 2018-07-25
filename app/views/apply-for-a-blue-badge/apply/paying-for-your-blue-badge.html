@@ -9,36 +9,24 @@
 {% block content %}
 
 
-  {{ govukBackLink({
-      "text": "Back",
-      "href": "javascript: window.history.go(-1)"
-    }) }}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{{ govukBackLink({
+  "text": "Back",
+  "href": "javascript: window.history.go(-1)"
+}) }}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<p class="govuk-body-l">A payment of £10 will be required so that we can issue {{your}} badge.</p>
 
-        <p class="govuk-body-l">A payment of £10 will be required so that we can issue {{your}} badge.</p>
+<form action="{{formAction }}" novalidate="">
 
-        <form action="{{formAction }}" novalidate="">
+  {{ govukButton({
+    "text": "Pay online now"
+  }) }}
 
-          {{ govukButton({
-            "text": "Pay online now"
-          }) }}
+  <p class="govuk-body">
+    <a href="paying-for-your-blue-badge-backend?pay-when=later">Submit {{application}} and pay later</a>
+  </p>
 
-          <p class="govuk-body">
-            <a href="paying-for-your-blue-badge-backend?pay-when=later">Submit {{application}} and pay later</a>
-          </p>
-
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-  
+</form>
 
 {% endblock %}

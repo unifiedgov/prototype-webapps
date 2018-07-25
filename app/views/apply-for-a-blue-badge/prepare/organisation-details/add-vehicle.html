@@ -10,58 +10,51 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<!-- <p class="govuk-body"></p> -->
+<form action="{{formAction}}">
+  {{ govukInput({
+    "label": {
+      "text": "Vehicle Registration Number"
+    },
+    "classes": 'govuk-!-width-two-thirds',
+    "name": "vehicle-vrn"
+  }) }}
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <!-- <p class="govuk-body"></p> -->
-        <form action="{{formAction}}">
-          {{ govukInput({
-            "label": {
-              "text": "Vehicle Registration Number"
-            },
-            "classes": 'govuk-!-width-two-thirds',
-            "name": "vehicle-vrn"
-          }) }}
+  <!-- {{ govukInput({
+    "label": {
+      "text": "Vehicle type"
+    },
+    "hint": {
+      "text": "For example, Car, People carrier, Minibus"
+    },
+    "classes": 'govuk-!-width-two-thirds',
+    "name": "vehicle-type"
+  }) }} -->
 
-          <!-- {{ govukInput({
-            "label": {
-              "text": "Vehicle type"
-            },
-            "hint": {
-              "text": "For example, Car, People carrier, Minibus"
-            },
-            "classes": 'govuk-!-width-two-thirds',
-            "name": "vehicle-type"
-          }) }} -->
+  {{ govukInput({
+    "label": {
+      "text": "How often do you use this vehicle to transport people who are eligible for a Blue Badge?"
+    },
+    "hint": {
+      "text": "For example, every day, once a week"
+    },
+    "classes": 'govuk-!-width-two-thirds',
+    "name": "vehicle-frequency"
+  }) }}
 
-          {{ govukInput({
-            "label": {
-              "text": "How often do you use this vehicle to transport people who are eligible for a Blue Badge?"
-            },
-            "hint": {
-              "text": "For example, every day, once a week"
-            },
-            "classes": 'govuk-!-width-two-thirds',
-            "name": "vehicle-frequency"
-          }) }}
+  {{ govukButton({
+    "text": "Add this vehicle"
+  }) }}
 
-          {{ govukButton({
-            "text": "Add this vehicle"
-          }) }}
+  <div class="govuk-info-panel">
+    <p class="govuk-body">You can add another vehicle afterwards, if required.</p>
+  </div>
 
-          <div class="govuk-info-panel">
-            <p class="govuk-body">You can add another vehicle afterwards, if required.</p>
-          </div>
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+  <!-- Has save -->
+</form>
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

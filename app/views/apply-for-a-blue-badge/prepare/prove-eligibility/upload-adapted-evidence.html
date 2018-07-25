@@ -11,44 +11,35 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+
+<form action="{{ formAction }}?proofOfAdapted=upload">
+  <input type="hidden" id="change" name="change" value="{{change}}">
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
   
+  <p class="govuk-body">This can be a copy of an insurance document or the back of your driving licence if it shows the following codes:</p>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  <ul class="govuk-list govuk-list--bullet">
+    <li>40 - Modified steering</li>
+    <li>44 - Adapted accelerator</li>
+  </ul>
 
-        <form action="{{ formAction }}?proofOfAdapted=upload">
-          <input type="hidden" id="change" name="change" value="{{change}}">
-          <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-          
-          <p class="govuk-body">This can be a copy of an insurance document or the back of your driving licence if it shows the following codes:</p>
+  {{ uploadComponentWidget.uploadComponent(
+    'prove-eligibility/upload-adapted-evidence',
+    'proofOfAdapted', 
+    formAction + '?proofOfAdapted=notProvided&adapted-proof-file-upload=',
+    your, 
+    'provide proof that ' + you + ' have an adapted vehicle', 
+    change, 
+    'no',
+    'adapted-proof-file-upload'
+  )}}
 
-          <ul class="govuk-list govuk-list--bullet">
-            <li>40 - Modified steering</li>
-            <li>44 - Adapted accelerator</li>
-          </ul>
+  <!-- Has save -->
+</form>
 
-          {{ uploadComponentWidget.uploadComponent(
-            'prove-eligibility/upload-adapted-evidence',
-            'proofOfAdapted', 
-            formAction + '?proofOfAdapted=notProvided&adapted-proof-file-upload=',
-            your, 
-            'provide proof that ' + you + ' have an adapted vehicle', 
-            change, 
-            'no',
-            'adapted-proof-file-upload'
-          )}}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

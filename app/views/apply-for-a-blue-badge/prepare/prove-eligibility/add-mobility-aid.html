@@ -10,73 +10,64 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<!-- <p class="govuk-body"></p> -->
+<form action="{{formAction}}">
+  {{ govukInput({
+    "label": {
+      "text": "Name of the mobility aid"
+    },
+    "name": "mobility-aid-name"
+  }) }}
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <!-- <p class="govuk-body"></p> -->
-        <form action="{{formAction}}">
-          {{ govukInput({
-            "label": {
-              "text": "Name of the mobility aid"
-            },
-            "name": "mobility-aid-name"
-          }) }}
-
-          {{ govukInput({
-            "label": {
-              "text": "How often do you use this mobility aid?"
-            },
-            "name": "mobility-aid-usage"
-          }) }}
+  {{ govukInput({
+    "label": {
+      "text": "How often do you use this mobility aid?"
+    },
+    "name": "mobility-aid-usage"
+  }) }}
 
 
-          {{ govukRadios({
-            "idPrefix": "mobility-aid-source",
-            "name": "mobility-aid-source",
-            "fieldset": {
-              "legend": {
-                "text": 'How was this mobility aid provided?',
-                "classes": 'govuk-fieldset__legend--s'
-              }
-            },
-            "items": [
-              {
-                "value": "Prescribed",
-                "text": "Prescribed by a healthcare professional",
-                  "checked": data['mobility-aid-source'] === 'Prescribed'
-              },
-              {
-                "value": "Bought",
-                "text": "Bought privately",
-                  "checked": data['mobility-aid-source'] === 'Bought'
-              },
-              {
-                "value": "Social Services",
-                "text": "Provided by Social Services",
-                  "checked": data['mobility-aid-source'] === 'Social Services'
-              }
-            ]
-          }) }}
+  {{ govukRadios({
+    "idPrefix": "mobility-aid-source",
+    "name": "mobility-aid-source",
+    "fieldset": {
+      "legend": {
+        "text": 'How was this mobility aid provided?',
+        "classes": 'govuk-fieldset__legend--s'
+      }
+    },
+    "items": [
+      {
+        "value": "Prescribed",
+        "text": "Prescribed by a healthcare professional",
+          "checked": data['mobility-aid-source'] === 'Prescribed'
+      },
+      {
+        "value": "Bought",
+        "text": "Bought privately",
+          "checked": data['mobility-aid-source'] === 'Bought'
+      },
+      {
+        "value": "Social Services",
+        "text": "Provided by Social Services",
+          "checked": data['mobility-aid-source'] === 'Social Services'
+      }
+    ]
+  }) }}
+  {{ govukButton({
+    "text": "Add this mobility aid"
+  }) }}
 
-          
+  <div class="govuk-info-panel">
+    <p class="govuk-body">You can add another mobility aid afterwards, if required.</p>
+  </div>
 
-          {{ govukButton({
-            "text": "Add this mobility aid"
-          }) }}
+  <!-- Has save -->
+</form>
 
-          <div class="govuk-info-panel">
-            <p class="govuk-body">You can add another mobility aid afterwards, if required.</p>
-          </div>
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

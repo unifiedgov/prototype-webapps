@@ -10,56 +10,47 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+<form action="{{formAction}}">
+  {{ govukRadios({
+    "idPrefix": "gender",
+    "name": "gender",
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "female",
+        "text": "Female",
+          "checked": data['gender'] === 'female'
+      },
+      {
+        "value": "male",
+        "text": "Male",
+        "checked": data['gender'] === 'male'
+      },
+      {
+        "value": "unspecified",
+        "text": "Unspecified",
+        "checked": data['gender'] === 'unspecified'
+      }
+
+    ]
+  }) }}
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
 
-        <form action="{{formAction}}">
-          {{ govukRadios({
-            "idPrefix": "gender",
-            "name": "gender",
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "female",
-                "text": "Female",
-                  "checked": data['gender'] === 'female'
-              },
-              {
-                "value": "male",
-                "text": "Male",
-                "checked": data['gender'] === 'male'
-              },
-              {
-                "value": "unspecified",
-                "text": "Unspecified",
-                "checked": data['gender'] === 'unspecified'
-              }
+  <!-- Has save -->
+</form>
 
-            ]
-          }) }}
-          
-          {{ govukButton({
-            "text": submitLabel
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

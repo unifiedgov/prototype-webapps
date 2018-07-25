@@ -11,101 +11,89 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">Take a photo</h1>
+<p class="govuk-body">{{ you | capitalize }}'ll need to take a photo that clearly shows {{your}} face and shoulders. We'll print this on the back of {{ your }} badge.</p>
 
-        <h1 class="govuk-heading-l">Take a photo</h1>
-        <p class="govuk-body">{{ you | capitalize }}'ll need to take a photo that clearly shows {{your}} face and shoulders. We'll print this on the back of {{ your }} badge.</p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <div class="svg-container passport-help-photo">{% include "includes/icon-help-photo.html" %}</div>
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <p class="govuk-body">Follow our step-by-step guide on <a href="/apply-for-a-blue-badge/guidance/photo-findcamera?upload-origin-page=/apply-for-a-blue-badge/take-your-photo">how to take a good photo</a>.</p>
+    <p class="govuk-body">We'll return you to this page once you've read the guide.</p>
+  </div>
+</div>
 
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-third">
-            <div class="svg-container passport-help-photo">{% include "includes/icon-help-photo.html" %}</div>
-          </div>
-          <div class="govuk-grid-column-two-thirds">
-            <p class="govuk-body">Follow our step-by-step guide on <a href="/apply-for-a-blue-badge/guidance/photo-findcamera?upload-origin-page=/apply-for-a-blue-badge/take-your-photo">how to take a good photo</a>.</p>
-            <p class="govuk-body">We'll return you to this page once you've read the guide.</p>
-          </div>
-        </div>
 
-        
-        <form action="{{formAction}}">
-          {% set uploadHtml %}
-            <p class="govuk-body">{{you | capitalize}}'ll need to transfer {{your}} photo onto this device as a file. Select the file and upload it from here.</p>
+<form action="{{formAction}}">
+  {% set uploadHtml %}
+    <p class="govuk-body">{{you | capitalize}}'ll need to transfer {{your}} photo onto this device as a file. Select the file and upload it from here.</p>
 
-            {{ uploadComponentWidget.uploadComponent(
-              '',
-              'passportPhoto', 
-              formAction + '?passportPhoto=notProvided&passport-photo-file-upload=',
-              your, 
-              '', 
-              change, 
-              'no',
-              'passport-photo-file-upload',
-              'yes'
-            )}}
-          {% endset -%}
+    {{ uploadComponentWidget.uploadComponent(
+      '',
+      'passportPhoto', 
+      formAction + '?passportPhoto=notProvided&passport-photo-file-upload=',
+      your, 
+      '', 
+      change, 
+      'no',
+      'passport-photo-file-upload',
+      'yes'
+    )}}
+  {% endset -%}
+  {{ govukRadios({
+    "idPrefix": "devices-camera",
+    "name": "devices-camera",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": "Do you want to use this device's camera?",
+        "isPageHeading": false,
+        "classes": 'govuk-fieldset__legend--m'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": data['devices-camera'] === 'yes'
+      },
+      {
+        "value": "no",
+        "text": "No",
+        "checked": data['devices-camera'] === 'no',
+        "conditional": {
+          "html": uploadHtml
+        }
+      }
 
-          
+    ]
+  }) }}
 
-          {{ govukRadios({
-            "idPrefix": "devices-camera",
-            "name": "devices-camera",
-            "attributes": {
-              "data-catchoption-label": true
-            },
-            "fieldset": {
-              "legend": {
-                "text": "Do you want to use this device's camera?",
-                "isPageHeading": false,
-                "classes": 'govuk-fieldset__legend--m'
-              }
-            },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes",
-                "checked": data['devices-camera'] === 'yes'
-              },
-              {
-                "value": "no",
-                "text": "No",
-                "checked": data['devices-camera'] === 'no',
-                "conditional": {
-                  "html": uploadHtml
-                }
-              }
+  <div id="hiddenCaughtInputs"></div>
 
-            ]
-          }) }}
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
 
-          <div id="hiddenCaughtInputs"></div>
-
-          {{ govukButton({
-            "text": submitLabel
-          }) }}
-
-          <details class="govuk-details file-upload empty" id="cantUploadDetails">
-            <summary class="govuk-details__summary">I can't upload {{my}} photo</summary>
-            <div class="govuk-details__text panel panel-border">
-              <p class="govuk-body">If you can't upload {{your}} photo {{data['council-name']}} will contact you about how to send it by post.</p>
-              <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
-              <p class="govuk-body">
-                <a href="/apply-for-a-blue-badge/check-answers" class="govuk-button-secondary">Continue without uploading</a>
-              </p>
-            </div>
-          </details>
-
-          <!-- Has save -->
-        </form>
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
+  <details class="govuk-details file-upload empty" id="cantUploadDetails">
+    <summary class="govuk-details__summary">I can't upload {{my}} photo</summary>
+    <div class="govuk-details__text panel panel-border">
+      <p class="govuk-body">If you can't upload {{your}} photo {{data['council-name']}} will contact you about how to send it by post.</p>
+      <p class="govuk-body">You can still submit {{ your }} application online but it will take longer to get a decision.</p>
+      <p class="govuk-body">
+        <a href="/apply-for-a-blue-badge/check-answers" class="govuk-button-secondary">Continue without uploading</a>
+      </p>
     </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+  </details>
+
+  <!-- Has save -->
+</form>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

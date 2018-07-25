@@ -11,93 +11,81 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">Add a photo</h1>
+<p class="govuk-body">You need to add a photo to be printed on the back of {{ your }} badge.</p>
 
-        <h1 class="govuk-heading-l">Add a photo</h1>
-        <p class="govuk-body">You need to add a photo to be printed on the back of {{ your }} badge.</p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <img class="responsive-image passport-photo" src="{{ asset_path }}/images/passport-photo.png" alt="">
+  </div>
 
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-third">
-            <img class="responsive-image passport-photo" src="{{ asset_path }}/images/passport-photo.png" alt="">
-          </div>
+  <div class="govuk-grid-column-two-thirds">
+    <p class="govuk-body">Make sure it
+    <ul class="govuk-list govuk-list--bullet">
+      <li>has a plain, light background</li>
+      <li>includes {{ your }} shoulders</li>
+      <li>shows {{ your }} face clearly</li>
+    </ul>
+    </p>
+  </div>
+</div>
+<form action="{{ formAction }}">
+  {% set uploadHtml %}
+    {{ uploadComponentWidget.uploadComponent(
+      '',
+      'passportPhoto', 
+      formAction + '?passportPhoto=notProvided&passport-photo-file-upload=',
+      your, 
+      '', 
+      change, 
+      'no',
+      'passport-photo-file-upload',
+      'yes'
+    )}}
+  {% endset -%}
+  {{ govukRadios({
+    "idPrefix": "already-have-photo",
+    "name": "already-have-photo",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": "Is there already a suitable digital photo on this device?",
+        "isPageHeading": false,
+        "classes": 'govuk-fieldset__legend--m'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": data['already-have-photo'] === 'yes',
+        "conditional": {
+          "html": uploadHtml
+        }
+      },
+      {
+        "value": "no",
+        "text": "No",
+        "checked": data['already-have-photo'] === 'no'
+      }
 
-          <div class="govuk-grid-column-two-thirds">
-            <p class="govuk-body">Make sure it
-            <ul class="govuk-list govuk-list--bullet">
-              <li>has a plain, light background</li>
-              <li>includes {{ your }} shoulders</li>
-              <li>shows {{ your }} face clearly</li>
-            </ul>
-            </p>
-          </div>
-        </div>
-        <form action="{{ formAction }}">
-          {% set uploadHtml %}
-            {{ uploadComponentWidget.uploadComponent(
-              '',
-              'passportPhoto', 
-              formAction + '?passportPhoto=notProvided&passport-photo-file-upload=',
-              your, 
-              '', 
-              change, 
-              'no',
-              'passport-photo-file-upload',
-              'yes'
-            )}}
-          {% endset -%}
+    ]
+  }) }}
 
-          
+  <div id="hiddenCaughtInputs"></div>
 
-          {{ govukRadios({
-            "idPrefix": "already-have-photo",
-            "name": "already-have-photo",
-            "attributes": {
-              "data-catchoption-label": true
-            },
-            "fieldset": {
-              "legend": {
-                "text": "Is there already a suitable digital photo on this device?",
-                "isPageHeading": false,
-                "classes": 'govuk-fieldset__legend--m'
-              }
-            },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes",
-                "checked": data['already-have-photo'] === 'yes',
-                "conditional": {
-                  "html": uploadHtml
-                }
-              },
-              {
-                "value": "no",
-                "text": "No",
-                "checked": data['already-have-photo'] === 'no'
-              }
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
 
-            ]
-          }) }}
+  <!-- Has save -->
 
-          <div id="hiddenCaughtInputs"></div>
-
-          {{ govukButton({
-            "text": submitLabel
-          }) }}
-
-          <!-- Has save -->
-
-        </form>
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+</form>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

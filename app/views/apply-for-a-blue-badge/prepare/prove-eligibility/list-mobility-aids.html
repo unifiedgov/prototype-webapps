@@ -10,95 +10,89 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+  {% set mobilityHtml %}
+    {% if tableRows.length > 0 %}
+    
+        <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
 
-        {% set mobilityHtml %}
-          {% if tableRows.length > 0 %}
-          
-              <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
-
-              {{ govukTable({
-                "head": [
-                  {
-                    "text": "Name"
-                  },
-                  {
-                    "text": "Usage"
-                  },
-                  {
-                    "text": ""
-                  }
-                ],
-                "rows": tableRows
-              }) }}
-
-            <p class="govuk-body"><a href="add-mobility-aid">Add another mobility aid</a></p>
-
-          {% else %}
-          
-          <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
-
-          {{ govukTable({
-            "head": [
-              {
-                "text": "Name"
-              },
-              {
-                "text": "Usage"
-              },
-              {
-                "text": ""
-              }
-            ],
-            "rows": ""
-          }) }}
-
-          <p class="govuk-body"><a href="add-mobility-aid">Add first mobility aid</a></p>
-
-          {% endif %}
-        {% endset -%}
-
-        {{ govukRadios({
-          "idPrefix": "use-mobility-aid",
-          "name": "use-mobility-aid",
-          "fieldset": {
-            "legend": {
-              "text": pageHeading,
-              "isPageHeading": true,
-              "classes": 'govuk-fieldset__legend--l'
-            }
-          },
-          "items": [
+        {{ govukTable({
+          "head": [
             {
-              "value": "yes",
-              "text": "Yes",
-              "checked": tableRows.length > 0,
-              "conditional": {
-                "html": mobilityHtml
-              }
+              "text": "Name"
             },
             {
-              "value": "no",
-              "text": "No"
+              "text": "Usage"
+            },
+            {
+              "text": ""
             }
-          ]
-        }) 
-      }}
+          ],
+          "rows": tableRows
+        }) }}
 
-      {{ govukButton({
-        "text": "Continue",
-        "href": formAction
-      }) }}
+      <p class="govuk-body"><a href="add-mobility-aid">Add another mobility aid</a></p>
+
+    {% else %}
+    
+    <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
+
+    {{ govukTable({
+      "head": [
+        {
+          "text": "Name"
+        },
+        {
+          "text": "Usage"
+        },
+        {
+          "text": ""
+        }
+      ],
+      "rows": ""
+    }) }}
+
+    <p class="govuk-body"><a href="add-mobility-aid">Add first mobility aid</a></p>
+
+    {% endif %}
+  {% endset -%}
+
+  {{ govukRadios({
+    "idPrefix": "use-mobility-aid",
+    "name": "use-mobility-aid",
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": tableRows.length > 0,
+        "conditional": {
+          "html": mobilityHtml
+        }
+      },
+      {
+        "value": "no",
+        "text": "No"
+      }
+    ]
+  }) 
+}}
+
+{{ govukButton({
+  "text": "Continue",
+  "href": formAction
+}) }}
 
 
-        <!-- Has save -->
-      </div>
+<!-- Has save --> 
 
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

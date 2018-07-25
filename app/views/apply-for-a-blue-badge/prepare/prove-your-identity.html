@@ -11,42 +11,33 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<form action="{{ formAction }}">
+  <p class="govuk-body">You need to upload a copy of a document which proves {{ your }} identity such as:</p>
+  <ul class="govuk-list govuk-list--bullet">
+      <li>the photo page of {{ your }} passport</li>
+      <li>{{ your }} driving licence</li>
+      <li>{{ your }} birth or adoption certificate</li>
+      <li>{{ your }} marriage, civil partnership, divorce or dissolution certificate</li>
+  </ul>
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <form action="{{ formAction }}">
-          <p class="govuk-body">You need to upload a copy of a document which proves {{ your }} identity such as:</p>
-          <ul class="govuk-list govuk-list--bullet">
-              <li>the photo page of {{ your }} passport</li>
-              <li>{{ your }} driving licence</li>
-              <li>{{ your }} birth or adoption certificate</li>
-              <li>{{ your }} marriage, civil partnership, divorce or dissolution certificate</li>
-          </ul>
+  {{ uploadComponentWidget.uploadComponent(
+    'prove-your-identity',
+    'proveIdentity', 
+    formAction + '?proveIdentity=notProvided&your-identity-file-upload=',
+    your, 
+    'provide proof of ' + your + ' identity', 
+    change, 
+    'yes',
+    'your-identity-file-upload'
+  )}}
 
-          {{ uploadComponentWidget.uploadComponent(
-            'prove-your-identity',
-            'proveIdentity', 
-            formAction + '?proveIdentity=notProvided&your-identity-file-upload=',
-            your, 
-            'provide proof of ' + your + ' identity', 
-            change, 
-            'yes',
-            'your-identity-file-upload'
-          )}}
+  <!-- Has save -->
+</form>
 
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

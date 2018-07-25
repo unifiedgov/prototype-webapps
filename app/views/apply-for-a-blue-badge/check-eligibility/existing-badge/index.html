@@ -9,94 +9,82 @@
 {% block content %}
 
 
-  {{ govukBackLink({
-      "text": "Back",
-      "href": "javascript: window.history.go(-1)"
-    }) }}
-  
-
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{{ govukBackLink({
+  "text": "Back",
+  "href": "javascript: window.history.go(-1)"
+}) }}
         
-        <form action="{{ formAction }}">
+<form action="{{ formAction }}">
 
-          {% set formIDs = {
-            existingBadge: { id: "existing-blue-badge-number" }
-          }%}
+  {% set formIDs = {
+    existingBadge: { id: "existing-blue-badge-number" }
+  }%}
 
-          {% if  data['show'] == "errors" %}
+  {% if  data['show'] == "errors" %}
 
-            {% set errorArray = {
-              existingBadge: { text: "We couldn't find this badge number"}
-            }%}
+    {% set errorArray = {
+      existingBadge: { text: "We couldn't find this badge number"}
+    }%}
 
-            {{ govukErrorSummary({
-              "titleText": "Fix the following errors:",
-              "errorList": [
-                {
-                  "text": errorArray.existingBadge.text,
-                  "href": '#' + formIDs.existingBadge.id
-                }
-              ]
-            }) }}
+    {{ govukErrorSummary({
+      "titleText": "Fix the following errors:",
+      "errorList": [
+        {
+          "text": errorArray.existingBadge.text,
+          "href": '#' + formIDs.existingBadge.id
+        }
+      ]
+    }) }}
 
-          {% endif %}
+  {% endif %}
 
-          {% set badgeHtml %}
-            {{ govukInput({
-              "label": {
-                "text": "Existing badge number"
-              },
-              "hint": {
-                "text": "For example, 0957X1114"
-              },
-              classes: "govuk-!-width-two-thirds",
-              errorMessage: errorArray.existingBadge,
-              id: formIDs.existingBadge.id,
-              name: formIDs.existingBadge.id
-            }) }}
-          {% endset -%}
+  {% set badgeHtml %}
+    {{ govukInput({
+      "label": {
+        "text": "Existing badge number"
+      },
+      "hint": {
+        "text": "For example, 0957X1114"
+      },
+      classes: "govuk-!-width-two-thirds",
+      errorMessage: errorArray.existingBadge,
+      id: formIDs.existingBadge.id,
+      name: formIDs.existingBadge.id
+    }) }}
+  {% endset -%}
 
-          {{ govukRadios({
-            "idPrefix": "renewal-or-new-application",
-            "name": "renewal-or-new-application",
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "renewal",
-                "text": "Yes",
-                "checked": data['existing'] === "yes",
-                "id": "renewal-or-new-application-renewal",
-                "conditional": {
-                  "html": badgeHtml
-                }
-              },
-              {
-                "value": "new",
-                "text": "No",
-                "id": "renewal-or-new-application-new"
-              }
-            ]
-          }) }}
-            
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
+  {{ govukRadios({
+    "idPrefix": "renewal-or-new-application",
+    "name": "renewal-or-new-application",
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "renewal",
+        "text": "Yes",
+        "checked": data['existing'] === "yes",
+        "id": "renewal-or-new-application-renewal",
+        "conditional": {
+          "html": badgeHtml
+        }
+      },
+      {
+        "value": "new",
+        "text": "No",
+        "id": "renewal-or-new-application-new"
+      }
+    ]
+  }) }}
+    
   
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+</form>
 
 {% endblock %}

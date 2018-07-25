@@ -11,44 +11,35 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<form action="{{ formAction }}?proveIdentity=upload">
+  <input type="hidden" id="change" name="change" value="{{change}}">
+  <p class="govuk-body">Upload a document, dated within the last 12 months, that shows {{your}} current address such as:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>a recent Council Tax bill</li>
+    <li>{{ your }} driving licence</li>
+    <li>a letter from a government department such as HMRC or the Department for Work and Pensions</li>
+  </ul>
+  </p>
+
+  {{ uploadComponentWidget.uploadComponent(
+    'prove-your-address',
+    'proveAddress', 
+    formAction + '?proveAddress=notProvided&your-address-file-upload=',
+    your, 
+    'provide proof of ' + your + ' address',
+    change, 
+    'no',
+    'your-address-file-upload'
+  )}}
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  <!-- Has save -->
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <form action="{{ formAction }}?proveIdentity=upload">
-          <input type="hidden" id="change" name="change" value="{{change}}">
-          <p class="govuk-body">Upload a document, dated within the last 12 months, that shows {{your}} current address such as:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>a recent Council Tax bill</li>
-            <li>{{ your }} driving licence</li>
-            <li>a letter from a government department such as HMRC or the Department for Work and Pensions</li>
-          </ul>
-          </p>
+</form>
 
-          {{ uploadComponentWidget.uploadComponent(
-            'prove-your-address',
-            'proveAddress', 
-            formAction + '?proveAddress=notProvided&your-address-file-upload=',
-            your, 
-            'provide proof of ' + your + ' address',
-            change, 
-            'no',
-            'your-address-file-upload'
-          )}}
-          
-          <!-- Has save -->
-
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

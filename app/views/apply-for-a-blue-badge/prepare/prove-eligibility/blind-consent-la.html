@@ -11,59 +11,50 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+<form action="{{ formAction }}">
+  {{ govukRadios({
+    "idPrefix": "blind-consent",
+    "name": "blind-consent",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "hint": {
+      "text": "This allows us to confirm " + your + " details on " + your + " local council's register"
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": data['blind-consent'] === 'yes'
+      },
+      {
+        "value": "no",
+        "text": "No",
+        "checked": data['blind-consent'] === 'no'
+      }
+
+    ]
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
 
-        <form action="{{ formAction }}">
-          {{ govukRadios({
-            "idPrefix": "blind-consent",
-            "name": "blind-consent",
-            "attributes": {
-              "data-catchoption-label": true
-            },
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "hint": {
-              "text": "This allows us to confirm " + your + " details on " + your + " local council's register"
-            },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes",
-                "checked": data['blind-consent'] === 'yes'
-              },
-              {
-                "value": "no",
-                "text": "No",
-                "checked": data['blind-consent'] === 'no'
-              }
+  <!-- Has save -->
+</form>
 
-            ]
-          }) }}
-
-          <div id="hiddenCaughtInputs"></div>
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

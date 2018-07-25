@@ -10,66 +10,54 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<form action="{{formAction}}">
 
-        <form action="{{formAction}}">
+  {% set charityHtml %}
+    {{ govukInput({
+      "label": {
+        "text": "Charity number"
+      },
+      id: "organisation-charity-number",
+      name: "organisation-charity-number"
+    }) }}
+  {% endset -%}
 
-          {% set charityHtml %}
-            {{ govukInput({
-              "label": {
-                "text": "Charity number"
-              },
-              id: "organisation-charity-number",
-              name: "organisation-charity-number"
-            }) }}
-          {% endset -%}
+    {{ govukRadios({
+      "idPrefix": "organisation-charity",
+      "name": "organisation-charity",
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+        {
+          "value": "No",
+          "text": "No",
+          "checked": data['organisation-charity'] === 'No'
+        },
+        {
+          "value": "Yes",
+          "text": "Yes",
+          "checked": data['organisation-charity'] === 'Yes',
+          "id": 'charity-yes',
+          "conditional": {
+            "html": charityHtml
+          }
+        }
+      ]
+    }) }}  {{ govukButton({
+    "text": submitLabel
+  }) }}
 
-            {{ govukRadios({
-              "idPrefix": "organisation-charity",
-              "name": "organisation-charity",
-              "fieldset": {
-                "legend": {
-                  "text": pageHeading,
-                  "isPageHeading": true,
-                  "classes": 'govuk-fieldset__legend--l'
-                }
-              },
-              "items": [
-                {
-                  "value": "No",
-                  "text": "No",
-                  "checked": data['organisation-charity'] === 'No'
-                },
-                {
-                  "value": "Yes",
-                  "text": "Yes",
-                  "checked": data['organisation-charity'] === 'Yes',
-                  "id": 'charity-yes',
-                  "conditional": {
-                    "html": charityHtml
-                  }
-                }
-              ]
-            }) }}
+  <!-- Has save -->
+</form>
 
-          
-          {{ govukButton({
-            "text": submitLabel
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

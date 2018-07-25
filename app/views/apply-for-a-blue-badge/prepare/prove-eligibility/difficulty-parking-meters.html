@@ -9,62 +9,47 @@
 {% block content %}
 
 
-  {{ govukBackLink({
-      "text": "Back",
-      "href": "javascript: window.history.go(-1)"
+{{ govukBackLink({
+  "text": "Back",
+  "href": "javascript: window.history.go(-1)"
+}) }}
+<form action="{{ formAction }}">
+
+  {{ govukRadios({
+    "idPrefix": "difficulty-parking-meters",
+    "name": "difficulty-parking-meters",
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes",
+        "checked": data['difficulty-parking-meters'] === 'Yes'
+      },
+      {
+        "value": "No",
+        "text": "No",
+        "checked": data['difficulty-parking-meters'] === 'No'
+      }
+
+    ]
+  }) }}  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+
+  <div>
+    {{ govukButton({
+      "text": "Save your progress",
+      "href": "/apply-for-a-blue-badge/progress-saved",
+      "classes": "govuk-button--secondary"
     }) }}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-
-        <form action="{{ formAction }}">
-
-          {{ govukRadios({
-            "idPrefix": "difficulty-parking-meters",
-            "name": "difficulty-parking-meters",
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "Yes",
-                "text": "Yes",
-                "checked": data['difficulty-parking-meters'] === 'Yes'
-              },
-              {
-                "value": "No",
-                "text": "No",
-                "checked": data['difficulty-parking-meters'] === 'No'
-              }
-
-            ]
-          }) }}
-
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
-
-
-          <div>
-            {{ govukButton({
-              "text": "Save your progress",
-              "href": "/apply-for-a-blue-badge/progress-saved",
-              "classes": "govuk-button--secondary"
-            }) }}
-          </div>
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-  
+  </div>
+</form>
 
 {% endblock %}

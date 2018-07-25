@@ -18,82 +18,73 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+
+<form action="{{formAction}}">
+  {% set dateAwardHtml %}
+    {{ govukDateInput({
+      "fieldset": {
+        "legend": {
+          "text": 'When is ' + your +' award of this benefit due to end?',
+          "isPageHeading": false,
+          "classes": 'govuk-fieldset__legend--m'
+        }
+      },
+      "hint": {
+        "text": 'For example, 31 3 2020'
+      },
+      id: 'awarded-benefit-before-start',
+      name: 'awarded-benefit-before-start',
+      items:[
+        {
+          name: 'day'
+        },
+        {
+          name: 'month'
+        },
+        {
+          name: 'year'
+        }
+      ]
+      })
+    }}
+  {% endset -%}
+
+    {{ govukRadios({
+      "idPrefix": "awarded-benefit-indefinitely-before",
+      "name": "awarded-benefit-indefinitely-before",
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+        {
+          "value": "yes",
+          "text": "Yes"
+        },
+        {
+          "value": "no",
+          "text": "No",
+          "id": "awarded-benefit-indefinitely-before-no",
+          "conditional": {
+            "html": dateAwardHtml
+          }
+        }
+      ]
+    }) }}
   
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  <!-- Has save -->
+</form>
 
-        <form action="{{formAction}}">
-          {% set dateAwardHtml %}
-            {{ govukDateInput({
-              "fieldset": {
-                "legend": {
-                  "text": 'When is ' + your +' award of this benefit due to end?',
-                  "isPageHeading": false,
-                  "classes": 'govuk-fieldset__legend--m'
-                }
-              },
-              "hint": {
-                "text": 'For example, 31 3 2020'
-              },
-              id: 'awarded-benefit-before-start',
-              name: 'awarded-benefit-before-start',
-              items:[
-                {
-                  name: 'day'
-                },
-                {
-                  name: 'month'
-                },
-                {
-                  name: 'year'
-                }
-              ]
-              })
-            }}
-          {% endset -%}
-
-            {{ govukRadios({
-              "idPrefix": "awarded-benefit-indefinitely-before",
-              "name": "awarded-benefit-indefinitely-before",
-              "fieldset": {
-                "legend": {
-                  "text": pageHeading,
-                  "isPageHeading": true,
-                  "classes": 'govuk-fieldset__legend--l'
-                }
-              },
-              "items": [
-                {
-                  "value": "yes",
-                  "text": "Yes"
-                },
-                {
-                  "value": "no",
-                  "text": "No",
-                  "id": "awarded-benefit-indefinitely-before-no",
-                  "conditional": {
-                    "html": dateAwardHtml
-                  }
-                }
-              ]
-            }) }}
-          
-          {{ govukButton({
-            "text": submitLabel
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

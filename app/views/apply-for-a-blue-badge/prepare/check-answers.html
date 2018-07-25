@@ -9,629 +9,629 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
   
-    <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-    <section class="split-section">
-      {% if data['applicant'] === 'organisation' %}
-      
-      <h2 class="govuk-heading-m">Organisation details</h2>
-      
-      {% else %}
-      
-      <h2 class="govuk-heading-m">Personal details</h2>
-      
-      
-      {% endif %}
-      
-      <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-      
-      {% if data['applicant'] === 'organisation' %}
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Organisation name
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {{data['organisationName']}}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/organisation-details/name?change=true">
-              Change<span class="visually-hidden"> organisation name</span>
-            </a>
-          </dd>
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Registered charity
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {% if data['organisation-charity'] === 'Yes' %}
-            Yes<br >
-            Charity number: {{data['organisation-charity-number']}}
-            {% else %}
-            No
-            {% endif %}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/organisation-details/charity?change=true">
-              Change<span class="visually-hidden"> charity status</span>
-            </a>
-          </dd>
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Address
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {{ data['address'] }}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/organisation-details/enter-address?change=true">
-              Change<span class="visually-hidden"> address</span>
-            </a>
-          </dd>
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Contact details
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {{ data['contact-full-name'] }}<br />
-            {{ data['primary-phone-number'] }}<br />
-            {{ data['secondary-phone-number'] }}<br />
-            {{ data['email-address'] }}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/organisation-details/contact-details?change=true">
-              Change<span class="visually-hidden"> contact details</span>
-            </a>
-          </dd>
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Vehicles
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {% for vehicle in data['vehicle-array'] %}
-              {{vehicle.vrn}}<br />
-            {% endfor %}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/organisation-details/list-vehicles?change=true">
-              Change<span class="visually-hidden"> vehicles</span>
-            </a>
-          </dd>
-        </div>
-      
-      {% else %}
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Full name
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {{data['fullName']}}
-            {% if data['birth-full-name'] %}<br> (Formely: {{ data['birth-full-name'] }}) {% endif %}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/personal-details/name?change=true">
-              Change<span class="visually-hidden"> name</span>
-            </a>
-          </dd>
-        </div>
-
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Gender
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {{ data['gender'] }}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/personal-details/dob?change=true">
-              Change<span class="visually-hidden"> answer to gender</span>
-            </a>
-          </dd>
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Date of birth
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {{ data['dob-day'] }} {{ data['dob-month'] | month }} {{ data['dob-year'] }}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/personal-details/dob?change=true">
-              Change<span class="visually-hidden"> date of birth</span>
-            </a>
-          </dd>
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            National Insurance number
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {{data['nino']}}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/personal-details/nino?change=true">
-              Change<span class="visually-hidden"> national insurance number</span>
-            </a>
-          </dd>
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Address
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {{ data['address'] }}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/personal-details/enter-address?change=true">
-              Change<span class="visually-hidden"> address</span>
-            </a>
-          </dd>
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Contact details
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {% if data['contact-full-name'] %}{{ data['contact-full-name'] }}<br />{% endif %}
-            {{ data['primary-phone-number'] }}<br />
-            {% if data['email-address'] %}{{ data['email-address'] }}{% endif %}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/personal-details/contact-details?change=true">
-              Change<span class="visually-hidden"> contact details</span>
-            </a>
-          </dd>
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Proof of identity
-          </dt>
-          {%if data['proveIdentity'] === 'upload' %}
-            <dd class="govuk-check-your-answers__answer">
-              {{ data['your-identity-file-upload'] }}
-            </dd>
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
-            </dd>
-            {% else %}
-            <dd class="govuk-check-your-answers__answer">
-              You've chosen not to prove your identity
-            </dd>
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
-            </dd>
-          {% endif %}
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Proof of eligibility
-          </dt>
-          {% if (data['benefit'] === 'none' and data['disability'] and data['disability'].includes('problems-walking')) %}
-            {% if data['proveConditionEvidence'] === 'upload' %}
-            <dd class="govuk-check-your-answers__answer">
-              Number of files uploaded: {{ data['evidence-of-condition-array'].length }}
-            </dd>
-            {% else %}
-            <dd class="govuk-check-your-answers__answer">
-              Chosen not to provided any evidence
-            </dd>
-            {% endif %}
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/prove-eligibility/prove-benefit?change=true">Change<span class="visually-hidden"> file</span></a>
-            </dd>
-          {% elif data['benefit'] === 'dla' or data['benefit'] === 'pip' %}
-            {% if data['proofOfEligibility'] === 'upload' %}
-            <dd class="govuk-check-your-answers__answer">
-              {{ data['benefit-proof-file-upload'] }}
-            </dd>
-            {% else %}
-            <dd class="govuk-check-your-answers__answer">
-              You've chosen not to prove your address
-            </dd>
-            {% endif %}
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/eligibility-proof/provide-proof-of-your-eligibility?change=true">Change<span class="visually-hidden"> file</span></a>
-            </dd>
-          {% else %}
-            {% if data['proofOfEligibility'] === 'upload' %}
-            <dd class="govuk-check-your-answers__answer">
-              {{ data['benefit-proof-file-upload'] }}
-            </dd>
-            {% else %}
-            <dd class="govuk-check-your-answers__answer">
-              You've chosen not to prove your address
-            </dd>
-            {% endif %}
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/eligibility-proof/provide-proof-of-your-eligibility?change=true">Change<span class="visually-hidden"> file</span></a>
-            </dd>
-          {% endif %}
-        </div>
-      
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Proof of address
-          </dt>
-          {%if data['identity-upload-shows-current-address'] === 'yes' %}
-            <dd class="govuk-check-your-answers__answer">
-              {{ data['your-identity-file-upload'] }}
-            </dd>
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/apply/prove-your-address?change=true&identity-upload-shows-current-address=no">Change<span class="visually-hidden"> photo</span></a>
-            </dd>
-            {% elif data['benefit-proof-upload-shows-current-address'] === 'yes' %}
-            <dd class="govuk-check-your-answers__answer">
-            {{ data['benefit-proof-file-upload'] }}
-            </dd>
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply/prove-your-address?change=true&identity-upload-shows-current-address=no">Change<span class="visually-hidden"> photo</span></a>
-            </dd>
-            {% elif data['proveAddress'] === 'upload' %}
-            <dd class="govuk-check-your-answers__answer">
-              {{ data['your-address-file-upload'] }}
-            </dd>
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply/prove-your-address?change=true">Change<span class="visually-hidden"> photo</span></a>
-            </dd>
-            {% else %}
-            <dd class="govuk-check-your-answers__answer">
-              You've chosen not to prove your address
-            </dd>
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply/prove-your-address?change=true">Change<span class="visually-hidden"> photo</span></a>
-            </dd>
-            {% endif %}
-        </div>
-        
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">Photo</dt>
-          {% if (data['providePhoto'] === 'webcam') %}
-            <dd class="govuk-check-your-answers__answer">
-              Webcam image<br/>
-            </dd>
-          {% elif data['providePhoto'] === 'upload' %}
-            <dd class="govuk-check-your-answers__answer">
-            {{ data['your-photo-file-upload'] }}
-          </dd>
-          {% else %}
-          <dd class="govuk-check-your-answers__answer">
-            You've chosen not to provide a photo
-          </dd>
-          {% endif %}
-          <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/provide-photo?change=true">Change<span class="visually-hidden"> photo</span></a>
-          </dd>
-        </div>
-      
-      {% endif %}
-      
-       
-      </dl>
-    </section>
-    
-    {% if data['applicant'] !== 'organisation' %}
-    <section class="split-section">
-      <h2 class="govuk-heading-m">Eligibility</h2>
-
-      <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-        <div class="govuk-check-your-answers__contents">
-          <dt class="govuk-check-your-answers__question">
-            Reason for applying
-          </dt>
-          <dd class="govuk-check-your-answers__answer">
-            {% if (data['benefit'] === 'none') %}
-              {{data['disability-chosen-value']}}
-            {% else %}
-              {{data['benefit-chosen-value']}}
-            {% endif %}
-          </dd>
-          <dd class="govuk-check-your-answers__change">
-            
-          </dd>
-        </div>
-
-        {% if (data['benefit'] !== 'none') %}
-          <!-- No further details needed -->
+<section class="split-section">
+  {% if data['applicant'] === 'organisation' %}
+  
+  <h2 class="govuk-heading-m">Organisation details</h2>
+  
+  {% else %}
+  
+  <h2 class="govuk-heading-m">Personal details</h2>
+  
+  
+  {% endif %}
+  
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+  
+  {% if data['applicant'] === 'organisation' %}
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Organisation name
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['organisationName']}}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/organisation-details/name?change=true">
+          Change<span class="visually-hidden"> organisation name</span>
+        </a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Registered charity
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {% if data['organisation-charity'] === 'Yes' %}
+        Yes<br >
+        Charity number: {{data['organisation-charity-number']}}
         {% else %}
-          {% if (data['disability'] === 'problems-walking') %}
-            <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Walking difficulty
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {{data['difficulty-chosen-value'] | striptags(true) | escape | nl2br}}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/what-makes-walking-difficult?change=true">
-                  Change<span class="visually-hidden"> walking difficulty</span>
-                </a>
-              </dd>
-            </div>
-
-            <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Mobility aids
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-
-                {% if data['mobility-aids-array']|length %}
-                  {% for aid in data['mobility-aids-array'] %}
-                    {{aid.name}},
-                    {{aid.usage}},
-                    {{aid.source}} <br>
-                  {% endfor %}
-                {% else %}
-                  No mobility aids
-                {% endif %}
-
-                {{data['mobility-aids-used-chosen-value'] | striptags(true) | escape | nl2br}}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids?change=true">
-                  Change<span class="visually-hidden"> mobility aids</span>
-                </a>
-              </dd>
-            </div>
-
-            <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Walking duration
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {{data['how-long-walk-chosen-value']}}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/walking-time?change=true">
-                  Change<span class="visually-hidden"> walking duration</span>
-                </a>
-              </dd>
-            </div>
-
-            <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Walking speed
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {{data['walking-speed-chosen-value']}} than other people
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/how-quickly-do-you-walk?change=true">
-                  Change<span class="visually-hidden"> walking speed</span>
-                </a>
-              </dd>
-            </div>
-
-
-         <!--    <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                How the mobility aids were provided
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {{data['mobility-aids-provided-chosen-value'] | striptags(true) | escape | nl2br}}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/how-were-your-mobility-aids-provided?change=true">
-                  Change<span class="visually-hidden"> how the mobility aids were provided</span>
-                </a>
-              </dd>
-            </div> -->
-          {% endif %}
-          
-
-          {% if (data['disability'] === 'child-bulky-equipment') %}
-            <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Medical equipment
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {{data['medical-equipment-chosen-value'] | striptags(true) | escape | nl2br}}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/medical-equipment?change=true">
-                  Change<span class="visually-hidden"> medical equipment</span>
-                </a>
-              </dd>
-            </div>
-          {% endif %}
-
-          {% if (data['disability'] === 'arms') %}
-            <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Driving frequency
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {{data['how-often-drive']}}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/medical-equipment?change=true">
-                  Change<span class="visually-hidden"> driving frequency</span>
-                </a>
-              </dd>
-            </div>
-
-            <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Adapted vehicle
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {% if (data['drive-adapted-vehicle'] === 'yes') %}
-                  Yes - {{data['describe-adapted']}}
-                {% else %}
-                  No
-                {% endif %}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/drive-adapted-vehicle?change=true">
-                  Change<span class="visually-hidden"> adapted vehicle</span>
-                </a>
-              </dd>
-            </div>
-
-            {% if (data['drive-adapted-vehicle'] === 'yes') %}
-              <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
-                  Proof of adapted vehicle
-                </dt>
-                <dd class="govuk-check-your-answers__answer">
-                  {{ data['adapted-proof-file-upload'] }}
-                </dd>
-                <dd class="govuk-check-your-answers__change">
-                  <a href="/apply-for-a-blue-badge/prove-eligibility/upload-adapted-evidence?change=true">
-                    Change<span class="visually-hidden"> upload of adapted evidence</span>
-                  </a>
-                </dd>
-              </div>
-            {% endif %}
-          {% endif %}
-
-
-          <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Difficulty using parking meters
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {{ data['difficulty-parking-meters'] }}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/difficulty-with-parking-meters?change=true">
-                  Change<span class="visually-hidden"> difficulty with parking meters</span>
-                </a>
-              </dd>
-            </div>
-
-          <div class="govuk-check-your-answers__contents">
-            <dt class="govuk-check-your-answers__question">
-              Health condition
-            </dt>
-            <dd class="govuk-check-your-answers__answer">
-              {{data['describe-condition']}}
-            </dd>
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/prove-eligibility/describe-conditions?change=true">
-                Change<span class="visually-hidden"> health condition description</span>
-              </a>
-            </dd>
-          </div>
-          {% if data['disability'] === 'problems-walking' %}
-            <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Treatments
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {% if data['treatments-array']|length %}
-                  {% for treatment in data['treatments-array'] %}
-                    {{treatment.description}},
-                    {{treatment.date}} <br>
-                  {% endfor %}
-                {% else %}
-                  No treatments entered
-                {% endif %}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/list-treatments?change=true">
-                  Change<span class="visually-hidden"> treatments</span>
-                </a>
-              </dd>
-            </div>
-
-            <div class="govuk-check-your-answers__contents">
-              <dt class="govuk-check-your-answers__question">
-                Medication
-              </dt>
-              <dd class="govuk-check-your-answers__answer">
-                {% if data['medication-array']|length %}
-                  {% for medication in data['medication-array'] %}
-                    {{medication.name}},
-                    {{medication.type}},
-                    {{medication.regularity}},
-                    {{medication.dosage}} <br>
-                  {% endfor %}
-                {% else %}
-                  No medication entered
-                {% endif %}
-              </dd>
-              <dd class="govuk-check-your-answers__change">
-                <a href="/apply-for-a-blue-badge/prove-eligibility/list-medication?change=true">
-                  Change<span class="visually-hidden"> medication</span>
-                </a>
-              </dd>
-            </div>
-
-          {% endif %}
-          
-          {% if data['disability'] === 'problems-walking' or data['disability'] === 'child-bulky-equipment' or data['disability'] === 'child-close-to-vehicle'  %}
-          <div class="govuk-check-your-answers__contents">
-            <dt class="govuk-check-your-answers__question">
-              Healthcare professionals
-            </dt>
-            <dd class="govuk-check-your-answers__answer">
-              {% if data['hcp-array']|length %}
-                {% for hcp in data['hcp-array'] %}
-                  {{hcp.name}},
-                  {{hcp.hospital}} <br>
-                {% endfor %}
-              {% else %}
-                No healthcare professionals entered
-              {% endif %}
-            </dd>
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/prove-eligibility/list-healthcare-professionals?change=true">
-                Change<span class="visually-hidden"> healthcare professionals</span>
-              </a>
-            </dd>
-          </div>
-          {% endif %}
-
-          {% if data['disability'] === 'blind' %}
-          <div class="govuk-check-your-answers__contents">
-            <dt class="govuk-check-your-answers__question">
-              Proof of visual impairment
-            </dt>
-            <dd class="govuk-check-your-answers__answer">
-              {% if data['registered-blind'] === 'yes' and data['blind-consent'] === 'yes' %}
-                Registered as severely sight impaired at: <br>
-                {{data['blind-council-name']}}
-              {% else %}
-                {{data['impairment-proof-file-upload']}}
-              {% endif %}
-            </dd>
-            <dd class="govuk-check-your-answers__change">
-              <a href="/apply-for-a-blue-badge/prove-eligibility?change=true">
-                Change<span class="visually-hidden"> proof of visual impairment</span>
-              </a>
-            </dd>
-          </div>
-          {% endif %}
-
+        No
         {% endif %}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/organisation-details/charity?change=true">
+          Change<span class="visually-hidden"> charity status</span>
+        </a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{ data['address'] }}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/organisation-details/enter-address?change=true">
+          Change<span class="visually-hidden"> address</span>
+        </a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Contact details
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{ data['contact-full-name'] }}<br />
+        {{ data['primary-phone-number'] }}<br />
+        {{ data['secondary-phone-number'] }}<br />
+        {{ data['email-address'] }}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/organisation-details/contact-details?change=true">
+          Change<span class="visually-hidden"> contact details</span>
+        </a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Vehicles
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {% for vehicle in data['vehicle-array'] %}
+          {{vehicle.vrn}}<br />
+        {% endfor %}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/organisation-details/list-vehicles?change=true">
+          Change<span class="visually-hidden"> vehicles</span>
+        </a>
+      </dd>
+    </div>
+  
+  {% else %}
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Full name
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['fullName']}}
+        {% if data['birth-full-name'] %}<br> (Formely: {{ data['birth-full-name'] }}) {% endif %}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/personal-details/name?change=true">
+          Change<span class="visually-hidden"> name</span>
+        </a>
+      </dd>
+    </div>
 
-      </dl>
-    </section>
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Gender
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{ data['gender'] }}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/personal-details/dob?change=true">
+          Change<span class="visually-hidden"> answer to gender</span>
+        </a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Date of birth
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{ data['dob-day'] }} {{ data['dob-month'] | month }} {{ data['dob-year'] }}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/personal-details/dob?change=true">
+          Change<span class="visually-hidden"> date of birth</span>
+        </a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        National Insurance number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{data['nino']}}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/personal-details/nino?change=true">
+          Change<span class="visually-hidden"> national insurance number</span>
+        </a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{ data['address'] }}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/personal-details/enter-address?change=true">
+          Change<span class="visually-hidden"> address</span>
+        </a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Contact details
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {% if data['contact-full-name'] %}{{ data['contact-full-name'] }}<br />{% endif %}
+        {{ data['primary-phone-number'] }}<br />
+        {% if data['email-address'] %}{{ data['email-address'] }}{% endif %}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/personal-details/contact-details?change=true">
+          Change<span class="visually-hidden"> contact details</span>
+        </a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Proof of identity
+      </dt>
+      {%if data['proveIdentity'] === 'upload' %}
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['your-identity-file-upload'] }}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
+        </dd>
+        {% else %}
+        <dd class="govuk-check-your-answers__answer">
+          You've chosen not to prove your identity
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-your-identity?change=true">Change<span class="visually-hidden"> photo</span></a>
+        </dd>
+      {% endif %}
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Proof of eligibility
+      </dt>
+      {% if (data['benefit'] === 'none' and data['disability'] and data['disability'].includes('problems-walking')) %}
+        {% if data['proveConditionEvidence'] === 'upload' %}
+        <dd class="govuk-check-your-answers__answer">
+          Number of files uploaded: {{ data['evidence-of-condition-array'].length }}
+        </dd>
+        {% else %}
+        <dd class="govuk-check-your-answers__answer">
+          Chosen not to provided any evidence
+        </dd>
+        {% endif %}
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-eligibility/prove-benefit?change=true">Change<span class="visually-hidden"> file</span></a>
+        </dd>
+      {% elif data['benefit'] === 'dla' or data['benefit'] === 'pip' %}
+        {% if data['proofOfEligibility'] === 'upload' %}
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['benefit-proof-file-upload'] }}
+        </dd>
+        {% else %}
+        <dd class="govuk-check-your-answers__answer">
+          You've chosen not to prove your address
+        </dd>
+        {% endif %}
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/eligibility-proof/provide-proof-of-your-eligibility?change=true">Change<span class="visually-hidden"> file</span></a>
+        </dd>
+      {% else %}
+        {% if data['proofOfEligibility'] === 'upload' %}
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['benefit-proof-file-upload'] }}
+        </dd>
+        {% else %}
+        <dd class="govuk-check-your-answers__answer">
+          You've chosen not to prove your address
+        </dd>
+        {% endif %}
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/eligibility-proof/provide-proof-of-your-eligibility?change=true">Change<span class="visually-hidden"> file</span></a>
+        </dd>
+      {% endif %}
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Proof of address
+      </dt>
+      {%if data['identity-upload-shows-current-address'] === 'yes' %}
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['your-identity-file-upload'] }}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/apply/prove-your-address?change=true&identity-upload-shows-current-address=no">Change<span class="visually-hidden"> photo</span></a>
+        </dd>
+        {% elif data['benefit-proof-upload-shows-current-address'] === 'yes' %}
+        <dd class="govuk-check-your-answers__answer">
+        {{ data['benefit-proof-file-upload'] }}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply/prove-your-address?change=true&identity-upload-shows-current-address=no">Change<span class="visually-hidden"> photo</span></a>
+        </dd>
+        {% elif data['proveAddress'] === 'upload' %}
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['your-address-file-upload'] }}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply/prove-your-address?change=true">Change<span class="visually-hidden"> photo</span></a>
+        </dd>
+        {% else %}
+        <dd class="govuk-check-your-answers__answer">
+          You've chosen not to prove your address
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply/prove-your-address?change=true">Change<span class="visually-hidden"> photo</span></a>
+        </dd>
+        {% endif %}
+    </div>
+    
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">Photo</dt>
+      {% if (data['providePhoto'] === 'webcam') %}
+        <dd class="govuk-check-your-answers__answer">
+          Webcam image<br/>
+        </dd>
+      {% elif data['providePhoto'] === 'upload' %}
+        <dd class="govuk-check-your-answers__answer">
+        {{ data['your-photo-file-upload'] }}
+      </dd>
+      {% else %}
+      <dd class="govuk-check-your-answers__answer">
+        You've chosen not to provide a photo
+      </dd>
+      {% endif %}
+      <dd class="govuk-check-your-answers__change">
+        <a href="/apply-for-a-blue-badge/provide-photo?change=true">Change<span class="visually-hidden"> photo</span></a>
+      </dd>
+    </div>
+  
+  {% endif %}
+  
+   
+  </dl>
+</section>
+
+{% if data['applicant'] !== 'organisation' %}
+<section class="split-section">
+  <h2 class="govuk-heading-m">Eligibility</h2>
+
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Reason for applying
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {% if (data['benefit'] === 'none') %}
+          {{data['disability-chosen-value']}}
+        {% else %}
+          {{data['benefit-chosen-value']}}
+        {% endif %}
+      </dd>
+      <dd class="govuk-check-your-answers__change">
+        
+      </dd>
+    </div>
+
+    {% if (data['benefit'] !== 'none') %}
+      <!-- No further details needed -->
+    {% else %}
+      {% if (data['disability'] === 'problems-walking') %}
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Walking difficulty
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{data['difficulty-chosen-value'] | striptags(true) | escape | nl2br}}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/what-makes-walking-difficult?change=true">
+              Change<span class="visually-hidden"> walking difficulty</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Mobility aids
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+
+            {% if data['mobility-aids-array']|length %}
+              {% for aid in data['mobility-aids-array'] %}
+                {{aid.name}},
+                {{aid.usage}},
+                {{aid.source}} <br>
+              {% endfor %}
+            {% else %}
+              No mobility aids
+            {% endif %}
+
+            {{data['mobility-aids-used-chosen-value'] | striptags(true) | escape | nl2br}}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids?change=true">
+              Change<span class="visually-hidden"> mobility aids</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Walking duration
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{data['how-long-walk-chosen-value']}}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/walking-time?change=true">
+              Change<span class="visually-hidden"> walking duration</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Walking speed
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{data['walking-speed-chosen-value']}} than other people
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/how-quickly-do-you-walk?change=true">
+              Change<span class="visually-hidden"> walking speed</span>
+            </a>
+          </dd>
+        </div>
+
+
+     <!--    <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            How the mobility aids were provided
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{data['mobility-aids-provided-chosen-value'] | striptags(true) | escape | nl2br}}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/how-were-your-mobility-aids-provided?change=true">
+              Change<span class="visually-hidden"> how the mobility aids were provided</span>
+            </a>
+          </dd>
+        </div> -->
+      {% endif %}
+      
+
+      {% if (data['disability'] === 'child-bulky-equipment') %}
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Medical equipment
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{data['medical-equipment-chosen-value'] | striptags(true) | escape | nl2br}}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/medical-equipment?change=true">
+              Change<span class="visually-hidden"> medical equipment</span>
+            </a>
+          </dd>
+        </div>
+      {% endif %}
+
+      {% if (data['disability'] === 'arms') %}
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Driving frequency
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{data['how-often-drive']}}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/medical-equipment?change=true">
+              Change<span class="visually-hidden"> driving frequency</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Adapted vehicle
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {% if (data['drive-adapted-vehicle'] === 'yes') %}
+              Yes - {{data['describe-adapted']}}
+            {% else %}
+              No
+            {% endif %}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/drive-adapted-vehicle?change=true">
+              Change<span class="visually-hidden"> adapted vehicle</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if (data['drive-adapted-vehicle'] === 'yes') %}
+          <div class="govuk-check-your-answers__contents">
+            <dt class="govuk-check-your-answers__question">
+              Proof of adapted vehicle
+            </dt>
+            <dd class="govuk-check-your-answers__answer">
+              {{ data['adapted-proof-file-upload'] }}
+            </dd>
+            <dd class="govuk-check-your-answers__change">
+              <a href="/apply-for-a-blue-badge/prove-eligibility/upload-adapted-evidence?change=true">
+                Change<span class="visually-hidden"> upload of adapted evidence</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+      {% endif %}
+
+
+      <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Difficulty using parking meters
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{ data['difficulty-parking-meters'] }}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/difficulty-with-parking-meters?change=true">
+              Change<span class="visually-hidden"> difficulty with parking meters</span>
+            </a>
+          </dd>
+        </div>
+
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Health condition
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['describe-condition']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-eligibility/describe-conditions?change=true">
+            Change<span class="visually-hidden"> health condition description</span>
+          </a>
+        </dd>
+      </div>
+      {% if data['disability'] === 'problems-walking' %}
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Treatments
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {% if data['treatments-array']|length %}
+              {% for treatment in data['treatments-array'] %}
+                {{treatment.description}},
+                {{treatment.date}} <br>
+              {% endfor %}
+            {% else %}
+              No treatments entered
+            {% endif %}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/list-treatments?change=true">
+              Change<span class="visually-hidden"> treatments</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Medication
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {% if data['medication-array']|length %}
+              {% for medication in data['medication-array'] %}
+                {{medication.name}},
+                {{medication.type}},
+                {{medication.regularity}},
+                {{medication.dosage}} <br>
+              {% endfor %}
+            {% else %}
+              No medication entered
+            {% endif %}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/list-medication?change=true">
+              Change<span class="visually-hidden"> medication</span>
+            </a>
+          </dd>
+        </div>
+
+      {% endif %}
+      
+      {% if data['disability'] === 'problems-walking' or data['disability'] === 'child-bulky-equipment' or data['disability'] === 'child-close-to-vehicle'  %}
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Healthcare professionals
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {% if data['hcp-array']|length %}
+            {% for hcp in data['hcp-array'] %}
+              {{hcp.name}},
+              {{hcp.hospital}} <br>
+            {% endfor %}
+          {% else %}
+            No healthcare professionals entered
+          {% endif %}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-eligibility/list-healthcare-professionals?change=true">
+            Change<span class="visually-hidden"> healthcare professionals</span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data['disability'] === 'blind' %}
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Proof of visual impairment
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {% if data['registered-blind'] === 'yes' and data['blind-consent'] === 'yes' %}
+            Registered as severely sight impaired at: <br>
+            {{data['blind-council-name']}}
+          {% else %}
+            {{data['impairment-proof-file-upload']}}
+          {% endif %}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-eligibility?change=true">
+            Change<span class="visually-hidden"> proof of visual impairment</span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+
     {% endif %}
 
-    {{ govukButton({
-      "text": "Continue",
-      "href": '/apply-for-a-blue-badge/declaration'
-    }) }}
+  </dl>
+</section>
+{% endif %}
 
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+{{ govukButton({
+  "text": "Continue",
+  "href": '/apply-for-a-blue-badge/declaration'
+}) }}
+
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
   
 
 {% endblock %}

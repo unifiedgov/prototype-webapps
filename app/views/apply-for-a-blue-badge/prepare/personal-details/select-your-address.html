@@ -14,64 +14,56 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+{% if data['postcode'] %}
+
+  {% set userPostcode = data['postcode'] | upper %}
+
+{% else %}
+
+  {% set userPostcode = "SW1A 4AA" %}
+
+{% endif %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<form action="{{formAction}}">
+  {{ govukRadios({
+    "idPrefix": "address",
+    "name": "address",
+    "fieldset": {
+      "legend": {
+        "text": '3 addresses found at ' + userPostcode,
+        "isPageHeading": false,
+        "classes": 'govuk-fieldset__legend--m'
+      }
+    },
+    "items": [
+      {
+        "value": "1 Street Lane, Manchester, " + userPostcode,
+        "text": "1 Street Lane, Manchester, " + userPostcode
+      },
+      {
+        "value": "2 Street Lane, Manchester, " + userPostcode,
+        "text": "2 Street Lane, Manchester, " + userPostcode
+      },
+      {
+        "value": "3 Street Lane, Manchester, " + userPostcode,
+        "text": "3 Street Lane, Manchester, " + userPostcode
+      }
+
+    ]
+  }) }}
+
+  <p class="govuk-body">Address not shown? <a href="enter-address">Enter {{ your }} address manually</a></p>
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
 
-        {% if data['postcode'] %}
-
-          {% set userPostcode = data['postcode'] | upper %}
-
-        {% else %}
-
-          {% set userPostcode = "SW1A 4AA" %}
-
-        {% endif %}
-
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-
-        <form action="{{formAction}}">
-          {{ govukRadios({
-            "idPrefix": "address",
-            "name": "address",
-            "fieldset": {
-              "legend": {
-                "text": '3 addresses found at ' + userPostcode,
-                "isPageHeading": false,
-                "classes": 'govuk-fieldset__legend--m'
-              }
-            },
-            "items": [
-              {
-                "value": "1 Street Lane, Manchester, " + userPostcode,
-                "text": "1 Street Lane, Manchester, " + userPostcode
-              },
-              {
-                "value": "2 Street Lane, Manchester, " + userPostcode,
-                "text": "2 Street Lane, Manchester, " + userPostcode
-              },
-              {
-                "value": "3 Street Lane, Manchester, " + userPostcode,
-                "text": "3 Street Lane, Manchester, " + userPostcode
-              }
-
-            ]
-          }) }}
-
-          <p class="govuk-body">Address not shown? <a href="enter-address">Enter {{ your }} address manually</a></p>
-          
-          {{ govukButton({
-            "text": submitLabel
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+  <!-- Has save -->
+</form>
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

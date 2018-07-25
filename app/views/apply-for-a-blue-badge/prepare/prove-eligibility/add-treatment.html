@@ -10,51 +10,45 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<!-- <p class="govuk-body"></p> -->
+<form action="{{formAction}}">
+  {{ govukInput({
+    "label": {
+      "text": "Describe the treatment"
+    },
+    "name": "treatment-description"
+  }) }}
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <!-- <p class="govuk-body"></p> -->
-        <form action="{{formAction}}">
-          {{ govukInput({
-            "label": {
-              "text": "Describe the treatment"
-            },
-            "name": "treatment-description"
-          }) }}
+  {{ govukDetails({
+    summaryText: "What counts as treatment?",
+    text: "You should include anything that " + you + "'ve seen a professional for that is relevant to " + your + " condition. Including surgery, clinics or treatments. For example, hip replacement, physiotherapy or a pain clinic."
+  }) }}
 
-          {{ govukDetails({
-            summaryText: "What counts as treatment?",
-            text: "You should include anything that " + you + "'ve seen a professional for that is relevant to " + your + " condition. Including surgery, clinics or treatments. For example, hip replacement, physiotherapy or a pain clinic."
-          }) }}
+  {{ govukInput({
+    "label": {
+      "text": "When did you have this treatment?"
+    },
+    "hint": {
+      "html": "For example, 12 May 2016 or 6 months ago"
+    },
+    "classes": 'govuk-!-width-two-thirds',
+    "name": "treatment-date"
+  }) }}
 
-          {{ govukInput({
-            "label": {
-              "text": "When did you have this treatment?"
-            },
-            "hint": {
-              "html": "For example, 12 May 2016 or 6 months ago"
-            },
-            "classes": 'govuk-!-width-two-thirds',
-            "name": "treatment-date"
-          }) }}
+  {{ govukButton({
+    "text": "Add this treatment"
+  }) }}
 
-          {{ govukButton({
-            "text": "Add this treatment"
-          }) }}
+  <div class="govuk-info-panel">
+    <p class="govuk-body">You can add another treatment afterwards, if required.</p>
+  </div>
 
-          <div class="govuk-info-panel">
-            <p class="govuk-body">You can add another treatment afterwards, if required.</p>
-          </div>
+  <!-- Has save -->
+</form>
 
-          <!-- Has save -->
-        </form>
-
-      </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

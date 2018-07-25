@@ -18,41 +18,33 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+{% if (data['disability'] === 'child-bulky-equipment') %}
+  {% set describeLabel = "Give details of the child's health conditions that mean they always need to be accompanied by medical equipment." %}
+{% elif (data['disability'] === 'child-close-to-vehicle') %}
+  {% set describeLabel = 'Give details about the conditions that mean they need to have quick access to a vehicle.' %}
+{% else %}
+  {% set describeLabel = 'Try to use the correct medical terms, if you know them.' %}
+{% endif %}
+
+<form action="{{ formAction }}">
+  {{ govukTextarea({
+    "name": "describe-condition",
+    "id": "describe-condition",
+    "label": {
+      "text": describeLabel
+    }
+  }) }}
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-  
-        {% if (data['disability'] === 'child-bulky-equipment') %}
-          {% set describeLabel = "Give details of the child's health conditions that mean they always need to be accompanied by medical equipment." %}
-        {% elif (data['disability'] === 'child-close-to-vehicle') %}
-          {% set describeLabel = 'Give details about the conditions that mean they need to have quick access to a vehicle.' %}
-        {% else %}
-          {% set describeLabel = 'Try to use the correct medical terms, if you know them.' %}
-        {% endif %}
-
-        <form action="{{ formAction }}">
-          {{ govukTextarea({
-            "name": "describe-condition",
-            "id": "describe-condition",
-            "label": {
-              "text": describeLabel
-            }
-          }) }}
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+  <!-- Has save -->
+</form>
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

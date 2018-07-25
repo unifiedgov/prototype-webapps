@@ -10,92 +10,83 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<form action="{{ formAction }}">
 
-        <form action="{{ formAction }}">
+    {{ govukCheckboxes({
+      "idPrefix": "medical-equipment",
+      "name": "medical-equipment",
+      "attributes": {
+        "data-catchoption-label": true
+      },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+        {
+          "value": "ventilator",
+          "text": "Ventilator",
+          "checked": data['medical-equipment'] === 'ventilator'
+        },
+        {
+          "value": "suction-machine",
+          "text": "Suction machine",
+          "checked": data['medical-equipment'] === 'suction-machine'
+        },
+        {
+          "value": "feed-pump",
+          "text": "Feed pump",
+          "checked": data['medical-equipment'] === 'feed-pump'
+        },
+        {
+          "value": "parenteral-equipment",
+          "text": "Parenteral equipment",
+          "checked": data['medical-equipment'] === 'parenteral-equipment'
+        },
+        {
+          "value": "syringe-driver",
+          "text": "Syringe driver",
+          "checked": data['medical-equipment'] === 'syringe-driver'
+        },
+        {
+          "value": "oxygen-admin-equipment",
+          "text": "Oxygen administration equipment",
+          "checked": data['medical-equipment'] === 'oxygen-admin-equipment'
+        },
+        {
+          "value": "contin-oxygen-saturation",
+          "text": "Continuous oxygen saturation monitoring equipment",
+          "checked": data['medical-equipment'] === 'contin-oxygen-saturation'
+        },
+        {
+          "value": "casts-assoc-med-equip",
+          "text": "Casts and associated medical equipment for the correction of hip dysplasia",
+          "checked": data['medical-equipment'] === 'casts-assoc-med-equip'
+        },
+        {
+          "value": "dont-use",
+          "text": "None of these",
+          "checked": data['medical-equipment'] === 'dont-use'
+        }
+        
+      ]
+    }) }}
+    
+    <div id="hiddenCaughtInputs"></div>
 
-            {{ govukCheckboxes({
-              "idPrefix": "medical-equipment",
-              "name": "medical-equipment",
-              "attributes": {
-                "data-catchoption-label": true
-              },
-              "fieldset": {
-                "legend": {
-                  "text": pageHeading,
-                  "isPageHeading": true,
-                  "classes": 'govuk-fieldset__legend--l'
-                }
-              },
-              "items": [
-                {
-                  "value": "ventilator",
-                  "text": "Ventilator",
-                  "checked": data['medical-equipment'] === 'ventilator'
-                },
-                {
-                  "value": "suction-machine",
-                  "text": "Suction machine",
-                  "checked": data['medical-equipment'] === 'suction-machine'
-                },
-                {
-                  "value": "feed-pump",
-                  "text": "Feed pump",
-                  "checked": data['medical-equipment'] === 'feed-pump'
-                },
-                {
-                  "value": "parenteral-equipment",
-                  "text": "Parenteral equipment",
-                  "checked": data['medical-equipment'] === 'parenteral-equipment'
-                },
-                {
-                  "value": "syringe-driver",
-                  "text": "Syringe driver",
-                  "checked": data['medical-equipment'] === 'syringe-driver'
-                },
-                {
-                  "value": "oxygen-admin-equipment",
-                  "text": "Oxygen administration equipment",
-                  "checked": data['medical-equipment'] === 'oxygen-admin-equipment'
-                },
-                {
-                  "value": "contin-oxygen-saturation",
-                  "text": "Continuous oxygen saturation monitoring equipment",
-                  "checked": data['medical-equipment'] === 'contin-oxygen-saturation'
-                },
-                {
-                  "value": "casts-assoc-med-equip",
-                  "text": "Casts and associated medical equipment for the correction of hip dysplasia",
-                  "checked": data['medical-equipment'] === 'casts-assoc-med-equip'
-                },
-                {
-                  "value": "dont-use",
-                  "text": "None of these",
-                  "checked": data['medical-equipment'] === 'dont-use'
-                }
-                
-              ]
-            }) }}
-            
-            <div id="hiddenCaughtInputs"></div>
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
 
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
+  <!-- Has save -->
+</form>
 
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

@@ -14,67 +14,58 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-
+{% include "includes/back-and-save.html" %}
         
-        <form action="{{ formAction }}">
-          {{ govukRadios({
-            "idPrefix": "how-long-walk",
-            "name": "how-long-walk",
-            "attributes": {
-              "data-catchoption-label": true
-            },
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "cant-walk",
-                "text": you | capitalize + " can't walk at all",
-                  "checked": data['how-long-walk'] === 'cant-walk'
-              },
-              {
-                "value": "less-than-a-minute",
-                "text": "Less than a minute",
-                "checked": data['how-long-walk'] === 'less-than-a-minute'
-              },
-              {
-                "value": "a-few-minutes",
-                "text": "A few minutes",
-                "checked": data['how-long-walk'] === 'a-few-minutes'
-              },
-              {
-                "value": "more-than-10",
-                "text": "More than 10 minutes",
-                "checked": data['how-long-walk'] === 'more-than-10'
-              }
+<form action="{{ formAction }}">
+  {{ govukRadios({
+    "idPrefix": "how-long-walk",
+    "name": "how-long-walk",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "cant-walk",
+        "text": you | capitalize + " can't walk at all",
+          "checked": data['how-long-walk'] === 'cant-walk'
+      },
+      {
+        "value": "less-than-a-minute",
+        "text": "Less than a minute",
+        "checked": data['how-long-walk'] === 'less-than-a-minute'
+      },
+      {
+        "value": "a-few-minutes",
+        "text": "A few minutes",
+        "checked": data['how-long-walk'] === 'a-few-minutes'
+      },
+      {
+        "value": "more-than-10",
+        "text": "More than 10 minutes",
+        "checked": data['how-long-walk'] === 'more-than-10'
+      }
 
-            ]
-          }) }}
+    ]
+  }) }}
 
-          <div id="hiddenCaughtInputs"></div>
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
+  <div id="hiddenCaughtInputs"></div>
+  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
 
-          <!-- Has save -->
-        </form>
+  <!-- Has save -->
+</form>
 
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

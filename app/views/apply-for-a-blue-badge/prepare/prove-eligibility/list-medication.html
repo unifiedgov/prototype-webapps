@@ -10,102 +10,94 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+
+{% set medicationHtml %}
+  {% if tableRows.length > 0 %}
+
+      <p class="govuk-body">List any medication or pain relief {{ you }} take for {{ your }} condition.</p>
+
+      {{ govukTable({
+        "head": [
+          {
+            "text": "Name"
+          },
+          {
+            "text": "Type"
+          },
+          {
+            "text": "Dosage"
+          },
+          {
+            "text": ""
+          }
+        ],
+        "rows": tableRows
+      }) }}
+
+    <p class="govuk-body"><a href="add-medication">Add another medication</a></p>
+
+  {% else %}
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  <p class="govuk-body">List any medication or pain relief {{ you }} take for {{ your }} condition.</p>
 
+  {{ govukTable({
+    "head": [
+      {
+        "text": "Name"
+      },
+      {
+        "text": "Type"
+      },
+      {
+        "text": "Dosage"
+      },
+      {
+        "text": ""
+      }
+    ],
+    "rows": ""
+  }) }}
 
-        {% set medicationHtml %}
-          {% if tableRows.length > 0 %}
-    
-              <p class="govuk-body">List any medication or pain relief {{ you }} take for {{ your }} condition.</p>
+  <p class="govuk-body"><a href="add-medication">Add first medication</a></p>
 
-              {{ govukTable({
-                "head": [
-                  {
-                    "text": "Name"
-                  },
-                  {
-                    "text": "Type"
-                  },
-                  {
-                    "text": "Dosage"
-                  },
-                  {
-                    "text": ""
-                  }
-                ],
-                "rows": tableRows
-              }) }}
+  {% endif %}
+{% endset -%}
 
-            <p class="govuk-body"><a href="add-medication">Add another medication</a></p>
+  {{ govukRadios({
+    "idPrefix": "use-medication",
+    "name": "use-medication",
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": tableRows.length > 0,
+        "conditional": {
+          "html": medicationHtml
+        }
+      },
+      {
+        "value": "no",
+        "text": "No"
+      }
+    ]
+  }) 
+}}
 
-          {% else %}
-          
-          <p class="govuk-body">List any medication or pain relief {{ you }} take for {{ your }} condition.</p>
+{{ govukButton({
+  "text": "Continue",
+  "href": formAction
+}) }}
 
-          {{ govukTable({
-            "head": [
-              {
-                "text": "Name"
-              },
-              {
-                "text": "Type"
-              },
-              {
-                "text": "Dosage"
-              },
-              {
-                "text": ""
-              }
-            ],
-            "rows": ""
-          }) }}
-
-          <p class="govuk-body"><a href="add-medication">Add first medication</a></p>
-
-          {% endif %}
-        {% endset -%}
-
-          {{ govukRadios({
-            "idPrefix": "use-medication",
-            "name": "use-medication",
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes",
-                "checked": tableRows.length > 0,
-                "conditional": {
-                  "html": medicationHtml
-                }
-              },
-              {
-                "value": "no",
-                "text": "No"
-              }
-            ]
-          }) 
-        }}
-
-        {{ govukButton({
-          "text": "Continue",
-          "href": formAction
-        }) }}
-
-        <!-- Has save -->
-
-      </div>
-
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+<!-- Has save -->
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

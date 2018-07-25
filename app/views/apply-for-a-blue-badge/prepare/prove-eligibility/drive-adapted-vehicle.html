@@ -10,66 +10,54 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<form action="{{ formAction }}">
+  {% set adaptedHtml %}
+    {{ govukTextarea({
+      "name": "describe-adapted",
+      "id": "describe-adapted",
+      "label": {
+        "text": "Describe how " + your + " vehicle has been adapted"
+      }
+    }) }}
+  {% endset -%}
 
-        <form action="{{ formAction }}">
-          {% set adaptedHtml %}
-            {{ govukTextarea({
-              "name": "describe-adapted",
-              "id": "describe-adapted",
-              "label": {
-                "text": "Describe how " + your + " vehicle has been adapted"
-              }
-            }) }}
-          {% endset -%}
+  {{ govukRadios({
+    "idPrefix": "drive-adapted-vehicle",
+    "name": "drive-adapted-vehicle",
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": data['drive-adapted-vehicle'] === 'yes',
+        "conditional": {
+          "html": adaptedHtml
+        }
+      },
+      {
+        "value": "no",
+        "text": "No",
+        "checked": data['drive-adapted-vehicle'] === 'no'
+      }
 
-          {{ govukRadios({
-            "idPrefix": "drive-adapted-vehicle",
-            "name": "drive-adapted-vehicle",
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes",
-                "checked": data['drive-adapted-vehicle'] === 'yes',
-                "conditional": {
-                  "html": adaptedHtml
-                }
-              },
-              {
-                "value": "no",
-                "text": "No",
-                "checked": data['drive-adapted-vehicle'] === 'no'
-              }
-
-            ]
-          }) }}
-
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
+    ]
+  }) }}  {{ govukButton({
+    "text": "Continue"
+  }) }}
 
 
-          <!-- Has save -->
-        </form>
+  <!-- Has save -->
+</form>
 
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

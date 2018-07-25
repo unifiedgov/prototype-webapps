@@ -7,87 +7,80 @@
 {% block content %}
 
 
-  {{ govukBackLink({
-      "text": "Back",
-      "href": "javascript: window.history.go(-1)"
+{{ govukBackLink({
+  "text": "Back",
+  "href": "javascript: window.history.go(-1)"
+}) }}
+{% if data['applicant'] === 'organisation' %}
+  <!-- Org -->
+  {% if data['org-care-for'] === 'no' or data['org-transport'] === 'no' %}
+    <h1 class="govuk-heading-l">Based on your answers, your organisation isn't eligible for a Blue Badge</h1>
+    <p class="govuk-body">Blue Badges are only given to organisations who transport and care for people who need a Blue Badge.</p>
+    <p class="govuk-body">If you think that your organisation is eligible you should contact {{ data["council-name"] }} directly:</p>
+    {% else %}
+    <h1 class="govuk-heading-l">Based on your answers, your organisation may be eligible for a Blue Badge</h1>
+    <p class="govuk-body">You'll need to be authorised by your organisation to apply on their behalf and may be contacted by {{ data["council-name"] }} to provide more information.</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>You'll need the details of the vehicles used to transport people</li>
+      <li>The badge issue fee is £10 which is refunded if the application isn't successful</li>
+      <li>It can take up to 4 weeks to get a decision</li>
+    </ul>
+    {{ govukButton({
+      "text": "Start " + application,
+      "href": '/apply-for-a-blue-badge/organisation-details/'
     }) }}
-  
+  {% endif %}
+{% elif data['benefit'] !== 'none' or data['disability'] === 'blind' %}
+  <!-- Receives a benefit or is registered blind = eligible -->
+  <h1 class="govuk-heading-l">{{ you | capitalize }}'re eligible for a Blue Badge</h1>
+  <p class="govuk-body">Based on {{ your }} answers, {{ you }}'re eligible for a Blue Badge.</p>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        {% if data['applicant'] === 'organisation' %}
-          <!-- Org -->
-          {% if data['org-care-for'] === 'no' or data['org-transport'] === 'no' %}
-            <h1 class="govuk-heading-l">Based on your answers, your organisation isn't eligible for a Blue Badge</h1>
-            <p class="govuk-body">Blue Badges are only given to organisations who transport and care for people who need a Blue Badge.</p>
-            <p class="govuk-body">If you think that your organisation is eligible you should contact {{ data["council-name"] }} directly:</p>
-            {% else %}
-            <h1 class="govuk-heading-l">Based on your answers, your organisation may be eligible for a Blue Badge</h1>
-            <p class="govuk-body">You'll need to be authorised by your organisation to apply on their behalf and may be contacted by {{ data["council-name"] }} to provide more information.</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>You'll need the details of the vehicles used to transport people</li>
-              <li>The badge issue fee is £10 which is refunded if the application isn't successful</li>
-              <li>It can take up to 4 weeks to get a decision</li>
-            </ul>
-            {{ govukButton({
-              "text": "Start " + application,
-              "href": '/apply-for-a-blue-badge/organisation-details/'
-            }) }}
-          {% endif %}
-        {% elif data['benefit'] !== 'none' or data['disability'] === 'blind' %}
-          <!-- Receives a benefit or is registered blind = eligible -->
-          <h1 class="govuk-heading-l">{{ you | capitalize }}'re eligible for a Blue Badge</h1>
-          <p class="govuk-body">Based on {{ your }} answers, {{ you }}'re eligible for a Blue Badge.</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>{{ you | capitalize }}’ll need to provide proof of {{ your }} benefit as part of {{ your }} application</li>
+    <li>The badge issue fee is £10 which is refunded if {{ your }} application isn't successful</li>
+    <li>It can take up to 4 weeks to get a decision</li>
+  </ul>
+  {{ govukButton({
+    "text": "Start " + application,
+    "href": '/apply-for-a-blue-badge/personal-details/'
+  }) }}
+  <p class="govuk-body">Alternatively, if you don't want to apply online you can contact
+   {{data['council-name']}} to find out about other ways to apply.</p>
+{% elif data['disability'] === 'none' or data['disability-walking'] === 'none' %}
+  <!-- Doesn't receive a benefit and doesn't have a recognized disability = not eligible -->
+  <h1 class="govuk-heading-l">{{ you | capitalize }}'re not eligible for a Blue Badge</h1>
+  <p class="govuk-body">Based on {{ your }} answers, {{ you }}'re not eligible for get a Blue Badge.</p>
+  <p class="govuk-body">If you still think that {{ you }} are, you can contact {{ data["council-name"] }}:
+{% elif data['disability'] === 'terminal' %}
+  <!-- Doesn't receive a benefit and doesn't have a recognizes disability = not eligible -->
+  <h1 class="govuk-heading-l">Contact {{ data["council-name"] }}</h1>
+  <p class="govuk-body">{{you | capitalize}} should contact {{data["council-name"]}} and tell them that {{you}} are terminally ill.</p>
+  <p class="govuk-body">The council will offer help that will make {{your}} application easier.</p>
+{% else %}
+  <!-- Doesn't receive a benefit and doesn't have a recognizes disability = needs assessing -->
+  <h1 class="govuk-heading-l">{{ you | capitalize }} may be eligible for a Blue Badge</h1>
+  <p class="govuk-body">Based on {{ your }} answers, {{ you }} may be eligible for a Blue Badge.</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>{{ you | capitalize }}'ll need to provide evidence of {{ your }} disability as part of the application.</li>
+    <li>{{ you | capitalize }} may be called for an Independent Mobility Assessment.</li>
+    <li>The badge issue fee is £10 which is refunded if {{ your }} application isn't successful.</li>
+    <li>It can take up to 4 weeks to get a decision.</li>
+  </ul>
+  {{ govukButton({
+    "text": "Start " + application,
+    "href": '/apply-for-a-blue-badge/personal-details/'
+  }) }}
 
-          <ul class="govuk-list govuk-list--bullet">
-            <li>{{ you | capitalize }}’ll need to provide proof of {{ your }} benefit as part of {{ your }} application</li>
-            <li>The badge issue fee is £10 which is refunded if {{ your }} application isn't successful</li>
-            <li>It can take up to 4 weeks to get a decision</li>
-          </ul>
-          {{ govukButton({
-            "text": "Start " + application,
-            "href": '/apply-for-a-blue-badge/personal-details/'
-          }) }}
-          <p class="govuk-body">Alternatively, if you don't want to apply online you can contact
-           {{data['council-name']}} to find out about other ways to apply.</p>
-        {% elif data['disability'] === 'none' or data['disability-walking'] === 'none' %}
-          <!-- Doesn't receive a benefit and doesn't have a recognized disability = not eligible -->
-          <h1 class="govuk-heading-l">{{ you | capitalize }}'re not eligible for a Blue Badge</h1>
-          <p class="govuk-body">Based on {{ your }} answers, {{ you }}'re not eligible for get a Blue Badge.</p>
-          <p class="govuk-body">If you still think that {{ you }} are, you can contact {{ data["council-name"] }}:
-        {% elif data['disability'] === 'terminal' %}
-          <!-- Doesn't receive a benefit and doesn't have a recognizes disability = not eligible -->
-          <h1 class="govuk-heading-l">Contact {{ data["council-name"] }}</h1>
-          <p class="govuk-body">{{you | capitalize}} should contact {{data["council-name"]}} and tell them that {{you}} are terminally ill.</p>
-          <p class="govuk-body">The council will offer help that will make {{your}} application easier.</p>
-        {% else %}
-          <!-- Doesn't receive a benefit and doesn't have a recognizes disability = needs assessing -->
-          <h1 class="govuk-heading-l">{{ you | capitalize }} may be eligible for a Blue Badge</h1>
-          <p class="govuk-body">Based on {{ your }} answers, {{ you }} may be eligible for a Blue Badge.</p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>{{ you | capitalize }}'ll need to provide evidence of {{ your }} disability as part of the application.</li>
-            <li>{{ you | capitalize }} may be called for an Independent Mobility Assessment.</li>
-            <li>The badge issue fee is £10 which is refunded if {{ your }} application isn't successful.</li>
-            <li>It can take up to 4 weeks to get a decision.</li>
-          </ul>
-          {{ govukButton({
-            "text": "Start " + application,
-            "href": '/apply-for-a-blue-badge/personal-details/'
-          }) }}
+  <p class="govuk-body">Alternatively, if you don't want to apply online you can contact
+   {{data['council-name']}} to find out about other ways to apply.
+  </p>
+{% endif %}
 
-          <p class="govuk-body">Alternatively, if you don't want to apply online you can contact
-           {{data['council-name']}} to find out about other ways to apply.
-          </p>
-        {% endif %}
-
-        <ul class="govuk-list">
-          <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
-          <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
-          <li>Phone: 0161 205 7321</li>
-        </ul>
-
-      </div>
-    </div>
+<ul class="govuk-list">
+  <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
+  <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
+  <li>Phone: 0161 205 7321</li>
+</ul>
   
 
 {% endblock %}

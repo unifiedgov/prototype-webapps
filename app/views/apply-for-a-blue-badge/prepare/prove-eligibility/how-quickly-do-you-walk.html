@@ -21,66 +21,57 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+<form action="{{ formAction }}">
+  {{ govukRadios({
+    "idPrefix": "walking-speed",
+    "name": "walking-speed",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "very-slow",
+        "text": "Much slower",
+        "checked": data['walking-speed'] === 'very-slow'
+      },
+      {
+        "value": "slow",
+        "text": "Slower",
+        "checked": data['walking-speed'] === 'slow'
+      },
+      {
+        "value": "average",
+        "text": "About the same",
+        "checked": data['walking-speed'] === 'average'
+      },
+      {
+        "value": "fast",
+        "text": "Faster",
+        "checked": data['walking-speed'] === 'fast'
+      }
+
+    ]
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
 
-        <form action="{{ formAction }}">
-          {{ govukRadios({
-            "idPrefix": "walking-speed",
-            "name": "walking-speed",
-            "attributes": {
-              "data-catchoption-label": true
-            },
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "very-slow",
-                "text": "Much slower",
-                "checked": data['walking-speed'] === 'very-slow'
-              },
-              {
-                "value": "slow",
-                "text": "Slower",
-                "checked": data['walking-speed'] === 'slow'
-              },
-              {
-                "value": "average",
-                "text": "About the same",
-                "checked": data['walking-speed'] === 'average'
-              },
-              {
-                "value": "fast",
-                "text": "Faster",
-                "checked": data['walking-speed'] === 'fast'
-              }
+  <!-- Has save -->
+</form>
 
-            ]
-          }) }}
-
-          <div id="hiddenCaughtInputs"></div>
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

@@ -8,36 +8,24 @@
 
 {% block content %}
 
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{{ govukPanel({
+  "titleHtml": '<h1 class="govuk-panel__title govuk-!-f-36">' + pageHeading + '</h1>',
+  "html": '<span class="govuk-!-f-27">Your reference number is<br><strong>HDJ2123F</strong></span>'
+})
+}}
+<p class="govuk-body">We've sent an email to 
+  <strong>
+    {% if data['email-address'] %}
+    {{ data['email-address'] }}
+    {% else %}
+    yourname@email.com
+    {% endif %}
+  </strong> with your reference number and a link to continue your application.</p>
 
-        {{ govukPanel({
-          "titleHtml": '<h1 class="govuk-panel__title govuk-!-f-36">' + pageHeading + '</h1>',
-          "html": '<span class="govuk-!-f-27">Your reference number is<br><strong>HDJ2123F</strong></span>'
-        })
-        }}
-        <p class="govuk-body">We've sent an email to 
-          <strong>
-            {% if data['email-address'] %}
-            {{ data['email-address'] }}
-            {% else %}
-            yourname@email.com
-            {% endif %}
-          </strong> with your reference number and a link to continue your application.</p>
+<h2 class="govuk-heading-m">What happens next</h2>
 
-        <h2 class="govuk-heading-m">What happens next</h2>
+<p class="govuk-body">{{you | capitalize}} can continue your application at any point, all of the information {{you}}'ve entered has been saved.</p>
 
-        <p class="govuk-body">{{you | capitalize}} can continue your application at any point, all of the information {{you}}'ve entered has been saved.</p>
-
-        <p class="govuk-body">It's now safe to close this window.</p>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-  
+<p class="govuk-body">It's now safe to close this window.</p>
 
 {% endblock %}

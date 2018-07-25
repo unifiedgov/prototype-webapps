@@ -10,76 +10,64 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<!-- <p class="govuk-body"></p> -->
+<form action="{{formAction}}">
+  {{ govukInput({
+    "label": {
+      "text": "Full name"
+    },
+    id: "fullName",
+    name: "fullName",
+    value: data['fullName']
+  }) }}
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <!-- <p class="govuk-body"></p> -->
-        <form action="{{formAction}}">
-          {{ govukInput({
-            "label": {
-              "text": "Full name"
-            },
-            id: "fullName",
-            name: "fullName",
-            value: data['fullName']
-          }) }}
+  {% set nameHtml %}
+    {{ govukInput({
+      "label": {
+        "text": "What was " + your + " full name at birth?"
+      },
+      id: "birth-full-name",
+      name: "birth-full-name"
+    }) }}
+  {% endset -%}
 
-          {% set nameHtml %}
-            {{ govukInput({
-              "label": {
-                "text": "What was " + your + " full name at birth?"
-              },
-              id: "birth-full-name",
-              name: "birth-full-name"
-            }) }}
-          {% endset -%}
+  {{ govukRadios({
+    "idPrefix": "name-changed",
+    "name": "name-changed",
+    "fieldset": {
+      "legend": {
+        "text": "Has " + your + " name changed since birth?",
+        "isPageHeading": false,
+        "classes": 'govuk-fieldset__legend--m'
+      }
+    },
+    "items": [
+      {
+        "value": "no",
+        "text": "No, " + your + " name hasn't changed",
+        "checked": data['name-changed'] === 'no'
+      },
+      {
+        "value": "yes",
+        "text": "Yes, " + your + " name has changed",
+        "checked": data['name-changed'] === 'yes',
+        "id": 'name-changed-yes',
+        "conditional": {
+          "html": nameHtml
+        }
+      }
+    ]
+  }) }}  {{ govukButton({
+    "text": submitLabel
+  }) }}
 
-          {{ govukRadios({
-            "idPrefix": "name-changed",
-            "name": "name-changed",
-            "fieldset": {
-              "legend": {
-                "text": "Has " + your + " name changed since birth?",
-                "isPageHeading": false,
-                "classes": 'govuk-fieldset__legend--m'
-              }
-            },
-            "items": [
-              {
-                "value": "no",
-                "text": "No, " + your + " name hasn't changed",
-                "checked": data['name-changed'] === 'no'
-              },
-              {
-                "value": "yes",
-                "text": "Yes, " + your + " name has changed",
-                "checked": data['name-changed'] === 'yes',
-                "id": 'name-changed-yes',
-                "conditional": {
-                  "html": nameHtml
-                }
-              }
-            ]
-          }) }}
+  <!-- Has save -->
+</form>
 
-          
-          {{ govukButton({
-            "text": submitLabel
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

@@ -9,29 +9,17 @@
 {% block content %}
 
 
-  {{ govukBackLink({
-      "text": "Back",
-      "href": "javascript: window.history.go(-1)"
-    }) }}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{{ govukBackLink({
+  "text": "Back",
+  "href": "javascript: window.history.go(-1)"
+}) }}
+<h1 class="govuk-heading-l">{{pageHeading | capitalize}}</h1>
+<p class="govuk-body-l"><b>{{ data['council-name']}}</b> are responsible for issuing Blue Badges in your area.</p>
+<form action="enter-age">
 
-        <h1 class="govuk-heading-l">{{pageHeading | capitalize}}</h1>
-        <p class="govuk-body-l"><b>{{ data['council-name']}}</b> are responsible for issuing Blue Badges in your area.</p>
-        <form action="enter-age">
-
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+</form>
 
 {% endblock %}

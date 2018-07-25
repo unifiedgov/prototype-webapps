@@ -7,58 +7,50 @@
 {% block content %}
 
 
+{% set someoneElseHtml %}
+  {{ govukInput({
+    "label": {
+      "text": "What is your relationship to the applicant?"
+    },
+    id: "someone-relationship",
+    name: "someone-relationship"
+  }) }}
+{% endset -%}
+
+<form action="find-your-council">
+  {{ govukRadios({
+    "idPrefix": "applicant",
+    "name": "applicant",
+    "fieldset": {
+      "legend": {
+        "text": title,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "yourself",
+        "text": "Yourself"
+      },
+      {
+        "value": "someone-else",
+        "text": "Someone else",
+        "conditional": {
+          "html": someoneElseHtml
+        }
+      },
+      {
+        "value": "organisation",
+        "text": "An organisation"
+      }
+    ]
+  }) }}
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+</form>
 
-        {% set someoneElseHtml %}
-          {{ govukInput({
-            "label": {
-              "text": "What is your relationship to the applicant?"
-            },
-            id: "someone-relationship",
-            name: "someone-relationship"
-          }) }}
-        {% endset -%}
-
-        <form action="find-your-council">
-          {{ govukRadios({
-            "idPrefix": "applicant",
-            "name": "applicant",
-            "fieldset": {
-              "legend": {
-                "text": title,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "yourself",
-                "text": "Yourself"
-              },
-              {
-                "value": "someone-else",
-                "text": "Someone else",
-                "conditional": {
-                  "html": someoneElseHtml
-                }
-              },
-              {
-                "value": "organisation",
-                "text": "An organisation"
-              }
-            ]
-          }) }}
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
-        </form>
-
-      </div>
-
-    </div>
-  
 
 {% endblock %}

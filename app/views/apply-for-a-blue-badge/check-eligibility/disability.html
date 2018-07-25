@@ -9,154 +9,142 @@
 {% block content %}
 
 
-  {{ govukBackLink({
-      "text": "Back",
-      "href": "javascript: window.history.go(-1)"
+{{ govukBackLink({
+  "text": "Back",
+  "href": "javascript: window.history.go(-1)"
+}) }}
+
+<form action="disability-backend">
+  {% set disabilityNoneHtml %}
+    {{ govukTextarea({
+      "name": "describe",
+      "id": "describe",
+      "label": {
+        "text": "Describe " + your + " medical condition or disability"
+      }
     }) }}
+  {% endset -%}
+
+    {% if  data['council-name'] === "wales" %}
+
+    {% set walesPermanent = "" %}
+
+    {% else %}
+
+    {% set walesPermanent = "permanent" %}
+
+    {% endif %}
+
+    {% if  data['age'] > 16 %}
+
+      {% set differentOptions = [
+        {
+          "value": "blind",
+          "text": you | capitalize + "'re severely sight impaired (blind)"
+        },
+        {
+          "value": "terminal",
+          "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
+        },
+        {
+          "value": "problems-walking",
+          "text": you | capitalize + " have a " + walesPermanent + " disability which means " + you + " can not walk or find walking very difficult" 
+        },
+        {
+          "value": "arms",
+          "text": you | capitalize + " have a severe disability in both arms and drive regularly, but can not operate parking meters"
+        },
+        {
+          "value": "none",
+          "text": "None of these reasons",
+          "id": "disability-none",
+          "conditional": {
+            "html": disabilityNoneHtml
+          }
+        }
+      ]
+      %}
+
+    {% elif data['age'] <= 2 %}
+
+    {% set differentOptions = [
+        {
+          "value": "blind",
+          "text": you | capitalize + "'re severely sight impaired (blind)"
+        },
+        {
+          "value": "terminal",
+          "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
+        },
+        {
+          "value": "child-bulky-equipment",
+          "text": you | capitalize + " need to be accompanied by bulky medical equipment"
+        },
+        {
+          "value": "child-close-to-vehicle",
+          "text": you | capitalize + " need to be near a vehicle to receive or be taken for treatment"
+        },
+        {
+          "value": "none",
+          "text": "None of these describe " + you + " medical condition or disability",
+          "id": "disability-none",
+          "conditional": {
+            "html": disabilityNoneHtml
+          }
+        }
+      ]
+    %}
+
+    {% else %}
+
+    {% set differentOptions = [
+        {
+          "value": "blind",
+          "text": you | capitalize + "'re severely sight impaired (blind)"
+        },
+        {
+          "value": "terminal",
+          "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
+        },
+        {
+          "value": "problems-walking",
+          "text": you | capitalize + " have a " + walesPermanent + " disability which means " + you + " can not walk or find walking very difficult" 
+        },
+        {
+          "value": "none",
+          "text": "None of these reasons",
+          "id": "disability-none",
+          "conditional": {
+            "html": disabilityNoneHtml
+          }
+        }
+      ]
+    %}
+
+    {% endif %}
+    
+    {{ govukRadios({
+      "idPrefix": "disability",
+      "name": "disability",
+      "attributes": {
+        "data-catchoption-label": true
+      },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": differentOptions
+    }) }}
+
+    <div id="hiddenCaughtInputs"></div>
   
-
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-
-        <form action="disability-backend">
-          {% set disabilityNoneHtml %}
-            {{ govukTextarea({
-              "name": "describe",
-              "id": "describe",
-              "label": {
-                "text": "Describe " + your + " medical condition or disability"
-              }
-            }) }}
-          {% endset -%}
-
-            {% if  data['council-name'] === "wales" %}
   
-            {% set walesPermanent = "" %}
-
-            {% else %}
-
-            {% set walesPermanent = "permanent" %}
-
-            {% endif %}
-
-            {% if  data['age'] > 16 %}
-
-              {% set differentOptions = [
-                {
-                  "value": "blind",
-                  "text": you | capitalize + "'re severely sight impaired (blind)"
-                },
-                {
-                  "value": "terminal",
-                  "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
-                },
-                {
-                  "value": "problems-walking",
-                  "text": you | capitalize + " have a " + walesPermanent + " disability which means " + you + " can not walk or find walking very difficult" 
-                },
-                {
-                  "value": "arms",
-                  "text": you | capitalize + " have a severe disability in both arms and drive regularly, but can not operate parking meters"
-                },
-                {
-                  "value": "none",
-                  "text": "None of these reasons",
-                  "id": "disability-none",
-                  "conditional": {
-                    "html": disabilityNoneHtml
-                  }
-                }
-              ]
-              %}
-
-            {% elif data['age'] <= 2 %}
-
-            {% set differentOptions = [
-                {
-                  "value": "blind",
-                  "text": you | capitalize + "'re severely sight impaired (blind)"
-                },
-                {
-                  "value": "terminal",
-                  "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
-                },
-                {
-                  "value": "child-bulky-equipment",
-                  "text": you | capitalize + " need to be accompanied by bulky medical equipment"
-                },
-                {
-                  "value": "child-close-to-vehicle",
-                  "text": you | capitalize + " need to be near a vehicle to receive or be taken for treatment"
-                },
-                {
-                  "value": "none",
-                  "text": "None of these describe " + you + " medical condition or disability",
-                  "id": "disability-none",
-                  "conditional": {
-                    "html": disabilityNoneHtml
-                  }
-                }
-              ]
-            %}
-
-            {% else %}
-
-            {% set differentOptions = [
-                {
-                  "value": "blind",
-                  "text": you | capitalize + "'re severely sight impaired (blind)"
-                },
-                {
-                  "value": "terminal",
-                  "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
-                },
-                {
-                  "value": "problems-walking",
-                  "text": you | capitalize + " have a " + walesPermanent + " disability which means " + you + " can not walk or find walking very difficult" 
-                },
-                {
-                  "value": "none",
-                  "text": "None of these reasons",
-                  "id": "disability-none",
-                  "conditional": {
-                    "html": disabilityNoneHtml
-                  }
-                }
-              ]
-            %}
-
-            {% endif %}
-            
-            {{ govukRadios({
-              "idPrefix": "disability",
-              "name": "disability",
-              "attributes": {
-                "data-catchoption-label": true
-              },
-              "fieldset": {
-                "legend": {
-                  "text": pageHeading,
-                  "isPageHeading": true,
-                  "classes": 'govuk-fieldset__legend--l'
-                }
-              },
-              "items": differentOptions
-            }) }}
-
-            <div id="hiddenCaughtInputs"></div>
-          
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+</form>
 
 {% endblock %}

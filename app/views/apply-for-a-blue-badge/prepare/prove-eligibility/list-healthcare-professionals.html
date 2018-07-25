@@ -10,96 +10,88 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+
+{% set hcpHtml %}
+  {% if tableRows.length > 0 %}
+
+      <p class="govuk-body">List any healthcare professionals who have treated {{ your }} condition.<br />For example, {{ your }} GP, surgeon, specialist.</p>
+
+      {{ govukTable({
+        "head": [
+          {
+            "text": "Name"
+          },
+          {
+            "text": "Hospital or health centre"
+          },
+          {
+            "text": ""
+          }
+        ],
+        "rows": tableRows
+      }) }}
+
+    <p class="govuk-body"><a href="add-healthcare-professional">Add another healthcare professional</a></p>
+
+  {% else %}
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  <p class="govuk-body">List any healthcare professionals who have treated {{ your }} condition.<br />For example, {{ your }} GP, surgeon, specialist.</p>
 
+  {{ govukTable({
+    "head": [
+      {
+        "text": "Name"
+      },
+      {
+        "text": "Hospital or health centre"
+      },
+      {
+        "text": ""
+      }
+    ],
+    "rows": ""
+  }) }}
 
-        {% set hcpHtml %}
-          {% if tableRows.length > 0 %}
-    
-              <p class="govuk-body">List any healthcare professionals who have treated {{ your }} condition.<br />For example, {{ your }} GP, surgeon, specialist.</p>
+  <p class="govuk-body"><a href="add-healthcare-professional">Add first healthcare professional</a></p>
 
-              {{ govukTable({
-                "head": [
-                  {
-                    "text": "Name"
-                  },
-                  {
-                    "text": "Hospital or health centre"
-                  },
-                  {
-                    "text": ""
-                  }
-                ],
-                "rows": tableRows
-              }) }}
+  {% endif %}
+{% endset -%}
 
-            <p class="govuk-body"><a href="add-healthcare-professional">Add another healthcare professional</a></p>
+  {{ govukRadios({
+    "idPrefix": "hcp-details",
+    "name": "hcp-details",
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": tableRows.length > 0,
+        "conditional": {
+          "html": hcpHtml
+        }
+      },
+      {
+        "value": "no",
+        "text": "No"
+      }
+    ]
+  }) 
+}}
 
-          {% else %}
-          
-          <p class="govuk-body">List any healthcare professionals who have treated {{ your }} condition.<br />For example, {{ your }} GP, surgeon, specialist.</p>
+{{ govukButton({
+  "text": "Continue",
+  "href": formAction
+}) }}
 
-          {{ govukTable({
-            "head": [
-              {
-                "text": "Name"
-              },
-              {
-                "text": "Hospital or health centre"
-              },
-              {
-                "text": ""
-              }
-            ],
-            "rows": ""
-          }) }}
-
-          <p class="govuk-body"><a href="add-healthcare-professional">Add first healthcare professional</a></p>
-
-          {% endif %}
-        {% endset -%}
-
-          {{ govukRadios({
-            "idPrefix": "hcp-details",
-            "name": "hcp-details",
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "yes",
-                "text": "Yes",
-                "checked": tableRows.length > 0,
-                "conditional": {
-                  "html": hcpHtml
-                }
-              },
-              {
-                "value": "no",
-                "text": "No"
-              }
-            ]
-          }) 
-        }}
-
-        {{ govukButton({
-          "text": "Continue",
-          "href": formAction
-        }) }}
-
-        <!-- Has save -->
-
-      </div>
-
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+<!-- Has save -->
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

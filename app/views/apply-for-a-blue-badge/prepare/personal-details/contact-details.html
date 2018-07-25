@@ -10,77 +10,68 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<!-- <p class="govuk-body"></p> -->
+<form action="{{ formAction }}">
+  {% if  data['applicant'] === "someone-else" or data['applicant'] === "organisation"   %}
+
+  {{ govukInput({
+    "label": {
+      "text": "Full name"
+    },
+    "hint": {
+      "text": "This should be the name of the main point of contact"
+    },
+    id: "contact-full-name",
+    name: "contact-full-name",
+    type: "text",
+    value: data['contact-full-name']
+  }) }}
+
+  {% endif %}
+
+  {{ govukInput({
+    "label": {
+      "text": "Primary contact number"
+    },
+    classes: "govuk-input--width-20",
+    id: "primary-phone-number",
+    name: "primary-phone-number",
+    type: "tel",
+    value: data['primary-phone-number']
+  }) }}
+
+  {{ govukInput({
+    "label": {
+      "text": "Secondary contact number"
+    },
+    classes: "govuk-input--width-20",
+    id: "secondary-phone-number",
+    name: "secondary-phone-number",
+    type: "tel",
+    value: data['secondary-phone-number']
+  }) }}
+
+  {{ govukInput({
+    "label": {
+      "text": "Email address"
+    },
+    id: "email-address",
+    name: "email-address",
+    type: "text",
+    value: data['email-address']
+  }) }}
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <!-- <p class="govuk-body"></p> -->
-        <form action="{{ formAction }}">
-          {% if  data['applicant'] === "someone-else" or data['applicant'] === "organisation"   %}
+  <!-- Has save -->
+</form>
 
-          {{ govukInput({
-            "label": {
-              "text": "Full name"
-            },
-            "hint": {
-              "text": "This should be the name of the main point of contact"
-            },
-            id: "contact-full-name",
-            name: "contact-full-name",
-            type: "text",
-            value: data['contact-full-name']
-          }) }}
-
-          {% endif %}
-
-          {{ govukInput({
-            "label": {
-              "text": "Primary contact number"
-            },
-            classes: "govuk-input--width-20",
-            id: "primary-phone-number",
-            name: "primary-phone-number",
-            type: "tel",
-            value: data['primary-phone-number']
-          }) }}
-
-          {{ govukInput({
-            "label": {
-              "text": "Secondary contact number"
-            },
-            classes: "govuk-input--width-20",
-            id: "secondary-phone-number",
-            name: "secondary-phone-number",
-            type: "tel",
-            value: data['secondary-phone-number']
-          }) }}
-
-          {{ govukInput({
-            "label": {
-              "text": "Email address"
-            },
-            id: "email-address",
-            name: "email-address",
-            type: "text",
-            value: data['email-address']
-          }) }}
-          
-          {{ govukButton({
-            "text": submitLabel
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

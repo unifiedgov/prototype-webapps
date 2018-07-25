@@ -10,90 +10,81 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
+{% include "includes/back-and-save.html" %}
+<form action="{{ formAction }}">
+
+  {% set somethingHtml %}
+    {{ govukInput({
+      "label": {
+        "text": "Give a description"
+      },
+      classes: "govuk-!-width-two-thirds",
+      id: "something-description",
+      name: "something-description"
+    }) }}
+  {% endset -%}
+
+  {{ govukCheckboxes({
+    "idPrefix": "difficulty",
+    "name": "difficulty",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "pain",
+        "text": "Excessive pain",
+        "checked": data['difficulty'] === 'pain'
+      },
+      {
+        "value": "breathlessness",
+        "text": "Breathlessness",
+          "checked": data['difficulty'] === 'breathlessness'
+      },
+      {
+        "value": "balance",
+        "text": "Balance or coordination",
+        "checked": data['difficulty'] === 'balance'
+      },
+      {
+        "value": "dangerous",
+        "text": "It's dangerous to the health and safety of myself or others",
+        "checked": data['difficulty'] === 'dangerous'
+      },
+      {
+        "value": "planning",
+        "text": "I struggle planning or following a journey",
+        "checked": data['difficulty'] === 'planning'
+      },
+      {
+        "value": "something",
+        "text": "Something else",
+        "checked": data['difficulty'] === 'something',
+        "conditional": {
+          "html": somethingHtml
+        }
+      }
+    ]
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
   
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
 
-        <form action="{{ formAction }}">
+  <!-- Has save -->
+</form>
 
-          {% set somethingHtml %}
-            {{ govukInput({
-              "label": {
-                "text": "Give a description"
-              },
-              classes: "govuk-!-width-two-thirds",
-              id: "something-description",
-              name: "something-description"
-            }) }}
-          {% endset -%}
-
-          {{ govukCheckboxes({
-            "idPrefix": "difficulty",
-            "name": "difficulty",
-            "attributes": {
-              "data-catchoption-label": true
-            },
-            "fieldset": {
-              "legend": {
-                "text": pageHeading,
-                "isPageHeading": true,
-                "classes": 'govuk-fieldset__legend--l'
-              }
-            },
-            "items": [
-              {
-                "value": "pain",
-                "text": "Excessive pain",
-                "checked": data['difficulty'] === 'pain'
-              },
-              {
-                "value": "breathlessness",
-                "text": "Breathlessness",
-                  "checked": data['difficulty'] === 'breathlessness'
-              },
-              {
-                "value": "balance",
-                "text": "Balance or coordination",
-                "checked": data['difficulty'] === 'balance'
-              },
-              {
-                "value": "dangerous",
-                "text": "It's dangerous to the health and safety of myself or others",
-                "checked": data['difficulty'] === 'dangerous'
-              },
-              {
-                "value": "planning",
-                "text": "I struggle planning or following a journey",
-                "checked": data['difficulty'] === 'planning'
-              },
-              {
-                "value": "something",
-                "text": "Something else",
-                "checked": data['difficulty'] === 'something',
-                "conditional": {
-                  "html": somethingHtml
-                }
-              }
-            ]
-          }) }}
-
-          <div id="hiddenCaughtInputs"></div>
-          
-          {{ govukButton({
-            "text": "Continue"
-          }) }}
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-
-        </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+      
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}

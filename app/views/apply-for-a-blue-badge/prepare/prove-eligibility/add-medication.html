@@ -10,80 +10,73 @@
 {% block content %}
 
 
-  {% include "includes/back-and-save.html" %}
-  
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+{% include "includes/back-and-save.html" %}
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<!-- <p class="govuk-body"></p> -->
+<form action="{{formAction}}">
+  {{ govukInput({
+    "label": {
+      "text": "What’s the name of this medication?"
+    },
+    "name": "medication-name"
+  }) }}
 
-        <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-        <!-- <p class="govuk-body"></p> -->
-        <form action="{{formAction}}">
-          {{ govukInput({
-            "label": {
-              "text": "What’s the name of this medication?"
-            },
-            "name": "medication-name"
-          }) }}
+  {{ govukRadios({
+    "idPrefix": "medication-type",
+    "name": "medication-type",
+    "fieldset": {
+      "legend": {
+        "text": 'Is it prescribed?',
+        "classes": 'govuk-fieldset__legend--s'
+      }
+    },
+    "items": [
+      {
+        "value": "Prescribed",
+        "text": "Yes",
+          "checked": data['medication-type'] === 'Prescribed'
+      },
+      {
+        "value": "Unprescribed",
+        "text": "No",
+        "checked": data['medication-type'] === 'Unprescribed'
+      }
+    ]
+  }) }}
 
-          {{ govukRadios({
-            "idPrefix": "medication-type",
-            "name": "medication-type",
-            "fieldset": {
-              "legend": {
-                "text": 'Is it prescribed?',
-                "classes": 'govuk-fieldset__legend--s'
-              }
-            },
-            "items": [
-              {
-                "value": "Prescribed",
-                "text": "Yes",
-                  "checked": data['medication-type'] === 'Prescribed'
-              },
-              {
-                "value": "Unprescribed",
-                "text": "No",
-                "checked": data['medication-type'] === 'Unprescribed'
-              }
-            ]
-          }) }}
+  {{ govukInput({
+    "label": {
+      "text": "How often do you take it?"
+    },
+    "hint": {
+      "html": "For example, every 4 hours, twice a day, once a week"
+    },
+    "classes": 'govuk-!-width-two-thirds',
+    "name": "medication-regularity"
+  }) }}
 
-          {{ govukInput({
-            "label": {
-              "text": "How often do you take it?"
-            },
-            "hint": {
-              "html": "For example, every 4 hours, twice a day, once a week"
-            },
-            "classes": 'govuk-!-width-two-thirds',
-            "name": "medication-regularity"
-          }) }}
+  {{ govukInput({
+    "label": {
+      "text": "How much do you take at a time?"
+    },
+    "hint": {
+      "html": "For example, 500mg, 50ml, 2 tablets"
+    },
+    "classes": 'govuk-!-width-two-thirds',
+    "name": "medication-dosage"
+  }) }}
 
-          {{ govukInput({
-            "label": {
-              "text": "How much do you take at a time?"
-            },
-            "hint": {
-              "html": "For example, 500mg, 50ml, 2 tablets"
-            },
-            "classes": 'govuk-!-width-two-thirds',
-            "name": "medication-dosage"
-          }) }}
+  {{ govukButton({
+    "text": "Add this medication"
+  }) }}
 
-          {{ govukButton({
-            "text": "Add this medication"
-          }) }}
+  <div class="govuk-info-panel">
+    <p class="govuk-body">You can add another medication afterwards, if required.</p>
+  </div>
 
-          <div class="govuk-info-panel">
-            <p class="govuk-body">You can add another medication afterwards, if required.</p>
-          </div>
-
-          <!-- Has save -->
-        </form>
-
-      </div>
-    </div>
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+  <!-- Has save -->
+</form>
+<p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
 
 
 {% endblock %}
