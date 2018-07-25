@@ -26,33 +26,6 @@
   {% include "includes/head.html" %}
 {% endblock %}
 
-{% block cookie_message %}
-  <p>{{cookieText | safe }}</p>
-{% endblock %}
-
-{% block proposition_header %}
-
-  <div class="header-proposition">
-    <div class="content">
-      <nav id="proposition-menu">
-        <a href="/apply-for-a-blue-badge/" id="proposition-name">
-          {# Set serviceName in config.js. Use a block to override on a page. #}
-          {% block service_name %}
-            {% if hideServiceName !== 'yes' %}
-              {% if serviceName %} {{ serviceName }} {% endif %}
-            {% endif %}
-          {% endblock %}
-        </a>
-      </nav>
-    </div>
-  </div>
-
-{% endblock %}
-
-{% block header_class %}
-  with-proposition
-{% endblock %}
-
 {% block after_header %}
   <div class="phase-banner-wrapper govuk-width-container">
     {{ govukPhaseBanner({
@@ -64,20 +37,37 @@
   </div>
 {% endblock %}
 
-{% block footer_support_links %}
-  {% if useAutoStoreData %}
-    <ul>
-      <li>
-        <a href="/prototype-admin/clear-data">Clear data</a>
-      </li>
-    </ul>
-  {% endif %}
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    homepageUrl: "/apply-for-a-blue-badge/",
+    serviceName: serviceName,
+    serviceUrl: "/apply-for-a-blue-badge/",
+    containerClasses: "govuk-width-container",
+    classes: 'hide-service-name-' + hideServiceName
+  }) }}
 {% endblock %}
 
-{% block body_end %}
+{% if useAutoStoreData %}
+  {% block footer %}
+    {{ govukFooter({
+      meta: {
+        items: [
+          {
+            href: "/prototype-admin/clear-data",
+            text: "Clear data"
+          }
+        ]
+      }
+    }) }}
+  {% endblock %}
+{% endif %}
+
+{% block bodyEnd %}
   {% block scripts %}
     {% include "includes/scripts.html" %}
-    {% block page_scripts %}{% endblock %}
+    {% block pageScripts %}{% endblock %}
   {% endblock %}
   <!-- GOV.UK Prototype kit {{releaseVersion}} -->
 {% endblock %}

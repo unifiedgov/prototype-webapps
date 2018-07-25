@@ -16,6 +16,8 @@ const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
+const apply = require('./app/routes/apply.js')
+const manage = require('./app/routes/manage.js')
 const utils = require('./lib/utils.js')
 
 const app = express()
@@ -140,6 +142,9 @@ app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
+app.locals.adminServiceName = config.adminServiceName
+app.locals.laName = config.laName
+app.locals.username = config.username
 
 // Support session data
 app.use(session({
@@ -203,6 +208,8 @@ if (typeof (routes) !== 'function') {
   routes.bind(app)
 } else {
   app.use('/', routes)
+  app.use('/apply-for-a-blue-badge', apply)
+  app.use('/manage-blue-badges', manage)
 }
 
 // Redirect to the zip of the latest release of the Prototype Kit on GitHub

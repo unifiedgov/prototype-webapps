@@ -5,3 +5,7 @@
 .phase-banner-wrapper .govuk-phase-banner {
 	border-top: 10px solid govuk-colour(blue);
 }
+
+.hide-service-name-yes .govuk-header__link--service-name {
+	visibility: hidden;
+}
