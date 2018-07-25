@@ -1,5 +1,7 @@
 {% extends "admin_template.html" %}
 
+{% set isAnonLayout = 'yes' %}
+
 {% from "back-link/macro.njk"     import govukBackLink %}
 {% from "breadcrumbs/macro.njk"   import govukBreadcrumbs %}
 {% from "button/macro.njk"        import govukButton %}
@@ -32,30 +34,6 @@
 
 {% block body_classes %}
   body-admin
-{% endblock %}
-
-{% block proposition_header %}
-
-  <div class="header-proposition">
-    <div class="content">
-      <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
-      <nav id="proposition-menu">
-        <a href="/manage-blue-badges" id="proposition-name">
-          {# Set adminServiceName in config.js. Use a block to override on a page. #}
-          {% block service_name %}
-            {% if adminServiceName %} {{ adminServiceName }} {% endif %}
-          {% endblock %}
-        </a>
-        <!--
-        <ul id="proposition-links">
-          <li><a href="url-to-page-1" class="active">Navigation item #1</a></li>
-          <li><a href="url-to-page-2">Navigation item #2</a></li>
-        </ul>
-        -->
-      </nav>
-    </div>
-  </div>
-
 {% endblock %}
 
 {% block header_class %}

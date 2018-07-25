@@ -34,34 +34,6 @@
   body-admin
 {% endblock %}
 
-{% block proposition_header %}
-
-  <div class="header-proposition">
-    <div class="content">
-      <nav id="proposition-menu">
-        <a href="/manage-blue-badges" id="proposition-name">
-           {# Set adminServiceName in config.js. Use a block to override on a page. #}
-          {% block service_name %}
-            {% if adminServiceName %} {{ adminServiceName }} {% endif %}
-          {% endblock %}
-        </a>
-        <h3 class="proposition__authority">
-          {{ laName }}
-        </h3>
-        <!--
-        <ul id="proposition-links">
-          <li><a href="url-to-page-1" class="active">Navigation item #1</a></li>
-          <li><a href="url-to-page-2">Navigation item #2</a></li>
-        </ul>
-        -->
-        <div class="user-menu">
-          <p>{{ username }}</p><a href="/manage-blue-badges/sign-in?success=You've successfully signed out">Sign out</a>
-        </div>
-      </nav>
-    </div>
-  </div>
-
-{% endblock %}
 
 {% block header_class %}
   with-proposition

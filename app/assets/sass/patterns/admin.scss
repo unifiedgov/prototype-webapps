@@ -9,6 +9,9 @@
 
 .html-admin {
 	background: white;
+	body {
+		margin: 0;
+	}
 }
 
 .success-panel {
@@ -20,7 +23,10 @@
 	margin: -47px 0 60px -60px;
 	width: 100%;
 	p {
+		color: white;
 		display: inline-block;
+		margin: govuk-spacing(4);
+		margin-left: 0;
 		margin-right: -4px;
 		width: 60%;
 	}
@@ -47,6 +53,10 @@
 	}
 	#global-header .header-proposition #proposition-name {
 		@include govuk-font(19, $weight: bold);
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 	#global-header.with-proposition .header-wrapper .header-proposition {
 		width: 100%;

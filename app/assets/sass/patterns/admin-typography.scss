@@ -5,6 +5,7 @@
 h1 {
   @include govuk-font(36, $weight: bold);
   display: inline-block;
+  margin-top: 0;
 }
 
 .subtitle {
