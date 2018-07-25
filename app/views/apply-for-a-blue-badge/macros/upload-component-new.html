@@ -83,14 +83,20 @@
 
 <div id="drop-area">
   <div id="dragDropInstructions">
-    <div class="icon--upload-arrow">
-      {% include "includes/icon-arrow-down.html" %}
+    <div class="upload-arrow-container">
+      <div class="icon--upload-arrow">
+        {% include "includes/icon-arrow-down.html" %}
+        {% include "includes/icon-camera.html" %}
+      </div>
     </div>
     <div class="upload-section-text">
       <p class="govuk-body">
         <span class="drag-drop-text">You can drag and drop the file here <br> <b>or</b> <br></span>
         <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-        <label class="govuk-link fake-link" for="fileElem">Select a file from this device</label>
+        <label class="govuk-link fake-link" for="fileElem">
+          <span class="tablet-upload-text">Select a file from this device</span>
+          <span class="mobile-upload-text">Take a photo or select a file using this device</span>
+        </label>
       </p>
     </div>
   </div>

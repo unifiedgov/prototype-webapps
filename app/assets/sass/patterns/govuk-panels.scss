@@ -52,18 +52,25 @@
 	border: none;
 }
 
+.upload-arrow-container {
+	display: inline-block;
+	width: 25%;
+}
+
 .icon--upload-arrow {
 	background: govuk-colour(grey-2);
 	border-radius: 50%;
+	display: inline-block;
 	line-height: 0;
 	padding: 10px;
-	display: inline-block;
-	margin-right: 20px;
 	vertical-align: top;
+	.icon-arrow-down {display: none;}
 	svg {
 		width: 20px; height: 20px;
 	}
 	@include mq($from: tablet) {
+		.icon-arrow-down {display: block;}
+		.fa-camera {display: none;}
 		padding: 20px;
 		svg {
 			width: 40px; height: 40px;
@@ -74,6 +81,24 @@
 	}
 }
 
+.upload-section-text {
+	display: inline-block;
+	vertical-align: text-top;
+	width: 70%;
+}
+
+.tablet-upload-text {
+	display: none;
+	@include mq($from: tablet) {
+		display: inline;
+	}
+}
+
+.mobile-upload-text {
+	@include mq($from: tablet) {
+		display: none;
+	}
+}
 
 #drop-area {
   border: 2px dashed govuk-colour(grey-2);
@@ -99,11 +124,7 @@
   	background: lighten($govuk-focus-colour, 10%);
   }
 }
-.upload-section-text {
-	display: inline-block;
-	vertical-align: text-top;
-	// padding-top: 20px;
-}
+
 #gallery {
   margin-top: 10px;
 }
