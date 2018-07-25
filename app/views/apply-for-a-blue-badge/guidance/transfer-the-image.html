@@ -10,51 +10,15 @@
 
 {% block guidance_content %}
 
-{% set yesHTML %}
-  <p class="govuk-body">If you took the photo on this device, you can continue and upload directly from this device.</p>
+<p class="govuk-body">If you haven't already saved the photo to this device, you'll have to transfer it, by either:</p>
 
-  <p class="govuk-body">When you return to {{your}} Blue Badge {{application}} there will be a link that will allow you to 'Select a file from this device'. Use the link to locate the photo on this device.</p>
-{% endset -%}
+<ul class="govuk-list govuk-list--bullet">
+  <li>sending it to yourself by email</li>
+  <li>attaching a cable between the camera and this device</li>
+  <li>using Bluetooth to move the photo from your mobile phone or tablet to this device</li>
+</ul>
 
-{% set noHTML %}
-  <p class="govuk-body">If you haven't already saved the photo to this device, you'll have to transfer it, by either:</p>
-
-	<ul class="govuk-list govuk-list--bullet">
-		<li>sending it to yourself by email</li>
-		<li>attaching a cable between the camera and this device</li>
-		<li>using Bluetooth to move the photo from your mobile phone or tablet to this device</li>
-	</ul>
-
-	<p class="govuk-body">You can continue once you have saved the photo as a file to this device.</p>
-{% endset -%}
-
-{{ govukRadios({
-  "idPrefix": "is-photo-on-device",
-  "name": "is-photo-on-device",
-  "fieldset": {
-    "legend": {
-      "text": "Did you take the photo on this device?",
-      "isPageHeading": false,
-      "classes": 'govuk-fieldset__legend--m'
-    }
-  },
-  "items": [
-    {
-      "value": "yes",
-      "text": "Yes",
-      "conditional": {
-        "html": yesHTML
-      }
-    },
-    {
-      "value": "no",
-      "text": "No",
-      "conditional": {
-        "html": noHTML
-      }
-    }
-  ]
-}) }}
+<p class="govuk-body">You can continue once you have saved the photo as a file to this device.</p>
 
 
 

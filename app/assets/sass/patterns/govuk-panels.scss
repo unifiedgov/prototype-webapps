@@ -23,6 +23,12 @@
     p {
     	margin-bottom: 0;
     }
+    &.with-margins {
+    	margin-bottom: govuk-spacing(3);
+    	p {
+    		margin-bottom: govuk-spacing(3);
+    	}
+    }
 }
 
 .govuk-details {

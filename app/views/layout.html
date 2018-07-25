@@ -82,9 +82,11 @@
 
 {% if useAutoStoreData %}
   {% block footer %}
-  <div class="govuk-width-container">
-    <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
-  </div>
+  {% if hasSaveClass === 'yes' %}
+    <div class="govuk-width-container">
+      <p class="govuk-body save-progress-container hidden-tablet"><a href="/apply-for-a-blue-badge/progress-saved" class="save-progress-link">Save {{your}} progress</a></p>
+    </div>
+  {% endif %}
     {{ govukFooter({
       meta: {
         items: [
