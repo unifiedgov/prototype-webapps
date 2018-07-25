@@ -1,4 +1,5 @@
 .autocomplete__wrapper {
+  @include govuk-font(19);
   position: relative;
 }
 
@@ -23,10 +24,12 @@
 
 .autocomplete__input {
   background-color: transparent;
+  @include govuk-font(19);
   position: relative;
 }
 
 .autocomplete__hint {
+  @include govuk-font(19);
   color: #BFC1C3;
   position: absolute;
 }
