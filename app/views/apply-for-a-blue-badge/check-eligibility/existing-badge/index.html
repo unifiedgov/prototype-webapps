@@ -2,7 +2,7 @@
 
 {% set pageHeading = 'Do ' + you + ' already have a Blue Badge?' %}
 
-{% block page_title %}
+{% block pageTitle %}
   {% if data["show"] === "errors" %} Error: {% endif %} {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 

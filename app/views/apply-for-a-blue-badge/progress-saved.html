@@ -2,7 +2,7 @@
 
 {% set pageHeading = your | capitalize + ' ' + application + ' has been saved' %}
 
-{% block page_title %}
+{% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
