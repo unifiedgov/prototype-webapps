@@ -45,8 +45,20 @@ router.get('/', function (req, res) {
   req.session.destroy();
 });
 
+router.get('/apply-for-a-blue-badge/save-enter', function (req, res) {
+  res.render('apply-for-a-blue-badge/save-enter');
+});
+
 router.get('/apply-for-a-blue-badge/progress-saved', function (req, res) {
   res.render('apply-for-a-blue-badge/progress-saved');
+});
+
+router.get('/apply-for-a-blue-badge/save-return', function (req, res) {
+  res.render('apply-for-a-blue-badge/save-return');
+});
+
+router.get('/apply-for-a-blue-badge/save-enter-code', function (req, res) {
+  res.render('apply-for-a-blue-badge/save-enter-code');
 });
 
 router.get('/check-eligibility/', function (req, res) {

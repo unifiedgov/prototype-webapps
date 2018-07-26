@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% set hideBackLink = 'yes' %}
+{% set pageHeading = 'Return to ' + your + ' application' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<form action="save-enter-code">
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+  <p class="govuk-body">Enter the email address or mobile phone number {{you}} used to save {{your}} {{application}}.</p> 
+  <p class="govuk-body">We'll send {{you}} a code that {{you}} can use to continue {{your}} {{application}}.</p>
+  
+  {{ govukInput({
+    "label": {
+      "text": "Email address or phone number"
+    },
+    id: "email-phone",
+    name: "email-phone",
+    type: "text"
+  }) }}
+  
+  {{ govukButton({
+    "text": "Send code"
+  }) }}
+</form>
+
+{% endblock %}

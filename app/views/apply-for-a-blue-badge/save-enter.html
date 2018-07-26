@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Save ' + your + ' progress' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<p class="govuk-body">{{your | capitalize}} {{application}} will be saved for 24 hours, after this time it will be deleted.</p>
+
+{{ govukInput({
+  "label": {
+    "text": "Email address"
+  },
+  id: "email-address",
+  name: "email-address",
+  type: "email",
+  value: data['email-address']
+}) }}
+
+<details class="govuk-details" id="">
+  <summary class="govuk-details__summary">I don't have an email address</summary>
+  <div class="govuk-details__text panel panel-border">
+    <p class="govuk-body">{{you | capitalize}} can save your progress and return using a text message if {{you}} don't have an email address.</p>
+	{{ govukInput({
+	  "label": {
+	    "text": "Mobile phone number"
+	  },
+	  id: "mobile-phone",
+	  name: "mobile-phone",
+	  type: "tel"
+	}) }}
+  </div>
+</details>
+
+{{ govukButton({
+  "text": "Save progress",
+  "href": "progress-saved"
+}) }}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Enter ' + your + ' code' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<p class="govuk-body">We've sent a 7-character code to <b>{{data['email-phone']}}</b>, enter the code to continue {{your}} {{application}}.</p>
+
+{{ govukInput({
+  "label": {
+    "text": "Enter the code"
+  },
+  id: "return-code",
+  name: "return-code",
+  type: "text",
+  classes: "govuk-input--width-10"
+}) }}
+
+{{ govukButton({
+  "text": "Continue",
+  "href": "prove-your-address"
+}) }}
+
+{% endblock %}
