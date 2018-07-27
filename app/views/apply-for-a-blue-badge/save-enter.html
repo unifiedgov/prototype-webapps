@@ -8,38 +8,66 @@
 
 {% block inner_content %}
 
-<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<form action="progress-saved">
+	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+	
+	<p class="govuk-body">{{your | capitalize}} {{application}} will be saved for 24 hours, after this time it will be deleted.</p>
+	
+	{% set emailHtml %}
+	  {{ govukInput({
+	    "label": {
+	      "text": "Email address"
+	    },
+	    id: "email-address",
+	    name: "email-address",
+	    type: "email",
+	    value: data['email-address']
+	  }) }}
+	{% endset -%}
 
-<p class="govuk-body">{{your | capitalize}} {{application}} will be saved for 24 hours, after this time it will be deleted.</p>
+	{% set textHtml %}
+	  {{ govukInput({
+	    "label": {
+	      "text": "Mobile phone number"
+	    },
+	    id: "mobile-phone",
+	    name: "mobile-phone",
+	    type: "tel"
+	  }) }}
+	{% endset -%}
 
-{{ govukInput({
-  "label": {
-    "text": "Email address"
-  },
-  id: "email-address",
-  name: "email-address",
-  type: "email",
-  value: data['email-address']
-}) }}
-
-<details class="govuk-details" id="">
-  <summary class="govuk-details__summary">I don't have an email address</summary>
-  <div class="govuk-details__text panel panel-border">
-    <p class="govuk-body">{{you | capitalize}} can save your progress and return using a text message if {{you}} don't have an email address.</p>
-	{{ govukInput({
-	  "label": {
-	    "text": "Mobile phone number"
+	{{ govukRadios({
+	  "idPrefix": "name-changed",
+	  "name": "name-changed",
+	  "fieldset": {
+	    "legend": {
+	      "text": "How do you want to receive the code to return to your application?",
+	      "isPageHeading": false,
+	      "classes": 'govuk-fieldset__legend--m'
+	    }
 	  },
-	  id: "mobile-phone",
-	  name: "mobile-phone",
-	  type: "tel"
+	  "items": [
+	    {
+	      "value": "code-email",
+	      "text": "Email",
+	      "conditional": {
+	        "html": emailHtml
+	      }
+	    },
+	    {
+	      "value": "code-text",
+	      "text": "Text message",
+	      "conditional": {
+	        "html": textHtml
+	      }
+	    }
+	  ]
 	}) }}
-  </div>
-</details>
 
-{{ govukButton({
-  "text": "Save progress",
-  "href": "progress-saved"
-}) }}
+	
+	{{ govukButton({
+	  "text": "Save progress"
+	}) }}
+</form>
 
 {% endblock %}
