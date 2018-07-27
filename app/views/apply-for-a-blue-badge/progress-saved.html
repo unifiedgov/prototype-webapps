@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = your | capitalize + ' ' + application + ' has been saved' %}
+{% set pageHeading = "We've saved " + your + " " + application + " for 24 hours" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -19,11 +19,11 @@
     {% else %}
     yourname@email.com
     {% endif %}
-  </strong> with information about how to continue your {{application}}.</p>
+  </strong> with information about how to continue this {{application}}.</p>
 
 <h2 class="govuk-heading-m">What happens next</h2>
 
-<p class="govuk-body">{{your | capitalize}} {{application}} will be saved for 24 hours, after this time it will be deleted.</p>
+<p class="govuk-body">We'll save this {{application}} for 24 hours before we delete it.</p>
 
 <p class="govuk-body">It's now safe to close this window.</p>
 
