@@ -10,12 +10,12 @@
 
 {% block guidance_content %}
 
-<p class="govuk-body">{{you | capitalize}} can continue to upload the photo once it's on this device.</p>
+<p class="govuk-body">If {{you}}'ve taken the photo on the same device {{you}}'ve used for this {{application}}, {{you}} can return to your {{application}} and upload it.</p>
 
 
-<h3 class="govuk-heading-m">How to transfer the photo if {{you}}'ve used another (2nd) device</h3>
+<h3 class="govuk-heading-m">If {{you}}'ve used another device such as a smartphone to take the photo</h3>
 
-<p class="govuk-body">{{you | capitalize}}'ll have to transfer the photo to the computer or device {{you}}'re using to apply if {{you}}'ve taken the picture on a 2nd device.</p>
+<p class="govuk-body">{{you | capitalize}}'ll have to transfer the photo to the device {{you}}'ve used to apply, as a laptop.</p>
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-one-half">
@@ -23,7 +23,7 @@
 
 		<ul class="govuk-list govuk-list--bullet">
 		  <li>emailing it to yourself</li>	
-		  <li>bluetooth</li>
+		  <li>Bluetooth <sup>&reg;</sup></li>
 		  <li>attaching a cable between the two devices</li>
 		</ul>
 	</div>
@@ -35,9 +35,9 @@
 	</div>
 </div>
 
-		{{ govukButton({
-		  "text": "Return to " + your + " " + application,
-		  "href": data['upload-origin-page']
-		}) }}
+{{ govukButton({
+  "text": "Return to " + your + " " + application,
+  "href": data['upload-origin-page']
+}) }}
 
 {% endblock %}
