@@ -116,20 +116,12 @@
     }) }}
   {% endif %}
   
-  {% if (isAnInlineUpload!=='yes') %}
-    {{ govukButton({
-      "text": "Continue"
-    }) }}
-  {% endif %}
-  
 </div>
 
 {% if (isAnInlineUpload!=='yes') %}
-  <div class="js-hidden">
-    {{ govukButton({
-      "text": "Continue"
-    }) }}
-  </div>
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
 {% endif %}
 
 
