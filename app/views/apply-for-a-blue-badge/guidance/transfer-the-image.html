@@ -1,7 +1,7 @@
 {% extends "guidance_layout.html" %}
 
 {% set pageHeading = 'How to upload ' + your + ' document' %}
-{% set guidanceTitle =  'Transfer the photo' %}
+{% set guidanceTitle =  'Uploading the photo' %}
 {% set guidancePageCount =  '5 of 5' %}
 
 {% block pageTitle %}
@@ -10,21 +10,34 @@
 
 {% block guidance_content %}
 
-<p class="govuk-body">If you haven't already saved the photo to this device, you'll have to transfer it, by either:</p>
-
-<ul class="govuk-list govuk-list--bullet">
-  <li>sending it to yourself by email</li>
-  <li>attaching a cable between the camera and this device</li>
-  <li>using Bluetooth to move the photo from your mobile phone or tablet to this device</li>
-</ul>
-
-<p class="govuk-body">You can continue once you have saved the photo as a file to this device.</p>
+<p class="govuk-body">{{you | capitalize}} can continue to upload the photo once it's on this device.</p>
 
 
+<h3 class="govuk-heading-m">How to transfer the photo if {{you}}'ve used another (2nd) device</h3>
 
-{{ govukButton({
-  "text": "Return to " + your + " " + application,
-  "href": data['upload-origin-page']
-}) }}
+<p class="govuk-body">{{you | capitalize}}'ll have to transfer the photo to the computer or device {{you}}'re using to apply if {{you}}'ve taken the picture on a 2nd device.</p>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-half">
+		<p class="govuk-body">{{you | capitalize}} can do this by:</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+		  <li>emailing it to yourself</li>	
+		  <li>bluetooth</li>
+		  <li>attaching a cable to the 2nd device</li>
+		</ul>
+	</div>
+
+	<div class="govuk-grid-column-one-half">
+
+		<div class="svg-container">{% include "includes/icon-transfer.html" %}</div>
+		
+	</div>
+</div>
+
+		{{ govukButton({
+		  "text": "Return to " + your + " " + application,
+		  "href": data['upload-origin-page']
+		}) }}
 
 {% endblock %}

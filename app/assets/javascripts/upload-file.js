@@ -81,6 +81,7 @@ function previewFile(file) {
     }
     
     document.getElementById('drop-area').classList.add('hidden')
+    document.getElementById('help-uploading').classList.add('hidden')
     
     document.getElementById('gallery').appendChild(img)
     document.getElementById('theNameOfFile').value = file.name
@@ -112,3 +113,7 @@ function uploadFile(file, i) {
   formData.append('file', file)
   xhr.send(formData)
 }
+
+$('.upload-arrow-container').on('click', function() {
+  $('#fileElem').trigger('click');
+});

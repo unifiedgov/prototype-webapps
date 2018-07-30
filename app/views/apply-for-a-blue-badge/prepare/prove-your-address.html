@@ -15,14 +15,14 @@
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 <form action="{{ formAction }}?proveIdentity=upload">
   <input type="hidden" id="change" name="change" value="{{change}}">
-  <p class="govuk-body">Upload a document, dated within the last 12 months, that shows {{your}} current address such as:</p>
+  <p class="govuk-body">Upload a photo or scan of a document, that shows {{your}} current address, such as:</p>
 
   {% if data['real-age'] < 16 %}
 
   <ul class="govuk-list govuk-list--bullet">
-    <li>a letter from {{your}} school</li>
-    <li>a benefit letter from the Department for Work and Pensions</li>
-    <li>a letter from {{your}} GP</li>
+    <li>a recent letter from {{your}} school</li>
+    <li>a recent benefit letter from the Department for Work and Pensions</li>
+    <li>a recent letter from {{your}} GP</li>
   </ul>
 
   {% else %}
@@ -30,7 +30,7 @@
   <ul class="govuk-list govuk-list--bullet">
     <li>a recent Council Tax bill</li>
     <li>{{ your }} driving licence</li>
-    <li>a letter from a government department such as HMRC or the Department for Work and Pensions</li>
+    <li>a recent letter from a government department such as HMRC or the Department for Work and Pensions</li>
   </ul>
 
   {% endif %}

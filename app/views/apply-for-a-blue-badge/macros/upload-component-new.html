@@ -34,6 +34,7 @@
 {% endmacro %}
 
 {% from 'radios/macro.njk' import govukRadios %}
+{% from "details/macro.njk" import govukDetails %}
 {% from 'button/macro.njk' import govukButton %}
 
 {% macro chooseYourFile(
@@ -46,15 +47,6 @@
   isAnInlineUpload
   ) 
 %}
-
-{% if (isAnInlineUpload!=='yes') %}
-<div class="govuk-info-panel with-margins">
-  <h2 class="govuk-heading-m">Uploading documents</h2>
-  <p class="govuk-body">You can take a photo of your documents or scan them to upload here.</p>
-  <p class="govuk-body">We've created a <a href="/apply-for-a-blue-badge/guidance?upload-origin-page={{originPage}}">step-by-step guide on taking a photo and transferring it to a device to upload</a>. We'll return you to this page after you've read the guide.</p>
-</div>
-
-{% endif %}
 
 <div id="drop-area">
   <div id="dragDropInstructions">
@@ -115,23 +107,31 @@
       ]
     }) }}
   {% endif %}
+
+  {% if (isAnInlineUpload!=='yes') %}
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  {% endif %}
   
 </div>
 
 {% if (isAnInlineUpload!=='yes') %}
-  {{ govukButton({
-    "text": "Continue"
-  }) }}
+
+{{ govukDetails({
+  summaryText: "Need help uploading documents?",
+  id: "help-uploading",
+  html: '<p class="govuk-body">You can take a photo of your documents or scan them to upload here.</p><p class="govuk-body"> We\'ve created a step-by-step guide on <a href="/apply-for-a-blue-badge/guidance?upload-origin-page=' + originPage + '">how to upload a document</a>.</p><p class="govuk-body">We\'ll return you to this page after you\'ve read the guide.</p>'
+}) }}
+
 {% endif %}
-
-
 
 {% endmacro %}
 
 {% macro iCantUploadAPhotoOrScan(your, notUploadingUrl, aboutHowTo, change, isAnInlineUpload) %}
 {% if (isAnInlineUpload!=='yes') %}
   <details class="govuk-details file-upload empty" id="cantUploadDetails">
-    <summary class="govuk-details__summary">I can't upload a photo or scan</summary>
+    <summary class="govuk-details__summary"><span class="govuk-details__summary-text">I can't upload a photo or scan</span></summary>
     <div class="govuk-details__text panel panel-border">
       <p class="govuk-body">Your local council will contact you about other ways for you to {{ aboutHowTo }} after you submit this application.</p>
       <p class="govuk-body">You can still submit this application using this service, but it will take longer for the council to make a decision.</p>
