@@ -60,7 +60,9 @@
 
 .upload-arrow-container {
 	display: inline-block;
-	width: 25%;
+	padding-right: 15px;
+	vertical-align: middle;
+	width: 20%;
 }
 
 .icon--upload-arrow {
@@ -68,19 +70,18 @@
 	border-radius: 50%;
 	display: inline-block;
 	line-height: 0;
-	padding: 10px;
+	padding: 15px;
 	vertical-align: top;
+	@include mq($from: tablet) {
+		padding: 20px;
+	}
 	.icon-arrow-down {display: none;}
 	svg {
-		width: 20px; height: 20px;
+		width: 100%; height: 100%;
 	}
-	@include mq($from: tablet) {
+	.is-desktop & {
 		.icon-arrow-down {display: block;}
 		.fa-camera {display: none;}
-		padding: 20px;
-		svg {
-			width: 40px; height: 40px;
-		}
 	}
 	path {
 		fill: white;
@@ -89,19 +90,19 @@
 
 .upload-section-text {
 	display: inline-block;
-	vertical-align: text-top;
+	vertical-align: middle;
 	width: 70%;
 }
 
 .tablet-upload-text {
 	display: none;
-	@include mq($from: tablet) {
+	.is-desktop & {
 		display: inline;
 	}
 }
 
 .mobile-upload-text {
-	@include mq($from: tablet) {
+	.is-desktop & {
 		display: none;
 	}
 }
@@ -111,15 +112,15 @@
   max-width: 480px;
   margin-bottom: 30px;
   padding: 30px;
-  @include mq($from: tablet) {
-	padding: 60px;
-  }
+ //  @include mq($from: tablet) {
+	// padding: 40px;
+ //  }
   p.govuk-body {
   	margin-bottom: 0;
   }
   .drag-drop-text {
   	display: none;
-  	  @include mq($from: tablet) {
+  	  .is-desktop & {
   		display: inline;
   	  }
   }
