@@ -27,7 +27,8 @@
 }
 
 .countdown-timer {
-  font-size: 10rem;
+  @include govuk-font(80);
+  font-size: 120px !important;
   text-align: center;
 }
 
@@ -111,6 +112,18 @@
   }
 }
 
+.hidden-touch {
+  display: none;
+  .is-desktop & {
+    display: block;
+  }
+}
+.hidden-mouse {
+  display: none;
+  .is-mobile & {
+    display: block;
+  }
+}
 
 .hidden-mobile,
 .hidden-tablet {

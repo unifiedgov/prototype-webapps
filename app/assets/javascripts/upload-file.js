@@ -78,10 +78,10 @@ function previewFile(file) {
     
     if(document.getElementById('cantUploadDetails')) {
       document.getElementById('cantUploadDetails').classList.add('hidden')  
+      document.getElementById('help-uploading').classList.add('hidden')
     }
     
     document.getElementById('drop-area').classList.add('hidden')
-    document.getElementById('help-uploading').classList.add('hidden')
     
     document.getElementById('gallery').appendChild(img)
     document.getElementById('theNameOfFile').value = file.name

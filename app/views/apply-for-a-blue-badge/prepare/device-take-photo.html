@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
+{% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
 {% set pageHeading = "Take photo with this device's camera" %}
 
@@ -33,10 +34,34 @@
 <section id='start-section'>
   <h2 class="govuk-heading-m">Take {{your}} photo</h2>
 
-  {{ govukDetails({
-    "summaryText": "Open the camera",
-    "html": '<p class="govuk-body">You may be prompted to allow access to your device\'s camera.</p> <button class="govuk-button" onclick="takePhotoWebcam.start()">Open the camera</button>' 
-  }) }}
+  <div class="hidden-touch">
+    {{ govukDetails({
+      "summaryText": "Open the camera",
+      "html": '<p class="govuk-body">You may be prompted to allow access to your device\'s camera.</p> <button class="govuk-button" onclick="takePhotoWebcam.start()">Open the camera</button>' 
+    }) }}
+  </div>
+
+  <div class="hidden-mouse">
+    <form action="{{formAction}}">
+      <p class="govuk-body">You can use the camera on your device to take a photo of your face and shoulders.</p>
+      
+      {{ uploadComponentWidget.uploadComponent(
+        '',
+        'passportPhoto', 
+        formAction + '?passportPhoto=notProvided&passport-photo-file-upload=',
+        your, 
+        '', 
+        change, 
+        'no',
+        'passport-photo-file-upload',
+        'yes'
+      )}}
+
+      {{ govukButton({
+        "text": submitLabel
+      }) }}
+    </form>
+  </div>
 
 </section>
 
@@ -102,5 +127,7 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src="/public/javascripts/webcam.js"></script>
+  <script src="{{ asset_path }}javascripts/webcam.js"></script>
+  <script src="{{ asset_path }}javascripts/upload-file.js"></script>
 {% endblock %}
+
