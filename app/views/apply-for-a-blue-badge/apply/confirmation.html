@@ -15,10 +15,10 @@
 }}
 
 {% if data['pay-when'] === 'now' %}
-<p class="govuk-body">You've paid by card.</p>
+<p class="govuk-body">You've paid a £10 issue fee.</p>
 {% endif %}
 
-<p class="govuk-body">We have sent a confirmation email to 
+<p class="govuk-body">We've sent confirmation of this application to email to 
   <strong>
     {% if data['email-address'] %}
     {{ data['email-address'] }}
@@ -29,11 +29,16 @@
 
 <h2 class="govuk-heading-m">What happens next</h2>
 
+{% if data['pay-when'] === 'later' %}
+<p class="govuk-body">Because {{you}}'ve chosen to pay later, {{data['council-name']}} will contact {{you}} for payment.</p>
+{% endif %}
+
 {% if ((data['proofOfEligibility'] === 'notProvided' and (data['benefit'] === 'dla' or data['benefit'] === 'pip')) or
   (data['proveIdentity'] === 'notProvided') or (data['proveAddress'] === 'notProvided') or (data['providePhoto'] === 'notProvided')) %}
 
   <div id="some-evidence-missing">
-    <p class="govuk-body">We've sent {{ your }} {{ application }} to {{data['council-name']}} who will contact {{ you }} about providing:</p>
+
+    <p class="govuk-body">{{data['council-name'] | capitalize}} may contact {{ you }} about providing:</p>
     <ol class="govuk-list govuk-list--bullet">
       {% if data['proofOfEligibility'] === 'notProvided' and (data['benefit'] === 'dla' or data['benefit'] === 'pip') %}
       <li>proof of eligibility</li>
@@ -48,15 +53,15 @@
       <li>photo</li>
       {% endif %}
     </ol>
-    <p>{{ your | capitalize }} {{ application }} can not be processed until they've received these documents.</p>
+    <p>The council will not be able to process {{your}} {{application}}, until they've received these documents.</p>
   </div>
 {% else %}
   <div id="all-evidence-present">
-    <p class=govuk-body>We've sent {{ your }} {{ application }} to {{data['council-name']}} who may contact {{ you }} to ask for more information.</p>
+    <p class=govuk-body>{{data['council-name'] | capitalize}} may contact {{ you }} to ask for more information.</p>
   </div>
 {% endif %}
 
-<p class="govuk-body">We'll send {{ you }} a notification when a decision has been made about {{ your }} {{ application }}.</p>
+<p class="govuk-body">The council will let you know when they make a decision about {{ your }} {{ application }}.</p>
 
 <p class="govuk-body">It's now safe to close this window.</p>
 

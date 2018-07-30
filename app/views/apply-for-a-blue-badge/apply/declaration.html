@@ -12,25 +12,25 @@
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
+<p class="govuk-body">When you submit this {{ application }} {{ you }} agree that:</p>
+
 {% if data['applicant'] == 'yourself' or data['applicant'] == 'someone-else' %}
 
-<p class="govuk-body">When you submit this {{ application }} {{ you }} agree that:</p>
 <ul class="govuk-list govuk-list--bullet">
   <li>the details {{ you }}'ve provided are complete and accurate</li>
-  <li>{{ you }} won't allow someone else to use the badge</li>
-  <li>{{ you }} won't hold more than one Blue Badge at any time</li>
-  <li>{{ you }} will tell  {{data['council']}} about any changes that may affect {{ your }} entitlement</li>
-  <li>{{data['council-name']}} can check any information they already hold about {{ youOrThem }} in order to make a decision about {{ your }} {{ application }}</li>
+  <li>{{ you }}'ll not allow anyone else use {{your}} Blue Badge</li>
+  <li>{{ you }}'ll not own more than one Blue Badge at any time</li>
+  <li>{{ you }}'ll tell {{data['council']}} about any changes that may affect {{ your }} Blue Badge entitlement</li>
+  <li>{{data['council-name']}} can check any information they already have about {{ youOrThem }} so that they can process {{ your }} {{ application }}</li>
 </ul>
 
 {% else %}
 
-<p class="govuk-body">When you submit this {{ application }} {{ you }} agree that:</p>
 <ul class="govuk-list govuk-list--bullet">
-  <li>{{ you }} are authorised to complete this application for your organisation</li>
-  <li>{{ you }} will only use the blue badge(s) when transporting disabled people</li>
-  <li>{{ you }} will tell {{data['council-name']}} about any changes that may affect {{ your }} entitlement</li>
-  <li>{{data['council-name']}} can check any information they already hold about {{ youOrThem }} in order to make a decision about {{ your }} {{ application }}</li>
+  <li>{{you}}'re authorised to complete this application on behalf of {{your}} organisation</li>
+  <li>the details {{you}} have provided are complete and accurate</li>
+  <li>{{you}}'ll tell {{data['council-name']}} council about any changes that will affect {{your}} organisation's Blue Badge entitlement</li>
+  <li>{{data['council-name']}} can check any information they already have about {{you}} so that they can process {{your}} {{application}}</li>
 </ul>
 
 {% endif %}
