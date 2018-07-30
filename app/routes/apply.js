@@ -224,9 +224,33 @@ router.get('/personal-details/dob', function (req, res) {
   res.render(personDetailsTemplatePath+'dob')
 })
 
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
 router.get('/personal-details/nino', function (req, res) {
+  var dobYear = req.session.data['dob-year'],
+      dobMonth = req.session.data['dob-month'],
+      dobDay = req.session.data['dob-day'];
+
+  var theirAge = getAge("" + dobYear + '/' + dobMonth + '/' + dobDay + "");
+
   Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'your-address'))
-  res.render(personDetailsTemplatePath+'nino')
+  res.locals.data['real-age'] = theirAge;
+
+  if(theirAge >= 16) {
+    res.render(personDetailsTemplatePath+'nino')
+  } else {
+    res.redirect(personDetailsPath+'your-address?real-age='+theirAge);
+  }
+  
 })
 
 router.get('/personal-details/your-address', function (req, res) {
