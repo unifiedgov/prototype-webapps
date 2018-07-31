@@ -19,13 +19,7 @@
 {% endif %}
 
 <p class="govuk-body">We've sent confirmation of this application to email to 
-  <strong>
-    {% if data['email-address'] %}
-    {{ data['email-address'] }}
-    {% else %}
-    yourname@email.com
-    {% endif %}
-  </strong>.</p>
+  <strong>{% if data['email-address'] %}{{ data['email-address'] }}{% else %}yourname@email.com{% endif %}</strong>.</p>
 
 <h2 class="govuk-heading-m">What happens next</h2>
 
