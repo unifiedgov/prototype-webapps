@@ -24,7 +24,7 @@
     </ul>
     {{ govukButton({
       "text": "Start " + application,
-      "href": '/apply-for-a-blue-badge/organisation-details/'
+      "href": '/apply-for-a-blue-badge/task-list'
     }) }}
   {% endif %}
 {% elif data['benefit'] !== 'none' or data['disability'] === 'blind' %}
@@ -39,7 +39,7 @@
   </ul>
   {{ govukButton({
     "text": "Start " + application,
-    "href": '/apply-for-a-blue-badge/personal-details/'
+    "href": '/apply-for-a-blue-badge/task-list'
   }) }}
   <p class="govuk-body">Alternatively, if you don't want to apply online you can contact
    {{data['council-name']}} to find out about other ways to apply.</p>
@@ -65,7 +65,7 @@
   </ul>
   {{ govukButton({
     "text": "Start " + application,
-    "href": '/apply-for-a-blue-badge/personal-details/'
+    "href": '/apply-for-a-blue-badge/task-list'
   }) }}
 
   <p class="govuk-body">Alternatively, if you don't want to apply online you can contact

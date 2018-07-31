@@ -45,6 +45,10 @@ router.get('/', function (req, res) {
   req.session.destroy();
 });
 
+router.get('/apply-for-a-blue-badge/task-list', function (req, res) {
+  res.render('apply-for-a-blue-badge/task-list');
+});
+
 router.get('/apply-for-a-blue-badge/save-enter', function (req, res) {
   res.render('apply-for-a-blue-badge/save-enter');
 });
@@ -274,8 +278,12 @@ router.get('/personal-details/enter-address', function (req, res) {
 })
 
 router.get('/personal-details/contact-details', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/personal-details/check-personal'))
   res.render(personDetailsTemplatePath+'contact-details')
+})
+
+router.get('/personal-details/check-personal', function (req, res) {
+  res.render(personDetailsTemplatePath+'check-personal')
 })
 
 // Organisation details

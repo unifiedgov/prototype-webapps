@@ -1,0 +1,172 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+{% set pageHeading = serviceName %}
+
+{% block pageTitle %}
+  {{pageHeading}}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds app-column-minimum">
+
+      <h1 class="govuk-heading-l">
+        {{pageHeading}}
+      </h1>
+
+      <ol class="app-task-list">
+        <li>
+          <h2 class="app-task-list__section">
+            <span class="app-task-list__section-number">1. </span> Check before you start
+          </h2>
+          <ul class="app-task-list__items">
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="check-eligibility/" aria-describedby="eligibility-completed">
+                Check eligibility
+              </a>
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'eligibility-completed'
+                }
+              }) }}
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h2 class="app-task-list__section">
+            <span class="app-task-list__section-number">2. </span> Prepare to apply
+          </h2>
+          <ul class="app-task-list__items">
+            {% if data['applicant'] === 'organisation' %}
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="organisation-details/" aria-describedby="organisation-completed">
+                Enter organisation details
+              </a>
+              {% if data['organisation-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'organisation-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            {% else %}
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="personal-details/{% if data['personal-completed'] == 'true'%}check-personal{% endif %}" aria-describedby="personal-completed">
+                Enter personal details
+              </a>
+              {% if data['personal-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'personal-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="#" aria-describedby="benefit-completed">
+                Provide proof of benefit
+              </a>
+              {% if data['benefit-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'benefit-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="#" aria-describedby="identity-completed">
+                Prove identity
+              </a>
+              {% if data['identity-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'identity-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="#" aria-describedby="address-completed">
+                Prove address
+              </a>
+              {% if data['address-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'address-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="#" aria-describedby="photo-completed">
+                Add a photo
+              </a>
+              {% if data['photo-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'photo-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            {% endif %}
+          </ul>
+        </li>
+        <li>
+          <h2 class="app-task-list__section">
+            <span class="app-task-list__section-number">3. </span> Apply
+          </h2>
+          <ul class="app-task-list__items">
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="#" aria-describedby="declaration-completed">
+                Read declaration
+              </a>
+              {% if data['declaration-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'declaration-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="#" aria-describedby="pay-completed">
+                Submit and pay
+              </a>
+              {% if data['pay-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'pay-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+          </ul>
+        </li>
+      </ol>
+
+    </div>
+  </div>
+
+{% endblock %}
