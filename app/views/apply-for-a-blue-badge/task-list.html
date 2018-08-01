@@ -42,7 +42,7 @@
           <ul class="app-task-list__items">
             {% if data['applicant'] === 'organisation' %}
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="organisation-details/" aria-describedby="organisation-completed">
+              <a class="app-task-list__task-name" href="organisation-details/{% if data['organisation-completed'] == 'true'%}check-organisation{% endif %}" aria-describedby="organisation-completed">
                 Enter organisation details
               </a>
               {% if data['organisation-completed'] == "true" %}

@@ -292,37 +292,37 @@ const organisationDetailsPath = '/apply-for-a-blue-badge/organisation-details/';
 const organisationDetailsTemplatePath = 'apply-for-a-blue-badge/prepare/organisation-details/';
 
 router.get('/organisation-details/', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'charity'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'charity','check-organisation'))
   res.redirect(organisationDetailsPath+'name')
 })
 
 router.get('/organisation-details/name', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'charity'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'charity','check-organisation'))
   res.render(organisationDetailsTemplatePath+'name')
 })
 
 router.get('/organisation-details/charity', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'find-address'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'find-address','check-organisation'))
   res.render(organisationDetailsTemplatePath+'charity')
 })
 
 router.get('/organisation-details/find-address', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'select-address'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'select-address','check-organisation'))
   res.render(personDetailsTemplatePath+'your-address')
 })
 
 router.get('/organisation-details/select-address', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'contact-details'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'contact-details','check-organisation'))
   res.render(personDetailsTemplatePath+'select-your-address')
 })
 
 router.get('/organisation-details/enter-address', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'contact-details'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'contact-details','check-organisation'))
   res.render(personDetailsTemplatePath+'enter-your-address')
 })
 
 router.get('/organisation-details/contact-details', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'list-vehicles'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'list-vehicles','check-organisation'))
   res.render(personDetailsTemplatePath+'contact-details')
 })
 
@@ -348,7 +348,7 @@ router.get('/organisation-details/list-vehicles', function(req, res) {
   }
 
   res.locals.tableRows = tableRows;
-  res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
+  res.locals.formAction = 'check-organisation';
   res.locals.submitLabel = 'Continue';
   res.render(organisationDetailsTemplatePath+'list-vehicles');
 });
@@ -378,6 +378,10 @@ router.get('/organisation-details/delete-vehicle/:id', function(req, res) {
   req.session.data['vehicle-array'].splice(req.params.id, 1);
   res.redirect('/apply-for-a-blue-badge/organisation-details/list-vehicles');
 });
+
+router.get('/organisation-details/check-organisation', function (req, res) {
+  res.render(organisationDetailsTemplatePath+'check-organisation')
+})
 
 // Prove identity
 
