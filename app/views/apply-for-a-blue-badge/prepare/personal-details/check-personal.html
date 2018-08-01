@@ -36,10 +36,10 @@
           Gender
         </dt>
         <dd class="govuk-check-your-answers__answer">
-          {{ data['gender'] }}
+          {{ data['gender'] | capitalize}}
         </dd>
         <dd class="govuk-check-your-answers__change">
-          <a href="/apply-for-a-blue-badge/personal-details/dob?change=true">
+          <a href="/apply-for-a-blue-badge/personal-details/gender?change=true">
             Change<span class="govuk-visually-hidden"> answer to gender</span>
           </a>
         </dd>
@@ -83,7 +83,7 @@
           {{ data['address'] }}
         </dd>
         <dd class="govuk-check-your-answers__change">
-          <a href="/apply-for-a-blue-badge/personal-details/enter-address?change=true">
+          <a href="/apply-for-a-blue-badge/personal-details/select-address?change=true">
             Change<span class="govuk-visually-hidden"> address</span>
           </a>
         </dd>
@@ -96,6 +96,7 @@
         <dd class="govuk-check-your-answers__answer">
           {% if data['contact-full-name'] %}{{ data['contact-full-name'] }}<br />{% endif %}
           {{ data['primary-phone-number'] }}<br />
+          {% if data['secondary-phone-number'] %}{{ data['secondary-phone-number'] }}<br />{% endif %}
           {% if data['email-address'] %}{{ data['email-address'] }}{% endif %}
         </dd>
         <dd class="govuk-check-your-answers__change">
