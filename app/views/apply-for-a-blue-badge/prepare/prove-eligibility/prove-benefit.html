@@ -37,13 +37,16 @@
       name: 'awarded-benefit-before-start',
       items:[
         {
-          name: 'day'
+          name: 'day',
+          value: data['awarded-benefit-before-start-day']
         },
         {
-          name: 'month'
+          name: 'month',
+          value: data['awarded-benefit-before-start-month']
         },
         {
-          name: 'year'
+          name: 'year',
+          value: data['awarded-benefit-before-start-year']
         }
       ]
       })
@@ -63,12 +66,13 @@
       "items": [
         {
           "value": "yes",
-          "text": "Yes"
+          "text": "Yes",
+          "checked": data['awarded-benefit-indefinitely-before'] === 'yes'
         },
         {
           "value": "no",
           "text": "No",
-          "id": "awarded-benefit-indefinitely-before-no",
+          "checked": data['awarded-benefit-indefinitely-before'] === 'no',
           "conditional": {
             "html": dateAwardHtml
           }

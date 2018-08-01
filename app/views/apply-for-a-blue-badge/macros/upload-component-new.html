@@ -8,7 +8,8 @@
     change, 
     askIfUploadShowAddress,
     nameOfDataItem,
-    isAnInlineUpload
+    isAnInlineUpload,
+    dummyImageURL
   )%}
 
 {{ chooseYourFile(
@@ -18,7 +19,8 @@
     your, 
     askIfUploadShowAddress,
     nameOfDataItem,
-    isAnInlineUpload
+    isAnInlineUpload,
+    dummyImageURL
   ) 
 }}
 
@@ -44,7 +46,8 @@
   your, 
   askIfUploadShowAddress,
   nameOfDataItem,
-  isAnInlineUpload
+  isAnInlineUpload,
+  dummyImageURL
   ) 
 %}
 
@@ -77,6 +80,9 @@
   <h3 class="govuk-heading-m">This is your uploaded file</h3>
 
   <div id="gallery"/></div>
+  <div id="fileAlreadyUploaded" class="hidden">
+    <img src="/public/images/{{dummyImageURL}}" alt="Your uploaded file">
+  </div>
   <p class="govuk-body">
     <a href="">Upload a different file</a>
   </p>

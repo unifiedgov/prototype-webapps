@@ -14,6 +14,7 @@
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 <form action="{{ formAction }}">
+  <input type="hidden" id="change" name="identity-completed" value="true">
   <p class="govuk-body">You need to upload a copy of a document which proves {{ your }} identity such as:</p>
   <ul class="govuk-list govuk-list--bullet">
       <li>the photo page of {{ your }} passport</li>
@@ -30,7 +31,8 @@
     'provide proof of ' + your + ' identity', 
     change, 
     'yes',
-    'your-identity-file-upload'
+    'your-identity-file-upload',
+    'no'
   )}}
 
   <!-- Has save -->

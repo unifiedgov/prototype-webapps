@@ -386,7 +386,7 @@ router.get('/organisation-details/check-organisation', function (req, res) {
 // Prove identity
 
 router.get('/prove-your-identity', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-your-address';
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
   res.render('apply-for-a-blue-badge/prepare/prove-your-identity')
@@ -427,7 +427,7 @@ router.get('/prove-benefit', function(req, res) {
 });
 
 router.get('/prove-eligibility/upload-benefit', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-your-address';
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
   res.render(proveEligibilityTemplatePath+'upload-benefit')
@@ -541,24 +541,6 @@ router.get('/prove-eligibility/how-quickly-do-you-walk', function(req, res) {
   res.render(proveEligibilityTemplatePath+'how-quickly-do-you-walk');
 });
 
-
-// router.get('/prove-eligibility/use-a-mobility-aid', function(req, res) {
-//   res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/use-a-mobility-aid-backend';
-//   res.render(proveEligibilityTemplatePath+'use-a-mobility-aid');
-// });
-
-// router.get('/prove-eligibility/use-a-mobility-aid-backend', function(req, res) {
-//   if (req.session.data['mobility-aids-used'] == 'dont-use') {
-//     res.redirect(proveEligibilityPath+'describe-conditions');
-//   } else {
-//     res.redirect(proveEligibilityPath+'how-were-your-mobility-aids-provided');
-//   }
-// });
-
-// router.get('/prove-eligibility/how-were-your-mobility-aids-provided', function(req, res) {
-//   res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/describe-conditions';
-//   res.render(proveEligibilityTemplatePath+'how-were-your-mobility-aids-provided');
-// });
 
 // Both arms
 
@@ -790,8 +772,7 @@ router.get('/prove-eligibility/delete-hcp/:id', function(req, res) {
 router.get('/prove-your-address', function (req, res) {
   if ((req.query.change !== 'true') &&
      (req.session.data['identity-upload-shows-current-address'] === 'yes' ||
-      req.session.data['benefit-proof-upload-shows-current-address'] === 'yes' ||
-      req.session.data['identity-verified'] === 'yes')) {
+      req.session.data['benefit-proof-upload-shows-current-address'] === 'yes')) {
     res.redirect('/apply-for-a-blue-badge/provide-photo');
   } else {
     res.locals.submitLabel = 'Continue';

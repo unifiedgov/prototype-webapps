@@ -3,7 +3,7 @@
 {% set pageHeading = serviceName %}
 
 {% block pageTitle %}
-  {{pageHeading}}
+  Task list - {{pageHeading}}
 {% endblock %}
 
 {% block content %}
@@ -70,8 +70,9 @@
               }) }}
               {% endif %}
             </li>
+            {% if data['benefit'] !== 'none' %}
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="#" aria-describedby="benefit-completed">
+              <a class="app-task-list__task-name" href="prove-benefit{% if data['benefit-completed'] == 'true'%}?benefit-done=true{% endif %}" aria-describedby="benefit-completed">
                 Provide proof of benefit
               </a>
               {% if data['benefit-completed'] == "true" %}
@@ -84,8 +85,9 @@
               }) }}
               {% endif %}
             </li>
+            {% endif %}
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="#" aria-describedby="identity-completed">
+              <a class="app-task-list__task-name" href="prove-your-identity{% if data['identity-completed'] == 'true'%}?identity-done=true{% endif %}" aria-describedby="identity-completed">
                 Prove identity
               </a>
               {% if data['identity-completed'] == "true" %}
@@ -98,8 +100,9 @@
               }) }}
               {% endif %}
             </li>
+            {% if data['identity-upload-shows-current-address'] === 'no' and data['benefit-proof-upload-shows-current-address'] === 'no' %}
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="#" aria-describedby="address-completed">
+              <a class="app-task-list__task-name" href="prove-your-address{% if data['address-completed'] == 'true'%}?address-done=true{% endif %}" aria-describedby="address-completed">
                 Prove address
               </a>
               {% if data['address-completed'] == "true" %}
@@ -112,8 +115,9 @@
               }) }}
               {% endif %}
             </li>
+            {% endif %}
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="#" aria-describedby="photo-completed">
+              <a class="app-task-list__task-name" href="provide-photo{% if data['photo-completed'] == 'true'%}?photo-done=true{% endif %}" aria-describedby="photo-completed">
                 Add a photo
               </a>
               {% if data['photo-completed'] == "true" %}

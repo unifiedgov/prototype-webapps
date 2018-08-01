@@ -29,8 +29,8 @@
 
 
 
-<form action="{{ formAction }}?proofOfEligibility=upload">
-  <input type="hidden" id="change" name="change" value="{{change}}">
+<form action="{{ formAction }}">
+  <input type="hidden" id="change" name="benefit-completed" value="true">
   <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
   <p class="govuk-body">You must have received this in the last 12 months.</p>
@@ -53,6 +53,7 @@
       <li>mobility score</li>
       <li>certificate of entitlement to Personal Independence Payment</li>
     </ul>
+    {% set sampleBenefitLetter = 'pip-letter.jpg' %}
 
   {% elif data['benefit'] === 'armed-forces' %}
 
@@ -83,7 +84,9 @@
     'provide proof of ' + your + ' benefit', 
     change, 
     'yes',
-    'benefit-proof-file-upload'
+    'benefit-proof-file-upload',
+    'no',
+    sampleBenefitLetter
   )}}
 
   <!-- Has save -->
