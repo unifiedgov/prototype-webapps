@@ -132,10 +132,10 @@
   }
 }
 
-#gallery {
+#gallery, .dummy-container {
   margin-top: 10px;
 }
-#gallery img {
+#gallery img, .dummy-container img {
   width: 300px;
   margin-bottom: 10px;
   margin-right: 10px;

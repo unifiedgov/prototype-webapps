@@ -39,6 +39,11 @@ function handleDrop(e) {
   handleFiles(files)
 }
 
+if ($('#dummiesToShow').attr('data-trigger') == "true") {
+  $('#dragDropInstructions, #cantUploadDetails, #help-uploading, #drop-area').hide();
+  $('#fileUploadedBox, #fileAlreadyUploaded').show();
+}
+
 let uploadProgress = []
 let progressBar = document.getElementById('progress-bar')
 

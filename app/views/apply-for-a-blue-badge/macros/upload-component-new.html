@@ -9,7 +9,9 @@
     askIfUploadShowAddress,
     nameOfDataItem,
     isAnInlineUpload,
-    dummyImageURL
+    dummyImageURL,
+    triggerForDummy,
+    triggerName
   )%}
 
 {{ chooseYourFile(
@@ -20,7 +22,9 @@
     askIfUploadShowAddress,
     nameOfDataItem,
     isAnInlineUpload,
-    dummyImageURL
+    dummyImageURL,
+    triggerForDummy,
+    triggerName
   ) 
 }}
 
@@ -47,7 +51,9 @@
   askIfUploadShowAddress,
   nameOfDataItem,
   isAnInlineUpload,
-  dummyImageURL
+  dummyImageURL,
+  triggerForDummy,
+  triggerName
   ) 
 %}
 
@@ -80,11 +86,17 @@
   <h3 class="govuk-heading-m">This is your uploaded file</h3>
 
   <div id="gallery"/></div>
+  {% if triggerForDummy === "true" %}
+  <span id="dummiesToShow" data-trigger={{triggerForDummy}}></span>
+
   <div id="fileAlreadyUploaded" class="hidden">
-    <img src="/public/images/{{dummyImageURL}}" alt="Your uploaded file">
+    <div class="dummy-container">
+      <img src="/public/images/{{dummyImageURL}}" alt="Your uploaded file">
+    </div>
   </div>
+  {% endif %}
   <p class="govuk-body">
-    <a href="">Upload a different file</a>
+    <a href="?{{triggerName}}=false">Upload a different file</a>
   </p>
   <input type="hidden" name="{{provideType}}" value="upload">
 

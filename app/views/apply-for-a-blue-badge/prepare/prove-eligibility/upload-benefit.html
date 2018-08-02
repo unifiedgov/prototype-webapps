@@ -52,6 +52,7 @@
       <li>mobility score</li>
       <li>certificate of entitlement to Personal Independence Payment</li>
     </ul>
+
     {% set sampleBenefitLetter = 'pip-letter.jpg' %}
 
   {% elif data['benefit'] === 'armed-forces' %}
@@ -89,7 +90,9 @@
     'yes',
     'benefit-proof-file-upload',
     'no',
-    sampleBenefitLetter
+    sampleBenefitLetter,
+    data['benefit-done'],
+    'benefit-done'
   )}}
 
   <!-- Has save -->
