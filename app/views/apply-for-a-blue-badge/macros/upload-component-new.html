@@ -11,7 +11,8 @@
     isAnInlineUpload,
     dummyImageURL,
     triggerForDummy,
-    triggerName
+    triggerName,
+    showsAddress
   )%}
 
 {{ chooseYourFile(
@@ -24,7 +25,8 @@
     isAnInlineUpload,
     dummyImageURL,
     triggerForDummy,
-    triggerName
+    triggerName,
+    showsAddress
   ) 
 }}
 
@@ -53,7 +55,8 @@
   isAnInlineUpload,
   dummyImageURL,
   triggerForDummy,
-  triggerName
+  triggerName,
+  showsAddress
   ) 
 %}
 
@@ -104,8 +107,8 @@
   
   {% if (askIfUploadShowAddress==='yes') %}
     {{ govukRadios({
-      "idPrefix": "identity-upload-shows-current-address",
-      "name": "identity-upload-shows-current-address",
+      "idPrefix": nameOfDataItem + "-shows-current-address",
+      "name": nameOfDataItem + "-shows-current-address",
       "fieldset": {
         "legend": {
           "text": 'Does this file show ' + your + ' current address?',
@@ -116,11 +119,13 @@
       "items": [
         {
           "value": "yes",
-          "text": "Yes"
+          "text": "Yes",
+          "checked": showsAddress === "yes"
         },
         {
           "value": "no",
-          "text": "No"
+          "text": "No",
+          "checked": showsAddress === "no"
         }
       ]
     }) }}
