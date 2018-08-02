@@ -1,0 +1,134 @@
+{% extends "layout.html" %}
+{% set isFullWidth = 'yes' %}
+{% set pageHeading = 'Check your answers' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+<div class="govuk-grid-column-three-quarters">
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+  <section class="split-section">
+    
+    <h2 class="govuk-heading-m">Proof of eligibility</h2>
+    
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+      {% if data['applicant'] === "someone-else" %}
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Applicant relationship
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['someone-relationship']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/check-eligibility?change=true">
+            Change<span class="govuk-visually-hidden"> who's applying</span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Full name
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['fullName']}}
+          {% if data['birth-full-name'] %}<br> (Formely: {{ data['birth-full-name'] }}) {% endif %}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/personal-details/name?change=true">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+  
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Gender
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['gender'] | capitalize}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/personal-details/gender?change=true">
+            Change<span class="govuk-visually-hidden"> answer to gender</span>
+          </a>
+        </dd>
+      </div>
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Date of birth
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['dob-day'] }} {{ data['dob-month'] | month }} {{ data['dob-year'] }}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/personal-details/dob?change=true">
+            Change<span class="govuk-visually-hidden"> date of birth</span>
+          </a>
+        </dd>
+      </div>
+    
+      {% if data['nino'] %}
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          National Insurance number
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['nino']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/personal-details/nino?change=true">
+            Change<span class="govuk-visually-hidden"> national insurance number</span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Address
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['address'] }}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/personal-details/select-address?change=true">
+            Change<span class="govuk-visually-hidden"> address</span>
+          </a>
+        </dd>
+      </div>
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Contact details
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {% if data['contact-full-name'] %}{{ data['contact-full-name'] }}<br />{% endif %}
+          {% if data['applicant'] === "someone-else" %}
+          ({{data['someone-relationship']}}) <br />
+          {% endif %}
+          {{ data['primary-phone-number'] }}<br />
+          {% if data['secondary-phone-number'] %}{{ data['secondary-phone-number'] }}<br />{% endif %}
+          {% if data['email-address'] %}{{ data['email-address'] }}{% endif %}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/personal-details/contact-details?change=true">
+            Change<span class="govuk-visually-hidden"> contact details</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+  </section>
+  
+  {{ govukButton({
+    "text": "Continue",
+    "href": '/apply-for-a-blue-badge/task-list?personal-completed=true'
+  }) }}
+</div>
+{% endblock %}

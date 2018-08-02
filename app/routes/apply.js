@@ -591,10 +591,14 @@ router.get('/prove-eligibility/describe-conditions', function(req, res) {
   } else if (req.session.data['disability'] == 'child-bulky-equipment' || req.session.data['disability'] == 'child-close-to-vehicle'){
     res.locals.formAction = 'list-healthcare-professionals';
   } else {
-    res.locals.formAction = '/apply-for-a-blue-badge/prove-your-identity';
+    res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/check-eligibility-answers';
   }
   
   res.render(proveEligibilityTemplatePath+'describe-conditions');
+});
+
+router.get('/prove-eligibility/check-eligibility-answers', function(req, res) {
+  res.render(proveEligibilityTemplatePath+'check-eligibility-answers');
 });
 
 

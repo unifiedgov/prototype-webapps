@@ -86,6 +86,22 @@
               {% endif %}
             </li>
             {% endif %}
+            {% if data['disability'] === 'blind' %}
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="prove-eligibility/are-you-registered-blind{% if data['benefit-completed'] == 'true'%}?benefit-done=true{% endif %}" aria-describedby="benefit-completed">
+                Provide proof of visual impairment
+              </a>
+              {% if data['benefit-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'benefit-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            {% endif %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-your-identity{% if data['identity-completed'] == 'true'%}?identity-done=true{% endif %}" aria-describedby="identity-completed">
                 Prove identity
