@@ -81,7 +81,7 @@ function previewFile(file) {
     img.src = reader.result
     document.getElementById('fileUploadedBox').classList.remove('hidden')
     
-    if(document.getElementById('cantUploadDetails')) {
+    if(document.getElementById('help-uploading')) {
       document.getElementById('cantUploadDetails').classList.add('hidden')  
       document.getElementById('help-uploading').classList.add('hidden')
     }

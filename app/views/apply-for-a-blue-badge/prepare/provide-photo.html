@@ -41,7 +41,10 @@
       change, 
       'no',
       'passport-photo-file-upload',
-      'yes'
+      'yes',
+      'jeff.png',
+      data['photo-done'],
+      'photo-done'
     )}}
   {% endset -%}
   {{ govukRadios({
@@ -61,15 +64,14 @@
       {
         "value": "yes",
         "text": "Yes",
-        "checked": data['already-have-photo'] === 'yes',
+        "checked": data['photo-done'] === 'true',
         "conditional": {
           "html": uploadHtml
         }
       },
       {
         "value": "no",
-        "text": "No",
-        "checked": data['already-have-photo'] === 'no'
+        "text": "No"
       }
 
     ]

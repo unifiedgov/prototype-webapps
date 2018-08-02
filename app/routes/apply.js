@@ -770,16 +770,10 @@ router.get('/prove-eligibility/delete-hcp/:id', function(req, res) {
 // Prove address
 
 router.get('/prove-your-address', function (req, res) {
-  if ((req.query.change !== 'true') &&
-     (req.session.data['identity-upload-shows-current-address'] === 'yes' ||
-      req.session.data['benefit-proof-upload-shows-current-address'] === 'yes')) {
-    res.redirect('/apply-for-a-blue-badge/provide-photo');
-  } else {
-    res.locals.submitLabel = 'Continue';
-    res.locals.change = req.query.change;
-    res.locals.formAction = '/apply-for-a-blue-badge/provide-photo';
-    res.render('apply-for-a-blue-badge/prepare/prove-your-address');
-  }
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  res.locals.formAction = '/apply-for-a-blue-badge/provide-photo';
+  res.render('apply-for-a-blue-badge/prepare/prove-your-address');
 })
 
 router.get('/prove-your-address-backend', function (req, res) {
@@ -801,14 +795,14 @@ router.get('/provide-photo', function (req, res) {
 
 router.get('/provide-photo-backend', function(req, res) {
   if (req.session.data['already-have-photo'] == 'yes') {
-    res.redirect('/apply-for-a-blue-badge/check-answers');
+    res.redirect('/apply-for-a-blue-badge/task-list?photo-completed=true');
   } else {
     res.redirect('/apply-for-a-blue-badge/take-your-photo');
   }
 });
 
 router.get('/device-take-photo', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/check-answers';
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list?photo-completed=true';
   res.locals.submitLabel = 'Continue';
   res.render('apply-for-a-blue-badge/prepare/device-take-photo');
 });
@@ -823,7 +817,7 @@ router.get('/take-photo-backend', function(req, res) {
   if (req.session.data['devices-camera'] == 'yes') {
     res.redirect('/apply-for-a-blue-badge/device-take-photo');
   } else {
-    res.redirect('/apply-for-a-blue-badge/check-answers');
+    res.redirect('/apply-for-a-blue-badge/task-list?photo-completed=true');
   }
 });
 
