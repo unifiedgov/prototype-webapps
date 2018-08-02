@@ -4,11 +4,11 @@
 
 {% if (data['benefit'] === 'dla') %}
 
-{% set pageHeading = 'Upload ' + your + ' latest DLA entitlement letter' %}
+{% set pageHeading = 'Send us ' + your + ' most recent letter from DWP about ' + your + ' DLA award' %}
 
 {% elif (data['benefit'] === 'pip') %}
 
-{% set pageHeading = 'Upload ' + your + ' latest PIP award letter' %}
+{% set pageHeading = 'Send us ' + your + ' most recent letter from DWP about ' + your + ' PIP award' %}
 
 {% elif (data['benefit'] === 'armed-forces') %}
 
@@ -33,15 +33,13 @@
   <input type="hidden" id="change" name="change" value="{{change}}">
   <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-  <p class="govuk-body">You must have received this in the last 12 months.</p>
   {% if data['benefit'] === 'dla' %}
 
     <p class="govuk-body">The letter must include {{your}}:</p>
 
     <ul class="govuk-list govuk-list--bullet">
-      <li>current address</li>
-      <li>mobility rating </li>
-      <li>certificate of entitlement DLA</li>
+      <li>mobility rating (usually found on the first page)</li>
+      <li>certificate of entitlement to DLA (usually found on the last page)</li>
     </ul>
 
   {% elif data['benefit'] === 'pip' %}
@@ -49,7 +47,6 @@
     <p class="govuk-body">The letter must include {{your}}:</p>
 
     <ul class="govuk-list govuk-list--bullet">
-      <li>current address</li>
       <li>mobility score</li>
       <li>certificate of entitlement to Personal Independence Payment</li>
     </ul>
