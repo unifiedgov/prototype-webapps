@@ -44,6 +44,8 @@
       <li>certificate of entitlement DLA</li>
     </ul>
 
+    {% set sampleBenefitLetter = 'dla_letter.png' %}
+
   {% elif data['benefit'] === 'pip' %}
 
     <p class="govuk-body">The letter must include {{your}}:</p>
@@ -65,6 +67,8 @@
       <li>are certified as having a permanent, substantial disability which causes inability to walk or very considerable difficulty in walking</li>
     </ul>
 
+    {% set sampleBenefitLetter = 'spva-letter.png' %}
+
   {% elif data['benefit'] === 'war-pensioners' %}
 
     <p class="govuk-body">This letter should confirm {{you}}:</p>
@@ -73,6 +77,8 @@
       <li>were injured in service before 6 April 2005</li>
       <li>are in receipt of a War Pensioner's Mobility Supplement</li>
     </ul>
+
+    {% set sampleBenefitLetter = 'wpms-letter.png' %}
 
   {% endif %}
 
