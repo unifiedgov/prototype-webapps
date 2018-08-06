@@ -914,11 +914,10 @@ router.get('/photo-takephoto', function (req, res) {
 */
 
 router.get('/declaration', function (req, res) {
-  res.render('apply-for-a-blue-badge/apply/declaration', {'formAction':'/apply-for-a-blue-badge/apply/complete'})
+  res.render('apply-for-a-blue-badge/apply/declaration');
 })
 
 router.get('/paying-for-your-blue-badge', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/paying-for-your-blue-badge-backend';
   res.render('apply-for-a-blue-badge/apply/paying-for-your-blue-badge');
 });
 

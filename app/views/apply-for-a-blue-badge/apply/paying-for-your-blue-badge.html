@@ -14,14 +14,14 @@
 
 <p class="govuk-body-l">{{you | capitalize}}'ll have to pay a £10 issue fee. {{data['council-name'] | capitalize}} will reimburse this fee if {{your}} application is unsuccessful.</p>
 
-<form action="{{formAction }}" novalidate="">
+<form action="/apply-for-a-blue-badge/paying-for-your-blue-badge-backend" novalidate="">
 
   {{ govukButton({
     "text": "Pay online now"
   }) }}
 
   <p class="govuk-body">
-    <a href="paying-for-your-blue-badge-backend?pay-when=later">Submit {{application}} and pay later</a>
+    <a href="/apply-for-a-blue-badge/paying-for-your-blue-badge-backend?pay-when=later">Submit {{application}} and pay later</a>
   </p>
 
 </form>

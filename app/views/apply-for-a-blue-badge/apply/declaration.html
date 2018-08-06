@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
 
 {% set pageHeading = 'Declaration' %}
 
@@ -36,7 +37,7 @@
 {% endif %}
 
 
-<form novalidate="" action="paying-for-your-blue-badge">
+<form novalidate="" action="/apply-for-a-blue-badge/task-list">
   {{ govukCheckboxes({
     "idPrefix": "agree",
     "name": "agree",
@@ -49,11 +50,15 @@
     },
     "items": [
       {
-        "value": "I agree to this declaration",
-        "text": "I agree to this declaration"
+        "value": "true",
+        "text": "I agree to this declaration",
+        "checked": checked('agree', 'true')
       }
     ]
   }) }}
+
+  <input type="hidden" name="declaration-completed" value="true">
+
   {{ govukButton({
     "text": "Continue"
   }) }}

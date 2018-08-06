@@ -107,6 +107,7 @@
       <form action="{{formAction}}">
         <h3 class="govuk-heading-s">Check your photo</h3>
         <p class="govuk-body">Once you're happy that the photo meets the requirements you can continue.</p>
+        <input type="hidden" name="photo-completed" value="true">
         {{ govukButton({
           "text": submitLabel
         }) }}
