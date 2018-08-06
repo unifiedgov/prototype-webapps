@@ -17,6 +17,9 @@
     <dl class="govuk-check-your-answers govuk-check-your-answers--short">
       
       {% if data['disability'] === 'blind' %}
+      
+        {% set whichCompleted = 'blind-completed=true' %}
+
       <div class="govuk-check-your-answers__contents">
         <dt class="govuk-check-your-answers__question">
           Proof of visual impairment
@@ -38,6 +41,9 @@
       {% endif %}
 
       {% if (data['disability'] === 'arms') %}
+
+        {% set whichCompleted = 'arms-completed=true' %}
+
         <div class="govuk-check-your-answers__contents">
           <dt class="govuk-check-your-answers__question">
             Driving frequency
@@ -46,7 +52,7 @@
             {{data['how-often-drive']}}
           </dd>
           <dd class="govuk-check-your-answers__change">
-            <a href="/apply-for-a-blue-badge/prove-eligibility/medical-equipment?change=true">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/how-often-drive?change=true">
               Change<span class="govuk-visually-hidden"> driving frequency</span>
             </a>
           </dd>
@@ -107,7 +113,7 @@
   
   {{ govukButton({
     "text": "Continue",
-    "href": '/apply-for-a-blue-badge/task-list?blind-completed=true'
+    "href": '/apply-for-a-blue-badge/task-list?' + whichCompleted
   }) }}
 </div>
 {% endblock %}

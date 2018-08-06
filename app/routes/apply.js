@@ -576,18 +576,18 @@ router.get('/prove-eligibility/drive-adapted-backend', function(req, res) {
   if (req.session.data['drive-adapted-vehicle'] == 'yes') {
     res.redirect(proveEligibilityPath+'upload-adapted-evidence');
   } else {
-    res.redirect(proveEligibilityPath+'difficulty-with-parking-meters');
+    res.redirect(proveEligibilityPath+'describe-conditions');
   }
 });
 
-router.get('/prove-eligibility/difficulty-with-parking-meters', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/describe-conditions';
-  res.render(proveEligibilityTemplatePath+'difficulty-parking-meters');
-});
+// router.get('/prove-eligibility/difficulty-with-parking-meters', function(req, res) {
+//   res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/describe-conditions';
+//   res.render(proveEligibilityTemplatePath+'difficulty-parking-meters');
+// });
 
 
 router.get('/prove-eligibility/upload-adapted-evidence', function (req, res) {
-  res.locals.formAction = 'difficulty-with-parking-meters';
+  res.locals.formAction = 'describe-conditions';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
   res.render(proveEligibilityTemplatePath+'upload-adapted-evidence')
