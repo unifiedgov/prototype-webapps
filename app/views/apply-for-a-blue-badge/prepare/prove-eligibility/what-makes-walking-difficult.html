@@ -41,32 +41,32 @@
       {
         "value": "pain",
         "text": "Excessive pain",
-        "checked": data['difficulty'] === 'pain'
+        "checked": checked('difficulty', 'pain')
       },
       {
         "value": "breathlessness",
         "text": "Breathlessness",
-          "checked": data['difficulty'] === 'breathlessness'
+        "checked": checked('difficulty', 'breathlessness')
       },
       {
         "value": "balance",
         "text": "Balance or coordination",
-        "checked": data['difficulty'] === 'balance'
+        "checked": checked('difficulty', 'balance')
       },
       {
         "value": "dangerous",
         "text": "It's dangerous to the health and safety of myself or others",
-        "checked": data['difficulty'] === 'dangerous'
+        "checked": checked('difficulty', 'dangerous')
       },
       {
         "value": "planning",
         "text": "I struggle planning or following a journey",
-        "checked": data['difficulty'] === 'planning'
+        "checked": checked('difficulty', 'planning')
       },
       {
         "value": "something",
         "text": "Something else",
-        "checked": data['difficulty'] === 'something',
+        "checked": checked('difficulty', 'something'),
         "conditional": {
           "html": somethingHtml
         }
@@ -77,7 +77,7 @@
   <div id="hiddenCaughtInputs"></div>
   
   {{ govukButton({
-    "text": "Continue"
+    "text": submitLabel
   }) }}
 
   <!-- Has save -->

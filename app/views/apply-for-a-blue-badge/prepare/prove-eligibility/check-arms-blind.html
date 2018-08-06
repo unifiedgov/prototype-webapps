@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+{% set isFullWidth = 'yes' %}
+{% set pageHeading = 'Check your answers' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+<div class="govuk-grid-column-three-quarters">
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+  <section class="split-section">
+    
+    <h2 class="govuk-heading-m">Proof of eligibility</h2>
+    
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+      
+      {% if data['disability'] === 'blind' %}
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Proof of visual impairment
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {% if data['registered-blind'] === 'yes' and data['blind-consent'] === 'yes' %}
+            Registered as severely sight impaired at: <br>
+            {{data['blind-council-name']}}
+          {% else %}
+            {{data['impairment-proof-file-upload']}}
+          {% endif %}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-eligibility?change=true">
+            Change<span class="govuk-visually-hidden"> proof of visual impairment</span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if (data['disability'] === 'arms') %}
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Driving frequency
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{data['how-often-drive']}}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/medical-equipment?change=true">
+              Change<span class="govuk-visually-hidden"> driving frequency</span>
+            </a>
+          </dd>
+        </div>
+      
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Adapted vehicle
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {% if (data['drive-adapted-vehicle'] === 'yes') %}
+              Yes - {{data['describe-adapted']}}
+            {% else %}
+              No
+            {% endif %}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/drive-adapted-vehicle?change=true">
+              Change<span class="govuk-visually-hidden"> adapted vehicle</span>
+            </a>
+          </dd>
+        </div>
+      
+        {% if (data['drive-adapted-vehicle'] === 'yes') %}
+          <div class="govuk-check-your-answers__contents">
+            <dt class="govuk-check-your-answers__question">
+              Proof of adapted vehicle
+            </dt>
+            <dd class="govuk-check-your-answers__answer">
+              {{ data['adapted-proof-file-upload'] }}
+            </dd>
+            <dd class="govuk-check-your-answers__change">
+              <a href="/apply-for-a-blue-badge/prove-eligibility/upload-adapted-evidence?change=true">
+                Change<span class="govuk-visually-hidden"> upload of adapted evidence</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+      {% endif %}
+
+      
+    </dl>
+  </section>
+  
+  {{ govukButton({
+    "text": "Continue",
+    "href": '/apply-for-a-blue-badge/task-list?personal-completed=true'
+  }) }}
+</div>
+{% endblock %}

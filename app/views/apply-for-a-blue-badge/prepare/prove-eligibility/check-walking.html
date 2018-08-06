@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+{% set isFullWidth = 'yes' %}
+{% set pageHeading = 'Check your answers' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+<div class="govuk-grid-column-three-quarters">
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+  <section class="split-section">
+    
+    <h2 class="govuk-heading-m">Describe walking ability</h2>
+    
+    {{data | dump(2) }}
+    
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Walking difficulty
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['difficulty-chosen-value'] | striptags(true) | escape | nl2br}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-eligibility/what-makes-walking-difficult?change=true">
+            Change<span class="govuk-visually-hidden"> walking difficulty</span>
+          </a>
+        </dd>
+      </div>
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Mobility aids
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+    
+          {% if data['mobility-aids-array']|length %}
+            {% for aid in data['mobility-aids-array'] %}
+              {{aid.name}},
+              {{aid.usage}},
+              {{aid.source}} <br>
+            {% endfor %}
+          {% else %}
+            No mobility aids
+          {% endif %}
+    
+          {{data['mobility-aids-used-chosen-value'] | striptags(true) | escape | nl2br}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="list-mobility-aids?change=true">
+            Change<span class="govuk-visually-hidden"> mobility aids</span>
+          </a>
+        </dd>
+      </div>
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Walking duration
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['how-long-walk-chosen-value']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="walking-time?change=true">
+            Change<span class="govuk-visually-hidden"> walking duration</span>
+          </a>
+        </dd>
+      </div>
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Walking speed
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['walking-speed-chosen-value']}} than other people
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="how-quickly-do-you-walk?change=true">
+            Change<span class="govuk-visually-hidden"> walking speed</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Description of condition
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['describe-condition']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="describe-conditions?change=true">
+            Change<span class="govuk-visually-hidden"> description of condition</span>
+          </a>
+        </dd>
+      </div>
+
+      
+    </dl>
+  </section>
+  
+  {{ govukButton({
+    "text": "Continue",
+    "href": '/apply-for-a-blue-badge/task-list?walking-completed=true'
+  }) }}
+</div>
+{% endblock %}

@@ -192,7 +192,8 @@ function sendBackToCheckAnswers(query, nextAction, checkSection) {
     console.log('true');
     locals = {
       'formAction': checkSection,
-      'submitLabel': 'Update'
+      'submitLabel': 'Update',
+      'pagechange': '?change=true'
     }
   } else {
     console.log('false');
@@ -200,7 +201,7 @@ function sendBackToCheckAnswers(query, nextAction, checkSection) {
       'formAction': nextAction,
       'submitLabel': 'Continue'
     }
-  }
+  } 
   return locals;
 }
 
@@ -476,7 +477,8 @@ router.get('/prove-eligibility/upload-blind-cvi', function (req, res) {
 // Walking ability
 
 router.get('/prove-eligibility/what-makes-walking-difficult', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids';
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids','check-walking'))
+
   res.render(proveEligibilityTemplatePath+'what-makes-walking-difficult');
 });
 
@@ -491,12 +493,16 @@ router.get('/prove-eligibility/list-mobility-aids', function(req, res) {
   }
 
   res.locals.tableRows = tableRows;
-  res.locals.formAction = 'walking-time';
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/walking-time','check-walking'))
   res.render(proveEligibilityTemplatePath+'list-mobility-aids');
 });
 
 router.get('/prove-eligibility/add-mobility-aid', function(req, res) {
+  var changeName = req.query.change == 'true' ? 'change' : '';
+  var changeValue = req.query.change == 'true' ? 'true' : '';
   res.locals.formAction = 'create-mobility-aid';
+  res.locals.shouldchangename = changeName;
+  res.locals.shouldchangevalue = changeValue;
   res.render(proveEligibilityTemplatePath+'add-mobility-aid');
 });
 
@@ -513,8 +519,12 @@ router.get('/prove-eligibility/create-mobility-aid', function(req, res) {
     req.session.data['mobility-aids-array'] = [mobilityAid];
   }
 
+  var changeValue = req.query.change == 'true' ? '?change=true' : '';
+
+  console.log('spit' + changeValue)
+
   delete req.session.data['mobility-aid-name','mobility-aid-usage','mobility-aid-source'];
-  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids');
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids' + changeValue);
 });
 
 router.get('/prove-eligibility/delete-mobility-aid/:id', function(req, res) {
@@ -524,7 +534,7 @@ router.get('/prove-eligibility/delete-mobility-aid/:id', function(req, res) {
 
 
 router.get('/prove-eligibility/walking-time', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/walking-time-backend';
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/walking-time-backend','check-walking'))
   res.render(proveEligibilityTemplatePath+'walking-time');
 });
 
@@ -537,7 +547,7 @@ router.get('/prove-eligibility/walking-time-backend', function(req, res) {
 });
 
 router.get('/prove-eligibility/how-quickly-do-you-walk', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/describe-conditions';
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/describe-conditions','check-walking'))
   res.render(proveEligibilityTemplatePath+'how-quickly-do-you-walk');
 });
 
@@ -586,20 +596,32 @@ router.get('/prove-eligibility/medical-equipment', function(req, res) {
 // Describe condition
 
 router.get('/prove-eligibility/describe-conditions', function(req, res) {
+  var thisFormAction = '';
+
   if (req.session.data['disability'] == 'problems-walking') {
-    res.locals.formAction = 'list-treatments';
+    thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/check-walking';
   } else if (req.session.data['disability'] == 'child-bulky-equipment' || req.session.data['disability'] == 'child-close-to-vehicle'){
-    res.locals.formAction = 'list-healthcare-professionals';
+    thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/check-child';
   } else {
-    res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/check-eligibility-answers';
+    thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/check-arms-blind';
   }
+
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,thisFormAction,'check-walking'))
   
   res.render(proveEligibilityTemplatePath+'describe-conditions');
 });
 
-router.get('/prove-eligibility/check-eligibility-answers', function(req, res) {
-  res.render(proveEligibilityTemplatePath+'check-eligibility-answers');
+
+router.get('/prove-eligibility/check-walking', function(req, res) {
+  res.render(proveEligibilityTemplatePath+'check-walking');
 });
+
+
+router.get('/prove-eligibility/check-arms-blind', function(req, res) {
+  res.render(proveEligibilityTemplatePath+'check-arms-blind');
+});
+
+
 
 
 // List treatments
@@ -626,7 +648,7 @@ router.get('/prove-eligibility/list-treatments', function(req, res) {
   }
 
   res.locals.tableRows = tableRows;
-  res.locals.formAction = 'list-medication';
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list?treatments-completed=true';
   res.render(proveEligibilityTemplatePath+'list-treatments');
 });
 
@@ -683,7 +705,7 @@ router.get('/prove-eligibility/list-medication', function(req, res) {
   }
 
   res.locals.tableRows = tableRows;
-  res.locals.formAction = 'list-healthcare-professionals';
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list?medication-completed=true';
   res.render(proveEligibilityTemplatePath+'list-medication');
 });
 
@@ -741,7 +763,7 @@ router.get('/prove-eligibility/list-healthcare-professionals', function(req, res
   }
 
   res.locals.tableRows = tableRows;
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-your-identity'
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list?hcp-completed=true'
   res.render(proveEligibilityTemplatePath+'list-healthcare-professionals');
 });
 

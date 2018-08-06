@@ -31,7 +31,7 @@
           "rows": tableRows
         }) }}
 
-      <p class="govuk-body"><a href="add-mobility-aid">Add another mobility aid</a></p>
+      <p class="govuk-body"><a href="add-mobility-aid{{pagechange}}">Add another mobility aid</a></p>
 
     {% else %}
     
@@ -52,7 +52,7 @@
       "rows": ""
     }) }}
 
-    <p class="govuk-body"><a href="add-mobility-aid">Add first mobility aid</a></p>
+    <p class="govuk-body"><a href="add-mobility-aid{{pagechange}}">Add first mobility aid</a></p>
 
     {% endif %}
   {% endset -%}
@@ -78,14 +78,15 @@
       },
       {
         "value": "no",
-        "text": "No"
+        "text": "No",
+        "checked": tableRows.length == 0
       }
     ]
   }) 
 }}
 
 {{ govukButton({
-  "text": "Continue",
+  "text": submitLabel,
   "href": formAction
 }) }}
 
