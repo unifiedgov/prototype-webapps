@@ -614,7 +614,7 @@ router.get('/prove-eligibility/describe-conditions', function(req, res) {
     thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/check-arms-blind';
   }
 
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,thisFormAction,'check-walking'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,thisFormAction,thisFormAction))
   
   res.render(proveEligibilityTemplatePath+'describe-conditions');
 });

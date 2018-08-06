@@ -87,13 +87,27 @@
         {% endif %}
       {% endif %}
 
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Description of condition
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['describe-condition']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="describe-conditions?change=true">
+            Change<span class="govuk-visually-hidden"> description of condition</span>
+          </a>
+        </dd>
+      </div>
+
       
     </dl>
   </section>
   
   {{ govukButton({
     "text": "Continue",
-    "href": '/apply-for-a-blue-badge/task-list?personal-completed=true'
+    "href": '/apply-for-a-blue-badge/task-list?blind-completed=true'
   }) }}
 </div>
 {% endblock %}
