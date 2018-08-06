@@ -14,8 +14,6 @@
 {% set treatmentHtml %}
   {% if tableRows.length > 0 %}
 
-    <p class="govuk-body">List any surgeries, treatments or clinics {{ you }}’ve had for your condition.</p>
-
     {{ govukTable({
       "head": [
         {
@@ -35,7 +33,6 @@
 
   {% else %}
   
-  <p class="govuk-body">List any surgeries, treatments or clinics {{ you }}’ve had for your condition.</p>
 
   {{ govukTable({
     "head": [
@@ -66,6 +63,9 @@
         "isPageHeading": true,
         "classes": 'govuk-fieldset__legend--l'
       }
+    },
+    "hint": {
+      "text": "List any surgeries, treatments or clinics " + you + "’ve had for your condition"
     },
     "items": [
       {

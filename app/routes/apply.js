@@ -487,8 +487,16 @@ router.get('/prove-eligibility/list-mobility-aids', function(req, res) {
   delete res.locals.tableRows;
   if (mobilityAids) {
     var tableRows = [];
+    var changeValue = req.query.change == 'true' ? '?change=true' : '';
+
     mobilityAids.forEach(function(aid,index) {
-      tableRows.push([{"text": aid.name},{"text": aid.usage},{"html": "<a href='delete-mobility-aid/"+index+"'>Remove this</a>","format": "numeric"}])
+      tableRows.push(
+        [
+          {"text": aid.name},
+          {"text": aid.usage},
+          {"html": "<a href='delete-mobility-aid/"+index+changeValue+"'>Remove this</a>","format": "numeric"}
+          ]
+        )
     });
   }
 
@@ -521,15 +529,15 @@ router.get('/prove-eligibility/create-mobility-aid', function(req, res) {
 
   var changeValue = req.query.change == 'true' ? '?change=true' : '';
 
-  console.log('spit' + changeValue)
-
   delete req.session.data['mobility-aid-name','mobility-aid-usage','mobility-aid-source'];
   res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids' + changeValue);
 });
 
 router.get('/prove-eligibility/delete-mobility-aid/:id', function(req, res) {
+  var changeValue = req.query.change == 'true' ? '?change=true' : '';
+
   req.session.data['mobility-aids-array'].splice(req.params.id, 1);
-  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids');
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids'+changeValue);
 });
 
 

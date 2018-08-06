@@ -14,8 +14,6 @@
   {% set mobilityHtml %}
     {% if tableRows.length > 0 %}
     
-        <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
-
         {{ govukTable({
           "head": [
             {
@@ -35,8 +33,6 @@
 
     {% else %}
     
-    <p class="govuk-body">List any mobility aids {{ you }} use such as wheelchairs, prosthetic legs or crutches.</p>
-
     {{ govukTable({
       "head": [
         {
@@ -66,6 +62,9 @@
         "isPageHeading": true,
         "classes": 'govuk-fieldset__legend--l'
       }
+    },
+    "hint": {
+      "text": "List any mobility aids " + you + " use such as wheelchairs, prosthetic legs or crutches"
     },
     "items": [
       {

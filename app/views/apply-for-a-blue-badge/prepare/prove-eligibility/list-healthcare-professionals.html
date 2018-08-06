@@ -15,7 +15,6 @@
 {% set hcpHtml %}
   {% if tableRows.length > 0 %}
 
-      <p class="govuk-body">List any healthcare professionals who have treated {{ your }} condition.<br />For example, {{ your }} GP, surgeon, specialist.</p>
 
       {{ govukTable({
         "head": [
@@ -36,7 +35,6 @@
 
   {% else %}
   
-  <p class="govuk-body">List any healthcare professionals who have treated {{ your }} condition.<br />For example, {{ your }} GP, surgeon, specialist.</p>
 
   {{ govukTable({
     "head": [
@@ -67,6 +65,9 @@
         "isPageHeading": true,
         "classes": 'govuk-fieldset__legend--l'
       }
+    },
+    "hint": {
+      "html": "List any healthcare professionals who have treated " + your + " condition.<br />For example, " + your + " GP, surgeon, specialist"
     },
     "items": [
       {
