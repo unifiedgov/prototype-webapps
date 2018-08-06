@@ -117,6 +117,42 @@
             </li>
             {% endif %}
 
+            {% if data['disability'] === 'child-bulky-equipment' %}
+              <li class="app-task-list__item">
+                <a class="app-task-list__task-name" href="prove-eligibility/{% if data['bulky-completed'] == 'true'%}check-child{%else%}medical-equipment{% endif %}" aria-describedby="bulky-completed">
+                  List medical equipment
+                </a>
+                {% if data['bulky-completed'] == "true" %}
+                {{ govukTag({
+                  text: 'Completed',
+                  classes: 'app-task-list__task-completed',
+                  attributes: {
+                    'id': 'benefit-completed'
+                  }
+                }) }}
+                {% endif %}
+              </li>
+
+            {% endif %}
+
+            {% if data['disability'] === 'child-bulky-equipment' or data['disability'] === 'child-close-to-vehicle'  %}
+              <li class="app-task-list__item">
+                <a class="app-task-list__task-name" href="prove-eligibility/{% if data['child-completed'] == 'true'%}check-child{%else%}describe-conditions{% endif %}" aria-describedby="child-completed">
+                  Describe their condition
+                </a>
+                {% if data['child-completed'] == "true" %}
+                {{ govukTag({
+                  text: 'Completed',
+                  classes: 'app-task-list__task-completed',
+                  attributes: {
+                    'id': 'benefit-completed'
+                  }
+                }) }}
+                {% endif %}
+              </li>
+
+            {% endif %}
+
             {% if data['disability'] === 'problems-walking' or data['disability'] === 'child-bulky-equipment' or data['disability'] === 'child-close-to-vehicle'  %}
 
             <li class="app-task-list__item">
@@ -151,6 +187,7 @@
               {% endif %}
             </li>
             {% endif %}
+
             {% if data['disability'] === 'blind' %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-eligibility/{% if data['blind-completed'] == 'true'%}check-arms-blind{%else%}are-you-registered-blind{% endif %}" aria-describedby="blind-completed">
@@ -170,7 +207,7 @@
             {% if data['disability'] === 'arms' %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-eligibility/{% if data['arms-completed'] == 'true'%}check-arms-blind{%else%}how-often-drive{% endif %}" aria-describedby="arms-completed">
-                Describe your condition
+                Describe {{your}} condition
               </a>
               {% if data['arms-completed'] == "true" %}
               {{ govukTag({

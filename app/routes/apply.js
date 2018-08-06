@@ -596,7 +596,7 @@ router.get('/prove-eligibility/upload-adapted-evidence', function (req, res) {
 // Under 3
 
 router.get('/prove-eligibility/medical-equipment', function(req, res) {
-  res.locals.formAction = 'describe-conditions';
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/describe-conditions','check-child'))
   res.render(proveEligibilityTemplatePath+'medical-equipment');
 });
 
@@ -627,6 +627,10 @@ router.get('/prove-eligibility/check-walking', function(req, res) {
 
 router.get('/prove-eligibility/check-arms-blind', function(req, res) {
   res.render(proveEligibilityTemplatePath+'check-arms-blind');
+});
+
+router.get('/prove-eligibility/check-child', function(req, res) {
+  res.render(proveEligibilityTemplatePath+'check-child');
 });
 
 

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% set isFullWidth = 'yes' %}
+{% set pageHeading = 'Check your answers' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+<div class="govuk-grid-column-three-quarters">
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+  <section class="split-section">
+    
+    <h2 class="govuk-heading-m">Proof of eligibility</h2>
+    
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+      
+      {% if (data['disability'] === 'child-bulky-equipment') %}
+        {% set whichCompleted = 'bulky-completed=true&child-completed=true'%}
+
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Medical equipment
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{data['medical-equipment-chosen-value'] | striptags(true) | escape | nl2br}}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/medical-equipment?change=true">
+              Change<span class="govuk-visually-hidden"> medical equipment</span>
+            </a>
+          </dd>
+        </div>
+      {% endif %}
+
+      {% if (data['disability'] === 'child-close-to-vehicle') %}
+        {% set whichCompleted = 'child-completed=true'%}
+      {% endif %}
+
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Description of condition
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['describe-condition']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="describe-conditions?change=true">
+            Change<span class="govuk-visually-hidden"> description of condition</span>
+          </a>
+        </dd>
+      </div>
+
+      
+    </dl>
+  </section>
+  
+  {{ govukButton({
+    "text": "Continue",
+    "href": '/apply-for-a-blue-badge/task-list?' + whichCompleted
+  }) }}
+</div>
+{% endblock %}
