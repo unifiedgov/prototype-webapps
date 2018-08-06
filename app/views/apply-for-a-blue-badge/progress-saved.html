@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = "We've saved " + your + " " + application + " for 24 hours" %}
+{% set pageHeading = "We've saved " + your + " " + application + " for 7 days" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -23,7 +23,7 @@
 
 <h2 class="govuk-heading-m">What happens next</h2>
 
-<p class="govuk-body">We'll save this {{application}} for 24 hours before we delete it.</p>
+<p class="govuk-body">We'll save this {{application}} for 7 days before we delete it.</p>
 
 <p class="govuk-body">It's now safe to close this window.</p>
 
