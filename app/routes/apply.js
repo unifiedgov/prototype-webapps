@@ -810,16 +810,8 @@ router.get('/prove-eligibility/delete-hcp/:id', function(req, res) {
 router.get('/prove-your-address', function (req, res) {
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
-  res.locals.formAction = '/apply-for-a-blue-badge/provide-photo';
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list?address-completed=true';
   res.render('apply-for-a-blue-badge/prepare/prove-your-address');
-})
-
-router.get('/prove-your-address-backend', function (req, res) {
-  if (req.query.change === 'true') {
-    res.redirect('/apply-for-a-blue-badge/check-answers');
-  } else {
-    res.redirect('/apply-for-a-blue-badge/provide-photo');
-  }
 })
 
 // Add photo

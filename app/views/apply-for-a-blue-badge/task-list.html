@@ -234,7 +234,7 @@
               }) }}
               {% endif %}
             </li>
-            {% if (data['identity-upload-shows-current-address'] === 'no' and data['benefit-proof-upload-shows-current-address'] === 'no') or ( data['identity-upload-shows-current-address'] === 'no' and data['benefit'] === 'none') %}
+            {% if (data['your-identity-file-upload-shows-current-address'] === 'no' and data['benefit-proof-file-upload-shows-current-address'] === 'no') or ( data['your-identity-file-upload-shows-current-address'] === 'no' and data['benefit'] === 'none') %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-your-address{% if data['address-completed'] == 'true'%}?address-done=true{% endif %}" aria-describedby="address-completed">
                 Prove address

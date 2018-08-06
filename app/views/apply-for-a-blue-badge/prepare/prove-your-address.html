@@ -14,7 +14,7 @@
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 <form action="{{ formAction }}?proveIdentity=upload">
-  <input type="hidden" id="change" name="change" value="{{change}}">
+  <input type="hidden" name="address-completed" value="true">
   <p class="govuk-body">Upload a photo or scan of a document, that shows {{your}} current address, such as:</p>
 
   {% if data['real-age'] < 16 %}
