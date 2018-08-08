@@ -163,6 +163,31 @@
       })
     }}
 
+
+    {{ govukRadios({
+      "idPrefix": "reassessment",
+      "name": "reassessment",
+      "classes": "govuk-radios",
+      "fieldset": {
+        "legend": {
+          "text": "Does the applicant need reassessing when they renew?"
+        }
+      },
+      "items": [
+        {
+          "value": "Yes",
+          "text": "Yes",
+          "checked": data['reassessment'] === 'Yes'
+        },
+        {
+          "value": "No",
+          "text": "No",
+          "checked": data['reassessment'] === 'No'
+        }
+      ]
+    }) }}
+
+
   </section>
 
   <section class="form-section">

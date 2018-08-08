@@ -6,7 +6,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/sign-in', function (req, res) {
-  res.locals.formAction = '/manage-blue-badges/all-applications';
+  res.locals.formAction = '/manage-blue-badges/new-applications';
   res.render('manage-blue-badges/sign-in', {'title':'Sign in'})
   req.session.destroy()
 });
@@ -43,6 +43,10 @@ router.get('/set-your-password', function (req, res) {
 router.get('/all-applications', function (req, res) {
   res.render('manage-blue-badges/all-applications', {'title':'All applications','app_class':'active'})
 });
+
+router.get('/new-applications', function (req, res) {
+  res.render('manage-blue-badges/new-applications', {'title':'New applications','new_class':'active'})
+})
 
 router.get('/new-application', function (req, res) {
   res.render('manage-blue-badges/new-application', {'title':'New application','app_class':'active'})

@@ -11,41 +11,45 @@
 {% endblock %}
 
 {% block page_header %}
-
-  <h1>{{title}}</h1>
+  <div class="check-answers-heading-with-change">
+    <div class="check-answers-heading">
+      <p class="subtitle">1234542525</p>
+      <h1>{{title}}</h1>
+    </div>
+  
+    <div class="check-answers-change">
+      <p>
+        <a href="#applicationDetails">View application details &darr;</a>
+      </p>
+    </div>
+  
+  </div>
   
 {% endblock %}
 
 {% block content %}
 
 <section class="split-section">
-  <div class="check-answers-heading-with-change">
-    <div class="check-answers-heading">
-      <h2 class="govuk-heading-m">
-        {% if data['badge-type']  === 'person' %}
-        Personal details
-        {% else %}
-        Organisation details
-        {% endif %}
-      </h2>
-    </div>
-  
-    <div class="check-answers-change">
-      <a href="/admin/order-a-badge/change-details">Change<span class="visually-hidden"> details</span></a>
-    </div>
-  
-  </div>
+  <h2 class="govuk-heading-m">
+    Personal details
+  </h2>
   
   <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-
-    {% if data['badge-type']  === 'person' %}
-    
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         Full name
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{ data['fullName'] }}
+        Kathleen Burgess
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Gender
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Female
       </dd>
     </div>
 
@@ -54,216 +58,176 @@
         Date of birth
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['dob-day']}}/{{data['dob-month']}}/{{data['dob-year']}}
-      </dd>
-    </div>
-
-
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Gender
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{data['gender']}}
+        12 May 1940
       </dd>
     </div>
 
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        N.I number
+        National insurance number
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['nino']}}
-      </dd>
-    </div>
-
-    {% else %}
-
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Organisation name
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{data['organisation-name']}}
-      </dd>
-    </div>
-
-    {% endif %}
-  
-  
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Address
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{data['address-line-1']}}{% if data['address-line-2']%},{{data['address-line-2']}}{% endif %}, {{data['address-town']}}, {{data['address-postcode']}}
-      </dd>
-    </div>
-
-    {% if data['contact-name'] %}
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Contact name
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{data['contact-name']}}
-      </dd>
-    </div>
-    {% endif %}
-  
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Contact number
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{data['primary-contact-number']}}
+        JR 12 34 56 A
       </dd>
     </div>
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Email address
+        Home address
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['email-address']}}
+        114 Mansfield Road, Crumpsall, Manchester, M8 ITG <br>
+        (25 years)
       </dd>
     </div>
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Eligibility
+        Contact details
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['reason']}}
+        01331 252 226 <br>
+        k.burgess@email.com
       </dd>
     </div>
   
     <div class="govuk-check-your-answers__contents">
-      {% if data['badge-type']  === 'person' %}
+      <dt class="govuk-check-your-answers__question">
+        Proof of identity
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        <a href="">driving_license.jpg</a>
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Proof of address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        <a href="">council_tax.jpg</a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         Photo
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        <img src="/public/images/margaret.png" alt="Photo of margaret Miller">
+        <img src="/public/images/margaret.png" alt="Photo of Margaret Miller">
       </dd>
-      {% else %}
-      <dt class="govuk-check-your-answers__question">
-        Logo
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        <img src="/public/images/company-logo.png" alt="Company logo">
-      </dd>
-      {% endif %}
     </div>
   </dl>
 </section>
 
 <section class="split-section">
-  <div class="check-answers-heading-with-change">
-    <div class="check-answers-heading">
-      <h2 class="govuk-heading-m">
-        Processing
-      </h2>
-    </div>
-  
-    <div class="check-answers-change">
-      <a href="processing">Change<span class="visually-hidden"> processing details</span></a>
-    </div>
-  
-  </div>
+  <h2 class="govuk-heading-m">
+    Proof of eligibility
+  </h2>
   
   <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-    
-    {% if data['badge-type'] === 'organisation' %}
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Number of badges
+        Reason for applying
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['number-of-badges']}}
+        Can not walk or finds walking very difficult
       </dd>
     </div>
-    {% endif %}
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Needs assessing
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        No
+      </dd>
+    </div>
 
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Local authority reference
+        Existing badge number
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['la-reference']}}
+        e873baF
       </dd>
     </div>
-  
+
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Badge start date
+        Existing expiry date
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['start-day']}}/{{data['start-month']}}/{{data['start-year']}}
-      </dd>
-    </div>
-  
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Badge expiry date
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{data['expiry-day']}}/{{data['expiry-month']}}/{{data['expiry-year']}}
-      </dd>
-    </div>
-  
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Needs reassessing
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{data['reassessment']}}
+        2 Nov 2018
       </dd>
     </div>
   
 
+  </dl>
+</section>
+
+<section class="split-section" id="applicationDetails">
+  <h2 class="govuk-heading-m">
+    Application details
+  </h2>
+
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Application date
+        Reference
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['application-day']}}/{{data['application-month']}}/{{data['application-year']}}
+        1234542525
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Type
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Renewal
       </dd>
     </div>
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Application channel
+        Submitted
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['application-channel']}}
+        13 August 2018 at 13:04
       </dd>
     </div>
-  
+
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Deliver to
+        Applicant
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{data['deliver-to']}}
-      </dd>
-    </div>
-  
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Delivery options
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{data['delivery-options']}}
+        Self applicant
       </dd>
     </div>
   </dl>
 </section>
 
 {{ govukButton({
-  "text": "Order badge",
-  "href": 'badge-ordered'
-}) }}
+    "text": "Order badge",
+    "href": "order-a-badge/processing"
+  }) }}
 
+<p><a href="">Export application</a></p>
+
+  {{ govukDetails({
+    "summaryText": "Delete application",
+    "html": '
+              <form action="all-applications">
+                <p>Are you sure you want to delete this application?</p>
+                <input id="success" name="success" type="hidden" value="Application deleted">
+                <input value="Yes, delete application" type="submit" class="govuk-button">
+              </form>
+              <p class="govuk-body">
+                <a href="#">No, don\'t delete the application</a>
+              </p>' 
+  }) }}
 
 {% endblock %}
