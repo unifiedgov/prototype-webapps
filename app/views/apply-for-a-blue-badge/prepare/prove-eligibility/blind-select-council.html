@@ -40,11 +40,10 @@
 {% block pageScripts %}
   <script>
     $(document).ready(function () {
-      accessibleAutocomplete.enhanceSelectElement({
+      govukGovernmentOrganisationsAutocomplete({
         defaultValue: '',
-        showAllValues: true,
-        selectElement: document.querySelector('#councilPicker')
-      });
+        selectElement: document.getElementById('councilPicker'),
+      })
     });
   </script>
 {% endblock %}
