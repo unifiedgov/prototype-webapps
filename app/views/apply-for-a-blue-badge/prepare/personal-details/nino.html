@@ -19,10 +19,13 @@
     "hint": {
       "text": "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
     },
-    classes: "govuk-input--width-20",
+    classes: "govuk-input--width-20 input-capitals",
     id: "nino",
     name: "nino",
-    value: data['nino']
+    value: data['nino'],
+    attributes: {
+      autocapitalize: "characters"
+    }
   }) }}
   
   {{ govukButton({

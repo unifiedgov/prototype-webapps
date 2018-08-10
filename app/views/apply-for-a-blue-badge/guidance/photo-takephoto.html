@@ -25,20 +25,32 @@
           <li>clearly shows {{ your }} face</li>
         </ul>
         <p class="govuk-body hidden-tablet">If you're on a mobile or tablet with a camera, you can open the camera and come back to this page once you've taken the photo.</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<h3 class="govuk-heading-m">Transfer the photo</h3>
+<h3 class="govuk-heading-m">If {{you}}'ve used another device such as a smartphone to take the photo</h3>
 
-<p class="govuk-body">If you haven't already saved the photo to this device, you'll have to transfer it, by either:</p>
+<p class="govuk-body">{{you | capitalize}}'ll have to transfer the photo to the device {{you}}'ve used to apply, as a laptop.</p>
 
-<ul class="govuk-list govuk-list--bullet">
-  <li>sending it to yourself by email</li>
-  <li>attaching a cable between the camera and this device</li>
-  <li>using Bluetooth to move the photo from your mobile phone or tablet to this device</li>
-</ul>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <p class="govuk-body">{{you | capitalize}} can do this by:</p>
 
-<p class="govuk-body">You can continue once you have saved the photo as a file to this device.</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>emailing it to yourself</li>  
+      <li>Bluetooth <sup>&reg;</sup></li>
+      <li>attaching a cable between the two devices</li>
+    </ul>
+  </div>
+
+  <div class="govuk-grid-column-one-half">
+
+    <div class="svg-container">{% include "includes/icon-transfer.html" %}</div>
+    
+  </div>
+</div>
 
 
 {{ govukButton({

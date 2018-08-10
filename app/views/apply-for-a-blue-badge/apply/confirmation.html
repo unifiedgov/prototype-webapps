@@ -32,13 +32,13 @@
 
   <div id="some-evidence-missing">
 
-    <p class="govuk-body">{{data['council-name'] | capitalize}} may contact {{ you }} about providing:</p>
+    <p class="govuk-body">{{data['council-name'] | title}} may contact {{ you }} about providing:</p>
     <ol class="govuk-list govuk-list--bullet">
       {% if data['proofOfEligibility'] === 'notProvided' and (data['benefit'] === 'dla' or data['benefit'] === 'pip') %}
       <li>proof of eligibility</li>
       {% endif %}
       {% if data['proveIdentity'] === 'notProvided' %}
-      <li>proof or identity</li>
+      <li>proof of identity</li>
       {% endif %}
       {% if data['proveAddress'] === 'notProvided' %}
       <li>proof of address</li>
@@ -51,7 +51,7 @@
   </div>
 {% else %}
   <div id="all-evidence-present">
-    <p class=govuk-body>{{data['council-name'] | capitalize}} may contact {{ you }} to ask for more information.</p>
+    <p class=govuk-body>{{data['council-name'] | title}} may contact {{ you }} to ask for more information.</p>
   </div>
 {% endif %}
 
@@ -59,9 +59,9 @@
 
 <p class="govuk-body">It's now safe to close this window.</p>
 
-<h2 class="govuk-heading-m">{{data['council-name'] | capitalize}} contact details</h2>
+<h2 class="govuk-heading-m">{{data['council-name'] | title}} contact details</h2>
 <p class="govuk-body">
-  {{data['council-name'] | capitalize}}
+  {{data['council-name'] | title}}
   <br/>Church Lane
   <br/>Manchester
   <br/>M1 4AA

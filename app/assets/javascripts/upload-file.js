@@ -67,7 +67,7 @@ function updateProgress(fileNumber, percent) {
 }
 
 function handleFiles(files) {
-  files = [...files]
+  files = Array.from(files)
   initializeProgress(files.length)
   files.forEach(uploadFile)
   files.forEach(previewFile)
@@ -94,7 +94,7 @@ function previewFile(file) {
 }
 
 function uploadFile(file, i) {
-  var url = 'https://api.cloudinary.com/v1_1/joezim007/image/upload'
+  var url = 'https://api.cloudinary.com/v1_1/henryneves/image/upload'
   var xhr = new XMLHttpRequest()
   var formData = new FormData()
   xhr.open('POST', url, true)
@@ -114,7 +114,7 @@ function uploadFile(file, i) {
     }
   })
 
-  formData.append('upload_preset', 'ujpu6gyk')
+  formData.append('upload_preset', 'cswfg8zn')
   formData.append('file', file)
   xhr.send(formData)
 }

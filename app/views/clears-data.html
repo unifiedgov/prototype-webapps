@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% set hideBackLink = 'yes' %}
+
+{% block pageTitle %}
+  Clear data | GOV.UK prototype kit
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-xl">
+  Are you sure?
+</h1>
+
+<p class="govuk-body">This will clear all session data!</p>
+
+{{ govukButton({
+  "text": "Clear data",
+  "href": "/prototype-admin/clear-data"
+}) }}
+  
+
+{% endblock %}
