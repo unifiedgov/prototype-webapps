@@ -22,7 +22,7 @@
     }) }}
   {% endset -%}
 
-    {% if  data['nation'] === "wales" %}
+    {% if  data['nation'] === "wales" or data['nation'] === "scotland" %}
 
     {% set problemsWalkingText = you | capitalize + " have a substantial disability that will last for at least 12 months that means " + you + " cannot walk or find walking very difficult"  %}
 
