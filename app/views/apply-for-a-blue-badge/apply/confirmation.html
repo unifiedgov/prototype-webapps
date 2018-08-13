@@ -14,8 +14,8 @@
 })
 }}
 
-{% if data['pay-when'] === 'now' %}
-<p class="govuk-body">You've paid a £10 issue fee.</p>
+{% if data['pay-when'] === 'now' and data['nation'] !== "wales" %}
+<p class="govuk-body">You've paid a {{feePrice}} issue fee.</p>
 {% endif %}
 
 <p class="govuk-body">We've sent confirmation of this application to email to 

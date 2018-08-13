@@ -11,7 +11,13 @@ router.use(function(req, res, next) {
 
   if (!req.session.data['council-name']) {
     res.locals.data['council-name'] = 'your local council';
-  } 
+  }
+
+  if (req.session.data['nation'] === 'scotland') {
+    res.locals.feePrice = '£20';
+  } else {
+    res.locals.feePrice = '£10';
+  }
 
   var application = "application";
   switch(req.session.data['renewal-or-new-application']) {
@@ -915,6 +921,10 @@ router.get('/declaration', function (req, res) {
 
 router.get('/paying-for-your-blue-badge', function(req, res) {
   res.render('apply-for-a-blue-badge/apply/paying-for-your-blue-badge');
+});
+
+router.get('/submit-wales', function(req, res) {
+  res.render('apply-for-a-blue-badge/apply/submit-wales');
 });
 
 router.get('/paying-for-your-blue-badge-backend', function(req, res) {

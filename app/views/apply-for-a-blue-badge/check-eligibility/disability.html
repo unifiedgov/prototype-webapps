@@ -22,13 +22,13 @@
     }) }}
   {% endset -%}
 
-    {% if  data['council-name'] === "wales" %}
+    {% if  data['nation'] === "wales" %}
 
-    {% set walesPermanent = "" %}
+    {% set problemsWalkingText = you | capitalize + " have a substantial disability that will last for at least 12 months that means " + you + " cannot walk or find walking very difficult"  %}
 
     {% else %}
 
-    {% set walesPermanent = "permanent" %}
+    {% set problemsWalkingText = you | capitalize + " have a permanent disability which means " + you + " can not walk or find walking very difficult"  %}
 
     {% endif %}
 
@@ -45,7 +45,7 @@
         },
         {
           "value": "problems-walking",
-          "text": you | capitalize + " have a " + walesPermanent + " disability which means " + you + " can not walk or find walking very difficult" 
+          "text": problemsWalkingText
         },
         {
           "value": "arms",

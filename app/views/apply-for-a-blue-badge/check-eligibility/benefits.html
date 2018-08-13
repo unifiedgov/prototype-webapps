@@ -14,7 +14,7 @@
       {% if  data['council-name'] === "Northern Ireland" %}
     
       {% set pipText = 'and scored 8 points or more in the "moving around" activity of ' + your + ' assessment.' %}
-    
+      
       {% else %}
     
       {% set pipText = 'and scored either: 
@@ -24,6 +24,18 @@
                         </ul>' 
                           %}
       
+      {% endif %}
+
+      {% if data['nation'] === "wales" %}
+        {% set AFCStext = ' and either:
+                            <ul class="govuk-list govuk-list--bullet">
+                              <li>have received a lump sum payment within tariff levels 1-8 and have been certified as having a permanent and substantial disability</li>
+                              <li>or receive tariff level 6 for a permanent mental disorder</li>
+                            </ul>' %}
+
+      {% else %}
+
+        {% set AFCStext = ' and received a lump sum payment within tariff levels 1-8 and have been certified as having a permanent and substantial disability' %}
       {% endif %}
     
       {% if  data['age'] > 16 %}
@@ -39,7 +51,7 @@
               },
               {
                 "value": "armed-forces",
-                "html": '<b>Armed Forces Compensation scheme</b> <br> and received a lump sum payment within tariff levels 1-8 and have been certified as having a permanent and substantial disability'
+                "html":  '<b>Armed Forces Compensation scheme</b> <br>' + AFCStext
               },
               {
                 "value": "war-pensioners",

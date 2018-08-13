@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Submit application' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<p class="govuk-body-l">{{data['council-name'] | title}} will contact {{you}} if {{your}} application is unsuccessful.</p>
+
+
+  {{ govukButton({
+    "text": "Submit application",
+    "href": "confirmation?pay-when=now"
+  }) }}
+
+{% endblock %}

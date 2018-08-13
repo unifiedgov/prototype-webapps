@@ -286,6 +286,7 @@
               }) }}
               {% endif %}
             </li>
+            {% if data['nation'] !== "wales" %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="apply/paying-for-your-blue-badge" aria-describedby="pay-completed">
                 Submit and pay
@@ -300,6 +301,22 @@
               }) }}
               {% endif %}
             </li>
+            {% else %}
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="apply/submit-wales" aria-describedby="submit-completed">
+                Submit
+              </a>
+              {% if data['submit-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'submit-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            {% endif %}
           </ul>
         </li>
       </ol>

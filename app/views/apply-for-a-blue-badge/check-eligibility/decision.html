@@ -19,7 +19,9 @@
     <p class="govuk-body">You'll need to be authorised by your organisation to apply on their behalf and may be contacted by {{ data["council-name"] }} to provide more information.</p>
     <ul class="govuk-list govuk-list--bullet">
       <li>You'll need the details of the vehicles used to transport people</li>
-      <li>The badge issue fee is £10 which is refunded if the application isn't successful</li>
+      {% if data['nation'] !== "wales" %}
+      <li>The badge issue fee is {{feePrice}} which is refunded if the application isn't successful</li>
+      {% endif %}
       <li>It can take up to 4 weeks to get a decision</li>
     </ul>
     {{ govukButton({
@@ -34,7 +36,9 @@
 
   <ul class="govuk-list govuk-list--bullet">
     <li>{{ you | capitalize }}’ll need to provide proof of {{ your }} benefit as part of {{ your }} application</li>
-    <li>The badge issue fee is £10 which is refunded if {{ your }} application isn't successful</li>
+    {% if data['nation'] !== "wales" %}
+    <li>The badge issue fee is {{feePrice}} which is refunded if {{ your }} application isn't successful</li>
+    {% endif %}
     <li>It can take up to 4 weeks to get a decision</li>
   </ul>
   {{ govukButton({
@@ -60,7 +64,9 @@
   <ul class="govuk-list govuk-list--bullet">
     <li>{{ you | capitalize }}'ll need to provide evidence of {{ your }} disability as part of the application.</li>
     <li>{{ you | capitalize }} may be called for an Independent Mobility Assessment.</li>
-    <li>The badge issue fee is £10 which is refunded if {{ your }} application isn't successful.</li>
+    {% if data['nation'] !== "wales" %}
+    <li>The badge issue fee is {{feePrice}} which is refunded if {{ your }} application isn't successful.</li>
+    {% endif %}
     <li>It can take up to 4 weeks to get a decision.</li>
   </ul>
   {{ govukButton({
